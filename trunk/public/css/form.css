@@ -1,0 +1,15 @@
+.label {
+	width: 8em;
+	font-weight: bold;
+	padding: 10px 0;
+}
+
+.input_field input {
+	padding: 5px;
+}
+
+.submit input {
+	background-color: #00ABA9;
+	color: #FFFFFF;
+	padding: 10px;
+}

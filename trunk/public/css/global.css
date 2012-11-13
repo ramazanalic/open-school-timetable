@@ -1,0 +1,94 @@
+body {
+	font-family: "微軟正黑體", sans-serif, serif;
+	font-size: 15px;
+}
+
+a {
+	text-decoration: none;
+	color: #FFFFFF;
+}
+
+.add_a {
+	background-color: #A2C139;
+	padding: 10px;
+}
+
+.delete_a {
+	background-color: #D80073;
+	padding: 10px;
+}
+
+#message_block {
+	color: #D80073;
+	padding: 10px 0px;
+	font-size: 120%;
+}
+
+#wrapper {
+	padding: 2em;
+}
+
+header {
+	font-size: 150%;
+}
+
+#banner {
+	font-size: 150%;
+	padding: 1em;
+}
+
+#login {
+	float: right;
+	background-color: #E671B8;
+	margin-top: -3em;
+}
+
+#login a {
+	display: block;
+	padding: 0.5em;
+}
+
+nav {
+	float: left;
+	width: 12em;
+	padding-left: 3em;
+}
+
+nav a {
+	display: block;
+	width: 100%;
+	margin: 8px 0;
+	padding: 1em;
+	font-size: 120%;
+	letter-spacing: 1px;
+}
+
+#user_nav a {
+	background-color: #1BA1E2;
+}
+
+#teacher_nav a {
+	background-color: #A05000;
+}
+
+#admin_nav a {
+	background-color: #F09609;
+}
+
+section {
+	margin-left: 20em;
+}
+
+footer {
+	float: left;
+	margin-top: 2em;
+	text-align: center;
+	width: 100%;
+	background-color: #EEEEEF;
+	padding: 1em 0;
+}
+
+footer a {
+	text-decoration: underline;
+	color: #888888;
+}

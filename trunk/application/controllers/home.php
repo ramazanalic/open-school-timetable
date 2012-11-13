@@ -33,7 +33,7 @@ class Home_Controller extends Base_Controller {
 	public function action_index()
 	{
 		// return View::make('home.index');
-		 $this->layout->nest('content', 'user.profile');
+		$this->layout->nest('content', 'home.index');
 	}
 
 }
