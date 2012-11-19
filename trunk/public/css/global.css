@@ -1,94 +1,112 @@
 body {
-	font-family: "微軟正黑體", sans-serif, serif;
-	font-size: 15px;
+    font-family: "微軟正黑體", sans-serif, serif;
+    font-size: 15px;
 }
 
 a {
-	text-decoration: none;
-	color: #FFFFFF;
+    text-decoration: none;
+    color: #FFFFFF;
 }
 
 .add_a {
-	background-color: #A2C139;
-	padding: 10px;
+    background-color: #A2C139;
+    padding: 10px;
 }
 
 .delete_a {
-	background-color: #D80073;
-	padding: 10px;
+    background-color: #D80073;
+    padding: 10px;
 }
 
 #message_block {
-	color: #D80073;
-	padding: 10px 0px;
-	font-size: 120%;
+    color: #D80073;
+    padding: 10px 0px;
+    font-size: 120%;
 }
 
 #wrapper {
-	padding: 2em;
+    padding: 0em;
 }
 
 header {
-	font-size: 150%;
+    background-color: #1BA1E2;
 }
 
 #banner {
-	font-size: 150%;
-	padding: 1em;
+    font-size: 180%;
+    padding: 0.5em;
+    color: #FFFFFF;
 }
 
 #login {
-	float: right;
-	background-color: #E671B8;
-	margin-top: -3em;
+    position: absolute;
+    right: 0;
+    top: 10px;
+    background-color: #E671B8;
+    width: 4em;
+    text-align: left;
 }
 
 #login a {
-	display: block;
-	padding: 0.5em;
+    display: block;
+    padding: 0.5em;
 }
 
 nav {
-	float: left;
-	width: 12em;
-	padding-left: 3em;
+    position: absolute;
+    width: 180px;
+    height: 100%;
+    background-color: #F3F3F3;
+    color: #666666;
+}
+
+nav ul {
+    padding: 1em 0 0 1em;
+}
+
+nav .nav_title {
+    font-size: 130%;
 }
 
 nav a {
-	display: block;
-	width: 100%;
-	margin: 8px 0;
-	padding: 1em;
-	font-size: 120%;
-	letter-spacing: 1px;
+    display: block;
+    padding: 0.7em 0 0.7em 1em;
+    color: #666666;
+}
+
+nav a:hover {
+    background-color: #dddddd;
 }
 
 #user_nav a {
-	background-color: #1BA1E2;
+
 }
 
 #teacher_nav a {
-	background-color: #A05000;
+
 }
 
 #admin_nav a {
-	background-color: #F09609;
+
 }
 
 section {
-	margin-left: 20em;
+    position: absolute;
+    left:190px;
+    font-size:110%;
+    padding:1em;
 }
 
 footer {
-	float: left;
-	margin-top: 2em;
-	text-align: center;
-	width: 100%;
-	background-color: #EEEEEF;
-	padding: 1em 0;
+    position: absolute;
+    text-align: center;
+    width: 100%;
+    border-top: 2px solid #F3F3F3;
+    padding: 1em 0;
+    bottom: 0;
 }
 
 footer a {
-	text-decoration: underline;
-	color: #888888;
+    text-decoration: underline;
+    color: #888888;
 }
