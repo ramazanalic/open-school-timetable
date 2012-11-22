@@ -8,24 +8,10 @@ a {
     color: #FFFFFF;
 }
 
-.add_a {
-    background-color: #A2C139;
-    padding: 10px;
-}
-
-.delete_a {
-    background-color: #D80073;
-    padding: 10px;
-}
-
 #message_block {
     color: #D80073;
     padding: 10px 0px;
     font-size: 120%;
-}
-
-#wrapper {
-    padding: 0em;
 }
 
 header {
@@ -78,25 +64,17 @@ nav a:hover {
     background-color: #dddddd;
 }
 
-#user_nav a {
 
-}
-
-#teacher_nav a {
-
-}
-
-#admin_nav a {
-
-}
-
-section {
+#main {
     position: absolute;
     left:190px;
     font-size:110%;
     padding:1em;
 }
 
+#main h1 {
+    font-size:150%;
+}
 footer {
     position: absolute;
     text-align: center;
