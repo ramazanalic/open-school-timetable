@@ -6,8 +6,7 @@
         <meta name="description" content="國小排課系統" />
         <?= HTML::style('css/YUI_CSS_Rest.css') ?>
         <?= HTML::style('css/global.css') ?>
-        <?= Asset::styles() ?>
-        <title>OST排課系統</title>
+        <?= Asset::styles() ?> <title>OST排課系統</title>
     </head>
     <body>
         <header>
@@ -55,7 +54,13 @@
                     <a href="">課程排課限制設定</a>
                 </li>
                 <li>
-                    <a href="">帳號密碼管理</a>
+                    <a href="<?= URL::to('account') ?>">教師帳號管理</a>
+                </li>
+                <li>
+                    <a href="<?= URL::to('class') ?>">班級管理</a>
+                </li>
+                <li>
+                    <a href="<?= URL::to('year') ?>">年級管理</a>
                 </li>
             </ul>
         </nav>
