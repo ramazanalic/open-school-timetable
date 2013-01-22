@@ -6,7 +6,8 @@
         <meta name="description" content="國小排課系統" />
         <?= HTML::style('css/YUI_CSS_Rest.css') ?>
         <?= HTML::style('css/global.css') ?>
-        <?= Asset::styles() ?> <title>OST排課系統</title>
+        <?= Asset::styles() ?>
+        <title>OST排課系統</title>
     </head>
     <body>
         <header>
@@ -70,6 +71,6 @@
         <footer>
             <a href="http://code.google.com/p/open-school-timetable/">程式專案網站</a>
         </footer>
-        <?= HTML::script('javascript/jQuery.js') ?>
+        <?= HTML::script('js/jQuery.js') ?>
     </body>
 </html>
