@@ -2,8 +2,8 @@
 <html lang="zh">
     <head>
         <meta charset="utf-8" />
-        <meta name="keywords" content="排課, 國小, 課表" />
-        <meta name="description" content="國小排課系統" />
+        <meta name="keywords" content="排課, 國小, 課表">
+        <meta name="description" content="國小排課系統">
         <?= HTML::style('css/YUI_CSS_Rest.css') ?>
         <?= HTML::style('css/global.css') ?>
         <?= Asset::styles() ?>
