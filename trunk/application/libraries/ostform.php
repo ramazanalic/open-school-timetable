@@ -16,12 +16,17 @@ class OstForm
 
 	public static function open($action = NULL, $method = 'POST', $attributes = array(), $https = NULL)
 	{
-		return Form::open($action, $method, $attributes, $https) . '<table class="form_table">';
+		return Form::open($action, $method, array_merge($attributes, array('class' => 'input_form')), $https) . '<table class="form_table">';
 	}
 
 	public static function submit($name)
 	{
 		return '<tr><td colspan="2" class="submit">' . Form::submit($name) . '</td></tr>';
+	}
+
+	public static function description($description)
+	{
+		return '<caption>' . $description . '</caption>';
 	}
 
 	public static function close()

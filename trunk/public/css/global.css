@@ -1,129 +1,132 @@
+/**
+ *  全域設定
+ */
 body {
-	font-family: "微軟正黑體", sans-serif, serif;
-	font-size: 15px;
+    font-family: "微軟正黑體", sans-serif, serif;
+    font-size: 15px;
 }
 
 a {
-	text-decoration: none;
-	color: #FFFFFF;
+    text-decoration: none;
+    color: #FFFFFF;
 }
 
 /**
  * 	訊息區塊
  */
 #message_block {
-	color: #D80073;
-	padding: 10px 0px;
-	font-size: 120%;
+    color: #D80073;
+    padding: 10px 0px;
+    font-size: 120%;
 }
 
 /**
  * 	表頭
  */
 header {
-	background-color: #1BA1E2;
+    background-color: #1BA1E2;
 }
 
 #banner {
-	font-size: 180%;
-	padding: 0.5em;
-	color: #FFFFFF;
+    font-size: 180%;
+    padding: 0.5em;
+    color: #FFFFFF;
 }
 
 #login {
-	position: absolute;
-	right: 0;
-	top: 10px;
-	background-color: #E671B8;
-	width: 4em;
-	text-align: left;
+    position: absolute;
+    right: 0;
+    top: 10px;
+    background-color: #E671B8;
+    width: 4em;
+    text-align: left;
 }
 
 #login a {
-	display: block;
-	padding: 0.5em;
+    display: block;
+    padding: 0.5em;
 }
 
 /**
  * 	左側導覽列
  */
 nav {
-	position: absolute;
-	width: 180px;
-	height: 100%;
-	background-color: #F3F3F3;
-	color: #666666;
+    position: absolute;
+    width: 180px;
+    height: 100%;
+    background-color: #F3F3F3;
+    color: #666666;
 }
 
 nav ul {
-	padding: 1em 0 0 1em;
+    padding: 1em 0 0 1em;
 }
 
 nav .nav_title {
-	font-size: 130%;
+    font-size: 130%;
 }
 
 nav a {
-	display: block;
-	padding: 0.7em 0 0.7em 1em;
-	color: #666666;
+    display: block;
+    padding: 0.7em 0 0.7em 1em;
+    color: #666666;
 }
 
 nav a:hover {
-	background-color: #dddddd;
+    background-color: #dddddd;
 }
 
 /**
  * 	主區塊
  */
 #main {
-	position: absolute;
-	left: 190px;
-	font-size: 110%;
-	padding: 1em;
-	right: 0;
+    position: absolute;
+    left: 190px;
+    font-size: 110%;
+    padding: 1em;
+    right: 0;
 }
 
 #main h1 {
-	font-size: 150%;
-	text-align: left;
-	margin-bottom: 1em;
+    font-size: 160%;
+    text-align: left;
+    margin-bottom: 1em;
+    color: #DD4B39
 }
 
 footer {
-	position: absolute;
-	text-align: center;
-	width: 100%;
-	border-top: 2px solid #F3F3F3;
-	padding: 1em 0;
-	bottom: 0;
+    position: absolute;
+    text-align: center;
+    width: 100%;
+    border-top: 2px solid #F3F3F3;
+    padding: 1em 0;
+    bottom: 0;
 }
 
 footer a {
-	text-decoration: underline;
-	color: #888888;
+    text-decoration: underline;
+    color: #888888;
 }
 
 /**
  * 	組件：新增
  */
 .add {
-	display: block;
-	text-align: center;
-	width: 5em;
-	background-color: #A05000;
-	padding: 3px;
+    display: block;
+    text-align: center;
+    width: 5em;
+    background-color: #A05000;
+    padding: 3px;
 }
 
 /**
  * 	組件：返回
  */
 .back {
-	display: block;
-	text-align: center;
-	width: 3.5em;
-	background-color: #00ABA9;
-	padding: 3px;
-	margin-bottom:0.5em;
+    display: block;
+    text-align: center;
+    width: 3.5em;
+    background-color: #00ABA9;
+    padding: 3px;
+    margin-bottom: 0.5em;
 }
-
