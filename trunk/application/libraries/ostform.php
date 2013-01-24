@@ -2,7 +2,7 @@
 /**
  * OST Form 類別
  */
-class OSTForm
+class OstForm
 {
 	public static function text($name, $label, $value = NULL, $attribs = array())
 	{
