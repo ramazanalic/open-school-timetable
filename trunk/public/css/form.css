@@ -2,36 +2,46 @@
  * 表單主體
  */
 .input_form {
-    background-color: #F1F1F1;
-    padding: 1em;
-    border: 1px solid #E5E5E5;
-    width: 20em;
+	background-color: #F1F1F1;
+	padding: 1em;
+	border: 1px solid #E5E5E5;
+	width: 25em;
 }
 
 .form_table caption {
-    margin-bottom: 0.5em;
-    font-size: 120%;
+	margin-bottom: 0.5em;
+	font-size: 120%;
+}
+
+.form_table td {
+	padding: 2px;
 }
 
 .label {
-    width: 4em;
-    font-weight: bold;
-    padding: 10px 0;
-    color: #222222;
-    font-size: 90%;
+	width: 4em;
+	font-weight: bold;
+	padding: 10px 0;
+	color: #222222;
+	font-size: 90%;
 }
 
 .input_field input {
-    padding: 5px;
+	padding: 5px;
+}
+
+.input_error {
+	font-size: 80%;
+	color: red;
+	padding-left: 0.8em !important;
 }
 
 .submit {
-    padding-top: 0.5em;
+	padding-top: 0.5em;
 }
 
 .submit input[type="submit"] {
-    background-color: #F09609;
-    color: #FFFFFF;
-    padding: 5px 20px;
-    border: 0;
+	background-color: #F09609;
+	color: #FFFFFF;
+	padding: 5px 20px;
+	border: 0;
 }
