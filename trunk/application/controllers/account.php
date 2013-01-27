@@ -4,62 +4,81 @@
  */
 class Account_Controller extends Base_Controller
 {
-    /**
-     * index：顯示教師列表
-     */
-    public function action_index()
-    {
-        $this->layout->nest('content', 'account.index');
-    }
+	/**
+	 * index：顯示教師列表
+	 */
+	public function action_index()
+	{
+		$this->layout->nest('content', 'account.index');
+	}
 
-    /**
-     * add：新增教師
-     */
-    public function action_add()
-    {
-        if ($data = Input::all()) {            
-            $validator = $this->_validateTeacher($data);
-            if ($validator->fails()) {
-                $validator->errors->add('flash_message', '輸入錯誤，請檢查');
-                return Redirect::to('account/add')->with_input()->with_errors($validator);
-            }
+	/**
+	 * add：新增教師
+	 */
+	public function action_add()
+	{
+		if ($data = Input::all()) {
+			$validator = $this->_validateTeacher($data);
+			if ($validator->fails()) {
+				return Redirect::to('account/add')->with_input()->with_errors($validator)->with('message', '輸入錯誤，請檢查');
+			} else {
+				if ($techer = Teacher::create($this->_collateTeacher($data))) {
+					$message = '新增教師"' . $data['name'] . '"完成';
+				} else {
+					$message = '資料寫入錯誤';
+				}
 
-        }
+				return Redirect::to('account')->with('message', $message);
+			}
 
-        $this->layout->nest('content', 'account.add');
-    }
+		}
 
-    /**
-     * edit：編輯教師
-     */
-    public function action_edit()
-    {
-        $this->layout->nest('content', 'account.edit');
-    }
+		$this->layout->nest('content', 'account.add');
+	}
 
-    /**
-     * 驗證教師資料
-     */
-    private function _validateTeacher($data, $passwordRequire = true)
-    {
-        $rules = array(
-            'name' => 'required',
-            'account' => 'required|alpha_num'
-        );
+	/**
+	 * edit：編輯教師
+	 */
+	public function action_edit()
+	{
+		$this->layout->nest('content', 'account.edit');
+	}
 
-        if ($passwordRequire == true) {
-            $rules = array_merge($rules, array('password' => 'required|confirmed'));
-        }
+	/**
+	 * 驗證教師資料
+	 */
+	private function _validateTeacher($data, $passwordRequire = true)
+	{
+		$rules = array(
+			'name' => 'required',
+			'account' => 'required|alpha_num'
+		);
 
-        $messages = array(
-            'name_required' => '請輸入姓名',
-            'account_required' => '請輸入帳號',
-            'account_alpha_num' => '帳號請使用英文和數字',
-            'password_required' => '密碼不能空白',
-            'password_confirmed' => '請確定確認密碼和密碼相同'
-        );
+		if ($passwordRequire == true) {
+			$rules = array_merge($rules, array('password' => 'required|confirmed'));
+		}
 
-        return Validator::make($data, $rules, $messages);
-    }
+		$messages = array(
+			'name_required' => '請輸入姓名',
+			'account_required' => '請輸入帳號',
+			'account_alpha_num' => '帳號請使用英文和數字',
+			'password_required' => '密碼不能空白',
+			'password_confirmed' => '請確定確認密碼和密碼相同'
+		);
+
+		return Validator::make($data, $rules, $messages);
+	}
+
+	/**
+	 * 整理教師資料，提供資料庫寫入
+	 */
+	private function _collateTeacher($data)
+	{
+		return array(
+			'teacher_name' => $data['name'],
+			'teacher_account' => $data['account'],
+			'teacher_password_hash' => Hash::make($data['password'])
+		);
+	}
 
 }
