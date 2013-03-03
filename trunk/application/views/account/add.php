@@ -1,5 +1,5 @@
 <?php
-Asset::add('global', 'css/form.css');
+Asset::add('form', 'css/form.css');
 Asset::add('account_add', 'css/account_add.css');
 $GLOBALS['errors'] = $errors;
 ?>

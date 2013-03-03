@@ -1,0 +1,22 @@
+table {
+    margin: 1em 0;;
+}
+
+td, th {
+    padding: 5px 4em 5px 5px;
+}
+
+.edit, .delete {
+    padding: 5px;
+}
+
+th {
+    border-bottom: 1px solid #FFFFFF;
+    color: #FFFFFF;
+    background-color: #00ABA9;
+}
+
+td {
+    border-bottom: 1px solid #FFFFFF;
+    background-color: #E8EDFF;
+}

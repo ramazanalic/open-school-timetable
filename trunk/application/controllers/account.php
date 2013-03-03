@@ -9,7 +9,8 @@ class Account_Controller extends Base_Controller
 	 */
 	public function action_index()
 	{
-		$this->layout->nest('content', 'account.index');
+		$viewData['teacherList'] = Teacher::all();
+		$this->layout->nest('content', 'account.index', $viewData);
 	}
 
 	/**
@@ -39,7 +40,17 @@ class Account_Controller extends Base_Controller
 	/**
 	 * edit：編輯教師
 	 */
-	public function action_edit()
+	public function action_edit($id)
+	{
+		echo $id;
+		exit;
+		$this->layout->nest('content', 'account.edit');
+	}
+
+	/**
+	 * edit：刪除教師
+	 */
+	public function action_delete($id)
 	{
 		$this->layout->nest('content', 'account.edit');
 	}

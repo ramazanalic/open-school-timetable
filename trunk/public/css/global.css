@@ -111,7 +111,7 @@ footer a {
 /**
  * 	組件：新增
  */
-.add {
+.add_link {
     display: block;
     text-align: center;
     width: 5em;
@@ -122,13 +122,35 @@ footer a {
 /**
  * 	組件：返回連結
  */
-.back {
+.back_link {
     display: block;
     text-align: center;
     width: 3.5em;
     background-color: #00ABA9;
     padding: 3px;
     margin-bottom: 0.5em;
+}
+
+/**
+ *  組件：編輯
+ */
+.edit_link {
+    display: block;
+    text-align: center;
+    width: 5em;
+    background-color: #A2C139;
+    padding: 3px;
+}
+
+/**
+ *  組件：編輯
+ */
+.delete_link {
+    display: block;
+    text-align: center;
+    width: 5em;
+    background-color: #D80073;
+    padding: 3px;
 }
 
 /**
