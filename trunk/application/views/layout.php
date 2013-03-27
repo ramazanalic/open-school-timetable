@@ -35,7 +35,7 @@
             </ul>
             <ul id="teacher_nav">
                 <li class="nav_title">
-                    排課設定
+                    個人排課設定
                 </li>
                 <li>
                     <a href="">個人排課需求設定</a>
@@ -45,14 +45,20 @@
                 <li class="nav_title">
                     系統管理
                 </li>
+                 <li>
+                    <a href="">課程單元設定</a>
+                </li>
                 <li>
                     <a href="">教師排課限制設定</a>
                 </li>
                 <li>
-                    <a href="">課程排課需求設定</a>
+                    <a href="">教師排課需求設定</a>
                 </li>
                 <li>
-                    <a href="">課程排課限制設定</a>
+                    <a href="">課程名稱管理</a>
+                </li>
+                <li>
+                    <a href="">教室管理</a>
                 </li>
                 <li>
                     <?= HTML::link(URL::to('class_year'), '班級\年級管理') ?>
