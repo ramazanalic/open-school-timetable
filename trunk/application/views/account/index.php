@@ -5,8 +5,8 @@ Asset::add('table1', 'css/table_style1.css');
 <?= HtmlComposite::add('account/add') ?>
 <?= HtmlComposite::messageBlock() ?>
 
-<?php if ($teacherList): ?>
-	<table>
+<?php if (isset($teacherList)): ?>
+	<table class="dataList">
 	    <tr>
 	        <th class="teacher_name">姓名</th>
 	        <th class="teacher_account">帳號</th>

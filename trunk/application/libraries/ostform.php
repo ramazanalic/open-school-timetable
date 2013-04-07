@@ -36,7 +36,7 @@ class OstForm
 
 	private static function _getErrorBlock($name)
 	{
-		if ($GLOBALS['errors']->first($name)) {
+		if (isset($GLOBALS['errors'])) {
 			return '<td class="input_error">*' . $GLOBALS['errors']->first($name) . '</td>';
 		} else {
 			return NULL;
