@@ -9,6 +9,11 @@ class OstForm
 		return '<tr><td class="label">' . Form::label($name, $label) . '</td><td class="input_field">' . Form::text($name, $value, $attribs) . '</td>' . self::_getErrorBlock($name) . '</tr>';
 	}
 
+	public static function hidden($name, $value)
+	{
+		return '<tr><td style="display:none">' . Form::hidden($name, $value) . '</td></tr>';
+	}
+
 	public static function password($name, $label, $attribs = array())
 	{
 		return '<tr><td class="label">' . Form::label($name, $label) . '</td><td class="input_field">' . Form::password($name, $attribs) . '</td>' . self::_getErrorBlock($name) . '</tr>';

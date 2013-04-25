@@ -1,6 +1,8 @@
 #year_course_time_selector td, #year_course_time_selector th {
-    padding:10px;
+    padding: 10px;
+    color: #F3F3F3;
 }
+
 #day_row th {
     background-color: #00ABA9;
 }
@@ -8,7 +10,20 @@
 .course_column {
     background-color: #00ABA9;
 }
+
 #noon_break {
-    text-align:center;
+    text-align: center;
     background-color: #AAAAAA;
+}
+
+.course {
+    border: 1px solid #00ABA9;
+}
+
+.course[data-selected="0"] {
+    background-color: #FFFFFF;
+}
+
+.course[data-selected="1"] {
+    background-color: #1BA1E2;
 }
