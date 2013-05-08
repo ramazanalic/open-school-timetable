@@ -4,6 +4,13 @@
  */
 class OstForm
 {
+	private static $_errors;
+
+	public static function setErrors($errors)
+	{
+		static::$_errors = $errors;
+	}
+
 	public static function text($name, $label, $value = NULL, $attribs = array())
 	{
 		return '<tr><td class="label">' . Form::label($name, $label) . '</td><td class="input_field">' . Form::text($name, $value, $attribs) . '</td>' . self::_getErrorBlock($name) . '</tr>';
@@ -41,8 +48,10 @@ class OstForm
 
 	private static function _getErrorBlock($name)
 	{
-		if (isset($GLOBALS['errors'])) {
-			return '<td class="input_error">*' . $GLOBALS['errors']->first($name) . '</td>';
+		$errorMessage = static::$_errors->first($name);
+
+		if ($errorMessage) {
+			return '<td class="input_error">*' . $errorMessage . '</td>';
 		} else {
 			return NULL;
 		}

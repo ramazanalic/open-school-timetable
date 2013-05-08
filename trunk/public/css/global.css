@@ -117,6 +117,7 @@ footer a {
     width: 5em;
     background-color: #A05000;
     padding: 3px;
+    margin-bottom: 0.5em;
 }
 
 /**
@@ -143,7 +144,7 @@ footer a {
 }
 
 /**
- *  組件：編輯
+ *  組件：刪除
  */
 .delete_link {
     display: block;
@@ -157,6 +158,7 @@ footer a {
  *  組件：訊息區塊
  */
 .messageBlock {
-    color: #E671B8;
-    padding: 0 0 1em 0;
+    color: #FA6800;
+    padding: 0 0 0.5em 0;
+    font-size: 120%;
 }
