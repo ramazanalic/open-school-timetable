@@ -48,12 +48,14 @@ class OstForm
 
 	private static function _getErrorBlock($name)
 	{
-		$errorMessage = static::$_errors->first($name);
+		if (static::$_errors) {
+			$errorMessage = static::$_errors->first($name);
 
-		if ($errorMessage) {
-			return '<td class="input_error">*' . $errorMessage . '</td>';
-		} else {
-			return NULL;
+			if ($errorMessage) {
+				return '<td class="input_error">*' . $errorMessage . '</td>';
+			} else {
+				return NULL;
+			}
 		}
 	}
 

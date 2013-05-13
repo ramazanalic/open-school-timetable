@@ -43,8 +43,26 @@ class Account_Controller extends Base_Controller
 	public function action_edit($id)
 	{
 		if ($data = Input::all()) {
-			echo 'code here';
-			exit ;
+			// 判斷是否處理密碼
+			if ($data['teacher_password'] == '') {
+				$hasPassword = false;
+			} else {
+				$hasPassword = true;
+			}
+
+			$validator = $this->_validateTeacher($data, $hasPassword);
+			if ($validator->fails()) {
+				return Redirect::to('account/edit/' . $id)->with_input()->with_errors($validator)->with('message', '輸入錯誤，請檢查');
+			} else {
+
+				if ($techer = Teacher::update($id, $this->_handleTeacherData($data, $hasPassword))) {
+					$message = '更新教師《' . $data['teacher_name'] . '》完成';
+				} else {
+					$message = '資料寫入錯誤';
+				}
+
+				return Redirect::to('account')->with('message', $message);
+			}
 		}
 
 		$teacher = Teacher::find($id);
@@ -59,7 +77,10 @@ class Account_Controller extends Base_Controller
 	 */
 	public function action_delete($id)
 	{
-		$this->layout->nest('content', 'account.edit');
+		$teacher = Teacher::find($id);
+		$teacher_name = $teacher->teacher_name;
+		$teacher->delete();
+		return Redirect::to('account/')->with('message', '刪除《' . $teacher_name . '》完成');
 	}
 
 	/**
@@ -72,17 +93,19 @@ class Account_Controller extends Base_Controller
 			'teacher_account' => 'required|alpha_num'
 		);
 
-		if ($passwordRequire == true) {
-			$rules = array_merge($rules, array('teacher_password' => 'required|confirmed'));
-		}
-
 		$messages = array(
 			'teacher_name_required' => '請輸入姓名',
 			'teacher_account_required' => '請輸入帳號',
-			'teacher_account_alpha_num' => '帳號請使用英文和數字',
-			'teacher_password_required' => '密碼不能空白',
-			'teacher_password_confirmed' => '請確定確認密碼和密碼相同'
+			'teacher_account_alpha_num' => '帳號請使用英文和數字'
 		);
+
+		if ($passwordRequire == true) {
+			$rules = array_merge($rules, array('teacher_password' => 'required|confirmed'));
+			$messages = array_merge($messages, array(
+				'teacher_password_required' => '密碼不能空白',
+				'teacher_password_confirmed' => '請確定確認密碼和密碼相同'
+			));
+		}
 
 		return Validator::make($data, $rules, $messages);
 	}
@@ -90,9 +113,12 @@ class Account_Controller extends Base_Controller
 	/**
 	 * 整理教師資料，提供資料庫寫入
 	 */
-	private function _handleTeacherData($data)
+	private function _handleTeacherData($data, $hasPassword = true)
 	{
-		$data['teacher_password_hash'] = Hash::make($data['teacher_password']);
+		if ($hasPassword == true) {
+			$data['teacher_password_hash'] = Hash::make($data['teacher_password']);
+		}
+
 		unset($data['teacher_password']);
 		unset($data['teacher_password_confirmation']);
 		return $data;
