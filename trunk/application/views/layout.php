@@ -75,5 +75,6 @@
             <?= HTML::link('http://code.google.com/p/open-school-timetable/', '程式專案網站') ?>
         </footer>
         <?= HTML::script('js/jQuery.js') ?>
+        <?= Asset::scripts(); ?>
     </body>
 </html>

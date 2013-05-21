@@ -1,3 +1,7 @@
+#year_course_time_selector {
+    margin-top: 1em;
+}
+
 #year_course_time_selector td, #year_course_time_selector th {
     padding: 10px;
     color: #F3F3F3;

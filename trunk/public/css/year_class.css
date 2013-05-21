@@ -1,0 +1,22 @@
+/**
+ * 年級選單樣式
+ */
+#year_row {
+    background-color: #1BA1E2;
+    padding: 10px;
+    width: 50%;
+}
+
+.year_item {
+    display: inline-block;
+    background-color: #F0A30A;
+    padding: 10px;
+    width: 5em;
+    margin: 5px;
+    text-align: center;
+}
+
+#command_area {
+    float: right;
+    width: 40%;
+}

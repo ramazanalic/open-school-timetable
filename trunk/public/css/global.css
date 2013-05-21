@@ -121,6 +121,14 @@ footer a {
 }
 
 /**
+ *  組件：新增按鈕
+ */
+.add_button {
+    display: block;
+    background-color: #A05000 !important;
+}
+
+/**
  * 	組件：返回連結
  */
 .back_link {

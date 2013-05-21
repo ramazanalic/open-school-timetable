@@ -6,9 +6,13 @@ class HtmlComposite
 		return HTML::link(URL::to($url), '←返回', array('class' => 'back_link'));
 	}
 
-	public static function add($url, $itemName = NULL)
+	public static function add($url, $itemName = NULL, $attributes = NULL)
 	{
-		return HTML::link(URL::to($url), '新增' . $itemName . '&raquo;', array('class' => 'add_link'));
+		if ($itemName != NULL) {
+			return HTML::link(URL::to($url), $itemName . '&raquo;', $attributes);
+		} else {
+			return HTML::link(URL::to($url), '新增' . $itemName . '&raquo;', array('class' => 'add_link'));
+		}
 	}
 
 	public static function edit($url)
