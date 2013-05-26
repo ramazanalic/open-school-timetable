@@ -25,6 +25,7 @@ Asset::add('selector', 'js/year_course_selector.js');
 <div id="command_area">
 	<?php if (isset($showYearForm)): ?>
 		<div id="year_form">
+			<h1>新增年級</h1>
 			<?= OstForm::open(URL::to('class_year/add_year')) ?>
 			<?= OstForm::text('year_name', '年級', Input::old('year_name'), array('required' => 'required')) ?>
 			<?= OstForm::submit('新增年級', array('id', 'add_year')); ?>
@@ -33,6 +34,7 @@ Asset::add('selector', 'js/year_course_selector.js');
 		</div>
 
 		<div id="year_course_time_selector">
+			<h1>年級上課時間設定</h1>
 			<table>
 				<tr id="day_row">
 					<th>&nbsp;</th>
