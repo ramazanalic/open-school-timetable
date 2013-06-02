@@ -46,7 +46,7 @@ class Class_Year_Controller extends Base_Controller
 	/**
 	 * 顯示年級中的班級、年級編輯選單
 	 */
-	public function action_view_year($value='')
+	public function action_view_year($value = '')
 	{
 
 	}

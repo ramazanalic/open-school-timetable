@@ -16,7 +16,7 @@ Asset::add('selector', 'js/year_course_selector.js');
 		<?php endforeach; ?>
 	<?php endif; ?>
 
-	<?= HtmlComposite::add('class_year/add_year', '新增年級', array('class'=>'add_button year_item')) ?>
+	<?= HtmlComposite::add('class_year/add_year', '新增年級', array('class' => 'add_button year_item')) ?>
 </div>
 
 <div id="class_area">

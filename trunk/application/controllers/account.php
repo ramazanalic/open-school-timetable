@@ -66,10 +66,7 @@ class Account_Controller extends Base_Controller
 		}
 
 		$teacher = Teacher::find($id);
-		$this->layout->nest('content', 'account.form', array(
-			'type' => 'edit/' . $id,
-			'teacher' => $teacher
-		));
+		$this->layout->nest('content', 'account.form', array('type' => 'edit/' . $id, 'teacher' => $teacher));
 	}
 
 	/**
@@ -88,23 +85,13 @@ class Account_Controller extends Base_Controller
 	 */
 	private function _validateTeacher($data, $passwordRequire = true)
 	{
-		$rules = array(
-			'teacher_name' => 'required',
-			'teacher_account' => 'required|alpha_num'
-		);
+		$rules = array('teacher_name' => 'required', 'teacher_account' => 'required|alpha_num');
 
-		$messages = array(
-			'teacher_name_required' => '請輸入姓名',
-			'teacher_account_required' => '請輸入帳號',
-			'teacher_account_alpha_num' => '帳號請使用英文和數字'
-		);
+		$messages = array('teacher_name_required' => '請輸入姓名', 'teacher_account_required' => '請輸入帳號', 'teacher_account_alpha_num' => '帳號請使用英文和數字');
 
 		if ($passwordRequire == true) {
 			$rules = array_merge($rules, array('teacher_password' => 'required|confirmed'));
-			$messages = array_merge($messages, array(
-				'teacher_password_required' => '密碼不能空白',
-				'teacher_password_confirmed' => '請確定確認密碼和密碼相同'
-			));
+			$messages = array_merge($messages, array('teacher_password_required' => '密碼不能空白', 'teacher_password_confirmed' => '請確定確認密碼和密碼相同'));
 		}
 
 		return Validator::make($data, $rules, $messages);

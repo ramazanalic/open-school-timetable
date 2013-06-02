@@ -27,16 +27,8 @@ if ($type == 'add') {
 
 <?= OstForm::open(URL::to('account/' . $type)) ?>
 <?= OstForm::description('請輸入以下的資料') ?>
-<?= OstForm::text('teacher_name', '教師姓名', $formData['teacher_name'], array(
-		'autofocus' => 'autofocus',
-		'required' => 'required'
-	))
-?>
-<?= OstForm::text('teacher_account', '帳號', $formData['teacher_account'], array(
-		'placeholder' => '英文+數字',
-		'required' => 'required'
-	))
-?>
+<?= OstForm::text('teacher_name', '教師姓名', $formData['teacher_name'], array('autofocus' => 'autofocus', 'required' => 'required')) ?>
+<?= OstForm::text('teacher_account', '帳號', $formData['teacher_account'], array('placeholder' => '英文+數字', 'required' => 'required')) ?>
 <?= OstForm::password('teacher_password', '密碼') ?>
 <?= OstForm::password('teacher_password_confirmation', '確認密碼') ?>
 

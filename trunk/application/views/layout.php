@@ -45,7 +45,7 @@
                 <li class="nav_title">
                     系統管理
                 </li>
-                 <li>
+                <li>
                     <a href="">課程單元設定</a>
                 </li>
                 <li>
