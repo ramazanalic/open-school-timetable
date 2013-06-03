@@ -11,7 +11,11 @@ $(".course").click(function() {
     // 更新input數值
     var courseTime = "";
     for ( i = 1; i < 36; i++) {
-        courseTime += $("#course_" + i).attr("data-selected");
+        if ($("#course_" + i).attr("data-selected") == "1") {
+            courseTime += "1";
+        } else {
+            courseTime += "0";
+        }
     }
 
     $("input[name='course_time']").val(courseTime);

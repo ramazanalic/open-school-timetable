@@ -8,7 +8,7 @@ class Class_Year_Controller extends Base_Controller
 
 	public function __construct()
 	{
-		$this->_viewData['yearList'] = Year::all();
+		$this->_viewData['yearList'] = Year::order_by('year_name')->get();
 		parent::__construct();
 	}
 
@@ -39,6 +39,7 @@ class Class_Year_Controller extends Base_Controller
 				return Redirect::to('class_year')->with('message', $message);
 			}
 		}
+
 		$this->_viewData['showYearForm'] = true;
 		$this->layout->nest('content', 'class_year.index', $this->_viewData);
 	}
@@ -46,17 +47,33 @@ class Class_Year_Controller extends Base_Controller
 	/**
 	 * 顯示年級中的班級、年級編輯選單
 	 */
-	public function action_view_year($value = '')
+	public function action_view_year($id)
 	{
-
+		$year = Year::find($id);
+		$this->_viewData['showYearForm'] = true;
+		$this->_viewData['editYearForm'] = true;
+		$this->_viewData['year'] = $year;
+		$this->layout->nest('content', 'class_year.index', $this->_viewData);
 	}
 
 	/**
 	 * 執行編輯年級
 	 */
-	public function action_edit_year()
+	public function action_edit_year($id)
 	{
 		if ($data = Input::all()) {
+			$validator = $this->_validateYear($data);
+			if ($validator->fails()) {
+				return Redirect::to('class_year/view_year/' . $id)->with_input()->with_errors($validator)->with('message', '輸入錯誤，請檢查');
+			} else {
+				if ($year = Year::update($id, $this->_handleYearData($data))) {
+					$message = '更新年級《' . $data['year_name'] . '》完成';
+				} else {
+					$message = '資料寫入錯誤';
+				}
+
+				return Redirect::to('class_year/view_year/' . $id)->with('message', $message);
+			}
 		}
 	}
 

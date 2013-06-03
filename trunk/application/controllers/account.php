@@ -31,10 +31,9 @@ class Account_Controller extends Base_Controller
 
 				return Redirect::to('account')->with('message', $message);
 			}
-
 		}
 
-		$this->layout->nest('content', 'account.form', array('type' => 'add'));
+		$this->layout->nest('content', 'account.form');
 	}
 
 	/**
@@ -54,7 +53,6 @@ class Account_Controller extends Base_Controller
 			if ($validator->fails()) {
 				return Redirect::to('account/edit/' . $id)->with_input()->with_errors($validator)->with('message', '輸入錯誤，請檢查');
 			} else {
-
 				if ($techer = Teacher::update($id, $this->_handleTeacherData($data, $hasPassword))) {
 					$message = '更新教師《' . $data['teacher_name'] . '》完成';
 				} else {
@@ -66,7 +64,7 @@ class Account_Controller extends Base_Controller
 		}
 
 		$teacher = Teacher::find($id);
-		$this->layout->nest('content', 'account.form', array('type' => 'edit/' . $id, 'teacher' => $teacher));
+		$this->layout->nest('content', 'account.form', array('editTeacherForm' => true, 'teacher' => $teacher));
 	}
 
 	/**

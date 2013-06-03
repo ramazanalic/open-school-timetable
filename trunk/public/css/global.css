@@ -12,15 +12,6 @@ a {
 }
 
 /**
- * 	訊息區塊
- */
-#message_block {
-    color: #D80073;
-    padding: 10px 0px;
-    font-size: 120%;
-}
-
-/**
  * 	表頭
  */
 header {
@@ -166,7 +157,16 @@ footer a {
  *  組件：訊息區塊
  */
 .messageBlock {
-    color: #FA6800;
-    padding: 0 0 0.5em 0;
-    font-size: 120%;
+    background-color: #F9EDBE;
+    border: 1px solid #F0C36D;
+    border-radius: 10px 10px 10px 10px;
+    font-size: 100%;
+    font-weight: bold;
+    left: 32%;
+    margin: 0;
+    padding: 5px;
+    position: absolute;
+    top: 20px;
+    width: 14em;
+    text-align: center;
 }

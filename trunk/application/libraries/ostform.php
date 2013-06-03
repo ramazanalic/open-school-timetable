@@ -6,19 +6,51 @@ class OstForm
 {
 	private static $_errors;
 
+	private static $_data;
+
 	public static function setErrors($errors)
 	{
 		static::$_errors = $errors;
 	}
 
-	public static function text($name, $label, $value = NULL, $attribs = array())
+	public static function setData($data)
 	{
+		static::$_data = $data;
+	}
+
+	public static function getData($name)
+	{
+		if (isset(static::$_data[$name])) {
+			return static::$_data[$name];
+		} else {
+			return '';
+		}
+	}
+
+	public static function text($name, $label, $attribs = array())
+	{
+		if (isset($attribs['value'])) {
+			$value = $attribs['value'];
+		} elseif (isset(static::$_data[$name])) {
+			$value = static::$_data[$name];
+		} else {
+			$value = '';
+		}
+
 		return '<tr><td class="label">' . Form::label($name, $label) . '</td><td class="input_field">' . Form::text($name, $value, $attribs) . '</td>' . self::_getErrorBlock($name) . '</tr>';
 	}
 
-	public static function hidden($name, $value)
+	public static function hidden($name, $attribs = array())
 	{
-		return '<tr><td style="display:none">' . Form::hidden($name, $value) . '</td></tr>';
+		if (isset($attribs['value'])) {
+			$value = $attribs['value'];
+		} elseif (isset(static::$_data[$name])) {
+			$value = static::$_data[$name];
+		} else {
+			$value = '';
+		}
+
+		return '<tr><td colspan="2" style="display:none">' . Form::hidden($name, $value) . '</td></tr>';
 	}
 
 	public static function password($name, $label, $attribs = array())
