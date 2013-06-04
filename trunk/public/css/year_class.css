@@ -3,6 +3,7 @@
  */
 #year_row {
     background-color: #1BA1E2;
+    float: left;
     padding: 10px;
     width: 50%;
 }
@@ -19,4 +20,9 @@
 #command_area {
     float: right;
     width: 40%;
+}
+
+.delete_link {
+    width: 12em;
+    margin-top: 2em;
 }

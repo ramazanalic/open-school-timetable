@@ -16,7 +16,7 @@ OstForm::setData((isset($year) && !Input::old()) ? $year->to_array() : Input::ol
 <div id="year_row">
     <?php if (isset($yearList)): ?>
     	<?php foreach ($yearList as $yearItem): ?>
-    		<?= HTML::link(URL::to('class_year/view_year/' . $yearItem->year_id), $year->year_name, array('class' => 'year_item')) ?>
+    		<?= HTML::link(URL::to('class_year/view_year/' . $yearItem->year_id), $yearItem->year_name, array('class' => 'year_item')) ?>
     	<?php endforeach; ?>
     <?php endif; ?>
 
@@ -108,5 +108,7 @@ OstForm::setData((isset($year) && !Input::old()) ? $year->to_array() : Input::ol
             </tr>
         </table>
     </div>
+
+    <?= HtmlComposite::delete('class_year/delete_year/' . $year->year_id, '刪除《' . $year->year_name . '》') ?>
     <?php endif; ?>
 </div>

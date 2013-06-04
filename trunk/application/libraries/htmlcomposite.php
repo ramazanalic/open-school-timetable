@@ -20,9 +20,9 @@ class HtmlComposite
 		return HTML::link(URL::to($url), '編輯', array('class' => 'edit_link'));
 	}
 
-	public static function delete($url)
+	public static function delete($url, $name = NULL)
 	{
-		return HTML::link(URL::to($url), '刪除', array('class' => 'delete_link'));
+		return HTML::link(URL::to($url), ($name == NULL) ? '刪除' : $name, array('class' => 'delete_link'));
 	}
 
 	public static function messageBlock($message = NULL)

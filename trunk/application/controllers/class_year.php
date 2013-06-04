@@ -80,10 +80,12 @@ class Class_Year_Controller extends Base_Controller
 	/**
 	 * 刪除年級
 	 */
-	public function action_delete_year()
+	public function action_delete_year($id)
 	{
-		if ($data = Input::all()) {
-		}
+		$year = Year::find($id);
+		$year_name = $year->year_name;
+		$year->delete();
+		return Redirect::to('class_year/')->with('message', '刪除《' . $year_name . '》完成');
 	}
 
 	/**
