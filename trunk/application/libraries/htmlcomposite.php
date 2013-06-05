@@ -33,7 +33,7 @@ class HtmlComposite
 				return '';
 			}
 		}
-		return '<div class="messageBlock">' . $message .'</div>';
+		return '<div class="messageBlock">' . $message . '</div>';
 	}
 
 }

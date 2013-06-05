@@ -10,19 +10,44 @@
 
 .year_item {
     display: inline-block;
-    background-color: #F0A30A;
+    background-color: #008A00;
     padding: 10px;
     width: 5em;
     margin: 5px;
     text-align: center;
 }
 
-#command_area {
-    float: right;
-    width: 40%;
+.year_item_selected {
+    border: 2px solid #FFFFFF;
 }
 
-.delete_link {
-    width: 12em;
-    margin-top: 2em;
+#year_form {
+    position: absolute;
+    width: 40%;
+    right: 10px;
+}
+
+#year_form .delete_link {
+    display: inline-block;
+    padding: 5px 20px;
+    width: 9em;
+}
+
+#year_form_command {
+    margin-top: 1em;
+    width: 70%;
+    text-align: right;
+}
+
+#class_area {
+    clear: left;
+    float: left;
+}
+
+#class_area .classes_name {
+    padding-left: 2em;
+}
+
+#class_area .classes_name input {
+    padding: 4px;
 }

@@ -23,7 +23,7 @@ class Account_Controller extends Base_Controller
 			if ($validator->fails()) {
 				return Redirect::to('account/add')->with_input()->with_errors($validator)->with('message', '輸入錯誤，請檢查');
 			} else {
-				if ($techer = Teacher::create($this->_handleTeacherData($data))) {
+				if (Teacher::create($this->_handleTeacherData($data))) {
 					$message = '新增教師《' . $data['teacher_name'] . '》完成';
 				} else {
 					$message = '資料寫入錯誤';
@@ -53,7 +53,7 @@ class Account_Controller extends Base_Controller
 			if ($validator->fails()) {
 				return Redirect::to('account/edit/' . $id)->with_input()->with_errors($validator)->with('message', '輸入錯誤，請檢查');
 			} else {
-				if ($techer = Teacher::update($id, $this->_handleTeacherData($data, $hasPassword))) {
+				if (Teacher::update($id, $this->_handleTeacherData($data, $hasPassword))) {
 					$message = '更新教師《' . $data['teacher_name'] . '》完成';
 				} else {
 					$message = '資料寫入錯誤';

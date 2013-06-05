@@ -65,7 +65,7 @@ class OstForm
 
 	public static function submit($name)
 	{
-		return '<tr><td colspan="2" class="submit">' . Form::submit($name) . '</td></tr>';
+		return '<tr><td colspan="2" class="submit">' . Form::submit($name) .'</td></tr>';
 	}
 
 	public static function description($description)
