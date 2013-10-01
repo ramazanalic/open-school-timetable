@@ -1,0 +1,31 @@
+
+<?php $__env->startSection('css'); ?>
+	<?php echo HTML::style('css/table/table_style1.css'); ?>
+<?php $__env->stopSection(); ?>
+
+<?php $__env->startSection('content'); ?>
+	<h1>教師列表</h1>
+
+	<?php echo HtmlComposite::add('account/add'); ?>
+	<?php echo HtmlComposite::messageBlock(); ?>
+
+	<?php if (isset($teacherList)): ?>
+		<table class="dataList">
+		    <tr>
+		        <th class="teacher_name">姓名</th>
+		        <th class="teacher_account">帳號</th>
+		        <th class="edit">&nbsp;</th>
+		        <th class="delete">&nbsp;</th>
+		    </tr>
+		    <?php foreach ($teacherList as $teacher): ?>
+			    <tr>
+			        <td><?php echo $teacher->teacher_name; ?></td>
+			        <td><?php echo $teacher->teacher_account; ?></td>
+			        <td class="edit"><?php echo HtmlComposite::edit('account/edit/' . $teacher->teacher_id); ?></td>
+			        <td class="delete"><?php echo HtmlComposite::delete('account/delete/' . $teacher->teacher_id); ?></td>
+			    </tr>
+		    <?php endforeach; ?>
+		</table>
+	<?php endif; ?>
+<?php $__env->stopSection(); ?>
+<?php echo $__env->make('layouts.default', array_except(get_defined_vars(), array('__data', '__path')))->render(); ?>

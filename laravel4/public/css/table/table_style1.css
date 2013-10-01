@@ -1,1 +1,12 @@
-@import url(table_global.css)
+@import url(default.css);
+
+.dataList th {
+    border-bottom: 1px solid #FFFFFF;
+    color: #FFFFFF;
+    background-color: #00ABA9;
+}
+
+.dataList td {
+    border-bottom: 1px solid #FFFFFF;
+    background-color: #E8EDFF;
+}

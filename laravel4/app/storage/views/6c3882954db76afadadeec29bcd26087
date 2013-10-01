@@ -1,0 +1,34 @@
+
+<?php $__env->startSection('css'); ?>
+	<?php echo HTML::style('css/form/account_form.css'); ?>
+<?php $__env->stopSection(); ?>
+
+<?php $__env->startSection('content'); ?>
+	<?php echo HtmlComposite::back('account'); ?>
+
+	<?php if ($formType == 'add'): ?>
+		<h1>新增教師</h1>
+	<?php elseif ($formType == 'edit'): ?>
+		<h1>編輯教師《<?php echo $teacher->teacher_name; ?> 》</h1>
+	<?php endif; ?>
+
+	<?php echo HtmlComposite::messageBlock(); ?>
+
+	<?php echo OstForm::open(URL::to((isset($editTeacherForm)) ? 'account/edit/' . $teacher->teacher_id : 'account/add')); ?>
+	<?php echo OstForm::description('請輸入以下的資料'); ?>
+	<?php echo OstForm::text('teacher_name', '教師姓名', array('autofocus' => 'autofocus', 'required' => 'required')); ?>
+	<?php echo OstForm::text('teacher_account', '帳號', array('placeholder' => '英文+數字', 'required' => 'required')); ?>
+	<?php echo (isset($editTeacherForm)) ? OstForm::hidden('teacher_id') : ''; ?>
+	<?php echo OstForm::password('teacher_password', '密碼'); ?>
+	<?php echo OstForm::password('teacher_password_confirmation', '確認密碼'); ?>
+
+	<?php if ($formType == 'add'): ?>
+		<?php echo OstForm::submit('新增'); ?>
+	<?php elseif ($formType == 'edit'): ?>
+		<?php echo OstForm::submit('更新'); ?>
+	<?php endif; ?>
+
+	<?php echo OstForm::close(); ?>
+<?php $__env->stopSection(); ?>
+
+<?php echo $__env->make('layouts.default', array_except(get_defined_vars(), array('__data', '__path')))->render(); ?>

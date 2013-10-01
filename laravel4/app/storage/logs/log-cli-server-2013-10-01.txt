@@ -1,0 +1,275 @@
+[2013-10-01 09:13:45] log.ERROR: exception 'InvalidArgumentException' with message 'View [account.index] not found.' in C:\Users\otto\Desktop\www\vendor\laravel\framework\src\Illuminate\View\FileViewFinder.php:123
+Stack trace:
+#0 C:\Users\otto\Desktop\www\vendor\laravel\framework\src\Illuminate\View\FileViewFinder.php(64): Illuminate\View\FileViewFinder->findInPaths('account.index', Array)
+#1 C:\Users\otto\Desktop\www\vendor\laravel\framework\src\Illuminate\View\Environment.php(115): Illuminate\View\FileViewFinder->find('account.index')
+#2 C:\Users\otto\Desktop\www\vendor\laravel\framework\src\Illuminate\Support\Facades\Facade.php(177): Illuminate\View\Environment->make('account.index')
+#3 C:\Users\otto\Desktop\www\app\routes.php(27): Illuminate\Support\Facades\Facade::__callStatic('make', Array)
+#4 C:\Users\otto\Desktop\www\app\routes.php(27): Illuminate\Support\Facades\View::make('account.index')
+#5 [internal function]: {closure}()
+#6 C:\Users\otto\Desktop\www\vendor\laravel\framework\src\Illuminate\Routing\Route.php(80): call_user_func_array(Object(Closure), Array)
+#7 C:\Users\otto\Desktop\www\vendor\laravel\framework\src\Illuminate\Routing\Route.php(47): Illuminate\Routing\Route->callCallable()
+#8 C:\Users\otto\Desktop\www\vendor\laravel\framework\src\Illuminate\Routing\Router.php(1016): Illuminate\Routing\Route->run(Object(Illuminate\Http\Request))
+#9 C:\Users\otto\Desktop\www\vendor\laravel\framework\src\Illuminate\Foundation\Application.php(530): Illuminate\Routing\Router->dispatch(Object(Illuminate\Http\Request))
+#10 C:\Users\otto\Desktop\www\vendor\laravel\framework\src\Illuminate\Foundation\Application.php(506): Illuminate\Foundation\Application->dispatch(Object(Illuminate\Http\Request))
+#11 C:\Users\otto\Desktop\www\public\index.php(49): Illuminate\Foundation\Application->run()
+#12 {main} [] []
+[2013-10-01 09:15:17] log.ERROR: exception 'InvalidArgumentException' with message 'View [account.index] not found.' in C:\Users\otto\Desktop\www\vendor\laravel\framework\src\Illuminate\View\FileViewFinder.php:123
+Stack trace:
+#0 C:\Users\otto\Desktop\www\vendor\laravel\framework\src\Illuminate\View\FileViewFinder.php(64): Illuminate\View\FileViewFinder->findInPaths('account.index', Array)
+#1 C:\Users\otto\Desktop\www\vendor\laravel\framework\src\Illuminate\View\Environment.php(115): Illuminate\View\FileViewFinder->find('account.index')
+#2 C:\Users\otto\Desktop\www\vendor\laravel\framework\src\Illuminate\Support\Facades\Facade.php(177): Illuminate\View\Environment->make('account.index')
+#3 C:\Users\otto\Desktop\www\app\routes.php(27): Illuminate\Support\Facades\Facade::__callStatic('make', Array)
+#4 C:\Users\otto\Desktop\www\app\routes.php(27): Illuminate\Support\Facades\View::make('account.index')
+#5 [internal function]: {closure}()
+#6 C:\Users\otto\Desktop\www\vendor\laravel\framework\src\Illuminate\Routing\Route.php(80): call_user_func_array(Object(Closure), Array)
+#7 C:\Users\otto\Desktop\www\vendor\laravel\framework\src\Illuminate\Routing\Route.php(47): Illuminate\Routing\Route->callCallable()
+#8 C:\Users\otto\Desktop\www\vendor\laravel\framework\src\Illuminate\Routing\Router.php(1016): Illuminate\Routing\Route->run(Object(Illuminate\Http\Request))
+#9 C:\Users\otto\Desktop\www\vendor\laravel\framework\src\Illuminate\Foundation\Application.php(530): Illuminate\Routing\Router->dispatch(Object(Illuminate\Http\Request))
+#10 C:\Users\otto\Desktop\www\vendor\laravel\framework\src\Illuminate\Foundation\Application.php(506): Illuminate\Foundation\Application->dispatch(Object(Illuminate\Http\Request))
+#11 C:\Users\otto\Desktop\www\public\index.php(49): Illuminate\Foundation\Application->run()
+#12 {main} [] []
+[2013-10-01 09:28:49] log.ERROR: exception 'Symfony\Component\Debug\Exception\FatalErrorException' with message 'Cannot redeclare non static Illuminate\Database\Eloquent\Model::$table as static Teacher::$table' in C:\Users\otto\Desktop\www\app\models\Teacher.php:3
+Stack trace:
+#0 [internal function]: Illuminate\Exception\Handler->handleShutdown()
+#1 {main} [] []
+[2013-10-01 09:32:25] log.ERROR: exception 'Symfony\Component\Debug\Exception\FatalErrorException' with message 'Cannot redeclare non static Illuminate\Database\Eloquent\Model::$table as static Teacher::$table' in C:\Users\otto\Desktop\www\app\models\Teacher.php:3
+Stack trace:
+#0 [internal function]: Illuminate\Exception\Handler->handleShutdown()
+#1 {main} [] []
+[2013-10-01 09:32:26] log.ERROR: exception 'Symfony\Component\Debug\Exception\FatalErrorException' with message 'Cannot redeclare non static Illuminate\Database\Eloquent\Model::$table as static Teacher::$table' in C:\Users\otto\Desktop\www\app\models\Teacher.php:3
+Stack trace:
+#0 [internal function]: Illuminate\Exception\Handler->handleShutdown()
+#1 {main} [] []
+[2013-10-01 09:33:22] log.ERROR: exception 'Symfony\Component\Debug\Exception\FatalErrorException' with message 'Cannot redeclare non static Illuminate\Database\Eloquent\Model::$table as static Teacher::$table' in C:\Users\otto\Desktop\www\app\models\Teacher.php:3
+Stack trace:
+#0 [internal function]: Illuminate\Exception\Handler->handleShutdown()
+#1 {main} [] []
+[2013-10-01 09:33:22] log.ERROR: exception 'Symfony\Component\Debug\Exception\FatalErrorException' with message 'Cannot redeclare non static Illuminate\Database\Eloquent\Model::$table as static Teacher::$table' in C:\Users\otto\Desktop\www\app\models\Teacher.php:3
+Stack trace:
+#0 [internal function]: Illuminate\Exception\Handler->handleShutdown()
+#1 {main} [] []
+[2013-10-01 09:33:23] log.ERROR: exception 'Symfony\Component\Debug\Exception\FatalErrorException' with message 'Cannot redeclare non static Illuminate\Database\Eloquent\Model::$table as static Teacher::$table' in C:\Users\otto\Desktop\www\app\models\Teacher.php:3
+Stack trace:
+#0 [internal function]: Illuminate\Exception\Handler->handleShutdown()
+#1 {main} [] []
+[2013-10-01 09:33:24] log.ERROR: exception 'Symfony\Component\Debug\Exception\FatalErrorException' with message 'Cannot redeclare non static Illuminate\Database\Eloquent\Model::$table as static Teacher::$table' in C:\Users\otto\Desktop\www\app\models\Teacher.php:3
+Stack trace:
+#0 [internal function]: Illuminate\Exception\Handler->handleShutdown()
+#1 {main} [] []
+[2013-10-01 09:33:25] log.ERROR: exception 'Symfony\Component\Debug\Exception\FatalErrorException' with message 'Cannot redeclare non static Illuminate\Database\Eloquent\Model::$table as static Teacher::$table' in C:\Users\otto\Desktop\www\app\models\Teacher.php:3
+Stack trace:
+#0 [internal function]: Illuminate\Exception\Handler->handleShutdown()
+#1 {main} [] []
+[2013-10-01 09:33:44] log.ERROR: exception 'Symfony\Component\Debug\Exception\FatalErrorException' with message 'Cannot redeclare non static Illuminate\Database\Eloquent\Model::$table as static Teacher::$table' in C:\Users\otto\Desktop\www\app\models\Teacher.php:3
+Stack trace:
+#0 [internal function]: Illuminate\Exception\Handler->handleShutdown()
+#1 {main} [] []
+[2013-10-01 09:33:47] log.ERROR: exception 'Symfony\Component\Debug\Exception\FatalErrorException' with message 'Cannot redeclare non static Illuminate\Database\Eloquent\Model::$table as static Teacher::$table' in C:\Users\otto\Desktop\www\app\models\Teacher.php:3
+Stack trace:
+#0 [internal function]: Illuminate\Exception\Handler->handleShutdown()
+#1 {main} [] []
+[2013-10-01 09:33:53] log.ERROR: exception 'PDOException' with message 'could not find driver' in C:\Users\otto\Desktop\www\vendor\laravel\framework\src\Illuminate\Database\Connectors\Connector.php:47
+Stack trace:
+#0 C:\Users\otto\Desktop\www\vendor\laravel\framework\src\Illuminate\Database\Connectors\Connector.php(47): PDO->__construct('sqlite:C:\Users...', NULL, NULL, Array)
+#1 C:\Users\otto\Desktop\www\vendor\laravel\framework\src\Illuminate\Database\Connectors\SQLiteConnector.php(33): Illuminate\Database\Connectors\Connector->createConnection('sqlite:C:\Users...', Array, Array)
+#2 C:\Users\otto\Desktop\www\vendor\laravel\framework\src\Illuminate\Database\Connectors\ConnectionFactory.php(41): Illuminate\Database\Connectors\SQLiteConnector->connect(Array)
+#3 C:\Users\otto\Desktop\www\vendor\laravel\framework\src\Illuminate\Database\DatabaseManager.php(115): Illuminate\Database\Connectors\ConnectionFactory->make(Array, 'sqlite')
+#4 C:\Users\otto\Desktop\www\vendor\laravel\framework\src\Illuminate\Database\DatabaseManager.php(64): Illuminate\Database\DatabaseManager->makeConnection('sqlite')
+#5 C:\Users\otto\Desktop\www\vendor\laravel\framework\src\Illuminate\Database\Eloquent\Model.php(2374): Illuminate\Database\DatabaseManager->connection(NULL)
+#6 C:\Users\otto\Desktop\www\vendor\laravel\framework\src\Illuminate\Database\Eloquent\Model.php(2340): Illuminate\Database\Eloquent\Model::resolveConnection(NULL)
+#7 C:\Users\otto\Desktop\www\vendor\laravel\framework\src\Illuminate\Database\Eloquent\Model.php(1443): Illuminate\Database\Eloquent\Model->getConnection()
+#8 C:\Users\otto\Desktop\www\vendor\laravel\framework\src\Illuminate\Database\Eloquent\Model.php(1377): Illuminate\Database\Eloquent\Model->newBaseQueryBuilder()
+#9 C:\Users\otto\Desktop\www\vendor\laravel\framework\src\Illuminate\Database\Eloquent\Model.php(401): Illuminate\Database\Eloquent\Model->newQuery()
+#10 C:\Users\otto\Desktop\www\app\routes.php(27): Illuminate\Database\Eloquent\Model::all()
+#11 [internal function]: {closure}()
+#12 C:\Users\otto\Desktop\www\vendor\laravel\framework\src\Illuminate\Routing\Route.php(80): call_user_func_array(Object(Closure), Array)
+#13 C:\Users\otto\Desktop\www\vendor\laravel\framework\src\Illuminate\Routing\Route.php(47): Illuminate\Routing\Route->callCallable()
+#14 C:\Users\otto\Desktop\www\vendor\laravel\framework\src\Illuminate\Routing\Router.php(1016): Illuminate\Routing\Route->run(Object(Illuminate\Http\Request))
+#15 C:\Users\otto\Desktop\www\vendor\laravel\framework\src\Illuminate\Foundation\Application.php(530): Illuminate\Routing\Router->dispatch(Object(Illuminate\Http\Request))
+#16 C:\Users\otto\Desktop\www\vendor\laravel\framework\src\Illuminate\Foundation\Application.php(506): Illuminate\Foundation\Application->dispatch(Object(Illuminate\Http\Request))
+#17 C:\Users\otto\Desktop\www\public\index.php(49): Illuminate\Foundation\Application->run()
+#18 {main} [] []
+[2013-10-01 09:37:50] log.ERROR: exception 'PDOException' with message 'could not find driver' in C:\Users\otto\Desktop\www\vendor\laravel\framework\src\Illuminate\Database\Connectors\Connector.php:47
+Stack trace:
+#0 C:\Users\otto\Desktop\www\vendor\laravel\framework\src\Illuminate\Database\Connectors\Connector.php(47): PDO->__construct('sqlite:C:\Users...', NULL, NULL, Array)
+#1 C:\Users\otto\Desktop\www\vendor\laravel\framework\src\Illuminate\Database\Connectors\SQLiteConnector.php(33): Illuminate\Database\Connectors\Connector->createConnection('sqlite:C:\Users...', Array, Array)
+#2 C:\Users\otto\Desktop\www\vendor\laravel\framework\src\Illuminate\Database\Connectors\ConnectionFactory.php(41): Illuminate\Database\Connectors\SQLiteConnector->connect(Array)
+#3 C:\Users\otto\Desktop\www\vendor\laravel\framework\src\Illuminate\Database\DatabaseManager.php(115): Illuminate\Database\Connectors\ConnectionFactory->make(Array, 'sqlite')
+#4 C:\Users\otto\Desktop\www\vendor\laravel\framework\src\Illuminate\Database\DatabaseManager.php(64): Illuminate\Database\DatabaseManager->makeConnection('sqlite')
+#5 C:\Users\otto\Desktop\www\vendor\laravel\framework\src\Illuminate\Database\Eloquent\Model.php(2374): Illuminate\Database\DatabaseManager->connection(NULL)
+#6 C:\Users\otto\Desktop\www\vendor\laravel\framework\src\Illuminate\Database\Eloquent\Model.php(2340): Illuminate\Database\Eloquent\Model::resolveConnection(NULL)
+#7 C:\Users\otto\Desktop\www\vendor\laravel\framework\src\Illuminate\Database\Eloquent\Model.php(1443): Illuminate\Database\Eloquent\Model->getConnection()
+#8 C:\Users\otto\Desktop\www\vendor\laravel\framework\src\Illuminate\Database\Eloquent\Model.php(1377): Illuminate\Database\Eloquent\Model->newBaseQueryBuilder()
+#9 C:\Users\otto\Desktop\www\vendor\laravel\framework\src\Illuminate\Database\Eloquent\Model.php(401): Illuminate\Database\Eloquent\Model->newQuery()
+#10 C:\Users\otto\Desktop\www\app\routes.php(27): Illuminate\Database\Eloquent\Model::all()
+#11 [internal function]: {closure}()
+#12 C:\Users\otto\Desktop\www\vendor\laravel\framework\src\Illuminate\Routing\Route.php(80): call_user_func_array(Object(Closure), Array)
+#13 C:\Users\otto\Desktop\www\vendor\laravel\framework\src\Illuminate\Routing\Route.php(47): Illuminate\Routing\Route->callCallable()
+#14 C:\Users\otto\Desktop\www\vendor\laravel\framework\src\Illuminate\Routing\Router.php(1016): Illuminate\Routing\Route->run(Object(Illuminate\Http\Request))
+#15 C:\Users\otto\Desktop\www\vendor\laravel\framework\src\Illuminate\Foundation\Application.php(530): Illuminate\Routing\Router->dispatch(Object(Illuminate\Http\Request))
+#16 C:\Users\otto\Desktop\www\vendor\laravel\framework\src\Illuminate\Foundation\Application.php(506): Illuminate\Foundation\Application->dispatch(Object(Illuminate\Http\Request))
+#17 C:\Users\otto\Desktop\www\public\index.php(49): Illuminate\Foundation\Application->run()
+#18 {main} [] []
+[2013-10-01 09:37:51] log.ERROR: exception 'PDOException' with message 'could not find driver' in C:\Users\otto\Desktop\www\vendor\laravel\framework\src\Illuminate\Database\Connectors\Connector.php:47
+Stack trace:
+#0 C:\Users\otto\Desktop\www\vendor\laravel\framework\src\Illuminate\Database\Connectors\Connector.php(47): PDO->__construct('sqlite:C:\Users...', NULL, NULL, Array)
+#1 C:\Users\otto\Desktop\www\vendor\laravel\framework\src\Illuminate\Database\Connectors\SQLiteConnector.php(33): Illuminate\Database\Connectors\Connector->createConnection('sqlite:C:\Users...', Array, Array)
+#2 C:\Users\otto\Desktop\www\vendor\laravel\framework\src\Illuminate\Database\Connectors\ConnectionFactory.php(41): Illuminate\Database\Connectors\SQLiteConnector->connect(Array)
+#3 C:\Users\otto\Desktop\www\vendor\laravel\framework\src\Illuminate\Database\DatabaseManager.php(115): Illuminate\Database\Connectors\ConnectionFactory->make(Array, 'sqlite')
+#4 C:\Users\otto\Desktop\www\vendor\laravel\framework\src\Illuminate\Database\DatabaseManager.php(64): Illuminate\Database\DatabaseManager->makeConnection('sqlite')
+#5 C:\Users\otto\Desktop\www\vendor\laravel\framework\src\Illuminate\Database\Eloquent\Model.php(2374): Illuminate\Database\DatabaseManager->connection(NULL)
+#6 C:\Users\otto\Desktop\www\vendor\laravel\framework\src\Illuminate\Database\Eloquent\Model.php(2340): Illuminate\Database\Eloquent\Model::resolveConnection(NULL)
+#7 C:\Users\otto\Desktop\www\vendor\laravel\framework\src\Illuminate\Database\Eloquent\Model.php(1443): Illuminate\Database\Eloquent\Model->getConnection()
+#8 C:\Users\otto\Desktop\www\vendor\laravel\framework\src\Illuminate\Database\Eloquent\Model.php(1377): Illuminate\Database\Eloquent\Model->newBaseQueryBuilder()
+#9 C:\Users\otto\Desktop\www\vendor\laravel\framework\src\Illuminate\Database\Eloquent\Model.php(401): Illuminate\Database\Eloquent\Model->newQuery()
+#10 C:\Users\otto\Desktop\www\app\routes.php(27): Illuminate\Database\Eloquent\Model::all()
+#11 [internal function]: {closure}()
+#12 C:\Users\otto\Desktop\www\vendor\laravel\framework\src\Illuminate\Routing\Route.php(80): call_user_func_array(Object(Closure), Array)
+#13 C:\Users\otto\Desktop\www\vendor\laravel\framework\src\Illuminate\Routing\Route.php(47): Illuminate\Routing\Route->callCallable()
+#14 C:\Users\otto\Desktop\www\vendor\laravel\framework\src\Illuminate\Routing\Router.php(1016): Illuminate\Routing\Route->run(Object(Illuminate\Http\Request))
+#15 C:\Users\otto\Desktop\www\vendor\laravel\framework\src\Illuminate\Foundation\Application.php(530): Illuminate\Routing\Router->dispatch(Object(Illuminate\Http\Request))
+#16 C:\Users\otto\Desktop\www\vendor\laravel\framework\src\Illuminate\Foundation\Application.php(506): Illuminate\Foundation\Application->dispatch(Object(Illuminate\Http\Request))
+#17 C:\Users\otto\Desktop\www\public\index.php(49): Illuminate\Foundation\Application->run()
+#18 {main} [] []
+[2013-10-01 09:39:49] log.ERROR: exception 'PDOException' with message 'could not find driver' in C:\Users\otto\Desktop\www\vendor\laravel\framework\src\Illuminate\Database\Connectors\Connector.php:47
+Stack trace:
+#0 C:\Users\otto\Desktop\www\vendor\laravel\framework\src\Illuminate\Database\Connectors\Connector.php(47): PDO->__construct('sqlite:C:\Users...', NULL, NULL, Array)
+#1 C:\Users\otto\Desktop\www\vendor\laravel\framework\src\Illuminate\Database\Connectors\SQLiteConnector.php(33): Illuminate\Database\Connectors\Connector->createConnection('sqlite:C:\Users...', Array, Array)
+#2 C:\Users\otto\Desktop\www\vendor\laravel\framework\src\Illuminate\Database\Connectors\ConnectionFactory.php(41): Illuminate\Database\Connectors\SQLiteConnector->connect(Array)
+#3 C:\Users\otto\Desktop\www\vendor\laravel\framework\src\Illuminate\Database\DatabaseManager.php(115): Illuminate\Database\Connectors\ConnectionFactory->make(Array, 'sqlite')
+#4 C:\Users\otto\Desktop\www\vendor\laravel\framework\src\Illuminate\Database\DatabaseManager.php(64): Illuminate\Database\DatabaseManager->makeConnection('sqlite')
+#5 C:\Users\otto\Desktop\www\vendor\laravel\framework\src\Illuminate\Database\Eloquent\Model.php(2374): Illuminate\Database\DatabaseManager->connection(NULL)
+#6 C:\Users\otto\Desktop\www\vendor\laravel\framework\src\Illuminate\Database\Eloquent\Model.php(2340): Illuminate\Database\Eloquent\Model::resolveConnection(NULL)
+#7 C:\Users\otto\Desktop\www\vendor\laravel\framework\src\Illuminate\Database\Eloquent\Model.php(1443): Illuminate\Database\Eloquent\Model->getConnection()
+#8 C:\Users\otto\Desktop\www\vendor\laravel\framework\src\Illuminate\Database\Eloquent\Model.php(1377): Illuminate\Database\Eloquent\Model->newBaseQueryBuilder()
+#9 C:\Users\otto\Desktop\www\vendor\laravel\framework\src\Illuminate\Database\Eloquent\Model.php(401): Illuminate\Database\Eloquent\Model->newQuery()
+#10 C:\Users\otto\Desktop\www\app\routes.php(27): Illuminate\Database\Eloquent\Model::all()
+#11 [internal function]: {closure}()
+#12 C:\Users\otto\Desktop\www\vendor\laravel\framework\src\Illuminate\Routing\Route.php(80): call_user_func_array(Object(Closure), Array)
+#13 C:\Users\otto\Desktop\www\vendor\laravel\framework\src\Illuminate\Routing\Route.php(47): Illuminate\Routing\Route->callCallable()
+#14 C:\Users\otto\Desktop\www\vendor\laravel\framework\src\Illuminate\Routing\Router.php(1016): Illuminate\Routing\Route->run(Object(Illuminate\Http\Request))
+#15 C:\Users\otto\Desktop\www\vendor\laravel\framework\src\Illuminate\Foundation\Application.php(530): Illuminate\Routing\Router->dispatch(Object(Illuminate\Http\Request))
+#16 C:\Users\otto\Desktop\www\vendor\laravel\framework\src\Illuminate\Foundation\Application.php(506): Illuminate\Foundation\Application->dispatch(Object(Illuminate\Http\Request))
+#17 C:\Users\otto\Desktop\www\public\index.php(49): Illuminate\Foundation\Application->run()
+#18 {main} [] []
+[2013-10-01 09:42:16] log.ERROR: exception 'PDOException' with message 'could not find driver' in C:\Users\otto\Desktop\www\vendor\laravel\framework\src\Illuminate\Database\Connectors\Connector.php:47
+Stack trace:
+#0 C:\Users\otto\Desktop\www\vendor\laravel\framework\src\Illuminate\Database\Connectors\Connector.php(47): PDO->__construct('sqlite:C:\Users...', NULL, NULL, Array)
+#1 C:\Users\otto\Desktop\www\vendor\laravel\framework\src\Illuminate\Database\Connectors\SQLiteConnector.php(33): Illuminate\Database\Connectors\Connector->createConnection('sqlite:C:\Users...', Array, Array)
+#2 C:\Users\otto\Desktop\www\vendor\laravel\framework\src\Illuminate\Database\Connectors\ConnectionFactory.php(41): Illuminate\Database\Connectors\SQLiteConnector->connect(Array)
+#3 C:\Users\otto\Desktop\www\vendor\laravel\framework\src\Illuminate\Database\DatabaseManager.php(115): Illuminate\Database\Connectors\ConnectionFactory->make(Array, 'sqlite')
+#4 C:\Users\otto\Desktop\www\vendor\laravel\framework\src\Illuminate\Database\DatabaseManager.php(64): Illuminate\Database\DatabaseManager->makeConnection('sqlite')
+#5 C:\Users\otto\Desktop\www\vendor\laravel\framework\src\Illuminate\Database\Eloquent\Model.php(2374): Illuminate\Database\DatabaseManager->connection(NULL)
+#6 C:\Users\otto\Desktop\www\vendor\laravel\framework\src\Illuminate\Database\Eloquent\Model.php(2340): Illuminate\Database\Eloquent\Model::resolveConnection(NULL)
+#7 C:\Users\otto\Desktop\www\vendor\laravel\framework\src\Illuminate\Database\Eloquent\Model.php(1443): Illuminate\Database\Eloquent\Model->getConnection()
+#8 C:\Users\otto\Desktop\www\vendor\laravel\framework\src\Illuminate\Database\Eloquent\Model.php(1377): Illuminate\Database\Eloquent\Model->newBaseQueryBuilder()
+#9 C:\Users\otto\Desktop\www\vendor\laravel\framework\src\Illuminate\Database\Eloquent\Model.php(401): Illuminate\Database\Eloquent\Model->newQuery()
+#10 C:\Users\otto\Desktop\www\app\routes.php(27): Illuminate\Database\Eloquent\Model::all()
+#11 [internal function]: {closure}()
+#12 C:\Users\otto\Desktop\www\vendor\laravel\framework\src\Illuminate\Routing\Route.php(80): call_user_func_array(Object(Closure), Array)
+#13 C:\Users\otto\Desktop\www\vendor\laravel\framework\src\Illuminate\Routing\Route.php(47): Illuminate\Routing\Route->callCallable()
+#14 C:\Users\otto\Desktop\www\vendor\laravel\framework\src\Illuminate\Routing\Router.php(1016): Illuminate\Routing\Route->run(Object(Illuminate\Http\Request))
+#15 C:\Users\otto\Desktop\www\vendor\laravel\framework\src\Illuminate\Foundation\Application.php(530): Illuminate\Routing\Router->dispatch(Object(Illuminate\Http\Request))
+#16 C:\Users\otto\Desktop\www\vendor\laravel\framework\src\Illuminate\Foundation\Application.php(506): Illuminate\Foundation\Application->dispatch(Object(Illuminate\Http\Request))
+#17 C:\Users\otto\Desktop\www\public\index.php(49): Illuminate\Foundation\Application->run()
+#18 {main} [] []
+[2013-10-01 09:43:58] log.ERROR: exception 'Symfony\Component\Debug\Exception\FatalErrorException' with message 'Cannot redeclare non static Illuminate\Database\Eloquent\Model::$table as static Teacher::$table' in C:\Users\otto\Desktop\www\app\models\Teacher.php:3
+Stack trace:
+#0 [internal function]: Illuminate\Exception\Handler->handleShutdown()
+#1 {main} [] []
+[2013-10-01 09:45:07] log.ERROR: exception 'PDOException' with message 'could not find driver' in C:\Users\otto\Desktop\www\vendor\laravel\framework\src\Illuminate\Database\Connectors\Connector.php:47
+Stack trace:
+#0 C:\Users\otto\Desktop\www\vendor\laravel\framework\src\Illuminate\Database\Connectors\Connector.php(47): PDO->__construct('sqlite:C:\Users...', NULL, NULL, Array)
+#1 C:\Users\otto\Desktop\www\vendor\laravel\framework\src\Illuminate\Database\Connectors\SQLiteConnector.php(33): Illuminate\Database\Connectors\Connector->createConnection('sqlite:C:\Users...', Array, Array)
+#2 C:\Users\otto\Desktop\www\vendor\laravel\framework\src\Illuminate\Database\Connectors\ConnectionFactory.php(41): Illuminate\Database\Connectors\SQLiteConnector->connect(Array)
+#3 C:\Users\otto\Desktop\www\vendor\laravel\framework\src\Illuminate\Database\DatabaseManager.php(115): Illuminate\Database\Connectors\ConnectionFactory->make(Array, 'sqlite')
+#4 C:\Users\otto\Desktop\www\vendor\laravel\framework\src\Illuminate\Database\DatabaseManager.php(64): Illuminate\Database\DatabaseManager->makeConnection('sqlite')
+#5 C:\Users\otto\Desktop\www\vendor\laravel\framework\src\Illuminate\Database\Eloquent\Model.php(2374): Illuminate\Database\DatabaseManager->connection(NULL)
+#6 C:\Users\otto\Desktop\www\vendor\laravel\framework\src\Illuminate\Database\Eloquent\Model.php(2340): Illuminate\Database\Eloquent\Model::resolveConnection(NULL)
+#7 C:\Users\otto\Desktop\www\vendor\laravel\framework\src\Illuminate\Database\Eloquent\Model.php(1443): Illuminate\Database\Eloquent\Model->getConnection()
+#8 C:\Users\otto\Desktop\www\vendor\laravel\framework\src\Illuminate\Database\Eloquent\Model.php(1377): Illuminate\Database\Eloquent\Model->newBaseQueryBuilder()
+#9 C:\Users\otto\Desktop\www\vendor\laravel\framework\src\Illuminate\Database\Eloquent\Model.php(401): Illuminate\Database\Eloquent\Model->newQuery()
+#10 C:\Users\otto\Desktop\www\app\routes.php(27): Illuminate\Database\Eloquent\Model::all()
+#11 [internal function]: {closure}()
+#12 C:\Users\otto\Desktop\www\vendor\laravel\framework\src\Illuminate\Routing\Route.php(80): call_user_func_array(Object(Closure), Array)
+#13 C:\Users\otto\Desktop\www\vendor\laravel\framework\src\Illuminate\Routing\Route.php(47): Illuminate\Routing\Route->callCallable()
+#14 C:\Users\otto\Desktop\www\vendor\laravel\framework\src\Illuminate\Routing\Router.php(1016): Illuminate\Routing\Route->run(Object(Illuminate\Http\Request))
+#15 C:\Users\otto\Desktop\www\vendor\laravel\framework\src\Illuminate\Foundation\Application.php(530): Illuminate\Routing\Router->dispatch(Object(Illuminate\Http\Request))
+#16 C:\Users\otto\Desktop\www\vendor\laravel\framework\src\Illuminate\Foundation\Application.php(506): Illuminate\Foundation\Application->dispatch(Object(Illuminate\Http\Request))
+#17 C:\Users\otto\Desktop\www\public\index.php(49): Illuminate\Foundation\Application->run()
+#18 {main} [] []
+[2013-10-01 09:45:19] log.ERROR: exception 'PDOException' with message 'could not find driver' in C:\Users\otto\Desktop\www\vendor\laravel\framework\src\Illuminate\Database\Connectors\Connector.php:47
+Stack trace:
+#0 C:\Users\otto\Desktop\www\vendor\laravel\framework\src\Illuminate\Database\Connectors\Connector.php(47): PDO->__construct('sqlite:C:\Users...', NULL, NULL, Array)
+#1 C:\Users\otto\Desktop\www\vendor\laravel\framework\src\Illuminate\Database\Connectors\SQLiteConnector.php(33): Illuminate\Database\Connectors\Connector->createConnection('sqlite:C:\Users...', Array, Array)
+#2 C:\Users\otto\Desktop\www\vendor\laravel\framework\src\Illuminate\Database\Connectors\ConnectionFactory.php(41): Illuminate\Database\Connectors\SQLiteConnector->connect(Array)
+#3 C:\Users\otto\Desktop\www\vendor\laravel\framework\src\Illuminate\Database\DatabaseManager.php(115): Illuminate\Database\Connectors\ConnectionFactory->make(Array, 'sqlite')
+#4 C:\Users\otto\Desktop\www\vendor\laravel\framework\src\Illuminate\Database\DatabaseManager.php(64): Illuminate\Database\DatabaseManager->makeConnection('sqlite')
+#5 C:\Users\otto\Desktop\www\vendor\laravel\framework\src\Illuminate\Database\Eloquent\Model.php(2374): Illuminate\Database\DatabaseManager->connection(NULL)
+#6 C:\Users\otto\Desktop\www\vendor\laravel\framework\src\Illuminate\Database\Eloquent\Model.php(2340): Illuminate\Database\Eloquent\Model::resolveConnection(NULL)
+#7 C:\Users\otto\Desktop\www\vendor\laravel\framework\src\Illuminate\Database\Eloquent\Model.php(1443): Illuminate\Database\Eloquent\Model->getConnection()
+#8 C:\Users\otto\Desktop\www\vendor\laravel\framework\src\Illuminate\Database\Eloquent\Model.php(1377): Illuminate\Database\Eloquent\Model->newBaseQueryBuilder()
+#9 C:\Users\otto\Desktop\www\vendor\laravel\framework\src\Illuminate\Database\Eloquent\Model.php(401): Illuminate\Database\Eloquent\Model->newQuery()
+#10 C:\Users\otto\Desktop\www\app\routes.php(27): Illuminate\Database\Eloquent\Model::all()
+#11 [internal function]: {closure}()
+#12 C:\Users\otto\Desktop\www\vendor\laravel\framework\src\Illuminate\Routing\Route.php(80): call_user_func_array(Object(Closure), Array)
+#13 C:\Users\otto\Desktop\www\vendor\laravel\framework\src\Illuminate\Routing\Route.php(47): Illuminate\Routing\Route->callCallable()
+#14 C:\Users\otto\Desktop\www\vendor\laravel\framework\src\Illuminate\Routing\Router.php(1016): Illuminate\Routing\Route->run(Object(Illuminate\Http\Request))
+#15 C:\Users\otto\Desktop\www\vendor\laravel\framework\src\Illuminate\Foundation\Application.php(530): Illuminate\Routing\Router->dispatch(Object(Illuminate\Http\Request))
+#16 C:\Users\otto\Desktop\www\vendor\laravel\framework\src\Illuminate\Foundation\Application.php(506): Illuminate\Foundation\Application->dispatch(Object(Illuminate\Http\Request))
+#17 C:\Users\otto\Desktop\www\public\index.php(49): Illuminate\Foundation\Application->run()
+#18 {main} [] []
+[2013-10-01 10:10:12] log.ERROR: exception 'Symfony\Component\HttpKernel\Exception\NotFoundHttpException' in C:\Users\otto\Desktop\www\vendor\laravel\framework\src\Illuminate\Routing\Router.php:1429
+Stack trace:
+#0 C:\Users\otto\Desktop\www\vendor\laravel\framework\src\Illuminate\Routing\Router.php(1050): Illuminate\Routing\Router->handleRoutingException(Object(Symfony\Component\Routing\Exception\ResourceNotFoundException))
+#1 C:\Users\otto\Desktop\www\vendor\laravel\framework\src\Illuminate\Routing\Router.php(1014): Illuminate\Routing\Router->findRoute(Object(Illuminate\Http\Request))
+#2 C:\Users\otto\Desktop\www\vendor\laravel\framework\src\Illuminate\Foundation\Application.php(530): Illuminate\Routing\Router->dispatch(Object(Illuminate\Http\Request))
+#3 C:\Users\otto\Desktop\www\vendor\laravel\framework\src\Illuminate\Foundation\Application.php(506): Illuminate\Foundation\Application->dispatch(Object(Illuminate\Http\Request))
+#4 C:\Users\otto\Desktop\www\public\index.php(49): Illuminate\Foundation\Application->run()
+#5 {main} [] []
+[2013-10-01 10:11:38] log.ERROR: exception 'ErrorException' with message 'Argument 1 passed to Illuminate\Html\FormBuilder::open() must be of the type array, string given, called in C:\Users\otto\Desktop\www\vendor\laravel\framework\src\Illuminate\Support\Facades\Facade.php on line 186 and defined' in C:\Users\otto\Desktop\www\vendor\laravel\framework\src\Illuminate\Html\FormBuilder.php:100
+Stack trace:
+#0 C:\Users\otto\Desktop\www\vendor\laravel\framework\src\Illuminate\Html\FormBuilder.php(100): Illuminate\Exception\Handler->handleError(4096, 'Argument 1 pass...', 'C:\Users\otto\D...', 100, Array)
+#1 C:\Users\otto\Desktop\www\vendor\laravel\framework\src\Illuminate\Support\Facades\Facade.php(186): Illuminate\Html\FormBuilder->open('http://127.0.0....', 'POST', Array, NULL)
+#2 C:\Users\otto\Desktop\www\app\libraries\ostform.php(63): Illuminate\Support\Facades\Facade::__callStatic('open', Array)
+#3 C:\Users\otto\Desktop\www\app\libraries\ostform.php(63): Illuminate\Support\Facades\Form::open('http://127.0.0....', 'POST', Array, NULL)
+#4 C:\Users\otto\Desktop\www\app\storage\views\6c3882954db76afadadeec29bcd26087(13): OstForm::open('http://127.0.0....')
+#5 C:\Users\otto\Desktop\www\vendor\laravel\framework\src\Illuminate\View\Engines\PhpEngine.php(38): include('C:\Users\otto\D...')
+#6 C:\Users\otto\Desktop\www\vendor\laravel\framework\src\Illuminate\View\Engines\CompilerEngine.php(45): Illuminate\View\Engines\PhpEngine->evaluatePath('C:\Users\otto\D...', Array)
+#7 C:\Users\otto\Desktop\www\vendor\laravel\framework\src\Illuminate\View\View.php(100): Illuminate\View\Engines\CompilerEngine->get('C:\Users\otto\D...', Array)
+#8 C:\Users\otto\Desktop\www\vendor\laravel\framework\src\Illuminate\View\View.php(81): Illuminate\View\View->getContents()
+#9 C:\Users\otto\Desktop\www\vendor\laravel\framework\src\Illuminate\Http\Response.php(69): Illuminate\View\View->render()
+#10 C:\Users\otto\Desktop\www\vendor\symfony\http-foundation\Symfony\Component\HttpFoundation\Response.php(141): Illuminate\Http\Response->setContent(Object(Illuminate\View\View))
+#11 C:\Users\otto\Desktop\www\vendor\laravel\framework\src\Illuminate\Routing\Router.php(1414): Symfony\Component\HttpFoundation\Response->__construct(Object(Illuminate\View\View))
+#12 C:\Users\otto\Desktop\www\vendor\laravel\framework\src\Illuminate\Routing\Route.php(58): Illuminate\Routing\Router->prepare(Object(Illuminate\View\View), Object(Illuminate\Http\Request))
+#13 C:\Users\otto\Desktop\www\vendor\laravel\framework\src\Illuminate\Routing\Router.php(1016): Illuminate\Routing\Route->run(Object(Illuminate\Http\Request))
+#14 C:\Users\otto\Desktop\www\vendor\laravel\framework\src\Illuminate\Foundation\Application.php(530): Illuminate\Routing\Router->dispatch(Object(Illuminate\Http\Request))
+#15 C:\Users\otto\Desktop\www\vendor\laravel\framework\src\Illuminate\Foundation\Application.php(506): Illuminate\Foundation\Application->dispatch(Object(Illuminate\Http\Request))
+#16 C:\Users\otto\Desktop\www\public\index.php(49): Illuminate\Foundation\Application->run()
+#17 {main} [] []
+[2013-10-01 10:16:18] log.ERROR: exception 'ErrorException' with message 'array_merge(): Argument #2 is not an array' in C:\Users\otto\Desktop\www\app\libraries\ostform.php:63
+Stack trace:
+#0 [internal function]: Illuminate\Exception\Handler->handleError(2, 'array_merge(): ...', 'C:\Users\otto\D...', 63, Array)
+#1 C:\Users\otto\Desktop\www\app\libraries\ostform.php(63): array_merge(Array, NULL)
+#2 C:\Users\otto\Desktop\www\app\storage\views\6c3882954db76afadadeec29bcd26087(13): OstForm::open('http://127.0.0....')
+#3 C:\Users\otto\Desktop\www\vendor\laravel\framework\src\Illuminate\View\Engines\PhpEngine.php(38): include('C:\Users\otto\D...')
+#4 C:\Users\otto\Desktop\www\vendor\laravel\framework\src\Illuminate\View\Engines\CompilerEngine.php(45): Illuminate\View\Engines\PhpEngine->evaluatePath('C:\Users\otto\D...', Array)
+#5 C:\Users\otto\Desktop\www\vendor\laravel\framework\src\Illuminate\View\View.php(100): Illuminate\View\Engines\CompilerEngine->get('C:\Users\otto\D...', Array)
+#6 C:\Users\otto\Desktop\www\vendor\laravel\framework\src\Illuminate\View\View.php(81): Illuminate\View\View->getContents()
+#7 C:\Users\otto\Desktop\www\vendor\laravel\framework\src\Illuminate\Http\Response.php(69): Illuminate\View\View->render()
+#8 C:\Users\otto\Desktop\www\vendor\symfony\http-foundation\Symfony\Component\HttpFoundation\Response.php(141): Illuminate\Http\Response->setContent(Object(Illuminate\View\View))
+#9 C:\Users\otto\Desktop\www\vendor\laravel\framework\src\Illuminate\Routing\Router.php(1414): Symfony\Component\HttpFoundation\Response->__construct(Object(Illuminate\View\View))
+#10 C:\Users\otto\Desktop\www\vendor\laravel\framework\src\Illuminate\Routing\Route.php(58): Illuminate\Routing\Router->prepare(Object(Illuminate\View\View), Object(Illuminate\Http\Request))
+#11 C:\Users\otto\Desktop\www\vendor\laravel\framework\src\Illuminate\Routing\Router.php(1016): Illuminate\Routing\Route->run(Object(Illuminate\Http\Request))
+#12 C:\Users\otto\Desktop\www\vendor\laravel\framework\src\Illuminate\Foundation\Application.php(530): Illuminate\Routing\Router->dispatch(Object(Illuminate\Http\Request))
+#13 C:\Users\otto\Desktop\www\vendor\laravel\framework\src\Illuminate\Foundation\Application.php(506): Illuminate\Foundation\Application->dispatch(Object(Illuminate\Http\Request))
+#14 C:\Users\otto\Desktop\www\public\index.php(49): Illuminate\Foundation\Application->run()
+#15 {main} [] []
+[2013-10-01 10:19:45] log.ERROR: exception 'Symfony\Component\Debug\Exception\FatalErrorException' with message 'syntax error, unexpected '<'' in C:\Users\otto\Desktop\www\app\storage\views\6c3882954db76afadadeec29bcd26087:12
+Stack trace:
+#0 [internal function]: Illuminate\Exception\Handler->handleShutdown()
+#1 {main} [] []
+[2013-10-01 10:20:30] log.ERROR: exception 'Symfony\Component\Debug\Exception\FatalErrorException' with message 'syntax error, unexpected '<'' in C:\Users\otto\Desktop\www\app\storage\views\6c3882954db76afadadeec29bcd26087:12
+Stack trace:
+#0 [internal function]: Illuminate\Exception\Handler->handleShutdown()
+#1 {main} [] []
