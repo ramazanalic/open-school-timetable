@@ -4,68 +4,35 @@
  */
 class OstForm
 {
-	private static $_errors;
-
-	private static $_data;
-
-	public static function setErrors($errors)
-	{
-		static::$_errors = $errors;
-	}
-
-	public static function setData($data)
-	{
-		static::$_data = $data;
-	}
-
-	public static function getData($name)
-	{
-		if (isset(static::$_data[$name])) {
-			return static::$_data[$name];
-		} else {
-			return '';
-		}
-	}
-
 	public static function text($name, $label, $attribs = array())
 	{
-		if (isset($attribs['value'])) {
-			$value = $attribs['value'];
-		} elseif (isset(static::$_data[$name])) {
-			$value = static::$_data[$name];
-		} else {
-			$value = '';
-		}
-
-		return '<tr><td class="label">' . Form::label($name, $label) . '</td><td class="input_field">' . Form::text($name, $value, $attribs) . '</td>' . self::_getErrorBlock($name) . '</tr>';
+		return '<tr><td class="label">' . Form::label($name, $label) . '</td><td class="input_field">' . Form::text($name, $value = NULL, $attribs) . '</td>' . self::_getInputError($name) . '</tr>';
 	}
 
 	public static function hidden($name, $attribs = array())
 	{
-		if (isset($attribs['value'])) {
-			$value = $attribs['value'];
-		} elseif (isset(static::$_data[$name])) {
-			$value = static::$_data[$name];
-		} else {
-			$value = '';
-		}
-
-		return '<tr><td colspan="2" style="display:none">' . Form::hidden($name, $value) . '</td></tr>';
+		return '<tr><td colspan="2" style="display:none">' . Form::hidden($name, $value = NULL) . '</td></tr>';
 	}
 
 	public static function password($name, $label, $attribs = array())
 	{
-		return '<tr><td class="label">' . Form::label($name, $label) . '</td><td class="input_field">' . Form::password($name, $attribs) . '</td>' . self::_getErrorBlock($name) . '</tr>';
+		return '<tr><td class="label">' . Form::label($name, $label) . '</td><td class="input_field">' . Form::password($name, $attribs) . '</td>' . self::_getInputError($name) . '</tr>';
 	}
 
-	public static function open($url, $attributes = array())
+	public static function open($name = NULL, $url, $attributes = array())
 	{
-		return Form::open(array_merge(array('url'=>$url, 'class' => 'input_form'), $attributes)) . '<table class="form_table">';
+		$attributes = array_merge(array('url' => $url, 'class' => 'input_form'), $attributes);
+
+		if (is_object($name)) {
+			return Form::model($$name, $attributes) . '<table class="form_table">';
+		} else {
+			return Form::open($attributes) . '<table class="form_table">';
+		}
 	}
 
 	public static function submit($name)
 	{
-		return '<tr><td colspan="2" class="submit">' . Form::submit($name) .'</td></tr>';
+		return '<tr><td colspan="2" class="submit">' . Form::submit($name) . '</td></tr>';
 	}
 
 	public static function description($description)
@@ -78,12 +45,10 @@ class OstForm
 		return '</table>' . Form::close();
 	}
 
-	private static function _getErrorBlock($name)
+	private static function _getInputError($name)
 	{
-		if (static::$_errors) {
-			$errorMessage = static::$_errors->first($name);
-
-			if ($errorMessage) {
+		if (Session::has('errors')) {
+			if ($errorMessage = Session::get('errors')->first($name)) {
 				return '<td class="input_error">*' . $errorMessage . '</td>';
 			} else {
 				return NULL;

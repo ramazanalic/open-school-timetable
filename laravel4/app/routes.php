@@ -1,15 +1,15 @@
 <?php
 
 /*
-|--------------------------------------------------------------------------
-| Application Routes
-|--------------------------------------------------------------------------
-|
-| Here is where you can register all of the routes for an application.
-| It's a breeze. Simply tell Laravel the URIs it should respond to
-| and give it the Closure to execute when that URI is requested.
-|
-*/
+ |--------------------------------------------------------------------------
+ | Application Routes
+ |--------------------------------------------------------------------------
+ |
+ | Here is where you can register all of the routes for an application.
+ | It's a breeze. Simply tell Laravel the URIs it should respond to
+ | and give it the Closure to execute when that URI is requested.
+ |
+ */
 
 /**
  * 首頁
@@ -30,8 +30,26 @@ Route::get('/account', function()
 	return View::make('account_index')->with('teacherList', $teacherList);
 });
 
-//新增教師
+// 顯示新增教師表單
 Route::get('/account/add', function()
 {
 	return View::make('account_form')->with('formType', 'add');
+});
+
+// 執行新增教師
+Route::POST('/account/add', function()
+{
+	$validator = FormValidator::teacher(Input::all(), true);
+
+	if ($validator->fails()) {
+		return Redirect::to('account/add')->withInput()->withErrors($validator)->with('message', '輸入錯誤，請檢查');
+	} else {
+		if (Teacher::create()) {
+			$message = '新增教師《' . $data['teacher_name'] . '》完成';
+		} else {
+			$message = '資料寫入錯誤';
+		}
+
+		return Redirect::to('account')->with('message', $message);
+	}
 });

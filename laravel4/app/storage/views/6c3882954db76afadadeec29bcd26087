@@ -14,7 +14,12 @@
 
 	<?php echo HtmlComposite::messageBlock(); ?>
 
-	<?php echo OstForm::open(URL::to((isset($editTeacherForm)) ? 'account/edit/' . $teacher->teacher_id : 'account/add')); ?>
+	<?php if ($formType == 'add'): ?>
+		<?php echo OstForm::open($name = NULL, 'account/add'); ?>
+	<?php elseif ($formType == 'edit'): ?>
+		<?php echo OstForm::open($teacher, 'account/edit/' . $teacher->teacher_id); ?>
+	<?php endif; ?>
+
 	<?php echo OstForm::description('請輸入以下的資料'); ?>
 	<?php echo OstForm::text('teacher_name', '教師姓名', array('autofocus' => 'autofocus', 'required' => 'required')); ?>
 	<?php echo OstForm::text('teacher_account', '帳號', array('placeholder' => '英文+數字', 'required' => 'required')); ?>
