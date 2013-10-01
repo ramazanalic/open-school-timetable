@@ -1,0 +1,53 @@
+/**
+ * 年級選單樣式
+ */
+#year_row {
+    background-color: #1BA1E2;
+    float: left;
+    padding: 10px;
+    width: 50%;
+}
+
+.year_item {
+    display: inline-block;
+    background-color: #008A00;
+    padding: 10px;
+    width: 5em;
+    margin: 5px;
+    text-align: center;
+}
+
+.year_item_selected {
+    border: 2px solid #FFFFFF;
+}
+
+#year_form {
+    position: absolute;
+    width: 40%;
+    right: 10px;
+}
+
+#year_form .delete_link {
+    display: inline-block;
+    padding: 5px 20px;
+    width: 9em;
+}
+
+#year_form_command {
+    margin-top: 1em;
+    width: 70%;
+    text-align: right;
+}
+
+#class_area {
+    clear: left;
+    float: left;
+}
+
+#class_area .classes_name {
+    padding-left: 2em;
+}
+
+#class_area .classes_name input {
+    padding: 4px;
+}

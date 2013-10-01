@@ -1,0 +1,176 @@
+/**
+ *  全域
+ */
+body {
+    font-family: "微軟正黑體", sans-serif, serif;
+    font-size: 15px;
+}
+
+a {
+    text-decoration: none;
+    color: #FFFFFF;
+}
+
+/**
+ * 	表頭
+ */
+header {
+    background-color: #1BA1E2;
+}
+
+#banner {
+    font-size: 180%;
+    padding: 0.5em;
+    color: #FFFFFF;
+}
+
+#login {
+    position: absolute;
+    right: 0;
+    top: 10px;
+    background-color: #E671B8;
+    width: 4em;
+    text-align: left;
+}
+
+#login a {
+    display: block;
+    padding: 0.5em;
+}
+
+/**
+ * 	左側導覽列
+ */
+nav {
+    position: absolute;
+    width: 180px;
+    height: 95%;
+    background-color: #F3F3F3;
+    color: #666666;
+    z-index: 100;
+}
+
+nav ul {
+    padding: 1em 0 0 1em;
+}
+
+nav .nav_title {
+    background-color: #825A2C;
+    color: #FFFFFF;
+    font-size: 130%;
+    padding: 5px;
+}
+
+nav a {
+    display: block;
+    padding: 0.7em 0 0.7em 1em;
+    color: #666666;
+}
+
+nav a:hover {
+    background-color: #dddddd;
+}
+
+/**
+ * 	主區塊
+ */
+#main {
+    position: absolute;
+    left: 190px;
+    font-size: 110%;
+    padding: 1em;
+    right: 0;
+}
+
+#main h1 {
+    font-size: 160%;
+    text-align: left;
+    margin-bottom: 0.5em;
+    color: #DD4B39
+}
+
+footer {
+    position: absolute;
+    text-align: center;
+    width: 100%;
+    border-top: 2px solid #F3F3F3;
+    padding: 1em 0;
+    bottom: 0;
+}
+
+footer a {
+    text-decoration: underline;
+    color: #888888;
+}
+
+/**
+ * 	組件：新增
+ */
+.add_link {
+    display: block;
+    text-align: center;
+    width: 5em;
+    background-color: #A05000;
+    padding: 3px;
+    margin-bottom: 0.5em;
+}
+
+/**
+ *  組件：新增按鈕
+ */
+.add_button {
+    display: block;
+    background-color: #A05000 !important;
+}
+
+/**
+ * 	組件：返回連結
+ */
+.back_link {
+    display: block;
+    text-align: center;
+    width: 3.5em;
+    background-color: #00ABA9;
+    padding: 3px;
+    margin-bottom: 0.5em;
+}
+
+/**
+ *  組件：編輯
+ */
+.edit_link {
+    display: block;
+    text-align: center;
+    width: 5em;
+    background-color: #A2C139;
+    padding: 3px;
+}
+
+/**
+ *  組件：刪除
+ */
+.delete_link {
+    display: block;
+    text-align: center;
+    width: 5em;
+    background-color: #D80073;
+    padding: 3px;
+}
+
+/**
+ *  組件：訊息區塊
+ */
+.messageBlock {
+    background-color: #F9EDBE;
+    border: 1px solid #F0C36D;
+    border-radius: 10px 10px 10px 10px;
+    font-size: 100%;
+    font-weight: bold;
+    left: 32%;
+    margin: 0;
+    padding: 5px;
+    position: absolute;
+    top: 20px;
+    width: 14em;
+    text-align: center;
+}

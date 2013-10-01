@@ -1,0 +1,10 @@
+/**
+ * 	覆寫form.css設定
+ */
+.label {
+    width: 5em;
+}
+
+.input_form {
+    width: 30em;
+}
