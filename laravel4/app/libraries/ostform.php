@@ -19,12 +19,12 @@ class OstForm
 		return '<tr><td class="label">' . Form::label($name, $label) . '</td><td class="input_field">' . Form::password($name, $attribs) . '</td>' . self::_getInputError($name) . '</tr>';
 	}
 
-	public static function open($name = NULL, $url, $attributes = array())
+	public static function open($model = NULL, $url, $attributes = array())
 	{
 		$attributes = array_merge(array('url' => $url, 'class' => 'input_form'), $attributes);
 
-		if (is_object($name)) {
-			return Form::model($$name, $attributes) . '<table class="form_table">';
+		if (is_object($model)) {
+			return Form::model($model, $attributes) . '<table class="form_table">';
 		} else {
 			return Form::open($attributes) . '<table class="form_table">';
 		}

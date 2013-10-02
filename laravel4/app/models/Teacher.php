@@ -1,8 +1,9 @@
 <?php
 class Teacher extends Eloquent
 {
-	public $table = 'teacher';
-	public $key = 'teacher_id';
+	protected $table = 'teacher';
+	protected $primaryKey = 'teacher_id';
 	public $timestamps = false;
+	protected $guarded = array('teacher_id');
 }
 ?>

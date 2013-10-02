@@ -16,7 +16,7 @@
 	{{ HtmlComposite::messageBlock() }}
 
 	@if ($formType == 'add')
-		{{ OstForm::open($name = NULL, 'account/add') }}
+		{{ OstForm::open($model = NULL, 'account/add') }}
 	@elseif ($formType == 'edit')
 		{{ OstForm::open($teacher, 'account/edit/' . $teacher->teacher_id) }}
 	@endif

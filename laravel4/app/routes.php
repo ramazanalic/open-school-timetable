@@ -44,7 +44,11 @@ Route::POST('/account/add', function()
 	if ($validator->fails()) {
 		return Redirect::to('account/add')->withInput()->withErrors($validator)->with('message', '輸入錯誤，請檢查');
 	} else {
-		if (Teacher::create()) {
+		$data = Input::only(array('teacher_name', 'teacher_account', 'teacher_password'));
+		$data['teacher_password_hash'] = Hash::make($data['teacher_password']);
+		unset($data['teacher_password']);
+
+		if (Teacher::create($data)) {
 			$message = '新增教師《' . $data['teacher_name'] . '》完成';
 		} else {
 			$message = '資料寫入錯誤';
@@ -52,4 +56,11 @@ Route::POST('/account/add', function()
 
 		return Redirect::to('account')->with('message', $message);
 	}
+});
+
+// 顯示編輯教師表單
+Route::get('/account/edit/{id}', function($id)
+{
+	$teacher = Teacher::find($id);
+	return View::make('account_form')->with(array('formType' => 'edit', 'teacher' => $teacher));
 });
