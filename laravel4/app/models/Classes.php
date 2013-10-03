@@ -1,9 +1,10 @@
 <?php
 class Classes extends Eloquent
 {
-	public static $table = 'classes';
-	public static $key = 'classes_id';
-	public static $timestamps = false;
+	protected $table = 'classes';
+	protected $key = 'classes_id';
+	public $timestamps = false;
+	protected $guarded = array('classes_id');
 
 	public function year()
 	{

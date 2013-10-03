@@ -22,45 +22,99 @@ Route::get('/', function()
 /**
  * 使用者帳號管理
  */
-
-// 顯示教師列表
-Route::get('/account', function()
+Route::group(array('prefix' => 'account'), function()
 {
-	$teacherList = Teacher::all();
-	return View::make('account_index')->with('teacherList', $teacherList);
-});
+	// 顯示教師列表
+	Route::get('/', function()
+	{
+		$teacherList = Teacher::all();
+		return View::make('account_index')->with('teacherList', $teacherList);
+	});
 
-// 顯示新增教師表單
-Route::get('/account/add', function()
-{
-	return View::make('account_form')->with('formType', 'add');
-});
+	// 顯示新增教師表單
+	Route::get('/add', function()
+	{
+		return View::make('account_form')->with('formType', 'add');
+	});
 
-// 執行新增教師
-Route::POST('/account/add', function()
-{
-	$validator = FormValidator::teacher(Input::all(), true);
+	// 執行新增教師
+	Route::post('/add', function()
+	{
+		$validator = FormValidator::teacher(Input::all(), true);
 
-	if ($validator->fails()) {
-		return Redirect::to('account/add')->withInput()->withErrors($validator)->with('message', '輸入錯誤，請檢查');
-	} else {
-		$data = Input::only(array('teacher_name', 'teacher_account', 'teacher_password'));
-		$data['teacher_password_hash'] = Hash::make($data['teacher_password']);
-		unset($data['teacher_password']);
-
-		if (Teacher::create($data)) {
-			$message = '新增教師《' . $data['teacher_name'] . '》完成';
+		if ($validator->fails()) {
+			return Redirect::to('/account/add')->withInput()->withErrors($validator)->with('message', '輸入錯誤，請檢查');
 		} else {
-			$message = '資料寫入錯誤';
-		}
+			$data = Input::only(array('teacher_name', 'teacher_account', 'teacher_password'));
+			$data['teacher_password_hash'] = Hash::make($data['teacher_password']);
+			unset($data['teacher_password']);
 
-		return Redirect::to('account')->with('message', $message);
-	}
+			if (Teacher::create($data)) {
+				$message = '新增教師《' . $data['teacher_name'] . '》完成';
+			} else {
+				$message = '資料寫入錯誤';
+			}
+
+			return Redirect::to('account')->with('message', $message);
+		}
+	});
+
+	// 顯示編輯教師表單
+	Route::get('/edit/{id}', function($id)
+	{
+		$teacher = Teacher::find($id);
+		return View::make('account_form')->with(array('formType' => 'edit', 'teacher' => $teacher));
+	});
+
+	// 執行編輯教師
+	Route::post('/edit/{id}', function($id)
+	{
+		$validator = FormValidator::teacher(Input::all(), Input::has('teacher_password'));
+
+		if ($validator->fails()) {
+			return Redirect::to('/account/edit/' . $id)->withInput()->withErrors($validator)->with('message', '輸入錯誤，請檢查');
+		} else {
+			$data = Input::only(array('teacher_name', 'teacher_account', 'teacher_password'));
+
+			if (Input::has('teacher_password')) {
+				$data['teacher_password_hash'] = Hash::make($data['teacher_password']);
+			}
+
+			unset($data['teacher_password']);
+
+			$teacher = Teacher::find($id);
+			if ($teacher->update($data)) {
+				$message = '更新教師《' . $data['teacher_name'] . '》完成';
+			} else {
+				$message = '資料寫入錯誤';
+			}
+
+			return Redirect::to('account')->with('message', $message);
+		}
+	});
+
+	// 執行刪除教師
+	Route::get('/delete/{id}', function($id)
+	{
+		$teacher = Teacher::find($id);
+		$message = '刪除《' . $teacher->teacher_name . '》完成';
+		$teacher->delete();
+		return Redirect::to('account/')->with('message', $message);
+	});
+
 });
 
-// 顯示編輯教師表單
-Route::get('/account/edit/{id}', function($id)
+/**
+ * 班級/年級管理
+ */
+Route::group(array('prefix' => 'class_year'), function()
 {
-	$teacher = Teacher::find($id);
-	return View::make('account_form')->with(array('formType' => 'edit', 'teacher' => $teacher));
+	// 讀取年級列表
+	$GLOBALS['yearList'] = Year::orderBy('year_name')->get();
+
+	// 顯示班級/年級管理列表
+	Route::get('/', function()
+	{
+		return View::make('class_year_index')->with('yearList', $GLOBALS['yearList']);
+	});
 });
