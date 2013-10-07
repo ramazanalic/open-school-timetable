@@ -39,14 +39,20 @@ header {
 }
 
 /**
+ *  主區塊
+ */
+#main {
+    background-color: #F3F3F3;
+}
+
+/**
  * 	左側導覽列
  */
 nav {
-    position: absolute;
-    width: 180px;
-    height: 95%;
-    background-color: #F3F3F3;
     color: #666666;
+    float: left;
+    height: 95%;
+    width: 200px;
     z-index: 100;
 }
 
@@ -72,17 +78,16 @@ nav a:hover {
 }
 
 /**
- * 	主區塊
+ * 	內容區塊
  */
-#main {
-    position: absolute;
-    left: 190px;
+#content {
+    background-color: #FFFFFF;
     font-size: 110%;
+    margin-left: 200px;
     padding: 1em;
-    right: 0;
 }
 
-#main h1 {
+#content h1 {
     font-size: 160%;
     text-align: left;
     margin-bottom: 0.5em;
@@ -90,12 +95,10 @@ nav a:hover {
 }
 
 footer {
-    position: absolute;
     text-align: center;
     width: 100%;
     border-top: 2px solid #F3F3F3;
-    padding: 1em 0;
-    bottom: 0;
+    padding: 0.5em 0;
 }
 
 footer a {

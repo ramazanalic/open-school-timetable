@@ -1,1 +1,20 @@
-@import url(default.css);
+@import "default.css";
+
+#year_form {
+    margin-top: 1em;
+    padding: 1em;
+    right: 10px;
+    display: inline-block;
+}
+
+#year_form .delete_link {
+    display: inline-block;
+    padding: 5px 20px;
+    width: 9em;
+}
+
+#year_form_command {
+    margin-top: 1em;
+    width: 70%;
+    text-align: right;
+}

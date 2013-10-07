@@ -18,58 +18,61 @@
                 {{ HTML::link(URL::to('login'), '登入') }}
             </div>
         </header>
-        <nav>
-            <ul id="user_nav">
-                <li class="nav_title">
-                    課表查詢
-                </li>
-                <li>
-                    <a href="">班級課表</a>
-                </li>
-                <li>
-                    <a href="">教師課表</a>
-                </li>
-                <li>
-                    <a href="">教室課表</a>
-                </li>
-            </ul>
-            <ul id="teacher_nav">
-                <li class="nav_title">
-                    個人排課設定
-                </li>
-                <li>
-                    <a href="">個人排課需求設定</a>
-                </li>
-            </ul>
-            <ul id="admin_nav">
-                <li class="nav_title">
-                    系統管理
-                </li>
-                <li>
-                    <a href="">課程單元設定</a>
-                </li>
-                <li>
-                    <a href="">教師排課限制設定</a>
-                </li>
-                <li>
-                    <a href="">教師排課需求設定</a>
-                </li>
-                <li>
-                    <a href="">課程名稱管理</a>
-                </li>
-                <li>
-                    <a href="">教室管理</a>
-                </li>
-                <li>
-                    {{ HTML::link(URL::to('class_year'), '班級\年級管理') }}
-                </li>
-                <li>
-                    {{ HTML::link(URL::to('account'), '教師帳號管理') }}
-                </li>
-            </ul>
-        </nav>
         <section id="main">
-            @yield('content')
+	        <nav>
+	            <ul id="user_nav">
+	                <li class="nav_title">
+	                    課表查詢
+	                </li>
+	                <li>
+	                    <a href="">班級課表</a>
+	                </li>
+	                <li>
+	                    <a href="">教師課表</a>
+	                </li>
+	                <li>
+	                    <a href="">教室課表</a>
+	                </li>
+	            </ul>
+	            <ul id="teacher_nav">
+	                <li class="nav_title">
+	                    個人排課設定
+	                </li>
+	                <li>
+	                    <a href="">個人排課需求設定</a>
+	                </li>
+	            </ul>
+	            <ul id="admin_nav">
+	                <li class="nav_title">
+	                    系統管理
+	                </li>
+	                <li>
+	                    <a href="">課程單元設定</a>
+	                </li>
+	                <li>
+	                    <a href="">教師排課限制設定</a>
+	                </li>
+	                <li>
+	                    <a href="">教師排課需求設定</a>
+	                </li>
+	                <li>
+	                    <a href="">課程名稱管理</a>
+	                </li>
+	                <li>
+	                    <a href="">教室管理</a>
+	                </li>
+	                <li>
+	                    {{ HTML::link(URL::to('class_year'), '班級\年級管理') }}
+	                </li>
+	                <li>
+	                    {{ HTML::link(URL::to('account'), '教師帳號管理') }}
+	                </li>
+	            </ul>
+	        </nav>
+
+        	<div id="content">
+            	@yield('content')
+            </div>
         </section>
         <footer>
             {{ HTML::link('http://code.google.com/p/open-school-timetable/', '程式專案網站') }}

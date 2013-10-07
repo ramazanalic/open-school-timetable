@@ -112,9 +112,11 @@ Route::group(array('prefix' => 'class_year'), function()
 	// 讀取年級列表
 	$GLOBALS['yearList'] = Year::orderBy('year_name')->get();
 
-	// 顯示班級/年級管理列表
+	// 顯示年級列表、年級表單
 	Route::get('/', function()
 	{
-		return View::make('class_year_index')->with('yearList', $GLOBALS['yearList']);
+		return View::make('class_year_index')->with(array('yearList'=> $GLOBALS['yearList'], 'year' => NULL));
 	});
+
+
 });

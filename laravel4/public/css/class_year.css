@@ -2,8 +2,6 @@
  * 年級選單樣式
  */
 #year_row {
-    border: 1px solid #647687;
-    float: left;
     padding: 5px;
     width: 90%;
 }
@@ -21,27 +19,7 @@
     border: 2px solid #FFFFFF;
 }
 
-#year_form {
-    position: absolute;
-    width: 40%;
-    right: 10px;
-}
-
-#year_form .delete_link {
-    display: inline-block;
-    padding: 5px 20px;
-    width: 9em;
-}
-
-#year_form_command {
-    margin-top: 1em;
-    width: 70%;
-    text-align: right;
-}
-
 #class_area {
-    clear: left;
-    float: left;
 }
 
 #class_area .classes_name {
