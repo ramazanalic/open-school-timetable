@@ -7,31 +7,16 @@
 @section('content')
 	{{ HtmlComposite::back('account') }}
 
-	@if ($formType == 'add')
-		<h1>新增教師</h1>
-	@elseif ($formType == 'edit')
-		<h1>編輯教師《{{ $teacher->teacher_name }} 》</h1>
-	@endif
+	{{ (isset($teacher)) ? '<h1>編輯教師《' . $teacher->teacher_name . '》</h1>' : '<h1>新增教師</h1>'}}
 
 	{{ HtmlComposite::messageBlock() }}
 
-	@if ($formType == 'add')
-		{{ OstForm::open($model = NULL, 'account/add') }}
-	@elseif ($formType == 'edit')
-		{{ OstForm::open($teacher, 'account/edit/' . $teacher->teacher_id) }}
-	@endif
-
+	{{ OstForm::open($teacher, (isset($teacher)) ? 'account/edit/' . $teacher->teacher_id : 'account/add') }}
 	{{ OstForm::description('請輸入以下的資料') }}
 	{{ OstForm::text('teacher_name', '教師姓名', array('autofocus' => 'autofocus', 'required' => 'required')) }}
 	{{ OstForm::text('teacher_account', '帳號', array('placeholder' => '英文+數字', 'required' => 'required')) }}
 	{{ OstForm::password('teacher_password', '密碼') }}
 	{{ OstForm::password('teacher_password_confirmation', '確認密碼') }}
-
-	@if ($formType == 'add')
-		{{ OstForm::submit('新增') }}
-	@elseif ($formType == 'edit')
-		{{ OstForm::submit('更新') }}
-	@endif
-
+	{{ (isset($teacher)) ? OstForm::submit('更新') : OstForm::submit('新增') }}
 	{{ OstForm::close() }}
 @stop

@@ -13,5 +13,13 @@ class FormValidator
 		return Validator::make($data, $rules, $messages);
 	}
 
+	public static function year($data)
+	{
+		$rules = array('year_name' => 'required', );
+		$messages = array('year_name_required' => '請輸入年級名稱', );
+
+		return Validator::make($data, $rules, $messages);
+	}
+
 }
 ?>

@@ -82,7 +82,7 @@ nav a:hover {
  */
 #content {
     background-color: #FFFFFF;
-    font-size: 110%;
+    font-size: 100%;
     margin-left: 200px;
     padding: 1em;
 }
@@ -91,7 +91,14 @@ nav a:hover {
     font-size: 160%;
     text-align: left;
     margin-bottom: 0.5em;
-    color: #DD4B39
+    color: #DD4B39;
+}
+
+#content h2 {
+    font-size: 120%;
+    text-align: left;
+    margin-bottom: 0.2em;
+    color: #1BA1E2;
 }
 
 footer {

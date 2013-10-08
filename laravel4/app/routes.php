@@ -34,7 +34,7 @@ Route::group(array('prefix' => 'account'), function()
 	// 顯示新增教師表單
 	Route::get('/add', function()
 	{
-		return View::make('account_form')->with('formType', 'add');
+		return View::make('account_form')->with('teacher', NULL);
 	});
 
 	// 執行新增教師
@@ -63,7 +63,7 @@ Route::group(array('prefix' => 'account'), function()
 	Route::get('/edit/{id}', function($id)
 	{
 		$teacher = Teacher::find($id);
-		return View::make('account_form')->with(array('formType' => 'edit', 'teacher' => $teacher));
+		return View::make('account_form')->with('teacher', $teacher);
 	});
 
 	// 執行編輯教師
@@ -112,11 +112,38 @@ Route::group(array('prefix' => 'class_year'), function()
 	// 讀取年級列表
 	$GLOBALS['yearList'] = Year::orderBy('year_name')->get();
 
-	// 顯示年級列表、年級表單
+	// 顯示年級列表、年級新增表單
 	Route::get('/', function()
 	{
-		return View::make('class_year_index')->with(array('yearList'=> $GLOBALS['yearList'], 'year' => NULL));
+		return View::make('class_year_index')->with(array('yearList' => $GLOBALS['yearList'], 'year' => NULL));
 	});
 
+	// 執行新增年級
+	Route::post('/add_year', function()
+	{
+		$validator = FormValidator::year(Input::all());
 
+		if ($validator->fails()) {
+			return Redirect::to('/class_year')->withInput()->withErrors($validator)->with('message', '輸入錯誤，請檢查');
+		} else {
+			$data = Input::only(array('year_name', 'course_time'));
+
+			if (Year::create($data)) {
+				$message = '新增年級《' . $data['year_name'] . '》完成';
+			} else {
+				$message = '資料寫入錯誤';
+			}
+
+			return Redirect::to('/class_year')->with('message', $message);
+		}
+	});
+
+	// 顯示年級編輯標單、班級列表、新增班級表單
+	Route::get('/view_year/{id}', function($id)
+	{
+		$viewData['year'] = Year::find($id);
+		$viewData['classes'] = Year::find($id)->classes()->orderBy('classes_name')->get();
+		$viewData['yearList'] = $GLOBALS['yearList'];
+		return View::make('class_year_index')->with($viewData);
+	});
 });
