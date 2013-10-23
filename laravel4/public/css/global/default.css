@@ -50,6 +50,7 @@ header {
  */
 nav {
     color: #666666;
+    background-color: #F3F3F3;
     float: left;
     height: 95%;
     width: 200px;
@@ -106,6 +107,7 @@ footer {
     width: 100%;
     border-top: 2px solid #F3F3F3;
     padding: 0.5em 0;
+    clear: left;
 }
 
 footer a {
