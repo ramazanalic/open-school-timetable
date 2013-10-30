@@ -8,10 +8,10 @@
 
 .year_item {
     display: inline-block;
-    background-color: #008A00;
+    margin: 3px;
     padding: 8px;
     width: 5em;
-    margin: 3px;
+    background-color: #008A00;
     text-align: center;
 }
 

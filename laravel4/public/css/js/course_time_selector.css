@@ -16,8 +16,8 @@
 }
 
 #noon_break {
-    text-align: center;
     background-color: #AAAAAA;
+    text-align: center;
 }
 
 .course {
@@ -29,6 +29,6 @@
 }
 
 .course[data-selected="1"] {
-    background-color: #1BA1E2;
     border: 1px solid white;
+    background-color: #1BA1E2;
 }

@@ -2,13 +2,13 @@
  *  全域
  */
 body {
-    font-family: "微軟正黑體", sans-serif, serif;
     font-size: 15px;
+    font-family: "微軟正黑體", sans-serif, serif;
 }
 
 a {
-    text-decoration: none;
     color: #FFFFFF;
+    text-decoration: none;
 }
 
 /**
@@ -19,17 +19,17 @@ header {
 }
 
 #banner {
-    font-size: 180%;
     padding: 0.5em;
     color: #FFFFFF;
+    font-size: 180%;
 }
 
 #login {
     position: absolute;
-    right: 0;
     top: 10px;
-    background-color: #E671B8;
+    right: 0;
     width: 4em;
+    background-color: #E671B8;
     text-align: left;
 }
 
@@ -49,12 +49,12 @@ header {
  * 	左側導覽列
  */
 nav {
-    color: #666666;
-    background-color: #F3F3F3;
-    float: left;
-    height: 95%;
-    width: 200px;
     z-index: 100;
+    float: left;
+    width: 200px;
+    height: 95%;
+    background-color: #F3F3F3;
+    color: #666666;
 }
 
 nav ul {
@@ -62,10 +62,10 @@ nav ul {
 }
 
 nav .nav_title {
+    padding: 5px;
     background-color: #FA6800;
     color: #FFFFFF;
     font-size: 130%;
-    padding: 5px;
 }
 
 nav a {
@@ -82,37 +82,37 @@ nav a:hover {
  * 	內容區塊
  */
 #content {
-    background-color: #FFFFFF;
-    font-size: 100%;
     margin-left: 200px;
     padding: 1em;
+    background-color: #FFFFFF;
+    font-size: 100%;
 }
 
 #content h1 {
-    font-size: 160%;
-    text-align: left;
     margin-bottom: 0.5em;
     color: #DD4B39;
+    text-align: left;
+    font-size: 160%;
 }
 
 #content h2 {
-    font-size: 120%;
-    text-align: left;
     margin-bottom: 0.2em;
     color: #1BA1E2;
+    text-align: left;
+    font-size: 120%;
 }
 
 footer {
-    text-align: center;
+    clear: left;
+    padding: 0.5em 0;
     width: 100%;
     border-top: 2px solid #F3F3F3;
-    padding: 0.5em 0;
-    clear: left;
+    text-align: center;
 }
 
 footer a {
-    text-decoration: underline;
     color: #888888;
+    text-decoration: underline;
 }
 
 /**
@@ -120,11 +120,11 @@ footer a {
  */
 .add_link {
     display: block;
-    text-align: center;
+    margin-bottom: 0.5em;
+    padding: 3px;
     width: 5em;
     background-color: #A05000;
-    padding: 3px;
-    margin-bottom: 0.5em;
+    text-align: center;
 }
 
 /**
@@ -140,11 +140,11 @@ footer a {
  */
 .back_link {
     display: block;
-    text-align: center;
+    margin-bottom: 0.5em;
+    padding: 3px;
     width: 3.5em;
     background-color: #00ABA9;
-    padding: 3px;
-    margin-bottom: 0.5em;
+    text-align: center;
 }
 
 /**
@@ -152,10 +152,10 @@ footer a {
  */
 .edit_link {
     display: block;
-    text-align: center;
+    padding: 3px;
     width: 5em;
     background-color: #A2C139;
-    padding: 3px;
+    text-align: center;
 }
 
 /**
@@ -163,26 +163,26 @@ footer a {
  */
 .delete_link {
     display: block;
-    text-align: center;
+    padding: 3px;
     width: 5em;
     background-color: #D80073;
-    padding: 3px;
+    text-align: center;
 }
 
 /**
  *  組件：訊息區塊
  */
 .messageBlock {
-    background-color: #F9EDBE;
-    border: 1px solid #F0C36D;
-    border-radius: 10px 10px 10px 10px;
-    font-size: 100%;
-    font-weight: bold;
+    position: absolute;
+    top: 20px;
     left: 32%;
     margin: 0;
     padding: 5px;
-    position: absolute;
-    top: 20px;
     width: 14em;
+    border: 1px solid #F0C36D;
+    border-radius: 10px 10px 10px 10px;
+    background-color: #F9EDBE;
     text-align: center;
+    font-weight: bold;
+    font-size: 100%;
 }

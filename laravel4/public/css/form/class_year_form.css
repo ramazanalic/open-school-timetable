@@ -1,10 +1,10 @@
 @import "default.css";
 
 #year_form {
-    margin-top: 1em;
-    padding: 1em;
     right: 10px;
     display: inline-block;
+    margin-top: 1em;
+    padding: 1em;
 }
 
 #year_form .delete_link {
