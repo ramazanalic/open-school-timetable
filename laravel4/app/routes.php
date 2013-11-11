@@ -146,4 +146,26 @@ Route::group(array('prefix' => 'class_year'), function()
 		$viewData['yearList'] = $GLOBALS['yearList'];
 		return View::make('class_year_index')->with($viewData);
 	});
+
+	// 執行編輯年級
+	Route::post('/update_year/{id}', function($id)
+	{
+		$validator = FormValidator::year(Input::all());
+
+		if ($validator->fails()) {
+			return Redirect::to('/class_year/view_year/' . $id)->withInput()->withErrors($validator)->with('message', '輸入錯誤，請檢查');
+		} else {
+			$data = Input::only(array('year_name', 'course_time'));
+
+			$year = Year::find($id);
+			if ($year->update($data)) {
+				$message = '更新《' . $data['year_name'] . '》完成';
+			} else {
+				$message = '資料寫入錯誤';
+			}
+
+			return Redirect::to('/class_year')->with('message', $message);
+		}
+	});
+
 });

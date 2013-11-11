@@ -1,7 +1,6 @@
 @import "default.css";
 
 #year_form {
-    right: 10px;
     display: inline-block;
     margin-top: 1em;
     padding: 1em;
@@ -9,6 +8,7 @@
 
 #year_form .delete_link {
     display: inline-block;
+    float: left;
     padding: 5px 20px;
     width: 9em;
 }

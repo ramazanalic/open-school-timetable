@@ -16,12 +16,18 @@
 }
 
 .year_item_selected {
-    border: 2px solid #FFFFFF;
+    border: 3px solid #F0A30A;
 }
+
+/**
+ * 班級選單樣式
+ */
 
 #class_area {
+position: absolute;
+   display: inline-block;
+margin-top: 2em;
 }
-
 #class_area .classes_name {
     padding-left: 2em;
 }
@@ -29,3 +35,4 @@
 #class_area .classes_name input {
     padding: 4px;
 }
+

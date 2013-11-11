@@ -26,14 +26,14 @@
 	</div>
 
 	<div id="year_form">
-        {{ OstForm::open($year, URL::to((isset($year)) ? 'class_year/edit_year/' . $year->year_id : 'class_year/add_year')) }}
-        	<h2>{{ (isset($year)) ? '更新《' . $year->year_name . '》' : '新增年級' }}</h2>
+        {{ OstForm::open($year, URL::to((isset($year)) ? 'class_year/update_year/' . $year->year_id : 'class_year/add_year')) }}
+        	<h2>{{ (isset($year)) ? '《' . $year->year_name . '》' : '新增年級' }}</h2>
         	{{ OstForm::text('year_name', '年級名稱', array('required' => 'required')) }}
         	{{ OstForm::hidden('course_time') }}
         </table>
 
 	    <div id="year_course_time_selector">
-	        <h2>年級上課時間設定</h2>
+	        <h2>上課時間</h2>
 	        <table>
 	            <tr id="day_row">
 	                <th>&nbsp;</th>
@@ -114,26 +114,30 @@
 	    </div>
 	</div>
 
-	<?php if (isset($showClasses)):?>
+	@if (isset($year))
 		<div id="class_area">
-			<?= OstForm::open(URL::to('class_year/add_classes/' . $year->year_id)) ?>
-		    <?= OstForm::text('classes_name', '班級名稱', array('required' => 'required')) ?>
-		    <?= OstForm::submit('新增班級', array('id', 'add_classes')); ?>
-		    <?= OstForm::close() ?>
 
-			<?php if (isset($classes)): ?>
-		    	<?php foreach ($classes as $classesItem): ?>
-					<?= Form::open(URL::to('class_year/edit_classes/' . $classesItem->classes_id), 'POST', array('class' => 'hidden_form')) ?>
+			{{ OstForm::open($classes, URL::to('class_year/add_classes/' . $year->year_id)) }}
+		    <table class="dataList">
+		    	<tr>
+		    		<th class="classes_name">{{ Form::text('classes_name', '', array('required' => 'required', 'placeholder'=>'新增年級…')) }}</th>
+		    		<th class="classes_command">{{ Form::submit('新增', array('id', 'add_classes')); }}</th>
+	    		</tr>
+	    	</table>
+		    {{ OstForm::close() }}
+
+			@if (isset($classes))
+		    	@foreach ($classes as $classesItem)
+					{{ OstForm::open(URL::to($classes, 'class_year/edit_classes/' . $classesItem->classes_id), 'POST', array('class' => 'hidden_form')) }}
 					<table class="dataList">
 		    			<tr>
 		    				<td class="classes_name"><?= Form::text('classes_name', $classesItem->classes_name, array('required' => 'required', 'size' => '5')) ?></td>
-		    				<td class="classes_update"><?= Form::submit('更新') ?></td>
-		    				<td class="classes_delete"><?= HtmlComposite::delete('class_year/delete_classes/' . $classesItem->classes_id) ?></td>
+		    				<td class="classes_command"><?= Form::submit('更新') ?><?= HtmlComposite::delete('class_year/delete_classes/' . $classesItem->classes_id) ?></td>
 		    			</tr>
 		    		</table>
-		    		<?= Form::close() ?>
-		    	<?php endforeach ?>
-		    <?php endif ?>
+		    		{{ Form::close() }}
+		    	@endforeach
+		    @endif
 		</div>
-	<?php endif ?>
+	@endif
 @stop
