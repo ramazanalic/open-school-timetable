@@ -164,7 +164,7 @@ Route::group(array('prefix' => 'class_year'), function()
 				$message = '資料寫入錯誤';
 			}
 
-			return Redirect::to('/class_year')->with('message', $message);
+			return Redirect::to('/class_year/view_year/' . $id)->with('message', $message);
 		}
 	});
 

@@ -10,7 +10,7 @@
     display: inline-block;
     margin: 3px;
     padding: 8px;
-    width: 5em;
+    width: 7em;
     background-color: #008A00;
     text-align: center;
 }
@@ -22,17 +22,29 @@
 /**
  * 班級選單樣式
  */
-
 #class_area {
-position: absolute;
-   display: inline-block;
-margin-top: 2em;
+    position: absolute;
+    display: inline-block;
+    margin-top: 2em;
 }
+
 #class_area .classes_name {
-    padding-left: 2em;
+    padding: 1em;
+    width: 7em;
 }
 
 #class_area .classes_name input {
     padding: 4px;
 }
 
+#class_area .classes_name input[type="text"] {
+    width: 6em;
+}
+
+#class_area .classes_command {
+    padding: 0;
+    width: 12em;
+}
+#class_area .classes_command .delete_link {
+    display:inline-block;
+}

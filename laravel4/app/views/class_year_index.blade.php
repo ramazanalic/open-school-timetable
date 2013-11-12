@@ -20,7 +20,7 @@
 	<div id="year_row">
 		@if (isset($yearList))
 	    	@foreach ($yearList as $yearItem)
-	    		{{ HTML::link(URL::to('class_year/view_year/' . $yearItem->year_id), $yearItem->year_name, array('class' => (isset($year) && $yearItem->year_id == $year->year_id) ? 'year_item year_item_selected' : 'year_item')) }}
+	    		{{ HTML::link(URL::to('class_year/view_year/' . $yearItem->year_id), $yearItem->year_name . '（' . $yearItem->classes()->count() . '）', array('class' => (isset($year) && $yearItem->year_id == $year->year_id) ? 'year_item year_item_selected' : 'year_item')) }}
 	    	@endforeach
 	    @endif
 	</div>
@@ -116,11 +116,10 @@
 
 	@if (isset($year))
 		<div id="class_area">
-
 			{{ OstForm::open($classes, URL::to('class_year/add_classes/' . $year->year_id)) }}
 		    <table class="dataList">
 		    	<tr>
-		    		<th class="classes_name">{{ Form::text('classes_name', '', array('required' => 'required', 'placeholder'=>'新增年級…')) }}</th>
+		    		<th class="classes_name">{{ Form::text('classes_name', '', array('required' => 'required', 'placeholder'=>'新增班級…')) }}</th>
 		    		<th class="classes_command">{{ Form::submit('新增', array('id', 'add_classes')); }}</th>
 	    		</tr>
 	    	</table>
@@ -131,8 +130,8 @@
 					{{ OstForm::open(URL::to($classes, 'class_year/edit_classes/' . $classesItem->classes_id), 'POST', array('class' => 'hidden_form')) }}
 					<table class="dataList">
 		    			<tr>
-		    				<td class="classes_name"><?= Form::text('classes_name', $classesItem->classes_name, array('required' => 'required', 'size' => '5')) ?></td>
-		    				<td class="classes_command"><?= Form::submit('更新') ?><?= HtmlComposite::delete('class_year/delete_classes/' . $classesItem->classes_id) ?></td>
+		    				<td class="classes_name">{{ Form::text('classes_name', $classesItem->classes_name, array('required' => 'required', 'size' => '5')) }}</td>
+		    				<td class="classes_command">{{ Form::submit('更新') . '&nbsp;&nbsp;' . HtmlComposite::delete('class_year/delete_classes/' . $classesItem->classes_id) }}</td>
 		    			</tr>
 		    		</table>
 		    		{{ Form::close() }}
