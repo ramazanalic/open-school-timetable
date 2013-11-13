@@ -1,6 +1,9 @@
 <?php
 class FormValidator
 {
+	/**
+	 * 驗證教師
+	 */
 	public static function teacher($data, $passwordRequire = false)
 	{
 		$rules = array('teacher_name' => 'required', 'teacher_account' => 'required|alpha_num');
@@ -13,10 +16,24 @@ class FormValidator
 		return Validator::make($data, $rules, $messages);
 	}
 
+	/**
+	 * 驗證年級
+	 */
 	public static function year($data)
 	{
-		$rules = array('year_name' => 'required', );
+		$rules = array('year_name' => 'required');
 		$messages = array('year_name_required' => '請輸入年級名稱', );
+
+		return Validator::make($data, $rules, $messages);
+	}
+
+	/**
+	 * 驗證班級
+	 */
+	public static function classes($data)
+	{
+		$rules = array('classes_name' => 'required', );
+		$messages = array('classes_name_required' => '請輸入班級名稱', );
 
 		return Validator::make($data, $rules, $messages);
 	}

@@ -343,12 +343,12 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/doctrine/dbal.git",
-                "reference": "9efdbcebea17506fb1cdb6b4687c23a6786d2e6b"
+                "reference": "c3448dc0a163becd5acb50199049996c53cade78"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/doctrine/dbal/zipball/9efdbcebea17506fb1cdb6b4687c23a6786d2e6b",
-                "reference": "9efdbcebea17506fb1cdb6b4687c23a6786d2e6b",
+                "url": "https://api.github.com/repos/doctrine/dbal/zipball/c3448dc0a163becd5acb50199049996c53cade78",
+                "reference": "c3448dc0a163becd5acb50199049996c53cade78",
                 "shasum": ""
             },
             "require": {
@@ -376,7 +376,8 @@
                 {
                     "name": "Jonathan Wage",
                     "email": "jonwage@gmail.com",
-                    "homepage": "http://www.jwage.com/"
+                    "homepage": "http://www.jwage.com/",
+                    "role": "Creator"
                 },
                 {
                     "name": "Guilherme Blanco",
@@ -400,7 +401,7 @@
                 "persistence",
                 "queryobject"
             ],
-            "time": "2013-09-26 21:18:07"
+            "time": "2013-11-12 12:38:29"
         },
         {
             "name": "doctrine/inflector",
@@ -671,12 +672,12 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/laravel/framework.git",
-                "reference": "b9dff90f1a8ed78bf84ba62fc93d01dd86cfaa72"
+                "reference": "ce13eaad2506bb913b7318b7d56477c04ac3b571"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/laravel/framework/zipball/b9dff90f1a8ed78bf84ba62fc93d01dd86cfaa72",
-                "reference": "b9dff90f1a8ed78bf84ba62fc93d01dd86cfaa72",
+                "url": "https://api.github.com/repos/laravel/framework/zipball/ce13eaad2506bb913b7318b7d56477c04ac3b571",
+                "reference": "ce13eaad2506bb913b7318b7d56477c04ac3b571",
                 "shasum": ""
             },
             "require": {
@@ -776,7 +777,7 @@
                 "framework",
                 "laravel"
             ],
-            "time": "2013-11-09 18:39:41"
+            "time": "2013-11-13 04:50:56"
         },
         {
             "name": "monolog/monolog",
@@ -784,12 +785,12 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/Seldaek/monolog.git",
-                "reference": "43f97bb5af6cddb7956afbb0984ccd58255a97a9"
+                "reference": "516447f91312924c63fafd8e6083f28013dd03d9"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/Seldaek/monolog/zipball/43f97bb5af6cddb7956afbb0984ccd58255a97a9",
-                "reference": "43f97bb5af6cddb7956afbb0984ccd58255a97a9",
+                "url": "https://api.github.com/repos/Seldaek/monolog/zipball/516447f91312924c63fafd8e6083f28013dd03d9",
+                "reference": "516447f91312924c63fafd8e6083f28013dd03d9",
                 "shasum": ""
             },
             "require": {
@@ -797,17 +798,21 @@
                 "psr/log": "~1.0"
             },
             "require-dev": {
+                "aws/aws-sdk-php": "~2.4.8",
                 "doctrine/couchdb": "dev-master",
                 "mlehner/gelf-php": "1.0.*",
                 "phpunit/phpunit": "~3.7.0",
-                "raven/raven": "0.5.*"
+                "raven/raven": "0.5.*",
+                "ruflin/elastica": "0.90.*"
             },
             "suggest": {
+                "aws/aws-sdk-php": "Allow sending log messages to AWS services like DynamoDB",
                 "doctrine/couchdb": "Allow sending log messages to a CouchDB server",
                 "ext-amqp": "Allow sending log messages to an AMQP server (1.0+ required)",
                 "ext-mongo": "Allow sending log messages to a MongoDB server",
                 "mlehner/gelf-php": "Allow sending log messages to a GrayLog2 server",
-                "raven/raven": "Allow sending log messages to a Sentry server"
+                "raven/raven": "Allow sending log messages to a Sentry server",
+                "ruflin/elastica": "Allow sending log messages to an Elastic Search server"
             },
             "type": "library",
             "extra": {
@@ -839,7 +844,7 @@
                 "logging",
                 "psr-3"
             ],
-            "time": "2013-11-11 10:42:16"
+            "time": "2013-11-11 22:14:57"
         },
         {
             "name": "nesbot/carbon",

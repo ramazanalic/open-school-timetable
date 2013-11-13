@@ -139,33 +139,93 @@ Route::group(array('prefix' => 'class_year'), function()
 	});
 
 	// 顯示年級編輯標單、班級列表、新增班級表單
-	Route::get('/view_year/{id}', function($id)
+	Route::get('/view_year/{yearId}', function($yearId)
 	{
-		$viewData['year'] = Year::find($id);
-		$viewData['classes'] = Year::find($id)->classes()->orderBy('classes_name')->get();
+		$viewData['year'] = Year::find($yearId);
+		$viewData['classes'] = Year::find($yearId)->classes()->orderBy('classes_name')->get();
 		$viewData['yearList'] = $GLOBALS['yearList'];
 		return View::make('class_year_index')->with($viewData);
 	});
 
 	// 執行編輯年級
-	Route::post('/update_year/{id}', function($id)
+	Route::post('/update_year/{yearId}', function($yearId)
 	{
 		$validator = FormValidator::year(Input::all());
 
 		if ($validator->fails()) {
-			return Redirect::to('/class_year/view_year/' . $id)->withInput()->withErrors($validator)->with('message', '輸入錯誤，請檢查');
+			return Redirect::to('/class_year/view_year/' . $yearId)->withInput()->withErrors($validator)->with('message', '輸入錯誤，請檢查');
 		} else {
 			$data = Input::only(array('year_name', 'course_time'));
 
-			$year = Year::find($id);
+			$year = Year::find($yearId);
 			if ($year->update($data)) {
 				$message = '更新《' . $data['year_name'] . '》完成';
 			} else {
 				$message = '資料寫入錯誤';
 			}
 
-			return Redirect::to('/class_year/view_year/' . $id)->with('message', $message);
+			return Redirect::to('/class_year/view_year/' . $yearId)->with('message', $message);
 		}
+	});
+
+	// 執行新增班級
+	Route::post('/add_classes/{yearId}', function($yearId)
+	{
+		$validator = FormValidator::classes(Input::all());
+
+		if ($validator->fails()) {
+			return Redirect::to('/class_year/view_year/' . $yearId)->withInput()->withErrors($validator)->with('message', '輸入錯誤，請檢查');
+		} else {
+			$data = Input::all();
+			$data['year_id'] = $yearId;
+
+			if (Classes::create($data)) {
+				$message = '新增班級《' . $data['classes_name'] . '》完成';
+			} else {
+				$message = '資料寫入錯誤';
+			}
+
+			return Redirect::to('/class_year/view_year/' . $yearId)->with('message', $message);
+		}
+	});
+
+	// 執行編輯班級
+	Route::post('/update_classes/{classesId}/{yearId}', function($classesId, $yearId)
+	{
+		$validator = FormValidator::classes(Input::all());
+
+		if ($validator->fails()) {
+			return Redirect::to('/class_year/view_year/' . $yearId)->withInput()->withErrors($validator)->with('message', '輸入錯誤，請檢查');
+		} else {
+			$data = Input::all();
+
+			$year = Classes::find($classesId);
+			if ($year->update($data)) {
+				$message = '更新《' . $data['classes_name'] . '》完成';
+			} else {
+				$message = '資料寫入錯誤';
+			}
+
+			return Redirect::to('/class_year/view_year/' . $yearId)->with('message', $message);
+		}
+	});
+
+	// 執行刪除班級
+	Route::get('/delete_classes/{classesId}/{yearId}', function($classesId, $yearId)
+	{
+		$classes = Classes::find($classesId);
+		$message = '刪除《' . $classes->classes_name . '》完成';
+		$classes->delete();
+		return Redirect::to('/class_year/view_year/' . $yearId)->with('message', $message);
+	});
+
+	// 執行刪除年級
+	Route::get('/delete_year/{yearId}', function($yearId)
+	{
+		$year = Year::find($yearId);
+		$message = '刪除《' . $year->year_name . '》完成';
+		$year->delete();
+		return Redirect::to('/class_year')->with('message', $message);
 	});
 
 });

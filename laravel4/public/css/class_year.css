@@ -29,7 +29,7 @@
 }
 
 #class_area .classes_name {
-    padding: 1em;
+    padding: 5px 1em;
     width: 7em;
 }
 
@@ -45,6 +45,7 @@
     padding: 0;
     width: 12em;
 }
+
 #class_area .classes_command .delete_link {
-    display:inline-block;
+    display: inline-block;
 }
