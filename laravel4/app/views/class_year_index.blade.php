@@ -120,7 +120,7 @@
 				<table class="dataList">
 			    	<tr>
 			    		<th class="classes_name">{{ Form::text('classes_name', '', array('required' => 'required', 'placeholder' => '新增班級…')) }}</th>
-			    		<th class="classes_command">{{ Form::submit('新增', array('id' => 'add_classes')); }}</th>
+			    		<th class="classes_command">{{ Form::submit('新增', array('id' => 'add_classes')) }}</th>
 		    		</tr>
 		    	</table>
 	    	{{ Form::close() }}

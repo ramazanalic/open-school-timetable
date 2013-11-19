@@ -27,8 +27,9 @@ Route::group(array('prefix' => 'account'), function()
 	// 顯示教師列表
 	Route::get('/', function()
 	{
-		$teacherList = Teacher::all();
-		return View::make('account_index')->with('teacherList', $teacherList);
+		$viewData['teacherList']  = Teacher::all();
+		$viewData['titleList'] = Title::orderBy('title_name')->get();;
+		return View::make('account_index')->with($viewData);
 	});
 
 	// 顯示新增教師表單
@@ -102,6 +103,25 @@ Route::group(array('prefix' => 'account'), function()
 		return Redirect::to('account/')->with('message', $message);
 	});
 
+	// 執行新增職稱
+	Route::post('/add_title', function()
+	{
+		$validator = FormValidator::title(Input::all());
+
+		if ($validator->fails()) {
+			return Redirect::to('/account')->withInput()->withErrors($validator)->with('message', '輸入錯誤，請檢查');
+		} else {
+			$data = Input::all();
+
+			if (Title::create($data)) {
+				$message = '新增職稱《' . $data['title_name'] . '》完成';
+			} else {
+				$message = '資料寫入錯誤';
+			}
+
+			return Redirect::to('account')->with('message', $message);
+		}
+	});
 });
 
 /**

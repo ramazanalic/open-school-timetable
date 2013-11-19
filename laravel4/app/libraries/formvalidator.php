@@ -17,6 +17,17 @@ class FormValidator
 	}
 
 	/**
+	 * 驗證教師職稱
+	 */
+	public static function title($data)
+	{
+		$rules = array('title_name' => 'required');
+		$messages = array('year_name_required' => '請輸入職稱', );
+
+		return Validator::make($data, $rules, $messages);
+	}
+
+	/**
 	 * 驗證年級
 	 */
 	public static function year($data)

@@ -1,0 +1,36 @@
+/**
+ * 新增教師按鈕樣式
+ */
+.add {
+    padding: 5px !important;
+    text-align: right;
+}
+
+.add a {
+    display: inline-block;
+    margin-bottom: 0;
+}
+
+/**
+ * 教師職稱選單樣式
+ */
+#title_list {
+    margin: 1em 0;
+}
+
+#title_list li {
+    display: inline-block;
+}
+
+#title_list  a {
+    padding: 8px;
+    background-color: #1BA1E2;
+}
+
+/**
+ * 新增教師職稱按鈕樣式
+ */
+#title_list input[name="title_name"] {
+    padding: 5px;
+    width: 5em;
+}
