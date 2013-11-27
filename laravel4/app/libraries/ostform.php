@@ -9,6 +9,25 @@ class OstForm
 		return '<tr><td class="label">' . Form::label($name, $label) . '</td><td class="input_field">' . Form::text($name, $value = NULL, $attribs) . '</td>' . self::_getInputError($name) . '</tr>';
 	}
 
+	public static function select($name, $label, $attribs = array(), $modelPair = NULL)
+	{
+		if (isset($attribs['valueArray'])) {
+			$selectValueArray = $attribs['valueArray'];
+		}
+
+		if (is_array($modelPair)) {
+			$modelName = $modelPair[0];
+			$selectValueColumn = $modelPair[1];
+			$selectNameColumn = $modelPair[2];
+			$model = $modelName::orderBy($selectNameColumn)->get();
+			foreach ($model as $item) {
+				$selectValueArray[$item->$selectValueColumn] = $item->$selectNameColumn;
+			}
+		}
+
+		return '<tr><td class="label">' . Form::label($name, $label) . '</td><td class="input_field">' . Form::select($name, $selectValueArray, $attribs) . '</td>' . self::_getInputError($name) . '</tr>';
+	}
+
 	public static function hidden($name, $attribs = array())
 	{
 		return '<tr><td colspan="2" style="display:none">' . Form::hidden($name, $value = NULL) . '</td></tr>';

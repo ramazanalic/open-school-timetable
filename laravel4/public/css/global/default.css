@@ -183,3 +183,11 @@ footer a {
     font-weight: bold;
     font-size: 100%;
 }
+
+/**
+ *  組件：警告
+ */
+.alert {
+    color: red;
+    font-weight: bold;
+}

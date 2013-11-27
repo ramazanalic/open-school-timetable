@@ -8,7 +8,7 @@ class Teacher extends Eloquent
 
 	public function title()
 	{
-		return $this->belongsTo('Title', title_id);
+		return $this->belongsTo('Title', 'title_id');
 	}
 
 }

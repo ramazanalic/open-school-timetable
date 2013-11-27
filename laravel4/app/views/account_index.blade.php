@@ -13,8 +13,8 @@
 	<div id="title_list">
 		{{ Form::open(array('url' => URL::to('account/add_title/'))) }}
 		<ul>
-			<li>{{ HTML::link(URL::to('account'), '全部') }}</li>
-			<li>{{ HTML::link(URL::to('account/view_title/0'), '未分類') }}</li>
+			<li>{{ HTML::link(URL::to('account'), '全部(' . count($teacherList) . ')' ) }}</li>
+			<li>{{ HTML::link(URL::to('account/view_title/0'), '無職稱(' . Teacher::where('title_id', '=', 0)->count() . ')') }}</li>
 
 			@if (isset($titleList))
 				@foreach ($titleList as $title)
@@ -42,7 +42,20 @@
 			    <tr>
 			        <td>{{ $teacher->teacher_name }}</td>
 			        <td>{{ $teacher->teacher_account }}</td>
-			        <td class="title"></td>
+			        <td class="title">
+			        	@if ($teacher->title_id == 0)
+			        		無職稱
+			        	@else
+			        		<?php
+			        			try {
+									echo $teacher->title()->first()->title_name;
+			        			}catch(Exception $e){
+									echo '<div class="alert">查詢錯誤！</div>';
+			        			}
+			        		?>
+
+			        	@endif
+			        	</td>
 			        <td class="edit">{{ HtmlComposite::edit('account/edit/' . $teacher->teacher_id) }}</td>
 			        <td class="delete">{{ HtmlComposite::delete('account/delete/' . $teacher->teacher_id) }}</td>
 			    </tr>

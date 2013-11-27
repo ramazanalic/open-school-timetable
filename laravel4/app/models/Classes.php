@@ -8,7 +8,7 @@ class Classes extends Eloquent
 
 	public function year()
 	{
-		return $this->belongsTo('Year', year_id);
+		return $this->belongsTo('Year', 'year_id');
 	}
 
 }

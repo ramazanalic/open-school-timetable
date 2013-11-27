@@ -15,6 +15,7 @@
 	{{ OstForm::description('請輸入以下的資料') }}
 	{{ OstForm::text('teacher_name', '教師姓名', array('autofocus' => 'autofocus', 'required' => 'required')) }}
 	{{ OstForm::text('teacher_account', '帳號', array('placeholder' => '英文+數字', 'required' => 'required')) }}
+	{{ OstForm::select('title_id', '職稱', array('valueArray' => array('0' => '無職稱'), 'required' => 'required'), array('Title', 'title_id', 'title_name')) }}
 	{{ OstForm::password('teacher_password', '密碼') }}
 	{{ OstForm::password('teacher_password_confirmation', '確認密碼') }}
 	{{ (isset($teacher)) ? OstForm::submit('更新') : OstForm::submit('新增') }}
