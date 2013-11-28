@@ -16,7 +16,7 @@ class Year extends Eloquent
 	 */
 	public function delete()
 	{
-		Classes::where('year_id', $this->year_id)->delete();
+		Classes::where('year_id', '=', $this->year_id)->delete();
 		return parent::delete();
 	}
 

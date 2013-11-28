@@ -18,19 +18,47 @@
     margin: 1em 0;
 }
 
-#title_list li {
+#title_list ul {
     display: inline-block;
 }
 
-#title_list  a {
+#title_list li {
+    display: inline-block;
+    margin: 3px;
+    border: 3px solid #FFFFFF;
+}
+
+#title_list .title_selected {
+    border: 3px solid #F0A30A;
+}
+
+#title_list li a {
+    display: block;
     padding: 8px;
+    width: 8em;
     background-color: #1BA1E2;
+    text-align: center;
+}
+
+#title_list input[type="text"] {
+    width: 4em;
 }
 
 /**
- * 新增教師職稱按鈕樣式
+ * 職稱按鈕區
  */
-#title_list input[name="title_name"] {
-    padding: 5px;
+#title_form_command {
+    margin-top: 0.5em;
+    padding-top: 1em;
+    border-top: 2px solid #666666;
+    text-align: right;
+}
+
+#title_form_command input[name="title_name"] {
     width: 5em;
+}
+
+.delete_link {
+    display: inline-block;
+    width: 10em;
 }

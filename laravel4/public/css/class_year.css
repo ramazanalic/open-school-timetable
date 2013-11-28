@@ -33,10 +33,6 @@
     width: 7em;
 }
 
-#class_area .classes_name input {
-    padding: 4px;
-}
-
 #class_area .classes_name input[type="text"] {
     width: 6em;
 }

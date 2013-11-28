@@ -24,11 +24,21 @@ Route::get('/', function()
  */
 Route::group(array('prefix' => 'account'), function()
 {
-	// 顯示教師列表
+	// 顯示全部教師列表
 	Route::get('/', function()
 	{
-		$viewData['teacherList'] = Teacher::all();
+		$viewData['teacherList'] = Teacher::orderBy('teacher_name')->get();
 		$viewData['titleList'] = Title::orderBy('title_name')->get();
+		$viewData['titleId'] = 'all';
+		return View::make('account_index')->with($viewData);
+	});
+
+	// 依職稱顯示教師列表
+	Route::get('view_title/{titleId}', function($titleId)
+	{
+		$viewData['teacherList'] = Teacher::where('title_id', '=', $titleId)->orderBy('teacher_name')->get();
+		$viewData['titleList'] = Title::orderBy('title_name')->get();
+		$viewData['titleId'] = $titleId;
 		return View::make('account_index')->with($viewData);
 	});
 
@@ -122,6 +132,36 @@ Route::group(array('prefix' => 'account'), function()
 			return Redirect::to('account')->with('message', $message);
 		}
 	});
+
+	// 執行編輯職稱
+	Route::post('/update_title/{titleId}', function($titleId)
+	{
+		$validator = FormValidator::title(Input::all());
+
+		if ($validator->fails()) {
+			return Redirect::to('/account/view_title/' . $title_id)->withInput()->withErrors($validator)->with('message', '輸入錯誤，請檢查');
+		} else {
+			$data = Input::all();
+
+			$title = Title::find($title_id);
+			if ($title->update($data)) {
+				$message = '更新職稱《' . $data['title_name'] . '》完成';
+			} else {
+				$message = '資料寫入錯誤';
+			}
+
+			return Redirect::to('/account/view_title/' . $title_id)->with('message', $message);
+		}
+	});
+
+	// 執行刪除職稱
+	Route::get('/delete_title/{titleId}', function($titleId)
+	{
+		$title = Title::find($titleId);
+		$message = '刪除《' . $title->title_name . '》完成';
+		$title->delete();
+		return Redirect::to('account/')->with('message', $message);
+	});
 });
 
 /**
@@ -129,6 +169,7 @@ Route::group(array('prefix' => 'account'), function()
  */
 Route::group(array('prefix' => 'class_year'), function()
 {
+
 	// 讀取年級列表
 	$GLOBALS['yearList'] = Year::orderBy('year_name')->get();
 

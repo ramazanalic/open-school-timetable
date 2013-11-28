@@ -11,5 +11,19 @@ class Title extends Eloquent
 		return $this->hasMany('Teacher', 'title_id');
 	}
 
+	/**
+	 * 刪除職稱會讓該職稱教師title_id設定為0
+	 */
+	public function delete()
+	{
+		$teachers = Teacher::where('title_id', '=', $this->title_id)->get();
+		foreach ($teachers as $teacher) {
+			$teacher->title_id = 0;
+			$teacher->save();
+		}
+
+		parent::delete();
+	}
+
 }
 ?>

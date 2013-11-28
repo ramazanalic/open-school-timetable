@@ -173,11 +173,14 @@ footer a {
  *  組件：訊息區塊
  */
 .messageBlock {
+    position: absolute;
+    top: 5em;
+    left: 45%;
     margin: 0 auto;
     padding: 5px;
     width: 14em;
     border: 1px solid #F0C36D;
-    border-radius: 10px 10px 10px 10px;
+    border-radius: 10px;
     background-color: #F9EDBE;
     text-align: center;
     font-weight: bold;

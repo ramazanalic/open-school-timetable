@@ -55,3 +55,7 @@ input[type="submit"] {
     color: #FFFFFF;
     cursor: pointer;
 }
+
+input[type="text"] {
+    padding: 4px;
+}
