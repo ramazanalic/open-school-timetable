@@ -49,5 +49,16 @@ class FormValidator
 		return Validator::make($data, $rules, $messages);
 	}
 
+	/**
+	 * 驗證課程
+	 */
+	public static function course($data)
+	{
+		$rules = array('course_name' => 'required', );
+		$messages = array('course_name_required' => '請輸入課程名稱', );
+
+		return Validator::make($data, $rules, $messages);
+	}
+
 }
 ?>

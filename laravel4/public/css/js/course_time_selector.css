@@ -1,5 +1,11 @@
 #year_course_time_selector {
-    margin-top: 1em;
+    margin-top: 0;
+}
+
+#year_course_time_selector th#year_course_time_description {
+    width: 4em;
+    background-color: #F0A30A;
+    text-align: center;
 }
 
 #year_course_time_selector td, #year_course_time_selector th {
@@ -13,6 +19,7 @@
 
 .course_column {
     background-color: #00ABA9;
+    text-align: center;
 }
 
 #noon_break {

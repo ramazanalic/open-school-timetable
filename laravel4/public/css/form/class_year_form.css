@@ -1,9 +1,12 @@
 @import "default.css";
 
+/**
+ * 年級表單樣式
+ */
 #year_form {
     display: inline-block;
-    margin-top: 1em;
-    padding: 1em;
+    float: left;
+    margin: 0.5em 1.5em 0 7px;
 }
 
 #year_form .delete_link {
@@ -16,4 +19,35 @@
 #year_form_command {
     margin-top: 1em;
     text-align: right;
+}
+
+#year_name_label {
+    width: 7em;
+    font-size: 110%;
+}
+
+/**
+ * 班級表單樣式
+ */
+#class_area {
+    display: inline-block;
+    margin-top: 0.5em;
+}
+
+#class_area .classes_name {
+    padding: 5px 1em;
+    width: 7em;
+}
+
+#class_area .classes_name input[type="text"] {
+    width: 6em;
+}
+
+#class_area .classes_command {
+    padding: 0;
+    width: 12em;
+}
+
+#class_area .classes_command .delete_link {
+    display: inline-block;
 }

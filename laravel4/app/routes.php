@@ -165,7 +165,7 @@ Route::group(array('prefix' => 'account'), function()
 });
 
 /**
- * 班級/年級管理
+ * 班級、年級管理
  */
 Route::group(array('prefix' => 'class_year'), function()
 {
@@ -289,4 +289,68 @@ Route::group(array('prefix' => 'class_year'), function()
 		return Redirect::to('/class_year')->with('message', $message);
 	});
 
+});
+
+/**
+ * 課程名稱管理
+ */
+Route::group(array('prefix' => 'course'), function()
+{
+
+	// 顯示課程名稱
+	Route::get('/', function()
+	{
+		$courseList = Course::orderBy('course_name')->get();
+		return View::make('course_index')->with(array('courseList' => $courseList));
+	});
+
+	// 執行新增課程
+	Route::post('/add', function()
+	{
+		$validator = FormValidator::course(Input::all());
+
+		if ($validator->fails()) {
+			return Redirect::to('/course')->withInput()->withErrors($validator)->with('message', '輸入錯誤，請檢查');
+		} else {
+			$data = Input::all();
+
+			if (Course::create($data)) {
+				$message = '新增課程《' . $data['course_name'] . '》完成';
+			} else {
+				$message = '資料寫入錯誤';
+			}
+
+			return Redirect::to('/course')->with('message', $message);
+		}
+	});
+
+	// 執行編輯課程
+	Route::post('/edit/{id}', function($id)
+	{
+		$validator = FormValidator::course(Input::all());
+
+		if ($validator->fails()) {
+			return Redirect::to('/course')->withInput()->withErrors($validator)->with('message', '輸入錯誤，請檢查');
+		} else {
+			$data = Input::all();
+			$course = Course::find($id);
+
+			if ($course->update($data)) {
+				$message = '更新課程《' . $data['course_name'] . '》完成';
+			} else {
+				$message = '資料寫入錯誤';
+			}
+
+			return Redirect::to('/course')->with('message', $message);
+		}
+	});
+
+	// 執行刪除年級
+	Route::get('/delete/{id}', function($id)
+	{
+		$course = Course::find($id);
+		$message = '刪除《' . $course->course_name . '》完成';
+		$course->delete();
+		return Redirect::to('/course')->with('message', $message);
+	});
 });

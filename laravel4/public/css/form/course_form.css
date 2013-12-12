@@ -1,0 +1,26 @@
+@import "default.css";
+
+/**
+ * 	覆寫form.css設定
+ */
+#course_name_label {
+    width: 5em;
+    font-size: 110%;
+}
+
+.input_form {
+    padding: 0;
+    width: 20em;
+}
+
+#course_form {
+    margin-top: 1em;
+}
+
+.course_command {
+    width: 12em;
+}
+
+.course_command .delete_link {
+    display: inline-block;
+}

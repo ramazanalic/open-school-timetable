@@ -27,15 +27,14 @@
 
 	<div id="year_form">
         {{ OstForm::open($year, URL::to((isset($year)) ? 'class_year/update_year/' . $year->year_id : 'class_year/add_year')) }}
-        	{{ OstForm::text('year_name', '年級名稱', array('required' => 'required')) }}
+        	{{ OstForm::text('year_name', (isset($year)) ? '更改年級名稱：' : '新增年級：', array('required' => 'required')) }}
         	{{ OstForm::hidden('course_time') }}
         </table>
 
 	    <div id="year_course_time_selector">
-	        <h2>上課時間</h2>
 	        <table>
 	            <tr id="day_row">
-	                <th>&nbsp;</th>
+	                <th id="year_course_time_description">上課時間<br/>設定</th>
 	                <th>週一</th>
 	                <th>週二</th>
 	                <th>週三</th>
@@ -119,7 +118,7 @@
 			{{ Form::open(array('url' => URL::to('class_year/add_classes/' . $year->year_id))) }}
 				<table class="dataList">
 			    	<tr>
-			    		<th class="classes_name">{{ Form::text('classes_name', '', array('required' => 'required', 'placeholder' => '新增班級…')) }}</th>
+			    		<th class="classes_name">{{ Form::text('classes_name', '', array('required' => 'required', 'placeholder' => '新增班級…', 'autofocus' => 'autofocus')) }}</th>
 			    		<th class="classes_command">{{ Form::submit('新增', array('id' => 'add_classes')) }}</th>
 		    		</tr>
 		    	</table>

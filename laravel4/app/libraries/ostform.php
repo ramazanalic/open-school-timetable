@@ -6,7 +6,7 @@ class OstForm
 {
 	public static function text($name, $label, $attribs = array())
 	{
-		return '<tr><td class="label">' . Form::label($name, $label) . '</td><td class="input_field">' . Form::text($name, $value = NULL, $attribs) . '</td>' . self::_getInputError($name) . '</tr>';
+		return '<tr><td class="label" id="' . $name .'_label">' . Form::label($name, $label) . '</td><td class="input_field" id="' . $name .'_input">' . Form::text($name, $value = NULL, $attribs) . '</td>' . self::_getInputError($name) . '</tr>';
 	}
 
 	public static function select($name, $label, $attribs = array(), $modelPair = NULL)
