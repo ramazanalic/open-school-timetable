@@ -1,0 +1,32 @@
+.classes_command, .dataList th {
+    display: none;
+}
+
+#class_area {
+    display: inline-block;
+    float: left;
+    margin-top: 0.5em;
+}
+
+#year_course_time_selector {
+    float: left;
+    margin-top: 0;
+    margin-left: 2em;
+
+}
+
+.course[data-selected="1"] {
+  background-color: #FFFFFF;
+  border: 1px solid #1BA1E2;
+}
+
+#year_course_time_selector td{
+  color: #000000;
+  padding: 10px;
+  text-align:center;
+}
+#year_course_time_selector th#year_course_time_description {
+  background-color: #F0A30A;
+  text-align: center;
+  width: 5em;
+}

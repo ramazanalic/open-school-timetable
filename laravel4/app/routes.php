@@ -151,14 +151,14 @@ Route::group(array('prefix' => 'account'), function()
 		} else {
 			$data = Input::all();
 
-			$title = Title::find($title_id);
+			$title = Title::find($titleId);
 			if ($title->update($data)) {
 				$message = '更新職稱《' . $data['title_name'] . '》完成';
 			} else {
 				$message = '資料寫入錯誤';
 			}
 
-			return Redirect::to('/account/view_title/' . $title_id)->with('message', $message);
+			return Redirect::to('/account/view_title/' . $titleId)->with('message', $message);
 		}
 	});
 
