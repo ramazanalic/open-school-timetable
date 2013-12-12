@@ -43,7 +43,7 @@ class FormValidator
 	 */
 	public static function classes($data)
 	{
-		$rules = array('classes_name' => 'required', );
+		$rules = array('classes_name' => 'required');
 		$messages = array('classes_name_required' => '請輸入班級名稱', );
 
 		return Validator::make($data, $rules, $messages);
@@ -54,8 +54,19 @@ class FormValidator
 	 */
 	public static function course($data)
 	{
-		$rules = array('course_name' => 'required', );
+		$rules = array('course_name' => 'required');
 		$messages = array('course_name_required' => '請輸入課程名稱', );
+
+		return Validator::make($data, $rules, $messages);
+	}
+
+	/**
+	 * 驗證教室
+	 */
+	public static function classroom($data)
+	{
+		$rules = array('classroom_name' => 'required', 'max_course' => 'required|min:1|max:7');
+		$messages = array('classroom_name_required' => '請輸入課程名稱', );
 
 		return Validator::make($data, $rules, $messages);
 	}

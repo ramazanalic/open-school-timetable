@@ -19,9 +19,14 @@ header {
 }
 
 #banner {
-    padding: 0.5em;
+    padding: 0.2em;
     color: #FFFFFF;
     font-size: 180%;
+}
+
+#banner img {
+    margin-bottom: -5px;
+    width: 40px;
 }
 
 #login {

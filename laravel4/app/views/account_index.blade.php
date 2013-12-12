@@ -7,7 +7,7 @@
 @stop
 
 @section('content')
-	<h1>教師列表</h1>
+	<h1>帳號管理</h1>
 
 	{{ HtmlComposite::messageBlock() }}
 

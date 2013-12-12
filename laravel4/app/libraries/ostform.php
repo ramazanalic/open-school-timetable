@@ -6,14 +6,24 @@ class OstForm
 {
 	public static function text($name, $label, $attribs = array())
 	{
-		return '<tr><td class="label" id="' . $name .'_label">' . Form::label($name, $label) . '</td><td class="input_field" id="' . $name .'_input">' . Form::text($name, $value = NULL, $attribs) . '</td>' . self::_getInputError($name) . '</tr>';
+		return '<tr><td class="label" id="' . $name . '_label">' . Form::label($name, $label) . '</td><td class="input_field" id="' . $name . '_input">' . Form::text($name, $value = NULL, $attribs) . '</td>' . self::_getInputError($name) . '</tr>';
 	}
 
 	public static function select($name, $label, $attribs = array(), $modelPair = NULL)
 	{
 		if (isset($attribs['valueArray'])) {
 			$selectValueArray = $attribs['valueArray'];
+			unset($attribs['valueArray']);
 		}
+
+		if (isset($attribs['range'])) {
+			for ($i = $attribs['range'][0]; $i <= $attribs['range'][1]; $i++) {
+				$selectValueArray[$i] = $i;
+			}
+			unset($attribs['range']);
+		}
+
+		$value = (isset($attribs['value'])) ? (string)$attribs['value'] : null;
 
 		if (is_array($modelPair)) {
 			$modelName = $modelPair[0];
@@ -25,7 +35,7 @@ class OstForm
 			}
 		}
 
-		return '<tr><td class="label">' . Form::label($name, $label) . '</td><td class="input_field">' . Form::select($name, $selectValueArray, $attribs) . '</td>' . self::_getInputError($name) . '</tr>';
+		return '<tr><td class="label">' . Form::label($name, $label) . '</td><td class="input_field">' . Form::select($name, $selectValueArray, $value, $attribs) . '</td>' . self::_getInputError($name) . '</tr>';
 	}
 
 	public static function hidden($name, $attribs = array())

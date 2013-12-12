@@ -16,11 +16,19 @@
  */
 Route::get('/', function()
 {
-	return View::make('index');
+	return View::make('class_view');
 });
 
 /**
- * 使用者帳號管理
+ *
+ */
+Route::get('/class_view', function()
+{
+	return View::make('class_view');
+});
+
+/**
+ * 帳號管理
  */
 Route::group(array('prefix' => 'account'), function()
 {
@@ -169,7 +177,6 @@ Route::group(array('prefix' => 'account'), function()
  */
 Route::group(array('prefix' => 'class_year'), function()
 {
-
 	// 讀取年級列表
 	$GLOBALS['yearList'] = Year::orderBy('year_name')->get();
 
@@ -187,7 +194,7 @@ Route::group(array('prefix' => 'class_year'), function()
 		if ($validator->fails()) {
 			return Redirect::to('/class_year')->withInput()->withErrors($validator)->with('message', '輸入錯誤，請檢查');
 		} else {
-			$data = Input::only(array('year_name', 'course_time'));
+			$data = Input::only(array('year_name', 'classroom_time'));
 
 			if (Year::create($data)) {
 				$message = '新增年級《' . $data['year_name'] . '》完成';
@@ -216,7 +223,7 @@ Route::group(array('prefix' => 'class_year'), function()
 		if ($validator->fails()) {
 			return Redirect::to('/class_year/view_year/' . $yearId)->withInput()->withErrors($validator)->with('message', '輸入錯誤，請檢查');
 		} else {
-			$data = Input::only(array('year_name', 'course_time'));
+			$data = Input::only(array('year_name', 'classroom_time'));
 
 			$year = Year::find($yearId);
 			if ($year->update($data)) {
@@ -292,11 +299,10 @@ Route::group(array('prefix' => 'class_year'), function()
 });
 
 /**
- * 課程名稱管理
+ * 課程管理
  */
 Route::group(array('prefix' => 'course'), function()
 {
-
 	// 顯示課程名稱
 	Route::get('/', function()
 	{
@@ -345,12 +351,75 @@ Route::group(array('prefix' => 'course'), function()
 		}
 	});
 
-	// 執行刪除年級
+	// 執行刪除課程
 	Route::get('/delete/{id}', function($id)
 	{
 		$course = Course::find($id);
 		$message = '刪除《' . $course->course_name . '》完成';
 		$course->delete();
 		return Redirect::to('/course')->with('message', $message);
+	});
+});
+
+/**
+ * 教室管理
+ */
+Route::group(array('prefix' => 'classroom'), function()
+{
+	// 顯示教室名稱
+	Route::get('/', function()
+	{
+		$classroomList = Classroom::orderBy('classroom_name')->get();
+		return View::make('classroom_index')->with(array('classroomList' => $classroomList));
+	});
+
+	// 執行新增教室
+	Route::post('/add', function()
+	{
+		$validator = FormValidator::classroom(Input::all());
+
+		if ($validator->fails()) {
+			return Redirect::to('/classroom')->withInput()->withErrors($validator)->with('message', '輸入錯誤，請檢查');
+		} else {
+			$data = Input::all();
+
+			if (Classroom::create($data)) {
+				$message = '新增教室《' . $data['classroom_name'] . '》完成';
+			} else {
+				$message = '資料寫入錯誤';
+			}
+
+			return Redirect::to('/classroom')->with('message', $message);
+		}
+	});
+
+	// 執行編輯教室
+	Route::post('/edit/{id}', function($id)
+	{
+		$validator = FormValidator::classroom(Input::all());
+
+		if ($validator->fails()) {
+			return Redirect::to('/classroom')->withInput()->withErrors($validator)->with('message', '輸入錯誤，請檢查');
+		} else {
+			$data = Input::all();
+			$classroom = Classroom::find($id);
+
+			if ($classroom->update($data)) {
+				$message = '更新教室《' . $data['classroom_name'] . '》完成';
+			} else {
+				$message = '資料寫入錯誤';
+			}
+
+			return Redirect::to('/classroom')->with('message', $message);
+		}
+	});
+
+	// 執行刪除教室
+	Route::get('/delete/{id}', function($id)
+	{
+		$classroom = Classroom::find($id);
+		$message = '刪除《' . $classroom->classroom_name . '》完成';
+		$classroom->delete();
+		return Redirect::to('/classroom')->with('message', $message);
 	});
 });

@@ -7,12 +7,12 @@
         {{ HTML::style('css/global/yui_cssreset-min.css') }}
         {{ HTML::style('css/global/default.css') }}
         @yield('css')
-        <title>OST排課系統</title>
+        <title>{{ (isset($titlePrefix)) ? $titlePrefix . ' - ' : ''}}OST排課系統</title>
     </head>
     <body>
         <header>
             <div id="banner">
-                OST排課系統
+                <a href="{{ URL::to('/') }}">{{ HTML::image('icon/ost_icon.png') . 'OST排課系統' }}</a>
             </div>
             <div id="login">
                 {{ HTML::link(URL::to('login'), '登入') }}
@@ -25,13 +25,13 @@
 	                    課表查詢
 	                </li>
 	                <li>
-	                    <a href="">班級課表</a>
+	                	{{ HTML::link(URL::to('class_view'), '班級課表') }}
 	                </li>
 	                <li>
-	                    <a href="">教師課表</a>
+	                    {{ HTML::link(URL::to('teacher_view'), '教師課表') }}
 	                </li>
 	                <li>
-	                    <a href="">教室課表</a>
+	                    {{ HTML::link(URL::to('classroom_view'), '教室課表') }}
 	                </li>
 	            </ul>
 	            <ul id="teacher_nav">
@@ -56,16 +56,16 @@
 	                    <a href="">教師排課需求設定</a>
 	                </li>
 	                <li>
-	                     {{ HTML::link(URL::to('course'), '課程管理') }}
-	                </li>
-	                <li>
-	                    <a href="">教室管理</a>
+	                    {{ HTML::link(URL::to('account'), '帳號管理') }}
 	                </li>
 	                <li>
 	                    {{ HTML::link(URL::to('class_year'), '班級、年級管理') }}
 	                </li>
 	                <li>
-	                    {{ HTML::link(URL::to('account'), '教師帳號管理') }}
+	                    {{ HTML::link(URL::to('course'), '課程管理') }}
+	                </li>
+	                <li>
+	                   	{{ HTML::link(URL::to('classroom'), '教室管理') }}
 	                </li>
 	            </ul>
 	        </nav>

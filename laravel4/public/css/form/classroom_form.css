@@ -1,0 +1,26 @@
+@import "default.css";
+
+/**
+ *  覆寫form.css設定
+ */
+#classroom_name_label {
+    width: 5em;
+    font-size: 110%;
+}
+
+.input_form {
+    padding: 0;
+    width: 20em;
+}
+
+#classroom_form {
+    margin-top: 1em;
+}
+
+.classroom_command {
+    width: 12em;
+}
+
+.classroom_command .delete_link {
+    display: inline-block;
+}
