@@ -16,17 +16,17 @@
 }
 
 .course[data-selected="1"] {
-  background-color: #FFFFFF;
   border: 1px solid #1BA1E2;
+  background-color: #FFFFFF;
 }
 
 #year_course_time_selector td{
-  color: #000000;
   padding: 10px;
+  color: #000000;
   text-align:center;
 }
 #year_course_time_selector th#year_course_time_description {
+  width: 5em;
   background-color: #F0A30A;
   text-align: center;
-  width: 5em;
 }
