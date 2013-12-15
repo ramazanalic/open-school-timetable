@@ -1,11 +1,11 @@
-.dataList {
+.data_table {
     margin: 0;
 }
 
-.dataList td, .dataList th {
+.data_table td, .data_table th {
     padding: 5px 4em 5px 5px;
 }
 
-.dataList .edit, .dataList .delete {
+.data_table .edit, .data_table .delete {
     padding: 5px;
 }

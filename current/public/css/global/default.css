@@ -2,200 +2,190 @@
  *  全域
  */
 body {
-    font-size: 15px;
-    font-family: "微軟正黑體", sans-serif, serif;
+	font-size: 15px;
+	font-family: "微軟正黑體", sans-serif, serif;
 }
 
 a {
-    color: #FFFFFF;
-    text-decoration: none;
+	color: #FFFFFF;
+	text-decoration: none;
 }
 
 /**
  * 	表頭
  */
 header {
-    background-color: #1BA1E2;
+	background-color: #1BA1E2;
 }
 
 #banner {
-    padding: 0.2em;
-    color: #FFFFFF;
-    font-size: 180%;
+	padding: 0.2em;
+	color: #FFFFFF;
+	font-size: 180%;
 }
 
 #banner img {
-    margin-bottom: -5px;
-    width: 40px;
+	margin-bottom: -5px;
+	width: 40px;
 }
 
 #login {
-    position: absolute;
-    top: 10px;
-    right: 0;
-    width: 4em;
-    background-color: #E671B8;
-    text-align: left;
+	position: absolute;
+	top: 10px;
+	right: 0;
+	width: 4em;
+	background-color: #E671B8;
+	text-align: left;
 }
 
 #login a {
-    display: block;
-    padding: 0.5em;
+	display: block;
+	padding: 0.5em;
 }
 
 /**
  *  主區塊
  */
 #main {
-    background-color: #F3F3F3;
+	background-color: #F3F3F3;
 }
 
 /**
  * 	左側導覽列
  */
 nav {
-    z-index: 100;
-    float: left;
-    width: 200px;
-    height: 95%;
-    background-color: #F3F3F3;
-    color: #666666;
+	z-index: 100;
+	float: left;
+	width: 200px;
+	height: 95%;
+	background-color: #F3F3F3;
+	color: #666666;
 }
 
 nav ul {
-    padding: 1em 0 0 1em;
+	padding: 1em 0 0 1em;
 }
 
 nav .nav_title {
-    padding: 5px;
-    background-color: #FA6800;
-    color: #FFFFFF;
-    font-size: 130%;
+	padding: 5px;
+	background-color: #FA6800;
+	color: #FFFFFF;
+	font-size: 130%;
 }
 
 nav a {
-    display: block;
-    padding: 0.7em 0 0.7em 1em;
-    color: #666666;
+	display: block;
+	padding: 0.7em 0 0.7em 1em;
+	color: #666666;
 }
 
 nav a:hover {
-    background-color: #dddddd;
+	background-color: #dddddd;
 }
 
 /**
  * 	內容區塊
  */
 #content {
-    margin-left: 200px;
-    padding: 1em;
-    background-color: #FFFFFF;
-    font-size: 100%;
+	margin-left: 200px;
+	padding: 1em;
+	background-color: #FFFFFF;
+	font-size: 100%;
 }
 
 #content h1 {
-    margin-bottom: 0.5em;
-    color: #DD4B39;
-    text-align: left;
-    font-size: 160%;
+	margin-bottom: 0.5em;
+	color: #DD4B39;
+	text-align: left;
+	font-size: 160%;
 }
 
 #content h2 {
-    margin-bottom: 0.2em;
-    color: #1BA1E2;
-    text-align: left;
-    font-size: 120%;
+	margin-bottom: 0.2em;
+	color: #1BA1E2;
+	text-align: left;
+	font-size: 120%;
 }
 
 footer {
-    clear: left;
-    padding: 0.5em 0;
-    width: 100%;
-    border-top: 2px solid #F3F3F3;
-    text-align: center;
+	clear: left;
+	padding: 0.5em 0;
+	width: 100%;
+	border-top: 2px solid #F3F3F3;
+	text-align: center;
 }
 
 footer a {
-    color: #888888;
-    text-decoration: underline;
+	color: #888888;
+	text-decoration: underline;
 }
 
 /**
- * 	組件：新增
+ * 	新增連結
  */
 .add_link {
-    display: block;
-    margin-bottom: 0.5em;
-    padding: 3px;
-    width: 5em;
-    background-color: #A05000;
-    text-align: center;
+	display: inline-block;
+	margin-bottom: 0.5em;
+	padding: 3px;
+	width: 5em;
+	background-color: #A05000;
+	text-align: center;
 }
 
 /**
- *  組件：新增按鈕
- */
-.add_button {
-    display: block;
-    background-color: #A05000 !important;
-}
-
-/**
- * 	組件：返回連結
+ * 	返回連結
  */
 .back_link {
-    display: block;
-    margin-bottom: 0.5em;
-    padding: 3px;
-    width: 3.5em;
-    background-color: #00ABA9;
-    text-align: center;
+	display: inline-block;
+	margin-bottom: 0.5em;
+	padding: 3px;
+	width: 3.5em;
+	background-color: #00ABA9;
+	text-align: center;
 }
 
 /**
- *  組件：編輯
+ *  編輯連結
  */
 .edit_link {
-    display: block;
-    padding: 3px;
-    width: 5em;
-    background-color: #A2C139;
-    text-align: center;
+	display: inline-block;
+	padding: 3px 10px;
+	background-color: #A2C139;
+	text-align: center;
 }
 
 /**
- *  組件：刪除
+ *  刪除連結
  */
 .delete_link {
-    display: block;
-    padding: 3px;
-    width: 5em;
-    background-color: #D80073;
-    text-align: center;
+	display: inline-block;
+	padding: 3px 10px;
+	background-color: #D80073;
+	text-align: center;
 }
 
 /**
- *  組件：訊息區塊
+ *  訊息區塊
  */
 .messageBlock {
-    position: absolute;
-    top: 5em;
-    left: 45%;
-    margin: 0 auto;
-    padding: 5px;
-    width: 14em;
-    border: 1px solid #F0C36D;
-    border-radius: 10px;
-    background-color: #F9EDBE;
-    text-align: center;
-    font-weight: bold;
-    font-size: 100%;
+	position: absolute;
+	top: 5em;
+	left: 45%;
+	margin: 0 auto;
+	padding: 5px;
+	width: 14em;
+	border: 1px solid #F0C36D;
+	border-radius: 10px;
+	background-color: #F9EDBE;
+	text-align: center;
+	font-weight: bold;
+	font-size: 100%;
 }
 
 /**
  *  組件：警告
  */
 .alert {
-    color: red;
-    font-weight: bold;
+	color: red;
+	font-weight: bold;
 }

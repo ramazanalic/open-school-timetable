@@ -1,7 +1,7 @@
 @extends('layouts.default')
 
 @section('css')
-{{ HTML::style('css/table/table_style1.css') }}
+{{ HTML::style('css/table/table_style_1.css') }}
 {{ HTML::style('css/class_year.css') }}
 {{ HTML::style('css/js/course_time_selector.css') }}
 {{ HTML::style('css/form/class_year_form.css') }}
@@ -20,7 +20,7 @@
 <div id="class_area">
     <form accept-charset="UTF-8" action="http://127.0.0.1/class_year/add_classes/3" method="POST">
         <input type="hidden" value="DoXFDnPf1XrqEWRV8fIpRntOyJgr4go1lo760cAV" name="_token">
-        <table class="dataList">
+        <table class="data_table table_style_1">
             <tbody>
                 <tr>
                     <th class="classes_name">
@@ -35,7 +35,7 @@
     </form>
     <form accept-charset="UTF-8" action="http://127.0.0.1/class_year/update_classes/4/3" method="POST">
         <input type="hidden" value="DoXFDnPf1XrqEWRV8fIpRntOyJgr4go1lo760cAV" name="_token">
-        <table class="dataList">
+        <table class="data_table table_style_1">
             <tbody>
                 <tr>
                     <td class="classes_name">
@@ -50,7 +50,7 @@
     </form>
     <form accept-charset="UTF-8" action="http://127.0.0.1/class_year/update_classes/10/3" method="POST">
         <input type="hidden" value="DoXFDnPf1XrqEWRV8fIpRntOyJgr4go1lo760cAV" name="_token">
-        <table class="dataList">
+        <table class="data_table table_style_1">
             <tbody>
                 <tr>
                     <td class="classes_name">
@@ -65,7 +65,7 @@
     </form>
     <form accept-charset="UTF-8" action="http://127.0.0.1/class_year/update_classes/11/3" method="POST">
         <input type="hidden" value="DoXFDnPf1XrqEWRV8fIpRntOyJgr4go1lo760cAV" name="_token">
-        <table class="dataList">
+        <table class="data_table table_style_1">
             <tbody>
                 <tr>
                     <td class="classes_name">
@@ -80,7 +80,7 @@
     </form>
     <form accept-charset="UTF-8" action="http://127.0.0.1/class_year/update_classes/12/3" method="POST">
         <input type="hidden" value="DoXFDnPf1XrqEWRV8fIpRntOyJgr4go1lo760cAV" name="_token">
-        <table class="dataList">
+        <table class="data_table table_style_1">
             <tbody>
                 <tr>
                     <td class="classes_name">
@@ -95,7 +95,7 @@
     </form>
     <form accept-charset="UTF-8" action="http://127.0.0.1/class_year/update_classes/13/3" method="POST">
         <input type="hidden" value="DoXFDnPf1XrqEWRV8fIpRntOyJgr4go1lo760cAV" name="_token">
-        <table class="dataList">
+        <table class="data_table table_style_1">
             <tbody>
                 <tr>
                     <td class="classes_name">
@@ -110,7 +110,7 @@
     </form>
     <form accept-charset="UTF-8" action="http://127.0.0.1/class_year/update_classes/14/3" method="POST">
         <input type="hidden" value="DoXFDnPf1XrqEWRV8fIpRntOyJgr4go1lo760cAV" name="_token">
-        <table class="dataList">
+        <table class="data_table table_style_1">
             <tbody>
                 <tr>
                     <td class="classes_name">
@@ -125,7 +125,7 @@
     </form>
     <form accept-charset="UTF-8" action="http://127.0.0.1/class_year/update_classes/15/3" method="POST">
         <input type="hidden" value="DoXFDnPf1XrqEWRV8fIpRntOyJgr4go1lo760cAV" name="_token">
-        <table class="dataList">
+        <table class="data_table table_style_1">
             <tbody>
                 <tr>
                     <td class="classes_name">
@@ -140,7 +140,7 @@
     </form>
     <form accept-charset="UTF-8" action="http://127.0.0.1/class_year/update_classes/16/3" method="POST">
         <input type="hidden" value="DoXFDnPf1XrqEWRV8fIpRntOyJgr4go1lo760cAV" name="_token">
-        <table class="dataList">
+        <table class="data_table table_style_1">
             <tbody>
                 <tr>
                     <td class="classes_name">
@@ -155,7 +155,7 @@
     </form>
     <form accept-charset="UTF-8" action="http://127.0.0.1/class_year/update_classes/17/3" method="POST">
         <input type="hidden" value="DoXFDnPf1XrqEWRV8fIpRntOyJgr4go1lo760cAV" name="_token">
-        <table class="dataList">
+        <table class="data_table table_style_1">
             <tbody>
                 <tr>
                     <td class="classes_name">
@@ -170,7 +170,7 @@
     </form>
     <form accept-charset="UTF-8" action="http://127.0.0.1/class_year/update_classes/18/3" method="POST">
         <input type="hidden" value="DoXFDnPf1XrqEWRV8fIpRntOyJgr4go1lo760cAV" name="_token">
-        <table class="dataList">
+        <table class="data_table table_style_1">
             <tbody>
                 <tr>
                     <td class="classes_name">
@@ -183,9 +183,8 @@
             </tbody>
         </table>
     </form>
-    <form accept-charset="UTF-8" action="http://127.0.0.1/class_year/update_classes/19/3" method="POST">
-        <input type="hidden" value="DoXFDnPf1XrqEWRV8fIpRntOyJgr4go1lo760cAV" name="_token">
-        <table class="dataList">
+    <form accept-charset="UTF-8" action="http://127.0.0.1/class_year/update_classes/19/3" method="POST">        
+        <table class="data_table table_style_1">
             <tbody>
                 <tr>
                     <td class="classes_name">

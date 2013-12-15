@@ -1,7 +1,7 @@
 @extends('layouts.default')
 
 @section('css')
-	{{ HTML::style('css/table/table_style1.css') }}
+	{{ HTML::style('css/table/table_style_1.css') }}
 	{{ HTML::style('css/form/class_year_form.css') }}
 	{{ HTML::style('css/account_index.css') }}
 @stop
@@ -44,7 +44,7 @@
 	</div>
 
 	@if (isset($teacherList))
-		<table class="dataList">
+		<table class="data_table table_style_1">
 		    <tr>
 		        <th class="teacher_name">姓名</th>
 		        <th class="teacher_account">帳號</th>

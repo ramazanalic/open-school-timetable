@@ -1,7 +1,7 @@
 @extends('layouts.default')
 
 @section('css')
-	{{ HTML::style('css/table/table_style1.css') }}
+	{{ HTML::style('css/table/table_style_1.css') }}
 	{{ HTML::style('css/form/classroom_form.css') }}
 @stop
 
@@ -10,17 +10,18 @@
 
 	{{ HtmlComposite::messageBlock() }}
 
-	{{ OstForm::open('' , URL::to('classroom/add')) }}
-		{{ OstForm::text('classroom_name', '教室名稱：', array('required' => 'required', 'autofocus' => 'autofocus')) }}
-		{{ OstForm::select('max_course', '同時使用班級數', array('range' => array(1, 5))) }}
-		{{ OstForm::submit('新增') }}
-	{{ OstForm::close() }}
+	{{ FormList::open('' , URL::to('classroom/add')) }}
+		{{ FormList::text('classroom_name', '教室名稱', array('required' => 'required', 'autofocus' => 'autofocus')) }}
+		&nbsp;&nbsp;		
+		{{ FormList::select('max_course', '同時使用班級數', array('range' => array(1, 5))) }}
+		{{ FormList::submit('新增') }}
+	{{ FormList::close() }}
 
 	@if (isset($classroomList))
 		<div id="classroom_form">
 	    	@foreach ($classroomList as $classroom)
 	    		{{ Form::open(array('url' => URL::to('classroom/edit/' . $classroom->classroom_id))) }}
-    				<table class="dataList">
+    				<table class="data_table table_style_1">
 	    				<tr>
 	    					<td class="classroom_name">
 	    						{{ Form::text('classroom_name', $classroom->classroom_name, array('required' => 'required')) }}

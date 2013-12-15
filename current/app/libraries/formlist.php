@@ -1,12 +1,12 @@
 <?php
 /**
- * OST Form 類別
+ * FormList 類別
  */
-class OstForm
+class FormList
 {
 	public static function text($name, $label, $attribs = array())
 	{
-		return '<tr><td class="label" id="' . $name . '_label">' . Form::label($name, $label) . '</td><td class="input_field" id="' . $name . '_input">' . Form::text($name, $value = NULL, $attribs) . '</td>' . self::_getInputError($name) . '</tr>';
+		return '<li id="' . $name . '_label">' . Form::label($name, $label) . '<div id="' . $name . '_input" class="input_field">' . Form::text($name, $value = NULL, $attribs) . self::_getInputError($name) . '</div></li>';
 	}
 
 	public static function select($name, $label, $attribs = array(), $modelPair = NULL)
@@ -35,17 +35,17 @@ class OstForm
 			}
 		}
 
-		return '<tr><td class="label">' . Form::label($name, $label) . '</td><td class="input_field">' . Form::select($name, $selectValueArray, $value, $attribs) . '</td>' . self::_getInputError($name) . '</tr>';
+		return '<li id="' . $name . '_label">' . Form::label($name, $label) . '<div id="' . $name . '_input" class="input_field">' . Form::select($name, $selectValueArray, $value, $attribs) . self::_getInputError($name) . '</div></li>';
 	}
 
 	public static function hidden($name, $attribs = array())
 	{
-		return '<tr><td colspan="2" style="display:none">' . Form::hidden($name, $value = NULL) . '</td></tr>';
+		return '<li style="display:none">' . Form::hidden($name, $value = NULL) . '</li>';
 	}
 
 	public static function password($name, $label, $attribs = array())
 	{
-		return '<tr><td class="label">' . Form::label($name, $label) . '</td><td class="input_field">' . Form::password($name, $attribs) . '</td>' . self::_getInputError($name) . '</tr>';
+		return '<li id="' . $name . '_label">' . Form::label($name, $label) . '<div id="' . $name . '_input" class="input_field">' . Form::password($name, $attribs) . self::_getInputError($name) . '</div></li>';
 	}
 
 	public static function open($model = NULL, $url, $attributes = array())
@@ -53,32 +53,32 @@ class OstForm
 		$attributes = array_merge(array('url' => $url, 'class' => 'input_form'), $attributes);
 
 		if (is_object($model)) {
-			return Form::model($model, $attributes) . '<table class="form_table">';
+			return Form::model($model, $attributes) . '<ul class="form_list">';
 		} else {
-			return Form::open($attributes) . '<table class="form_table">';
+			return Form::open($attributes) . '<ul class="form_list">';
 		}
 	}
 
 	public static function submit($name)
 	{
-		return '<tr><td colspan="2" class="submit">' . Form::submit($name) . '</td></tr>';
+		return '<li class="submit">' . Form::submit($name) . '</li>';
 	}
 
 	public static function description($description)
 	{
-		return '<caption>' . $description . '</caption>';
+		return '<li class="description">' . $description . '</li>';
 	}
 
 	public static function close()
 	{
-		return '</table>' . Form::close();
+		return '</ul>' . Form::close();
 	}
 
 	private static function _getInputError($name)
 	{
 		if (Session::has('errors')) {
 			if ($errorMessage = Session::get('errors')->first($name)) {
-				return '<td class="input_error">*' . $errorMessage . '</td>';
+				return '<span class="input_error">*' . $errorMessage . '</span>';
 			} else {
 				return NULL;
 			}

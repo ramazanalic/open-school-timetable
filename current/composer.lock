@@ -788,12 +788,12 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/Seldaek/monolog.git",
-                "reference": "5ad421d6a1d5d7066a45b617e5164d309c4e2852"
+                "reference": "c9db00f8821b2cc7238732529f8d4007296a630c"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/Seldaek/monolog/zipball/5ad421d6a1d5d7066a45b617e5164d309c4e2852",
-                "reference": "5ad421d6a1d5d7066a45b617e5164d309c4e2852",
+                "url": "https://api.github.com/repos/Seldaek/monolog/zipball/c9db00f8821b2cc7238732529f8d4007296a630c",
+                "reference": "c9db00f8821b2cc7238732529f8d4007296a630c",
                 "shasum": ""
             },
             "require": {
@@ -847,7 +847,7 @@
                 "logging",
                 "psr-3"
             ],
-            "time": "2013-12-02 09:38:32"
+            "time": "2013-12-14 13:52:08"
         },
         {
             "name": "nesbot/carbon",
@@ -997,12 +997,12 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/nrk/predis.git",
-                "reference": "09cb6677e241feecb165f417e1b3ea9709e1b173"
+                "reference": "bd48225edcf73ca82edf97abf420b82d9df4e292"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/nrk/predis/zipball/09cb6677e241feecb165f417e1b3ea9709e1b173",
-                "reference": "09cb6677e241feecb165f417e1b3ea9709e1b173",
+                "url": "https://api.github.com/repos/nrk/predis/zipball/bd48225edcf73ca82edf97abf420b82d9df4e292",
+                "reference": "bd48225edcf73ca82edf97abf420b82d9df4e292",
                 "shasum": ""
             },
             "require": {
@@ -1036,7 +1036,7 @@
                 "predis",
                 "redis"
             ],
-            "time": "2013-12-11 12:10:05"
+            "time": "2013-12-14 19:47:23"
         },
         {
             "name": "psr/log",
