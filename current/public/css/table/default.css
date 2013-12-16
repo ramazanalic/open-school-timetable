@@ -1,11 +1,12 @@
-.data_table {
-    margin: 0;
-}
-
 .data_table td, .data_table th {
-    padding: 5px 4em 5px 5px;
+	padding: 5px 3em 5px 5px;
 }
 
 .data_table .edit, .data_table .delete {
-    padding: 5px;
+	padding: 5px;
+}
+
+.data_table .command {
+	padding-right: 10px;
+	text-align: right;
 }

@@ -64,7 +64,7 @@ Route::group(array('prefix' => 'account'), function()
 		if ($validator->fails()) {
 			return Redirect::to('/account/add')->withInput()->withErrors($validator)->with('message', '輸入錯誤，請檢查');
 		} else {
-			$data = Input::only(array('teacher_name', 'teacher_account', 'teacher_password', 'title_id'));
+			$data = Input::only(array('teacher_name', 'teacher_account', 'teacher_password', 'title_id', 'teacher_course_count'));
 			$data['teacher_password_hash'] = Hash::make($data['teacher_password']);
 			unset($data['teacher_password']);
 
@@ -93,7 +93,7 @@ Route::group(array('prefix' => 'account'), function()
 		if ($validator->fails()) {
 			return Redirect::to('/account/edit/' . $id)->withInput()->withErrors($validator)->with('message', '輸入錯誤，請檢查');
 		} else {
-			$data = Input::only(array('teacher_name', 'teacher_account', 'teacher_password', 'title_id'));
+			$data = Input::only(array('teacher_name', 'teacher_account', 'teacher_password', 'title_id', 'teacher_course_count'));
 
 			if (Input::has('teacher_password')) {
 				$data['teacher_password_hash'] = Hash::make($data['teacher_password']);

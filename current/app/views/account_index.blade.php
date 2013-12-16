@@ -49,7 +49,8 @@
 		        <th class="teacher_name">姓名</th>
 		        <th class="teacher_account">帳號</th>
 		        <th class="title">職稱</th>
-		        <th colspan="2" class="add">{{ HtmlComposite::add('account/add') }}</th>
+		        <th class="teacher_course_count">上課節數</th>
+		        <th class="command">{{ HtmlComposite::add('account/add') }}</th>
 		    </tr>
 		    @foreach ($teacherList as $teacher)
 			    <tr>
@@ -69,8 +70,11 @@
 
 			        	@endif
 			        	</td>
-			        <td class="edit">{{ HtmlComposite::edit('account/edit/' . $teacher->teacher_id) }}</td>
-			        <td class="delete">{{ HtmlComposite::delete('account/delete/' . $teacher->teacher_id) }}</td>
+			        <td>{{ $teacher->teacher_course_count }}</td>
+			        <td class="command">
+			        	{{ HtmlComposite::edit('account/edit/' . $teacher->teacher_id) }}
+			        	{{ HtmlComposite::delete('account/delete/' . $teacher->teacher_id) }}
+			        </td>			        
 			    </tr>
 		    @endforeach
 		</table>

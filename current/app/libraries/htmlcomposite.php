@@ -11,7 +11,7 @@ class HtmlComposite
 		if ($itemName != NULL) {
 			return HTML::link(URL::to($url), $itemName . '&raquo;', $attributes);
 		} else {
-			return HTML::link(URL::to($url), '新增' . $itemName . '&raquo;', array('class' => 'add_link'));
+			return HTML::link(URL::to($url), '新增' . $itemName, array('class' => 'add_link'));
 		}
 	}
 

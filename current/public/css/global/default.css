@@ -121,47 +121,40 @@ footer a {
 }
 
 /**
+ * 	連結通用樣式
+ */
+.add_link, .back_link, .edit_link, .delete_link {
+	display: inline-block;
+	padding: 3px 10px;
+	text-align: center;
+}
+
+/**
  * 	新增連結
  */
 .add_link {
-	display: inline-block;
-	margin-bottom: 0.5em;
-	padding: 3px;
-	width: 5em;
 	background-color: #A05000;
-	text-align: center;
 }
 
 /**
  * 	返回連結
  */
 .back_link {
-	display: inline-block;
-	margin-bottom: 0.5em;
-	padding: 3px;
-	width: 3.5em;
 	background-color: #00ABA9;
-	text-align: center;
 }
 
 /**
  *  編輯連結
  */
 .edit_link {
-	display: inline-block;
-	padding: 3px 10px;
 	background-color: #A2C139;
-	text-align: center;
 }
 
 /**
  *  刪除連結
  */
 .delete_link {
-	display: inline-block;
-	padding: 3px 10px;
 	background-color: #D80073;
-	text-align: center;
 }
 
 /**
