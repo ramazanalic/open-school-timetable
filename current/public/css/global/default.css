@@ -1,9 +1,15 @@
 /**
  *  全域
  */
-body {
+html, body {
 	font-size: 15px;
 	font-family: "微軟正黑體", sans-serif, serif;
+	height: 100%;
+}
+
+body {
+	display: flex;
+	flex-direction: column;
 }
 
 a {
@@ -16,6 +22,8 @@ a {
  */
 header {
 	background-color: #1BA1E2;
+	height: 55px;
+	min-height: 55px;
 }
 
 #banner {
@@ -46,20 +54,21 @@ header {
 /**
  *  主區塊
  */
-#main {
-	background-color: #F3F3F3;
+main {
+	flex-direction: row;
+	display: flex;
+	flex: auto;
 }
 
 /**
  * 	左側導覽列
  */
 nav {
-	z-index: 100;
-	float: left;
-	width: 200px;
-	height: 95%;
+	width: 180px;
+	min-width: 180px;
 	background-color: #F3F3F3;
 	color: #666666;
+	overflow: auto;
 }
 
 nav ul {
@@ -75,7 +84,7 @@ nav .nav_title {
 
 nav a {
 	display: block;
-	padding: 0.7em 0 0.7em 1em;
+	padding: 0.5em 0 0.5em 1em;
 	color: #666666;
 }
 
@@ -86,33 +95,34 @@ nav a:hover {
 /**
  * 	內容區塊
  */
-#content {
-	margin-left: 200px;
+article {
+	flex: auto;
 	padding: 1em;
 	background-color: #FFFFFF;
 	font-size: 100%;
+	overflow: auto;
 }
 
-#content h1 {
-	margin-bottom: 0.5em;
+article h1 {
+	
 	color: #DD4B39;
 	text-align: left;
 	font-size: 160%;
 }
 
-#content h2 {
-	margin-bottom: 0.2em;
+article h2 {
+	
 	color: #1BA1E2;
 	text-align: left;
 	font-size: 120%;
 }
 
 footer {
-	clear: left;
 	padding: 0.5em 0;
 	width: 100%;
 	border-top: 2px solid #F3F3F3;
 	text-align: center;
+	background-color: #FFFFFF;
 }
 
 footer a {
@@ -182,3 +192,25 @@ footer a {
 	color: red;
 	font-weight: bold;
 }
+
+
+/**
+main {
+	display: flex;
+	flex-direction: row;
+	flex: auto;
+	border: solid grey;
+	border-width: 1px 0;
+	overflow: hidden;
+}
+ 
+ 
+article {
+	border: solid grey;
+	border-width: 0 0 0 1px;
+	flex: auto;
+	overflow-x: hidden;
+	overflow-y: auto;
+}
+ 
+*/
