@@ -10,8 +10,7 @@
 
 @section('content')
 <h1>班級課表查詢</h1>
-<?php View::share('titlePrefix','班級課表查詢')
-?>
+<?php View::share('titlePrefix', '班級課表查詢'); ?>
 
 <div id="year_row">
     <a class="year_item" href="http://127.0.0.1/class_year/view_year/3">一年級（11）</a><a class="year_item" href="http://127.0.0.1/class_year/view_year/6">三年級（12）</a><a class="year_item" href="http://127.0.0.1/class_year/view_year/4">二年級（11）</a><a class="year_item" href="http://127.0.0.1/class_year/view_year/2">五年級（13）</a><a class="year_item" href="http://127.0.0.1/class_year/view_year/10">六年級（12）</a><a class="year_item" href="http://127.0.0.1/class_year/view_year/1">四年級（11）</a>

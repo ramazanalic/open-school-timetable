@@ -8,6 +8,8 @@
 @section('content')
 	<h1>教室管理</h1>
 
+	<?php View::share('titlePrefix', '教室管理'); ?>
+	
 	{{ HtmlComposite::messageBlock() }}
 
 	{{ FormList::open('' , URL::to('classroom/add')) }}

@@ -1,41 +1,48 @@
 #year_course_time_selector {
-    margin-top: 0;
+	margin-top: 0;
 }
 
 #year_course_time_selector th#year_course_time_description {
-    width: 4em;
-    background-color: #F0A30A;
-    text-align: center;
+	width: 4em;
+	background-color: #F472D0;
+	text-align: center;
 }
 
 #year_course_time_selector td, #year_course_time_selector th {
-    padding: 10px;
-    color: #F3F3F3;
+	padding: 10px;
+	color: #F3F3F3;
 }
 
 #day_row th {
-    background-color: #00ABA9;
+	background-color: #00ABA9;
 }
 
 .course_column {
-    background-color: #00ABA9;
-    text-align: center;
+	background-color: #00ABA9;
+	text-align: center;
 }
 
 #noon_break {
-    background-color: #AAAAAA;
-    text-align: center;
+	background-color: #AAAAAA;
+	text-align: center;
 }
 
 .course {
-    border: 1px solid #00ABA9;
+	border: 1px solid #00ABA9;
 }
 
 .course[data-selected="0"] {
-    background-color: #FFFFFF;
+	padding: 10px !important;
+	background-color: #FFFFFF;
 }
 
 .course[data-selected="1"] {
-    border: 1px solid white;
-    background-color: #1BA1E2;
+	padding: 0px !important;
+	border: 1px solid white;
+	background-color: #1BA1E2;
+	text-align: center;
+}
+
+.course[data-selected="1"] img {
+	width: 38px;
 }

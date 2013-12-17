@@ -5,9 +5,11 @@
 @stop
 
 @section('content')
+	<?php View::share('titlePrefix', (isset($teacher)) ? '編輯帳號《' . $teacher->teacher_name . '》' : '新增帳號') ?>
+	
 	{{ HtmlComposite::back('account') }}
 
-	{{ (isset($teacher)) ? '<h1>編輯教師《' . $teacher->teacher_name . '》</h1>' : '<h1>新增教師</h1>'}}
+	<h1>{{ (isset($teacher)) ? '編輯帳號《' . $teacher->teacher_name . '》' : '新增帳號'}}</h1>
 
 	{{ HtmlComposite::messageBlock() }}
 

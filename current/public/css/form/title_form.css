@@ -1,0 +1,10 @@
+@import "default.css";
+
+.form_list .input_field {
+	margin-left: 0.5em;
+	font-weight: normal;
+}
+
+#title_name {
+	width: 4em;
+}

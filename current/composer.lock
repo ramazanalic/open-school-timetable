@@ -997,12 +997,12 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/nrk/predis.git",
-                "reference": "87ca5a1a49737e15c1b4b429f7a21a5682bb62f7"
+                "reference": "56627f30f83e1adf5e27c8d44bf0f55eaeab801a"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/nrk/predis/zipball/87ca5a1a49737e15c1b4b429f7a21a5682bb62f7",
-                "reference": "87ca5a1a49737e15c1b4b429f7a21a5682bb62f7",
+                "url": "https://api.github.com/repos/nrk/predis/zipball/56627f30f83e1adf5e27c8d44bf0f55eaeab801a",
+                "reference": "56627f30f83e1adf5e27c8d44bf0f55eaeab801a",
                 "shasum": ""
             },
             "require": {
@@ -1036,7 +1036,7 @@
                 "predis",
                 "redis"
             ],
-            "time": "2013-12-16 10:45:50"
+            "time": "2013-12-17 12:00:39"
         },
         {
             "name": "psr/log",
@@ -1137,12 +1137,12 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/symfony/BrowserKit.git",
-                "reference": "9af20d280efd21dda460d8a9b60f91a998f6c46a"
+                "reference": "63cb00e12964f186abcb28e8005407c3da67bc5c"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/symfony/BrowserKit/zipball/9af20d280efd21dda460d8a9b60f91a998f6c46a",
-                "reference": "9af20d280efd21dda460d8a9b60f91a998f6c46a",
+                "url": "https://api.github.com/repos/symfony/BrowserKit/zipball/63cb00e12964f186abcb28e8005407c3da67bc5c",
+                "reference": "63cb00e12964f186abcb28e8005407c3da67bc5c",
                 "shasum": ""
             },
             "require": {
@@ -1183,7 +1183,7 @@
             ],
             "description": "Symfony BrowserKit Component",
             "homepage": "http://symfony.com",
-            "time": "2013-12-15 12:21:03"
+            "time": "2013-12-17 08:03:37"
         },
         {
             "name": "symfony/console",
@@ -1553,12 +1553,12 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/symfony/HttpFoundation.git",
-                "reference": "8ee29656d6dd026ac5c195b9165ff730a6c88515"
+                "reference": "a77fc0dfbcd5fdc97f78522a36c531b86fd09ae0"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/symfony/HttpFoundation/zipball/8ee29656d6dd026ac5c195b9165ff730a6c88515",
-                "reference": "8ee29656d6dd026ac5c195b9165ff730a6c88515",
+                "url": "https://api.github.com/repos/symfony/HttpFoundation/zipball/a77fc0dfbcd5fdc97f78522a36c531b86fd09ae0",
+                "reference": "a77fc0dfbcd5fdc97f78522a36c531b86fd09ae0",
                 "shasum": ""
             },
             "require": {
@@ -1594,7 +1594,7 @@
             ],
             "description": "Symfony HttpFoundation Component",
             "homepage": "http://symfony.com",
-            "time": "2013-11-28 10:26:47"
+            "time": "2013-12-17 08:02:48"
         },
         {
             "name": "symfony/http-kernel",
@@ -1603,12 +1603,12 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/symfony/HttpKernel.git",
-                "reference": "eb63adf4688db6fc47ef015c57cc3cac2e12e48f"
+                "reference": "be35a7047d2391d062026984c979972131b47007"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/symfony/HttpKernel/zipball/eb63adf4688db6fc47ef015c57cc3cac2e12e48f",
-                "reference": "eb63adf4688db6fc47ef015c57cc3cac2e12e48f",
+                "url": "https://api.github.com/repos/symfony/HttpKernel/zipball/be35a7047d2391d062026984c979972131b47007",
+                "reference": "be35a7047d2391d062026984c979972131b47007",
                 "shasum": ""
             },
             "require": {
@@ -1665,7 +1665,7 @@
             ],
             "description": "Symfony HttpKernel Component",
             "homepage": "http://symfony.com",
-            "time": "2013-12-16 14:36:05"
+            "time": "2013-12-16 15:25:46"
         },
         {
             "name": "symfony/process",

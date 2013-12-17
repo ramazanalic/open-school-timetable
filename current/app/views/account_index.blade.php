@@ -2,45 +2,42 @@
 
 @section('css')
 	{{ HTML::style('css/table/table_style_1.css') }}
-	{{ HTML::style('css/form/class_year_form.css') }}
+	{{ HTML::style('css/row_item/row_item_style_1.css') }}	
+	{{ HTML::style('css/form/title_form.css') }}
 	{{ HTML::style('css/account_index.css') }}
 @stop
 
 @section('content')
+	<?php View::share('titlePrefix', '帳號管理') ?>
+
 	<h1>帳號管理</h1>
 
 	{{ HtmlComposite::messageBlock() }}
 
-	<div id="title_list">
-		@if ($titleId >= 1)
-			{{ Form::open(array('url' => URL::to('account/update_title/' . $titleId))) }}
-		@else
-			{{ Form::open(array('url' => URL::to('account/add_title/'))) }}
-		@endif
-
-		<ul>
-			<li {{ ($titleId == 'all') ? 'class="title_selected"' : '' }}>{{ HTML::link(URL::to('account'), '全部（' . count(Teacher::All()) . '）') }}</li>
-			<li {{ ($titleId == '0') ? 'class="title_selected"' : '' }}>{{ HTML::link(URL::to('account/view_title/0'), '無職稱（' . Teacher::where('title_id', '=', 0)->count() . '）') }}</li>
-
+	<div class="row_item row_item_style_1" id="title_list">
+		<ul>				
+			<li {{ ($titleId == 'all') ? 'class="row_item_selected"' : '' }}>{{ HTML::link(URL::to('account'), '全部（' . count(Teacher::All()) . '）') }}</li>
+			<li {{ ($titleId == '0') ? 'class="row_item_selected"' : '' }}>{{ HTML::link(URL::to('account/view_title/0'), '無職稱（' . Teacher::where('title_id', '=', 0)->count() . '）') }}</li>
+	
 			@if (isset($titleList))
 				@foreach ($titleList as $title)
-					<li {{ ($titleId == $title->title_id) ? 'class="title_selected"' : '' }}>{{ HTML::link(URL::to('account/view_title/' . $title->title_id), $title->title_name . '（'. $title->teacher()->count() . '）') }}</li>
+					<li {{ ($titleId == $title->title_id) ? 'class="row_item_selected"' : '' }}>{{ HTML::link(URL::to('account/view_title/' . $title->title_id), $title->title_name . '（'. $title->teacher()->count() . '）') }}</li>
 				@endforeach
 			@endif
 		</ul>
-
-		<div id="title_form_command">
-			@if ($titleId >= 1)
-				{{ Form::text('title_name', Title::find($titleId)->title_name, array('required' => 'required', 'placeholder' => '新增職稱…')) }}
-				{{ Form::submit('更新', array('id' => 'add_title')) }}
-				{{ HtmlComposite::delete('account/delete_title/' . $titleId, '刪除《' . Title::find($titleId)->title_name . '》') }}
-			@else
-				{{ Form::text('title_name', '', array('required' => 'required', 'placeholder' => '新增職稱…')) }}
-				{{ Form::submit('新增', array('id' => 'add_title')) }}
-			@endif
-		</div>
-		{{ Form::close() }}
-
+	</div>
+	
+	<div id="title_form_command">				
+		{{ FormList::open(Title::find($titleId), (Title::find($titleId)) ? 'account/update_title/' . $titleId : 'account/add_title/') }}		
+		{{ FormList::text('title_name', '職稱', array('required' => 'required')) }}					
+		
+		@if (Title::find($titleId))
+			{{ FormList::submit('更新') . HtmlComposite::delete('account/delete_title/' . $titleId, '刪除《' . Title::find($titleId)->title_name . '》') }}
+		@else
+			{{ FormList::submit('新增') }}
+		@endif
+				
+		{{ Form::close() }}									
 	</div>
 
 	@if (isset($teacherList))

@@ -12,7 +12,7 @@
 	<body>
 		<header>
 			<div id="banner">
-				<a href="{{ URL::to('/') }}">{{ HTML::image('icon/ost_icon.png') . 'OST排課系統' }}</a>
+				<a href="{{ URL::to('/') }}">{{ HTML::image('image/ost_icon.png', 'Icon'). 'OST排課系統' }}</a>
 			</div>
 			<div id="login">
 				<!-- {{ HTML::link(URL::to('login'), '登入') }} -->

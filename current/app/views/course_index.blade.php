@@ -8,6 +8,8 @@
 
 @section('content')
 	<h1>課程管理</h1>
+	
+	<?php View::share('titlePrefix', '課程管理'); ?>
 
 	{{ HtmlComposite::messageBlock() }}
 

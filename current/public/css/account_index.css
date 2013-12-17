@@ -11,48 +11,12 @@
 }
 
 /**
- * 教師職稱選單樣式
- */
-#title_list {
-	margin: 1em 0;
-}
-
-#title_list ul {
-	display: inline-block;
-}
-
-#title_list li {
-	display: inline-block;
-	margin: 3px;
-	border: 3px solid #FFFFFF;
-}
-
-#title_list .title_selected {
-	border: 3px solid #F0A30A;
-}
-
-#title_list li a {
-	display: block;
-	padding: 8px;
-	width: 8em;
-	background-color: #1BA1E2;
-	text-align: center;
-}
-
-#title_list input[type="text"] {
-	width: 4em;
-}
-
-/**
- * 職稱按鈕區
+ * 新增職稱
  */
 #title_form_command {
-	margin-top: 0.5em;
-	padding-top: 1em;
-	border-top: 2px solid #666666;
-	text-align: right;
+	padding: 0.5em 0 0.5em 0;
 }
 
-#title_form_command input[name="title_name"] {
-	width: 5em;
+#title_form_command * {
+	display: inline-block;
 }

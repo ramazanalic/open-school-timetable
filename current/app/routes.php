@@ -194,7 +194,7 @@ Route::group(array('prefix' => 'class_year'), function()
 		if ($validator->fails()) {
 			return Redirect::to('/class_year')->withInput()->withErrors($validator)->with('message', '輸入錯誤，請檢查');
 		} else {
-			$data = Input::only(array('year_name', 'classroom_time'));
+			$data = Input::only(array('year_name', 'course_time'));
 
 			if (Year::create($data)) {
 				$message = '新增年級《' . $data['year_name'] . '》完成';
@@ -223,7 +223,7 @@ Route::group(array('prefix' => 'class_year'), function()
 		if ($validator->fails()) {
 			return Redirect::to('/class_year/view_year/' . $yearId)->withInput()->withErrors($validator)->with('message', '輸入錯誤，請檢查');
 		} else {
-			$data = Input::only(array('year_name', 'classroom_time'));
+			$data = Input::only(array('year_name', 'course_time'));
 
 			$year = Year::find($yearId);
 			if ($year->update($data)) {
