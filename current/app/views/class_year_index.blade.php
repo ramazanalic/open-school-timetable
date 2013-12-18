@@ -111,7 +111,10 @@
 				<table class="data_table table_style_1">
 			    	<tr>
 			    		<th class="classes_name">{{ Form::text('classes_name', '', array('required' => 'required', 'placeholder' => '新增班級…', 'autofocus' => 'autofocus')) }}</th>
-			    		<th class="classes_command">{{ Form::submit('新增', array('id' => 'add_classes')) }}</th>
+			    		<th class="teacher">
+			    			{{ FormList::select('teacher_id', '導師', array('valueArray' => array('0' => '無'), 'required' => 'required'), array('Teacher', 'teacher_id', 'teacher_name'), 0) }}	
+			    		</th>			    		
+			    		<th class="classes_command">{{ Form::submit('新增', array('id' => 'add_classes')) }}</th>			    		
 		    		</tr>
 		    	</table>
 	    	{{ Form::close() }}
@@ -122,6 +125,9 @@
 	    				<table class="data_table table_style_1">
 		    				<tr>
 		    					<td class="classes_name">{{ Form::text('classes_name', $classesItem->classes_name, array('required' => 'required', 'size' => '5')) }}</td>
+		    					<td class="teacher">
+			    					{{ FormList::select('teacher_id', '導師', array('valueArray' => array('0' => '無'), 'value' => $classesItem->teacher_id, 'required' => 'required'), array('Teacher', 'teacher_id', 'teacher_name'), 0) }}	
+			    				</th>
 		    					<td class="classes_command">{{ Form::submit('更新') . '&nbsp;&nbsp;' . HtmlComposite::delete('class_year/delete_classes/' . $classesItem->classes_id . '/' . $year->year_id) }}</td>
 		    				</tr>
 		    			</table>

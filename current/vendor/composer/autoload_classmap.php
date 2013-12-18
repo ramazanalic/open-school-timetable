@@ -1586,7 +1586,6 @@ return array(
     'Teacher' => $baseDir . '/app/models/Teacher.php',
     'TestCase' => $baseDir . '/app/tests/TestCase.php',
     'Title' => $baseDir . '/app/models/Title.php',
-    'User' => $baseDir . '/app/models/User.php',
     'Whoops\\Exception\\ErrorException' => $vendorDir . '/filp/whoops/src/Whoops/Exception/ErrorException.php',
     'Whoops\\Exception\\Frame' => $vendorDir . '/filp/whoops/src/Whoops/Exception/Frame.php',
     'Whoops\\Exception\\FrameCollection' => $vendorDir . '/filp/whoops/src/Whoops/Exception/FrameCollection.php',

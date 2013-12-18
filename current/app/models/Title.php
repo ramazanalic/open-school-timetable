@@ -16,12 +16,7 @@ class Title extends Eloquent
 	 */
 	public function delete()
 	{
-		$teachers = Teacher::where('title_id', '=', $this->title_id)->get();
-		foreach ($teachers as $teacher) {
-			$teacher->title_id = 0;
-			$teacher->save();
-		}
-
+		$classes = Teacher::where('title_id', '=', $this->title_id)->update(array('title_id' => 0));
 		parent::delete();
 	}
 

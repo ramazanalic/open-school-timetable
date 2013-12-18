@@ -64,15 +64,16 @@ Route::group(array('prefix' => 'account'), function()
 		if ($validator->fails()) {
 			return Redirect::to('/account/add')->withInput()->withErrors($validator)->with('message', '輸入錯誤，請檢查');
 		} else {
-			$data = Input::only(array('teacher_name', 'teacher_account', 'teacher_password', 'title_id', 'teacher_course_count'));
-			$data['teacher_password_hash'] = Hash::make($data['teacher_password']);
-			unset($data['teacher_password']);
+			$data = Input::except('teacher_password', 'teacher_password_confirmation');
+			$data['teacher_password_hash'] = Hash::make(Input::get('teacher_password'));
 
 			if (Teacher::create($data)) {
 				$message = '新增教師《' . $data['teacher_name'] . '》完成';
 			} else {
 				$message = '資料寫入錯誤';
 			}
+
+			Teacher::syncClasses();
 
 			return Redirect::to('account')->with('message', $message);
 		}
@@ -93,13 +94,11 @@ Route::group(array('prefix' => 'account'), function()
 		if ($validator->fails()) {
 			return Redirect::to('/account/edit/' . $id)->withInput()->withErrors($validator)->with('message', '輸入錯誤，請檢查');
 		} else {
-			$data = Input::only(array('teacher_name', 'teacher_account', 'teacher_password', 'title_id', 'teacher_course_count'));
+			$data = Input::except('teacher_password', 'teacher_password_confirmation');
 
 			if (Input::has('teacher_password')) {
-				$data['teacher_password_hash'] = Hash::make($data['teacher_password']);
+				$data['teacher_password_hash'] = Hash::make(Input::get('teacher_password'));
 			}
-
-			unset($data['teacher_password']);
 
 			$teacher = Teacher::find($id);
 			if ($teacher->update($data)) {
@@ -107,6 +106,8 @@ Route::group(array('prefix' => 'account'), function()
 			} else {
 				$message = '資料寫入錯誤';
 			}
+
+			Teacher::syncClasses();
 
 			return Redirect::to('account')->with('message', $message);
 		}
@@ -194,7 +195,7 @@ Route::group(array('prefix' => 'class_year'), function()
 		if ($validator->fails()) {
 			return Redirect::to('/class_year')->withInput()->withErrors($validator)->with('message', '輸入錯誤，請檢查');
 		} else {
-			$data = Input::only(array('year_name', 'course_time'));
+			$data = Input::all();
 
 			if (Year::create($data)) {
 				$message = '新增年級《' . $data['year_name'] . '》完成';
@@ -223,7 +224,7 @@ Route::group(array('prefix' => 'class_year'), function()
 		if ($validator->fails()) {
 			return Redirect::to('/class_year/view_year/' . $yearId)->withInput()->withErrors($validator)->with('message', '輸入錯誤，請檢查');
 		} else {
-			$data = Input::only(array('year_name', 'course_time'));
+			$data = Input::all();
 
 			$year = Year::find($yearId);
 			if ($year->update($data)) {
@@ -253,6 +254,8 @@ Route::group(array('prefix' => 'class_year'), function()
 				$message = '資料寫入錯誤';
 			}
 
+			Classes::syncTeacher();
+
 			return Redirect::to('/class_year/view_year/' . $yearId)->with('message', $message);
 		}
 	});
@@ -273,6 +276,8 @@ Route::group(array('prefix' => 'class_year'), function()
 			} else {
 				$message = '資料寫入錯誤';
 			}
+
+			Classes::syncTeacher();
 
 			return Redirect::to('/class_year/view_year/' . $yearId)->with('message', $message);
 		}

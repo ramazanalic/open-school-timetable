@@ -44,8 +44,9 @@
 		<table class="data_table table_style_1">
 		    <tr>
 		        <th class="teacher_name">姓名</th>
-		        <th class="teacher_account">帳號</th>
+		        <th class="teacher_account">帳號</th>		        
 		        <th class="title">職稱</th>
+		        <th class="classes">導師班</th>
 		        <th class="teacher_course_count">上課節數</th>
 		        <th class="command">{{ HtmlComposite::add('account/add') }}</th>
 		    </tr>
@@ -64,9 +65,21 @@
 									echo '<div class="alert">查詢錯誤！</div>';
 			        			}
 			        		?>
-
 			        	@endif
-			        	</td>
+			        </td>
+			        <td class="classes">
+			        	@if ($teacher->classes_id == 0)
+			        		無
+			        	@else
+			        		<?php
+			        			try {
+									echo $teacher->classes()->first()->classes_name;
+			        			}catch(Exception $e){
+									echo '<div class="alert">查詢錯誤！</div>';
+			        			}
+			        		?>
+			        	@endif
+		            </td>
 			        <td>{{ $teacher->teacher_course_count }}</td>
 			        <td class="command">
 			        	{{ HtmlComposite::edit('account/edit/' . $teacher->teacher_id) }}

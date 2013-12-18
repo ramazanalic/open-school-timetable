@@ -9,7 +9,7 @@ class FormList
 		return '<li id="' . $name . '_label">' . Form::label($name, $label) . '<div id="' . $name . '_input" class="input_field">' . Form::text($name, $value = NULL, $attribs) . self::_getInputError($name) . '</div></li>';
 	}
 
-	public static function select($name, $label, $attribs = array(), $modelPair = NULL)
+	public static function select($name, $label, $attribs = array(), $modelPair = NULL, $wrapper = 1)
 	{
 		if (isset($attribs['valueArray'])) {
 			$selectValueArray = $attribs['valueArray'];
@@ -35,7 +35,13 @@ class FormList
 			}
 		}
 
-		return '<li id="' . $name . '_label">' . Form::label($name, $label) . '<div id="' . $name . '_input" class="input_field">' . Form::select($name, $selectValueArray, $value, $attribs) . self::_getInputError($name) . '</div></li>';
+		$selectOutput = Form::select($name, $selectValueArray, $value, $attribs) . self::_getInputError($name);
+		if ($wrapper == 1) {
+			return '<li id="' . $name . '_label">' . Form::label($name, $label) . '<div id="' . $name . '_input" class="input_field">' . $selectOutput . '</div></li>';
+		} else {
+			return $selectOutput;
+		}
+
 	}
 
 	public static function hidden($name, $attribs = array())
