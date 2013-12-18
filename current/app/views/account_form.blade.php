@@ -20,7 +20,8 @@
 	{{ FormList::text('teacher_account', '帳號', array('placeholder' => '英文+數字', 'required' => 'required')) }}
 	<br>
 	{{ FormList::select('title_id', '職稱', array('valueArray' => array('0' => '無職稱'), 'required' => 'required'), array('Title', 'title_id', 'title_name')) }}
-	{{ FormList::select('classes_id', '導師班', array('valueArray' => array('0' => '無'), 'required' => 'required'), array('Classes', 'classes_id', 'classes_name')) }}
+	{{ FormList::select('classes_id', '導師班', array('valueArray' => Classes::getClassesSelectArray(), 'required' => 'required')) }}
+
 	{{ FormList::select('teacher_course_count', '上課節數', array('range' => array(1, 25))) }}
 	<br>
 	{{ FormList::password('teacher_password', '密碼') }}

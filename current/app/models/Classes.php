@@ -47,5 +47,21 @@ class Classes extends Eloquent
 		}
 	}
 
+	public static function getClassesSelectArray()
+	{
+		$classesSelectArray[0] = '無';
+		$classes = Classes::orderBy('classes_name')->get();
+
+		foreach ($classes as $classItem) {
+			$string = $classItem->classes_name;
+			if ($teacher = $classItem->teacher()->first()) {
+				$string .= '（' . $teacher->teacher_name . '）';
+			}
+			$classesSelectArray[$classItem->classes_id] = $string;
+		}
+
+		return $classesSelectArray;
+	}
+
 }
 ?>

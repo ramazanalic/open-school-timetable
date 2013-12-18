@@ -47,5 +47,21 @@ class Teacher extends Eloquent
 		}
 	}
 
+	public static function getTeacherSelectArray()
+	{
+		$teacherSelectArray[0] = '無';
+		$teacher = Teacher::orderBy('teacher_name')->get();
+
+		foreach ($teacher as $teacherItem) {
+			$string = $teacherItem->teacher_name;
+			if ($classes = $teacherItem->classes()->first()) {
+				$string .= '（' . $classes->classes_name . '）';
+			}
+			$teacherSelectArray[$teacherItem->teacher_id] = $string;
+		}
+
+		return $teacherSelectArray;
+	}
+
 }
 ?>

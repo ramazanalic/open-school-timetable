@@ -12,7 +12,7 @@ class FormValidator
 		if ($passwordRequire == true) {
 			$rules = array_merge($rules, array('teacher_password' => 'required|confirmed'));
 		}
-		
+
 		return Validator::make($data, $rules, $messages);
 	}
 
