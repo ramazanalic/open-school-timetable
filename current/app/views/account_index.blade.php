@@ -10,7 +10,9 @@
 @section('content')
 	<?php View::share('titlePrefix', '帳號管理') ?>
 
-	<h1>帳號管理</h1>
+	<h1>
+		帳號管理
+	</h1>
 
 	{{ HtmlComposite::messageBlock() }}
 
@@ -40,20 +42,20 @@
 		{{ Form::close() }}									
 	</div>
 
-	@if (isset($teacherList))
+	@if ($teacherList->count() != 0)
 		<table class="data_table table_style_1">
 		    <tr>
 		        <th class="teacher_name">姓名</th>
 		        <th class="teacher_account">帳號</th>		        
 		        <th class="title">職稱</th>
 		        <th class="classes">導師班</th>
-		        <th class="teacher_course_count">上課節數</th>
+		        <th class="teacher_course_count">應上節數</th>
 		        <th class="command">{{ HtmlComposite::add('account/add') }}</th>
 		    </tr>
 		    @foreach ($teacherList as $teacher)
 			    <tr>
-			        <td>{{ $teacher->teacher_name }}</td>
-			        <td>{{ $teacher->teacher_account }}</td>
+			        <td class="teacher_name">{{ $teacher->teacher_name }}</td>
+			        <td class="teacher_account">{{ $teacher->teacher_account }}</td>
 			        <td class="title">
 			        	@if ($teacher->title_id == 0)
 			        		無職稱
@@ -80,7 +82,7 @@
 			        		?>
 			        	@endif
 		            </td>
-			        <td>{{ $teacher->teacher_course_count }}</td>
+			        <td class="teacher_course_count">{{ $teacher->teacher_course_count }}</td>
 			        <td class="command">
 			        	{{ HtmlComposite::edit('account/edit/' . $teacher->teacher_id) }}
 			        	{{ HtmlComposite::delete('account/delete/' . $teacher->teacher_id) }}

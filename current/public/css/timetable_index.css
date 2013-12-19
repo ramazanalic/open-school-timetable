@@ -1,0 +1,7 @@
+.data_table td, .data_table th {
+	padding: 5px;
+}
+
+.teacher_name {
+	width: 4em;
+}

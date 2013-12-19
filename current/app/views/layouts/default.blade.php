@@ -4,6 +4,7 @@
 		<meta charset="utf-8" />
 		<meta name="keywords" content="排課, 國小, 課表">
 		<meta name="description" content="國小排課系統">
+		<link rel="icon" href="favicon.png" type="image/png">
 		{{ HTML::style('css/global/yui_cssreset-min.css') }}
 		{{ HTML::style('css/global/default.css') }}
 		@yield('css')
@@ -47,8 +48,8 @@
 					<li class="nav_title">
 						系統管理
 					</li>
-					<li>
-						<a href="">排課設定</a>
+					<li>						
+						{{ HTML::link(URL::to('timetable'), '排課設定') }}
 					</li>
 					<li>
 						<a href="">教師排課限制設定</a>

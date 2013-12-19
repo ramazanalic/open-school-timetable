@@ -35,16 +35,14 @@ Route::group(array('prefix' => 'account'), function()
 	// 顯示全部教師列表
 	Route::get('/', function()
 	{
-		$viewData['teacherList'] = Teacher::orderBy('teacher_name')->get();
-		$viewData['titleList'] = Title::orderBy('title_name')->get();
-		$viewData['titleId'] = 'all';
-		return View::make('account_index')->with($viewData);
+		return Redirect::to('account/view_title/all');
 	});
 
 	// 依職稱顯示教師列表
 	Route::get('view_title/{titleId}', function($titleId)
 	{
-		$viewData['teacherList'] = Teacher::where('title_id', '=', $titleId)->orderBy('teacher_name')->get();
+		$teacher = ($titleId == 'all') ? Teacher::orderBy('teacher_name') : Teacher::where('title_id', '=', $titleId)->orderBy('teacher_name');
+		$viewData['teacherList'] = $teacher->get();
 		$viewData['titleList'] = Title::orderBy('title_name')->get();
 		$viewData['titleId'] = $titleId;
 		return View::make('account_index')->with($viewData);
@@ -426,5 +424,27 @@ Route::group(array('prefix' => 'classroom'), function()
 		$message = '刪除《' . $classroom->classroom_name . '》完成';
 		$classroom->delete();
 		return Redirect::to('/classroom')->with('message', $message);
+	});
+});
+
+/**
+ * 排課設定
+ */
+Route::group(array('prefix' => 'timetable'), function()
+{
+	// 顯示全部教師列表
+	Route::get('/', function()
+	{
+		return Redirect::to('timetable/view_title/all');
+	});
+
+	// 依職稱顯示教師列表
+	Route::get('view_title/{titleId}', function($titleId)
+	{
+		$teacher = ($titleId == 'all') ? Teacher::orderBy('teacher_name') : Teacher::where('title_id', '=', $titleId)->orderBy('teacher_name');
+		$viewData['teacherList'] = $teacher->get();
+		$viewData['titleList'] = Title::orderBy('title_name')->get();
+		$viewData['titleId'] = $titleId;
+		return View::make('timetable_index')->with($viewData);
 	});
 });

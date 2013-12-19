@@ -65,18 +65,18 @@
         "source": {
             "type": "git",
             "url": "https://github.com/doctrine/collections.git",
-            "reference": "bcb53776a096a0c64579cc8d8ec0db62f1109fbc"
+            "reference": "76c33a25070ffb39a65f6db1e1a050051d0d91b8"
         },
         "dist": {
             "type": "zip",
-            "url": "https://api.github.com/repos/doctrine/collections/zipball/bcb53776a096a0c64579cc8d8ec0db62f1109fbc",
-            "reference": "bcb53776a096a0c64579cc8d8ec0db62f1109fbc",
+            "url": "https://api.github.com/repos/doctrine/collections/zipball/76c33a25070ffb39a65f6db1e1a050051d0d91b8",
+            "reference": "76c33a25070ffb39a65f6db1e1a050051d0d91b8",
             "shasum": ""
         },
         "require": {
             "php": ">=5.3.2"
         },
-        "time": "2013-08-29 16:56:45",
+        "time": "2013-12-18 17:20:08",
         "type": "library",
         "extra": {
             "branch-alias": {
@@ -97,7 +97,8 @@
             {
                 "name": "Jonathan Wage",
                 "email": "jonwage@gmail.com",
-                "homepage": "http://www.jwage.com/"
+                "homepage": "http://www.jwage.com/",
+                "role": "Creator"
             },
             {
                 "name": "Guilherme Blanco",
@@ -134,18 +135,18 @@
         "source": {
             "type": "git",
             "url": "https://github.com/doctrine/inflector.git",
-            "reference": "8b4b3ccec7aafc596e2fc1e593c9f2e78f939c8c"
+            "reference": "561a11ef25981a73d2ec29b07d0091cad390e3cc"
         },
         "dist": {
             "type": "zip",
-            "url": "https://api.github.com/repos/doctrine/inflector/zipball/8b4b3ccec7aafc596e2fc1e593c9f2e78f939c8c",
-            "reference": "8b4b3ccec7aafc596e2fc1e593c9f2e78f939c8c",
+            "url": "https://api.github.com/repos/doctrine/inflector/zipball/561a11ef25981a73d2ec29b07d0091cad390e3cc",
+            "reference": "561a11ef25981a73d2ec29b07d0091cad390e3cc",
             "shasum": ""
         },
         "require": {
             "php": ">=5.3.2"
         },
-        "time": "2013-04-10 16:14:30",
+        "time": "2013-12-18 17:22:13",
         "type": "library",
         "extra": {
             "branch-alias": {
@@ -166,7 +167,8 @@
             {
                 "name": "Jonathan Wage",
                 "email": "jonwage@gmail.com",
-                "homepage": "http://www.jwage.com/"
+                "homepage": "http://www.jwage.com/",
+                "role": "Creator"
             },
             {
                 "name": "Guilherme Blanco",
@@ -184,7 +186,7 @@
             {
                 "name": "Johannes Schmitt",
                 "email": "schmittjoh@gmail.com",
-                "homepage": "https://github.com/schmittjoh",
+                "homepage": "http://jmsyst.com",
                 "role": "Developer of wrapped JMSSerializerBundle"
             }
         ],
@@ -688,12 +690,12 @@
         "source": {
             "type": "git",
             "url": "https://github.com/doctrine/cache.git",
-            "reference": "ff36d4216fef8242c3d8ee97fceee977e3c9b9a6"
+            "reference": "36c4eee5051629524389da376ba270f15765e49f"
         },
         "dist": {
             "type": "zip",
-            "url": "https://api.github.com/repos/doctrine/cache/zipball/ff36d4216fef8242c3d8ee97fceee977e3c9b9a6",
-            "reference": "ff36d4216fef8242c3d8ee97fceee977e3c9b9a6",
+            "url": "https://api.github.com/repos/doctrine/cache/zipball/36c4eee5051629524389da376ba270f15765e49f",
+            "reference": "36c4eee5051629524389da376ba270f15765e49f",
             "shasum": ""
         },
         "require": {
@@ -706,7 +708,7 @@
             "phpunit/phpunit": ">=3.7",
             "satooshi/php-coveralls": "~0.6"
         },
-        "time": "2013-11-23 16:10:06",
+        "time": "2013-12-18 17:21:03",
         "type": "library",
         "extra": {
             "branch-alias": {
@@ -725,7 +727,7 @@
         ],
         "authors": [
             {
-                "name": "Jonathan H. Wage",
+                "name": "Jonathan Wage",
                 "email": "jonwage@gmail.com",
                 "homepage": "http://www.jwage.com/",
                 "role": "Creator"
@@ -744,7 +746,7 @@
                 "email": "kontakt@beberlei.de"
             },
             {
-                "name": "Johannes M. Schmitt",
+                "name": "Johannes Schmitt",
                 "email": "schmittjoh@gmail.com",
                 "homepage": "http://jmsyst.com",
                 "role": "Developer of wrapped JMSSerializerBundle"
@@ -1346,12 +1348,12 @@
         "source": {
             "type": "git",
             "url": "https://github.com/doctrine/annotations.git",
-            "reference": "97b4a00c5a40c42d8c0b789dabc04b3332c788ab"
+            "reference": "4f5eee18b4cecbecd43cee7cd6ca9e8209467332"
         },
         "dist": {
             "type": "zip",
-            "url": "https://api.github.com/repos/doctrine/annotations/zipball/97b4a00c5a40c42d8c0b789dabc04b3332c788ab",
-            "reference": "97b4a00c5a40c42d8c0b789dabc04b3332c788ab",
+            "url": "https://api.github.com/repos/doctrine/annotations/zipball/4f5eee18b4cecbecd43cee7cd6ca9e8209467332",
+            "reference": "4f5eee18b4cecbecd43cee7cd6ca9e8209467332",
             "shasum": ""
         },
         "require": {
@@ -1361,7 +1363,7 @@
         "require-dev": {
             "doctrine/cache": "1.*"
         },
-        "time": "2013-12-13 21:02:36",
+        "time": "2013-12-18 17:19:23",
         "type": "library",
         "extra": {
             "branch-alias": {
@@ -1411,74 +1413,6 @@
             "annotations",
             "docblock",
             "parser"
-        ]
-    },
-    {
-        "name": "doctrine/dbal",
-        "version": "2.4.x-dev",
-        "version_normalized": "2.4.9999999.9999999-dev",
-        "source": {
-            "type": "git",
-            "url": "https://github.com/doctrine/dbal.git",
-            "reference": "ad8608ba8386a50c17a3b0f49738f9c942393499"
-        },
-        "dist": {
-            "type": "zip",
-            "url": "https://api.github.com/repos/doctrine/dbal/zipball/ad8608ba8386a50c17a3b0f49738f9c942393499",
-            "reference": "ad8608ba8386a50c17a3b0f49738f9c942393499",
-            "shasum": ""
-        },
-        "require": {
-            "doctrine/common": "~2.4",
-            "php": ">=5.3.2"
-        },
-        "require-dev": {
-            "phpunit/phpunit": "3.7.*",
-            "symfony/console": "~2.0"
-        },
-        "suggest": {
-            "symfony/console": "Allows use of the command line interface"
-        },
-        "time": "2013-12-13 21:39:23",
-        "type": "library",
-        "installation-source": "dist",
-        "autoload": {
-            "psr-0": {
-                "Doctrine\\DBAL\\": "lib/"
-            }
-        },
-        "notification-url": "https://packagist.org/downloads/",
-        "license": [
-            "MIT"
-        ],
-        "authors": [
-            {
-                "name": "Jonathan Wage",
-                "email": "jonwage@gmail.com",
-                "homepage": "http://www.jwage.com/",
-                "role": "Creator"
-            },
-            {
-                "name": "Guilherme Blanco",
-                "email": "guilhermeblanco@gmail.com",
-                "homepage": "http://www.instaclick.com"
-            },
-            {
-                "name": "Roman Borschel",
-                "email": "roman@code-factory.org"
-            },
-            {
-                "name": "Benjamin Eberlei",
-                "email": "kontakt@beberlei.de"
-            }
-        ],
-        "description": "Database Abstraction Layer",
-        "homepage": "http://www.doctrine-project.org",
-        "keywords": [
-            "database",
-            "dbal",
-            "persistence",
-            "queryobject"
         ]
     },
     {
@@ -1837,18 +1771,86 @@
         "homepage": "http://symfony.com"
     },
     {
+        "name": "doctrine/dbal",
+        "version": "2.4.x-dev",
+        "version_normalized": "2.4.9999999.9999999-dev",
+        "source": {
+            "type": "git",
+            "url": "https://github.com/doctrine/dbal.git",
+            "reference": "01760a4abad4b6f0e84e7da275dabfade96c7aa2"
+        },
+        "dist": {
+            "type": "zip",
+            "url": "https://api.github.com/repos/doctrine/dbal/zipball/01760a4abad4b6f0e84e7da275dabfade96c7aa2",
+            "reference": "01760a4abad4b6f0e84e7da275dabfade96c7aa2",
+            "shasum": ""
+        },
+        "require": {
+            "doctrine/common": "~2.4",
+            "php": ">=5.3.2"
+        },
+        "require-dev": {
+            "phpunit/phpunit": "3.7.*",
+            "symfony/console": "~2.0"
+        },
+        "suggest": {
+            "symfony/console": "Allows use of the command line interface"
+        },
+        "time": "2013-12-18 17:04:21",
+        "type": "library",
+        "installation-source": "dist",
+        "autoload": {
+            "psr-0": {
+                "Doctrine\\DBAL\\": "lib/"
+            }
+        },
+        "notification-url": "https://packagist.org/downloads/",
+        "license": [
+            "MIT"
+        ],
+        "authors": [
+            {
+                "name": "Jonathan Wage",
+                "email": "jonwage@gmail.com",
+                "homepage": "http://www.jwage.com/",
+                "role": "Creator"
+            },
+            {
+                "name": "Guilherme Blanco",
+                "email": "guilhermeblanco@gmail.com",
+                "homepage": "http://www.instaclick.com"
+            },
+            {
+                "name": "Roman Borschel",
+                "email": "roman@code-factory.org"
+            },
+            {
+                "name": "Benjamin Eberlei",
+                "email": "kontakt@beberlei.de"
+            }
+        ],
+        "description": "Database Abstraction Layer",
+        "homepage": "http://www.doctrine-project.org",
+        "keywords": [
+            "database",
+            "dbal",
+            "persistence",
+            "queryobject"
+        ]
+    },
+    {
         "name": "predis/predis",
         "version": "0.8.x-dev",
         "version_normalized": "0.8.9999999.9999999-dev",
         "source": {
             "type": "git",
             "url": "https://github.com/nrk/predis.git",
-            "reference": "56627f30f83e1adf5e27c8d44bf0f55eaeab801a"
+            "reference": "b7cba070147e9c430e813fa411d2851cac3e2b96"
         },
         "dist": {
             "type": "zip",
-            "url": "https://api.github.com/repos/nrk/predis/zipball/56627f30f83e1adf5e27c8d44bf0f55eaeab801a",
-            "reference": "56627f30f83e1adf5e27c8d44bf0f55eaeab801a",
+            "url": "https://api.github.com/repos/nrk/predis/zipball/b7cba070147e9c430e813fa411d2851cac3e2b96",
+            "reference": "b7cba070147e9c430e813fa411d2851cac3e2b96",
             "shasum": ""
         },
         "require": {
@@ -1858,7 +1860,7 @@
             "ext-curl": "Allows access to Webdis when paired with phpiredis",
             "ext-phpiredis": "Allows faster serialization and deserialization of the Redis protocol"
         },
-        "time": "2013-12-17 12:00:39",
+        "time": "2013-12-18 15:09:01",
         "type": "library",
         "installation-source": "dist",
         "autoload": {
