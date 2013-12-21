@@ -58,12 +58,12 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/doctrine/annotations.git",
-                "reference": "4f5eee18b4cecbecd43cee7cd6ca9e8209467332"
+                "reference": "a11349d39d85bef75a71bd69bd604ac4fb993f03"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/doctrine/annotations/zipball/4f5eee18b4cecbecd43cee7cd6ca9e8209467332",
-                "reference": "4f5eee18b4cecbecd43cee7cd6ca9e8209467332",
+                "url": "https://api.github.com/repos/doctrine/annotations/zipball/a11349d39d85bef75a71bd69bd604ac4fb993f03",
+                "reference": "a11349d39d85bef75a71bd69bd604ac4fb993f03",
                 "shasum": ""
             },
             "require": {
@@ -122,7 +122,7 @@
                 "docblock",
                 "parser"
             ],
-            "time": "2013-12-18 17:19:23"
+            "time": "2013-12-20 21:39:07"
         },
         {
             "name": "doctrine/cache",
@@ -204,12 +204,12 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/doctrine/collections.git",
-                "reference": "76c33a25070ffb39a65f6db1e1a050051d0d91b8"
+                "reference": "4d3357cee6ec50c367ab549c0cd01d47d23614e2"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/doctrine/collections/zipball/76c33a25070ffb39a65f6db1e1a050051d0d91b8",
-                "reference": "76c33a25070ffb39a65f6db1e1a050051d0d91b8",
+                "url": "https://api.github.com/repos/doctrine/collections/zipball/4d3357cee6ec50c367ab549c0cd01d47d23614e2",
+                "reference": "4d3357cee6ec50c367ab549c0cd01d47d23614e2",
                 "shasum": ""
             },
             "require": {
@@ -264,7 +264,7 @@
                 "collections",
                 "iterator"
             ],
-            "time": "2013-12-18 17:20:08"
+            "time": "2013-12-20 21:38:52"
         },
         {
             "name": "doctrine/common",
@@ -272,12 +272,12 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/doctrine/common.git",
-                "reference": "ba2ad8a7db24adb37a33ff52ee64b02d59ccfee0"
+                "reference": "a4e2629e0a3ab57e4a70fa49ec556a44414ffb27"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/doctrine/common/zipball/ba2ad8a7db24adb37a33ff52ee64b02d59ccfee0",
-                "reference": "ba2ad8a7db24adb37a33ff52ee64b02d59ccfee0",
+                "url": "https://api.github.com/repos/doctrine/common/zipball/a4e2629e0a3ab57e4a70fa49ec556a44414ffb27",
+                "reference": "a4e2629e0a3ab57e4a70fa49ec556a44414ffb27",
                 "shasum": ""
             },
             "require": {
@@ -339,7 +339,7 @@
                 "persistence",
                 "spl"
             ],
-            "time": "2013-12-03 21:02:18"
+            "time": "2013-12-19 19:45:25"
         },
         {
             "name": "doctrine/dbal",
@@ -347,12 +347,12 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/doctrine/dbal.git",
-                "reference": "01760a4abad4b6f0e84e7da275dabfade96c7aa2"
+                "reference": "4e024dcb1ae5790a374e1a885fd921b3904ab142"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/doctrine/dbal/zipball/01760a4abad4b6f0e84e7da275dabfade96c7aa2",
-                "reference": "01760a4abad4b6f0e84e7da275dabfade96c7aa2",
+                "url": "https://api.github.com/repos/doctrine/dbal/zipball/4e024dcb1ae5790a374e1a885fd921b3904ab142",
+                "reference": "4e024dcb1ae5790a374e1a885fd921b3904ab142",
                 "shasum": ""
             },
             "require": {
@@ -405,7 +405,7 @@
                 "persistence",
                 "queryobject"
             ],
-            "time": "2013-12-18 17:04:21"
+            "time": "2013-12-20 22:14:48"
         },
         {
             "name": "doctrine/inflector",
@@ -413,12 +413,12 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/doctrine/inflector.git",
-                "reference": "561a11ef25981a73d2ec29b07d0091cad390e3cc"
+                "reference": "acd7665c4636cc5c795d4859e0605d95fa86efd4"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/doctrine/inflector/zipball/561a11ef25981a73d2ec29b07d0091cad390e3cc",
-                "reference": "561a11ef25981a73d2ec29b07d0091cad390e3cc",
+                "url": "https://api.github.com/repos/doctrine/inflector/zipball/acd7665c4636cc5c795d4859e0605d95fa86efd4",
+                "reference": "acd7665c4636cc5c795d4859e0605d95fa86efd4",
                 "shasum": ""
             },
             "require": {
@@ -474,7 +474,7 @@
                 "singularize",
                 "string"
             ],
-            "time": "2013-12-18 17:22:13"
+            "time": "2013-12-20 21:38:40"
         },
         {
             "name": "doctrine/lexer",
@@ -482,12 +482,12 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/doctrine/lexer.git",
-                "reference": "57d5a024b48709c56ce5bb93072948359220f36c"
+                "reference": "f12a5f74e5f4a9e3f558f3288504e121edfad891"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/doctrine/lexer/zipball/57d5a024b48709c56ce5bb93072948359220f36c",
-                "reference": "57d5a024b48709c56ce5bb93072948359220f36c",
+                "url": "https://api.github.com/repos/doctrine/lexer/zipball/f12a5f74e5f4a9e3f558f3288504e121edfad891",
+                "reference": "f12a5f74e5f4a9e3f558f3288504e121edfad891",
                 "shasum": ""
             },
             "require": {
@@ -531,7 +531,7 @@
                 "lexer",
                 "parser"
             ],
-            "time": "2013-11-19 06:15:26"
+            "time": "2013-12-20 21:39:00"
         },
         {
             "name": "filp/whoops",
@@ -999,12 +999,12 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/nrk/predis.git",
-                "reference": "b7cba070147e9c430e813fa411d2851cac3e2b96"
+                "reference": "b45f87caf2aac0c9d84b35d60ccf4e8cc74c8dc1"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/nrk/predis/zipball/b7cba070147e9c430e813fa411d2851cac3e2b96",
-                "reference": "b7cba070147e9c430e813fa411d2851cac3e2b96",
+                "url": "https://api.github.com/repos/nrk/predis/zipball/b45f87caf2aac0c9d84b35d60ccf4e8cc74c8dc1",
+                "reference": "b45f87caf2aac0c9d84b35d60ccf4e8cc74c8dc1",
                 "shasum": ""
             },
             "require": {
@@ -1038,7 +1038,7 @@
                 "predis",
                 "redis"
             ],
-            "time": "2013-12-18 15:09:01"
+            "time": "2013-12-19 10:51:45"
         },
         {
             "name": "psr/log",
