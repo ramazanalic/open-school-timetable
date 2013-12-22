@@ -47,7 +47,7 @@
 				<ul id="admin_nav">
 					<li class="nav_title">
 						系統管理
-					</li>
+					</li>					
 					<li>						
 						{{ HTML::link(URL::to('timetable'), '排課設定') }}
 					</li>
@@ -68,7 +68,7 @@
 					</li>
 					<li>
 						{{ HTML::link(URL::to('classroom'), '教室管理') }}
-					</li>
+					</li>					
 				</ul>
 			</nav>
 

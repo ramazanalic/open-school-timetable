@@ -5,3 +5,24 @@
 .teacher_name {
 	width: 4em;
 }
+
+.minus {
+	color: red;
+}
+
+.plus {
+	color: green;
+}
+
+.zero {
+	color: #000000;
+}
+#teacher_list {
+	float:left;
+	margin-top:0.5em;
+}
+#course_unit_form {
+	float:left;
+	margin-top:0.5em;
+	margin-left:1em;
+}

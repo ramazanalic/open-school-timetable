@@ -1,0 +1,1 @@
+{{ $teacher->teacher_name}}

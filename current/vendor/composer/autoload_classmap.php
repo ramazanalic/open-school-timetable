@@ -21,6 +21,7 @@ return array(
     'Classes' => $baseDir . '/app/models/Classes.php',
     'Classroom' => $baseDir . '/app/models/Classroom.php',
     'Course' => $baseDir . '/app/models/Course.php',
+    'Courseunit' => $baseDir . '/app/models/Courseunit.php',
     'DatabaseSeeder' => $baseDir . '/app/database/seeds/DatabaseSeeder.php',
     'Doctrine\\Common\\Annotations\\Annotation' => $vendorDir . '/doctrine/annotations/lib/Doctrine/Common/Annotations/Annotation.php',
     'Doctrine\\Common\\Annotations\\AnnotationException' => $vendorDir . '/doctrine/annotations/lib/Doctrine/Common/Annotations/AnnotationException.php',

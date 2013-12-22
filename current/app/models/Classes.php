@@ -33,6 +33,11 @@ class Classes extends Eloquent
 		return $this->belongsTo('Teacher', 'teacher_id');
 	}
 
+	public function courseunit()
+	{
+		return $this->belongsTo('Courseunit', 'classes_id');
+	}
+
 	// 同步更新教師的班級資料
 	public static function syncTeacher()
 	{

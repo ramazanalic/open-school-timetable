@@ -447,4 +447,12 @@ Route::group(array('prefix' => 'timetable'), function()
 		$viewData['titleId'] = $titleId;
 		return View::make('timetable_index')->with($viewData);
 	});
+	
+	// 顯示排課畫面
+	Route::get('get_course_unit_form/{teacherId}', function($teacherId)
+	{
+			
+		$viewData['teacher'] = Teacher::find($teacherId);		
+		return View::make('course_unit_form')->with($viewData);
+	});
 });
