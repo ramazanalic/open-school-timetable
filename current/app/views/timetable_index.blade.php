@@ -3,6 +3,7 @@
 @section('css')
 	{{ HTML::style('css/table/table_style_1.css') }}
 	{{ HTML::style('css/row_item/row_item_style_1.css') }}
+	{{ HTML::style('css/form/course_unit_form.css') }}
 	{{ HTML::style('css/timetable_index.css') }}		
 @stop
 
@@ -44,10 +45,10 @@
 			        <td class="teacher_course_count">
 			        	{{ $teacher->teacher_course_count }}
 			        	<?php
-			        		$teacher_has_course_count = $teacher->courseunit()->count();			        		
+			        		$teacher_has_course_count = $teacher->courseunit()->count();									        		
 			        		if ($teacher->classes_id != 0) {
 			        			$class_has_course_count = $teacher->classes()->first()->courseunit()->count();
-			        			$courseTimeDiff = substr_count($teacher->classes()->first()->year()->first()->course_time, '1') - $teacher->teacher_course_count - $teacher_has_course_count;											        		
+			        			$courseTimeDiff = substr_count($teacher->classes()->first()->year()->first()->course_time, '1') - $teacher->teacher_course_count + $teacher_has_course_count;											        		
 							} else {
 								$courseTimeDiff = $teacher_has_course_count - $teacher->teacher_course_count;
 							}							
@@ -78,7 +79,7 @@
 			        	@endif
 		            </td>
 		            <td>
-		            	{{ Html::link('#' . $teacher->teacher_id, '設定排課', array('class' => 'showCourseUnitForm edit_link', 'data-teacher_id' => $teacher->teacher_id)) }}
+		            	{{ Html::link('#' . $teacher->teacher_id, '設定排課', array('class' => 'showCourseUnitForm edit_link', 'data-teacher_id' => $teacher->teacher_id, 'data-selected' => 0)) }}
 		            </td>			        			       		        
 			    </tr>
 		    @endforeach

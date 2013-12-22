@@ -35,7 +35,7 @@ class Teacher extends Eloquent
 
 	public function courseunit()
 	{
-		return $this->belongsTo('Courseunit', 'teacher_id');
+		return $this->hasMany('Courseunit', 'teacher_id');
 	}
 
 	// 同步更新班級的導師資料

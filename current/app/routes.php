@@ -441,18 +441,40 @@ Route::group(array('prefix' => 'timetable'), function()
 	// 依職稱顯示教師列表
 	Route::get('view_title/{titleId}', function($titleId)
 	{
+		print_r(Session::get('errors'));
 		$teacher = ($titleId == 'all') ? Teacher::orderBy('teacher_name') : Teacher::where('title_id', '=', $titleId)->orderBy('teacher_name');
 		$viewData['teacherList'] = $teacher->get();
 		$viewData['titleList'] = Title::orderBy('title_name')->get();
 		$viewData['titleId'] = $titleId;
 		return View::make('timetable_index')->with($viewData);
 	});
-	
+
 	// 顯示排課畫面
 	Route::get('get_course_unit_form/{teacherId}', function($teacherId)
 	{
-			
-		$viewData['teacher'] = Teacher::find($teacherId);		
+		$viewData['teacher'] = Teacher::find($teacherId);
+		$viewData['titleId'] = $viewData['teacher']->title()->first()->title_id;
+		$viewData['course_units'] = $viewData['teacher']->courseunit();
 		return View::make('course_unit_form')->with($viewData);
+	});
+
+	// 執行新增排課設定
+	Route::post('/add/{titleId}/{teacherId}', function($titleId, $teacherId)
+	{
+		$validator = FormValidator::courseUnit(Input::all());
+
+		if ($validator->fails()) {
+			return Redirect::to('/timetable/view_title/' . $titleId . '/#' . $teacherId)->withInput()->withErrors($validator)->with('message', '輸入錯誤，請檢查');
+		} else {
+			$data = Input::all();
+
+			if (Courseunit::create($data)) {
+				$message = '新增完成';
+			} else {
+				$message = '資料寫入錯誤';
+			}
+
+			return Redirect::to('/timetable/view_title/' . $titleId . '/#' . $teacherId)->with('message', $message);
+		}
 	});
 });

@@ -44,9 +44,9 @@ class FormList
 
 	}
 
-	public static function hidden($name, $attribs = array())
+	public static function hidden($name, $value = NULL)
 	{
-		return '<li style="display:none">' . Form::hidden($name, $value = NULL) . '</li>';
+		return '<li style="display:none">' . Form::hidden($name, $value) . '</li>';
 	}
 
 	public static function password($name, $label, $attribs = array())

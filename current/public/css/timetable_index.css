@@ -17,12 +17,22 @@
 .zero {
 	color: #000000;
 }
+
 #teacher_list {
-	float:left;
-	margin-top:0.5em;
+	float: left;
+	margin-top: 0.5em;
 }
+
 #course_unit_form {
-	float:left;
-	margin-top:0.5em;
-	margin-left:1em;
+	float: left;
+	margin-top: 0.5em;
+	margin-left: 1em;
+}
+
+a[data-selected="1"] {
+	border: 2px solid #DD4B39;
+}
+
+a[data-selected="0"] {
+	border: 2px solid #E8EDFF;
 }
