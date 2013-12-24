@@ -7,3 +7,7 @@
 .form_list .input_field {
 	margin: 2px;
 }
+
+.form_list .input_checkbok {
+	display: inline-block;
+}

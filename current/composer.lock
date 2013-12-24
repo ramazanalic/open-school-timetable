@@ -272,12 +272,12 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/doctrine/common.git",
-                "reference": "a4e2629e0a3ab57e4a70fa49ec556a44414ffb27"
+                "reference": "d2d2e0a64d4686dd0908c9226c8acfe5bcb4089f"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/doctrine/common/zipball/a4e2629e0a3ab57e4a70fa49ec556a44414ffb27",
-                "reference": "a4e2629e0a3ab57e4a70fa49ec556a44414ffb27",
+                "url": "https://api.github.com/repos/doctrine/common/zipball/d2d2e0a64d4686dd0908c9226c8acfe5bcb4089f",
+                "reference": "d2d2e0a64d4686dd0908c9226c8acfe5bcb4089f",
                 "shasum": ""
             },
             "require": {
@@ -287,6 +287,9 @@
                 "doctrine/inflector": "1.*",
                 "doctrine/lexer": "1.*",
                 "php": ">=5.3.2"
+            },
+            "require-dev": {
+                "phpunit/phpunit": "~3.7"
             },
             "type": "library",
             "extra": {
@@ -339,7 +342,7 @@
                 "persistence",
                 "spl"
             ],
-            "time": "2013-12-19 19:45:25"
+            "time": "2013-12-23 05:55:47"
         },
         {
             "name": "doctrine/dbal",
@@ -347,12 +350,12 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/doctrine/dbal.git",
-                "reference": "8be725c4ad16645fa1d153f33b4bb960509e7eb2"
+                "reference": "7195d201b86daf071fc50f7c47450265afc7e310"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/doctrine/dbal/zipball/8be725c4ad16645fa1d153f33b4bb960509e7eb2",
-                "reference": "8be725c4ad16645fa1d153f33b4bb960509e7eb2",
+                "url": "https://api.github.com/repos/doctrine/dbal/zipball/7195d201b86daf071fc50f7c47450265afc7e310",
+                "reference": "7195d201b86daf071fc50f7c47450265afc7e310",
                 "shasum": ""
             },
             "require": {
@@ -378,7 +381,7 @@
             ],
             "authors": [
                 {
-                    "name": "Jonathan Wage",
+                    "name": "Jonathan H. Wage",
                     "email": "jonwage@gmail.com",
                     "homepage": "http://www.jwage.com/",
                     "role": "Creator"
@@ -405,7 +408,7 @@
                 "persistence",
                 "queryobject"
             ],
-            "time": "2013-12-22 10:18:11"
+            "time": "2013-12-22 10:50:36"
         },
         {
             "name": "doctrine/inflector",
@@ -999,12 +1002,12 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/nrk/predis.git",
-                "reference": "317fa42891f647b69603708d96d3a16db1ff1559"
+                "reference": "d2debfd43eb8a5201204bb70275a0ef83b3d11ff"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/nrk/predis/zipball/317fa42891f647b69603708d96d3a16db1ff1559",
-                "reference": "317fa42891f647b69603708d96d3a16db1ff1559",
+                "url": "https://api.github.com/repos/nrk/predis/zipball/d2debfd43eb8a5201204bb70275a0ef83b3d11ff",
+                "reference": "d2debfd43eb8a5201204bb70275a0ef83b3d11ff",
                 "shasum": ""
             },
             "require": {
@@ -1038,7 +1041,7 @@
                 "predis",
                 "redis"
             ],
-            "time": "2013-12-21 11:00:44"
+            "time": "2013-12-22 16:51:18"
         },
         {
             "name": "psr/log",
@@ -1723,12 +1726,12 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/symfony/Routing.git",
-                "reference": "f3622da652fc6a73ce9d85dbee4ec7ef425c8349"
+                "reference": "5d19251aef6994aa1ee9d03e298a319d636a0a0f"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/symfony/Routing/zipball/f3622da652fc6a73ce9d85dbee4ec7ef425c8349",
-                "reference": "f3622da652fc6a73ce9d85dbee4ec7ef425c8349",
+                "url": "https://api.github.com/repos/symfony/Routing/zipball/5d19251aef6994aa1ee9d03e298a319d636a0a0f",
+                "reference": "5d19251aef6994aa1ee9d03e298a319d636a0a0f",
                 "shasum": ""
             },
             "require": {
@@ -1772,7 +1775,7 @@
             ],
             "description": "Symfony Routing Component",
             "homepage": "http://symfony.com",
-            "time": "2013-12-14 11:06:34"
+            "time": "2013-12-16 16:42:19"
         },
         {
             "name": "symfony/translation",

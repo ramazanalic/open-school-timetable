@@ -40,3 +40,14 @@ $(".course").click(function() {
 }, function() {
 	$(this).css('cursor', 'auto');
 });
+
+/**
+ * 顯示限制課程選單
+ */
+if ($("#limit_course_time").length > 0) {
+	$("#year_course_time_selector").toggle($("#limit_course_time").prop("checked"));
+
+	$("#limit_course_time").click(function() {
+		$("#year_course_time_selector").toggle($("#limit_course_time").prop("checked"));
+	});
+}

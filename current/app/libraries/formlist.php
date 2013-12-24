@@ -54,6 +54,11 @@ class FormList
 		return '<li id="' . $name . '_label">' . Form::label($name, $label) . '<div id="' . $name . '_input" class="input_field">' . Form::password($name, $attribs) . self::_getInputError($name) . '</div></li>';
 	}
 
+	public static function checkbox($name, $label, $value, $checked = null)
+	{
+		return '<li id="' . $name . '_label">' . '<div id="' . $name . '_input" class="input_field input_checkbok">' . Form::checkbox($name, $value, $checked, array('id' => $name)) . '</div>' . Form::label($name, $label) . '</li>';
+	}
+
 	public static function open($model = NULL, $url, $attributes = array())
 	{
 		$attributes = array_merge(array('url' => $url, 'class' => 'input_form'), $attributes);

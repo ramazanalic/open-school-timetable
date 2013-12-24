@@ -21,12 +21,13 @@
 #teacher_list {
 	float: left;
 	margin-top: 0.5em;
+	width: 20em;
 }
 
 #course_unit_form {
-	float: left;
 	margin-top: 0.5em;
-	margin-left: 1em;
+	margin-right: 0;
+	margin-left: 21em;
 }
 
 a[data-selected="1"] {
@@ -35,4 +36,8 @@ a[data-selected="1"] {
 
 a[data-selected="0"] {
 	border: 2px solid #E8EDFF;
+}
+
+#year_course_time_selector {
+	float: right;
 }

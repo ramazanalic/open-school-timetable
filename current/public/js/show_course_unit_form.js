@@ -23,3 +23,4 @@ $(".showCourseUnitForm").click(function() {
 $(document).ready(function() {
 	showCourseUnitForm($(location).attr('hash').substring(1));
 });
+

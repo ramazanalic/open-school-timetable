@@ -4,11 +4,13 @@
 	{{ HTML::style('css/table/table_style_1.css') }}
 	{{ HTML::style('css/row_item/row_item_style_1.css') }}
 	{{ HTML::style('css/form/course_unit_form.css') }}
+	{{ HTML::style('css/js/course_time_selector.css') }}
 	{{ HTML::style('css/timetable_index.css') }}		
 @stop
 
 @section('js')
 	{{ HTML::script('js/show_course_unit_form.js') }}
+	{{ HTML::script('js/course_time_selector.js') }}
 @stop
 
 @section('content')
@@ -86,7 +88,6 @@
 		</table>
 	@endif
 	
-	<div id="course_unit_form">
-		
+	<div id="course_unit_form">		
 	</div>
 @stop
