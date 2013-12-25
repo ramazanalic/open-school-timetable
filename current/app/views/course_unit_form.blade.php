@@ -74,8 +74,8 @@
 		        <td class="combination">{{ FormList::select('combination', '組合節數', array('range' => array(1, 5), 'disabled' => 'disabled', 'value' => $course_limit['combination']), '', 0) }}</td>
 		        <td class="repeat">{{ FormList::select('repeat', '同天同班可重複排課', array('valueArray' => array('0' => '否', '1' => '是'), 'disabled' => 'disabled', 'value' => $course_limit['repeat']), '', 0) }}</td>
 		        <td class="limit_course_time">
-		        	{{ Form::checkbox('edit_limit_course_time', 1, $course_limit['limit_course_time'], array('id' => 'edit_limit_course_time', 'disabled' => 'disabled')) }}		        	
-		        	{{ Form::hidden('edit_course_time', $course_limit['course_time']) }}
+		        	{{ Form::checkbox('limit_course_time', 1, $course_limit['limit_course_time'], array('class' => 'edit_limit_course_time', 'disabled' => 'disabled')) }}		        	
+		        	{{ Form::hidden('course_time_' . $course_unit->course_unit_id, $course_limit['course_time']) }}		        	
 		        </td>		
 		        <td class="command">
 		        	{{ Form::submit('更新') }}		        	
