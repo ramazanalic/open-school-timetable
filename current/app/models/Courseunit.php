@@ -46,6 +46,7 @@ class Courseunit extends Eloquent
 				$limit['course_time'] = $data->course_time;
 			} else {
 				$limit['limit_course_time'] = 0;
+				$limit['course_time'] = null;
 			}
 
 			unset($data->combination, $data->repeat, $data->limit_course_time, $data->course_time);

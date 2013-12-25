@@ -84,7 +84,7 @@
 		            </td>
 			        <td class="teacher_course_count">{{ $teacher->teacher_course_count }}</td>
 			        <td class="command">
-			        	{{ HtmlComposite::edit('account/edit/' . $teacher->teacher_id) }}
+			        	{{ HtmlComposite::edit('account/edit/' . $teacher->teacher_id . '/titleId/' . $titleId) }}
 			        	{{ HtmlComposite::delete('account/delete/' . $teacher->teacher_id) }}
 			        </td>			        
 			    </tr>

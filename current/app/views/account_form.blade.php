@@ -13,7 +13,7 @@
 
 	{{ HtmlComposite::messageBlock() }}
 
-	{{ FormList::open($teacher, (isset($teacher)) ? 'account/edit/' . $teacher->teacher_id : 'account/add') }}
+	{{ FormList::open($teacher, (isset($teacher)) ? 'account/edit/' . $teacher->teacher_id . '/titleId/' . $titleId: 'account/add') }}
 	{{ FormList::description('請輸入以下的資料') }}
 	<br>
 	{{ FormList::text('teacher_name', '教師姓名', array('autofocus' => 'autofocus', 'required' => 'required')) }}

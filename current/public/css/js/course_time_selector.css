@@ -1,14 +1,14 @@
-#year_course_time_selector {
+#course_time_selector {
 	margin-top: 0;
 }
 
-#year_course_time_selector th#year_course_time_description {
+#course_time_selector th#course_time_description {
 	width: 4em;
 	background-color: #F472D0;
 	text-align: center;
 }
 
-#year_course_time_selector td, #year_course_time_selector th {
+#course_time_selector td, #course_time_selector th {
 	padding: 10px;
 	color: #F3F3F3;
 }

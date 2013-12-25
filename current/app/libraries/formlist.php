@@ -56,7 +56,7 @@ class FormList
 
 	public static function checkbox($name, $label, $value, $checked = null)
 	{
-		return '<li id="' . $name . '_label">' . '<div id="' . $name . '_input" class="input_field input_checkbok">' . Form::checkbox($name, $value, $checked, array('id' => $name)) . '</div>' . Form::label($name, $label) . '</li>';
+		return '<li id="' . $name . '_label">' . '<div id="' . $name . '_input" class="input_field input_checkbok">' . Form::checkbox($name, $value, $checked, array('id' => $name)) .'</div>' . Form::label($name, $label) . '</li>';
 	}
 
 	public static function open($model = NULL, $url, $attributes = array())

@@ -52,6 +52,7 @@ class Teacher extends Eloquent
 		}
 	}
 
+	// 取得教師選單陣列（包含班級）
 	public static function getTeacherSelectArray()
 	{
 		$teacherSelectArray[0] = '無';
@@ -66,6 +67,16 @@ class Teacher extends Eloquent
 		}
 
 		return $teacherSelectArray;
+	}
+
+	//傳回最後存入的職稱
+	public static function getLastTitleId()
+	{
+		try {
+			return Teacher::find(self::$last_teacher_id)->title->title_id;
+		} catch (Exception $e) {
+			return 'all';
+		}
 	}
 
 }

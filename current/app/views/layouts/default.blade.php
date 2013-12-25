@@ -50,10 +50,7 @@
 					</li>					
 					<li>						
 						{{ HTML::link(URL::to('timetable'), '排課設定') }}
-					</li>
-					<li>
-						<a href="">教師排課限制設定</a>
-					</li>
+					</li>															
 					<li>
 						<a href="">教師排課需求設定</a>
 					</li>

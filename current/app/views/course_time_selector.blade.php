@@ -1,7 +1,7 @@
-<div id="year_course_time_selector">
+<div id="course_time_selector">
 	<table>
 		<tr id="day_row">
-			<th id="year_course_time_description">上課時間</th>
+			<th id="course_time_description">上課時間</th>
 			<th>週一</th>
 			<th>週二</th>
 			<th>週三</th>

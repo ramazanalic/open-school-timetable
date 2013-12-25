@@ -1,0 +1,12 @@
+@import url(default.css);
+
+.table_style_2 th {
+	border-bottom: 1px solid #FFFFFF;
+	background-color: #825A2C;
+	color: #FFFFFF;
+}
+
+.table_style_2 td {
+	border-bottom: 1px solid #FFFFFF;
+	background-color: #CCCCCC;
+}

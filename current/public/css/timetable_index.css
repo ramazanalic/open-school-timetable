@@ -38,6 +38,22 @@ a[data-selected="0"] {
 	border: 2px solid #E8EDFF;
 }
 
-#year_course_time_selector {
+#course_time_selector {
+	display: none;
 	float: right;
+	font-size: 70%;
+}
+
+#course_unit_list {
+	margin-top: 1em;
+	width: 35em;
+	font-size: 90%;
+}
+
+#course_unit_list .count, #course_unit_list .classroom_name, #course_unit_list .combination, #course_unit_list .repeat, #course_unit_list .limit_course_time {
+	text-align: center;
+}
+
+#course_unit_list .form_row {
+	display: none;
 }

@@ -73,24 +73,25 @@ Route::group(array('prefix' => 'account'), function()
 
 			Teacher::syncClasses();
 
-			return Redirect::to('account')->with('message', $message);
+			return Redirect::to('account/view_title/' . Teacher::getLastTitleId())->with('message', $message);
 		}
 	});
 
 	// 顯示編輯教師表單
-	Route::get('/edit/{id}', function($id)
+	Route::get('/edit/{id}/titleId/{titleId}', function($id, $titleId)
 	{
-		$teacher = Teacher::find($id);
-		return View::make('account_form')->with('teacher', $teacher);
+		$viewData['teacher'] = Teacher::find($id);
+		$viewData['titleId'] = $titleId;
+		return View::make('account_form')->with($viewData);
 	});
 
 	// 執行編輯教師
-	Route::post('/edit/{id}', function($id)
+	Route::post('/edit/{id}/titleId/{titleId}', function($id, $titleId)
 	{
 		$validator = FormValidator::teacher(Input::all(), Input::has('teacher_password'));
 
 		if ($validator->fails()) {
-			return Redirect::to('/account/edit/' . $id)->withInput()->withErrors($validator)->with('message', '輸入錯誤，請檢查');
+			return Redirect::to('/account/edit/' . $id . '/titleId/' . $titleId)->withInput()->withErrors($validator)->with('message', '輸入錯誤，請檢查');
 		} else {
 			$data = Input::except('teacher_password', 'teacher_password_confirmation');
 
@@ -107,7 +108,7 @@ Route::group(array('prefix' => 'account'), function()
 
 			Teacher::syncClasses();
 
-			return Redirect::to('account')->with('message', $message);
+			return Redirect::to('account/view_title/' . $titleId)->with('message', $message);
 		}
 	});
 
@@ -456,8 +457,8 @@ Route::group(array('prefix' => 'timetable'), function()
 	Route::get('get_course_unit_form/{teacherId}', function($teacherId)
 	{
 		$viewData['teacher'] = Teacher::find($teacherId);
-		$viewData['titleId'] = $viewData['teacher']->title->title_id;
-		$viewData['course_units'] = $viewData['teacher']->courseunit;		
+		$viewData['titleId'] = ($viewData['teacher']->title) ? $viewData['teacher']->title->title_id : 0;
+		$viewData['course_units'] = $viewData['teacher']->courseunit;
 		return View::make('course_unit_form')->with($viewData);
 	});
 
@@ -470,7 +471,28 @@ Route::group(array('prefix' => 'timetable'), function()
 			return Redirect::to('/timetable/view_title/' . $titleId . '/#' . $teacherId)->withInput()->withErrors($validator)->with('message', '輸入錯誤，請檢查');
 		} else {
 			$data = Input::all();
-						
+
+			if (Courseunit::create($data)) {
+				$message = '新增完成';
+			} else {
+				$message = '資料寫入錯誤';
+			}
+
+			return Redirect::to('/timetable/view_title/' . $titleId . '/#' . $teacherId)->with('message', $message);
+		}
+	});
+	
+	// 執行更新排課設定
+	Route::post('/edit/{teacherId}/view_title/{titleId}', function($teacherId, $titleId)
+	{
+		print_r(Input::all());exit;
+		$validator = FormValidator::courseUnit(Input::all());
+
+		if ($validator->fails()) {
+			return Redirect::to('/timetable/view_title/' . $titleId . '/#' . $teacherId)->withInput()->withErrors($validator)->with('message', '輸入錯誤，請檢查');
+		} else {
+			$data = Input::all();
+
 			if (Courseunit::create($data)) {
 				$message = '新增完成';
 			} else {
