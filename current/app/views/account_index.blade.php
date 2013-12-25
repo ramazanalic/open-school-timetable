@@ -62,7 +62,7 @@
 			        	@else
 			        		<?php
 			        			try {
-									echo $teacher->title()->first()->title_name;
+									echo $teacher->title->title_name;
 			        			}catch(Exception $e){
 									echo '<div class="alert">查詢錯誤！</div>';
 			        			}
@@ -75,7 +75,7 @@
 			        	@else
 			        		<?php
 			        			try {
-									echo $teacher->classes()->first()->classes_name;
+									echo $teacher->classes->classes_name;
 			        			}catch(Exception $e){
 									echo '<div class="alert">查詢錯誤！</div>';
 			        			}

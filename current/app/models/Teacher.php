@@ -59,7 +59,7 @@ class Teacher extends Eloquent
 
 		foreach ($teacher as $teacherItem) {
 			$string = $teacherItem->teacher_name;
-			if ($classes = $teacherItem->classes()->first()) {
+			if ($classes = $teacherItem->classes) {
 				$string .= '（' . $classes->classes_name . '）';
 			}
 			$teacherSelectArray[$teacherItem->teacher_id] = $string;

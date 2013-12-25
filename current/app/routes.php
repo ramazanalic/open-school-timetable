@@ -182,7 +182,10 @@ Route::group(array('prefix' => 'class_year'), function()
 	// 顯示年級列表、年級新增表單
 	Route::get('/', function()
 	{
-		return View::make('class_year_index')->with(array('yearList' => $GLOBALS['yearList'], 'year' => NULL));
+		return View::make('class_year_index')->with(array(
+			'yearList' => $GLOBALS['yearList'],
+			'year' => NULL
+		));
 	});
 
 	// 執行新增年級
@@ -449,12 +452,12 @@ Route::group(array('prefix' => 'timetable'), function()
 		return View::make('timetable_index')->with($viewData);
 	});
 
-	// 顯示排課畫面
+	// 顯示教師排課設定
 	Route::get('get_course_unit_form/{teacherId}', function($teacherId)
 	{
 		$viewData['teacher'] = Teacher::find($teacherId);
-		$viewData['titleId'] = $viewData['teacher']->title()->first()->title_id;
-		$viewData['course_units'] = $viewData['teacher']->courseunit();
+		$viewData['titleId'] = $viewData['teacher']->title->title_id;
+		$viewData['course_units'] = $viewData['teacher']->courseunit;		
 		return View::make('course_unit_form')->with($viewData);
 	});
 
@@ -467,7 +470,7 @@ Route::group(array('prefix' => 'timetable'), function()
 			return Redirect::to('/timetable/view_title/' . $titleId . '/#' . $teacherId)->withInput()->withErrors($validator)->with('message', '輸入錯誤，請檢查');
 		} else {
 			$data = Input::all();
-
+						
 			if (Courseunit::create($data)) {
 				$message = '新增完成';
 			} else {

@@ -6,8 +6,16 @@ class FormValidator
 	 */
 	public static function teacher($data, $passwordRequire = false)
 	{
-		$rules = array('teacher_name' => 'required', 'teacher_account' => 'required|alpha_num', 'classes_id' => 'required|integer');
-		$messages = array('alpha_num' => '請使用英文+數字', 'required' => '此欄位必填', 'confirmed' => '「密碼」和「確認密碼」必須相同');
+		$rules = array(
+			'teacher_name' => 'required',
+			'teacher_account' => 'required|alpha_num',
+			'classes_id' => 'required|integer'
+		);
+		$messages = array(
+			'alpha_num' => '請使用英文+數字',
+			'required' => '此欄位必填',
+			'confirmed' => '「密碼」和「確認密碼」必須相同'
+		);
 
 		if ($passwordRequire == true) {
 			$rules = array_merge($rules, array('teacher_password' => 'required|confirmed'));
@@ -65,7 +73,10 @@ class FormValidator
 	 */
 	public static function classroom($data)
 	{
-		$rules = array('classroom_name' => 'required', 'max_course' => 'required|min:1|max:7');
+		$rules = array(
+			'classroom_name' => 'required',
+			'max_course' => 'required|min:1|max:7'
+		);
 		$messages = array('classroom_name_required' => '請輸入課程名稱');
 
 		return Validator::make($data, $rules, $messages);
@@ -76,8 +87,19 @@ class FormValidator
 	 */
 	public static function courseUnit($data)
 	{
-		$rules = array('teacher_id' => 'required|integer', 'course_id' => 'required|integer', 'classroom_id' => 'required|integer', 'count' => 'required|integer');
-		$messages = array('required' => '此欄位必填', 'integer' => '必需為數字');
+		$rules = array(
+			'teacher_id' => 'required|integer',
+			'course_id' => 'required|integer',
+			'classroom_id' => 'required|integer',
+			'count' => 'required|integer',
+			'combination' => 'required|integer',
+			'repeat' => 'required|integer',
+			'course_time' => 'numeric'
+		);
+		$messages = array(
+			'required' => '此欄位必填',
+			'integer' => '必需為數字'
+		);
 
 		return Validator::make($data, $rules, $messages);
 	}

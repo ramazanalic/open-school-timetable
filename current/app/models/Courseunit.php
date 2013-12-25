@@ -8,12 +8,49 @@ class Courseunit extends Eloquent
 
 	public function teacher()
 	{
-		return $this->hasMany('Teacher', 'teacher_id');
+		return $this->belongsTo('Teacher', 'teacher_id');
 	}
 
 	public function classes()
 	{
-		return $this->hasMany('Classes', 'classes_id');
+		return $this->belongsTo('Classes', 'classes_id');
+	}
+
+	public function course()
+	{
+		return $this->belongsTo('Course', 'course_id');
+	}
+
+	public function classroom()
+	{
+		return $this->belongsTo('Classroom', 'classroom_id');
+	}
+
+	public static function boot()
+	{
+		parent::boot();
+
+		static::saving(function($data)
+		{
+			// 處理排課限制
+			if (isset($data->combination)) {
+				$limit['combination'] = $data->combination;
+			}
+
+			if (isset($data->repeat)) {
+				$limit['repeat'] = $data->repeat;
+			}
+
+			if ($data->limit_course_time == 1) {
+				$limit['limit_course_time'] = $data->limit_course_time;
+				$limit['course_time'] = $data->course_time;
+			} else {
+				$limit['limit_course_time'] = 0;
+			}
+
+			unset($data->combination, $data->repeat, $data->limit_course_time, $data->course_time);
+			$data->course_unit_limit = serialize($limit);
+		});
 	}
 
 }

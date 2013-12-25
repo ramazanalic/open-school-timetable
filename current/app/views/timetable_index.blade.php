@@ -49,8 +49,8 @@
 			        	<?php
 			        		$teacher_has_course_count = $teacher->courseunit()->count();									        		
 			        		if ($teacher->classes_id != 0) {
-			        			$class_has_course_count = $teacher->classes()->first()->courseunit()->count();
-			        			$courseTimeDiff = substr_count($teacher->classes()->first()->year()->first()->course_time, '1') - $teacher->teacher_course_count + $teacher_has_course_count;											        		
+			        			$class_has_course_count = $teacher->classes->courseunit->count();
+			        			$courseTimeDiff = substr_count($teacher->classes->year->course_time, '1') - $teacher->teacher_course_count + $teacher_has_course_count;											        		
 							} else {
 								$courseTimeDiff = $teacher_has_course_count - $teacher->teacher_course_count;
 							}							
@@ -73,7 +73,7 @@
 			        	@else
 			        		<?php
 			        			try {
-									echo $teacher->classes()->first()->classes_name;
+									echo $teacher->classes->classes_name;
 			        			}catch(Exception $e){
 									echo '<div class="alert">查詢錯誤！</div>';
 			        			}

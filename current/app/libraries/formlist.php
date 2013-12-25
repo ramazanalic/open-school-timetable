@@ -61,7 +61,10 @@ class FormList
 
 	public static function open($model = NULL, $url, $attributes = array())
 	{
-		$attributes = array_merge(array('url' => $url, 'class' => 'input_form'), $attributes);
+		$attributes = array_merge(array(
+			'url' => $url,
+			'class' => 'input_form'
+		), $attributes);
 
 		if (is_object($model)) {
 			return Form::model($model, $attributes) . '<ul class="form_list">';
