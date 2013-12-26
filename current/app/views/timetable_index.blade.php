@@ -10,8 +10,7 @@
 @stop
 
 @section('js')
-	{{ HTML::script('js/show_course_unit_form.js') }}
-	{{ HTML::script('js/course_time_selector.js') }}
+	{{ HTML::script('js/show_course_unit_form.js') }}	
 @stop
 
 @section('content')

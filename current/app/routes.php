@@ -445,7 +445,6 @@ Route::group(array('prefix' => 'timetable'), function()
 	// 依職稱顯示教師列表
 	Route::get('view_title/{titleId}', function($titleId)
 	{
-		print_r(Session::get('errors'));
 		$teacher = ($titleId == 'all') ? Teacher::orderBy('teacher_name') : Teacher::where('title_id', '=', $titleId)->orderBy('teacher_name');
 		$viewData['teacherList'] = $teacher->get();
 		$viewData['titleList'] = Title::orderBy('title_name')->get();
@@ -453,7 +452,37 @@ Route::group(array('prefix' => 'timetable'), function()
 		return View::make('timetable_index')->with($viewData);
 	});
 
-	// 顯示教師排課設定
+	// 取得排課設定編輯表單（AJAX）
+	Route::get('edit/{teacherId}/{courseUnitId}', function($teacherId, $courseUnitId)
+	{
+		$viewData['teacher'] = Teacher::find($teacherId);
+		$viewData['titleId'] = ($viewData['teacher']->title) ? $viewData['teacher']->title->title_id : 0;
+		$viewData['course_units'] = $viewData['teacher']->courseunit;
+		$viewData['course_unit'] = Courseunit::find($courseUnitId);
+		return View::make('course_unit_form')->with($viewData);
+	});
+
+	// 執行更新排課設定
+	Route::post('edit/{teacherId}/{courseUnitId}', function($teacherId, $courseUnitId)
+	{		
+		$validator = FormValidator::courseUnit(Input::all());
+
+		if ($validator->fails()) {
+			return Redirect::to('/timetable/view_title/' . Teacher::find($teacherId)->title->title_id . '/#' . $teacherId)->withInput()->withErrors($validator)->with('message', '輸入錯誤，請檢查');
+		} else {
+			$data = Input::all();
+			$courseUnit = Courseunit::find($courseUnitId);
+			if ($courseUnit->update($data)) {
+				$message = '更新排課設定完成';
+			} else {
+				$message = '資料寫入錯誤';
+			}
+
+			return Redirect::to('/timetable/view_title/' . Teacher::find($teacherId)->title->title_id . '/#' . $teacherId)->with('message', $message);
+		}
+	});
+
+	// 顯示教師排課設定（AJAX）
 	Route::get('get_course_unit_form/{teacherId}', function($teacherId)
 	{
 		$viewData['teacher'] = Teacher::find($teacherId);
@@ -481,25 +510,14 @@ Route::group(array('prefix' => 'timetable'), function()
 			return Redirect::to('/timetable/view_title/' . $titleId . '/#' . $teacherId)->with('message', $message);
 		}
 	});
-	
-	// 執行更新排課設定
-	Route::post('/edit/{teacherId}/view_title/{titleId}', function($teacherId, $titleId)
+
+	// 執行刪除排課設定
+	Route::get('/delete/{id}', function($id)
 	{
-		print_r(Input::all());exit;
-		$validator = FormValidator::courseUnit(Input::all());
-
-		if ($validator->fails()) {
-			return Redirect::to('/timetable/view_title/' . $titleId . '/#' . $teacherId)->withInput()->withErrors($validator)->with('message', '輸入錯誤，請檢查');
-		} else {
-			$data = Input::all();
-
-			if (Courseunit::create($data)) {
-				$message = '新增完成';
-			} else {
-				$message = '資料寫入錯誤';
-			}
-
-			return Redirect::to('/timetable/view_title/' . $titleId . '/#' . $teacherId)->with('message', $message);
-		}
+		$courseUnit = Courseunit::find($id);
+		$url = '/timetable/view_title/' . $courseUnit->teacher->title->title_id . '/#' . $courseUnit->teacher->teacher_id;
+		$message = '刪除排課設定';
+		$courseUnit->delete();
+		return Redirect::to($url)->with('message', $message);
 	});
 });

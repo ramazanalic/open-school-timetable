@@ -1,5 +1,5 @@
 /**
- * 顯示排課單元表單
+ * 顯示排課設定表單
  */
 function showCourseUnitForm(teacher_id) {
 	$.ajax({
@@ -15,11 +15,12 @@ function showCourseUnitForm(teacher_id) {
 	$(".showCourseUnitForm[data-teacher_id='" + teacher_id + "']").attr("data-selected", 1);
 }
 
-
+// 點選後出現排課設定
 $(".showCourseUnitForm").click(function() {
 	showCourseUnitForm($(this).attr("data-teacher_id"));
 });
 
+// 預設出現排課設定
 $(document).ready(function() {
 	showCourseUnitForm($(location).attr('hash').substring(1));
 });

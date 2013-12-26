@@ -41,7 +41,7 @@ class Courseunit extends Eloquent
 				$limit['repeat'] = $data->repeat;
 			}
 
-			if ($data->limit_course_time == 1) {
+			if ($data->limit_course_time == 1 && $data->course_time != 0) {
 				$limit['limit_course_time'] = $data->limit_course_time;
 				$limit['course_time'] = $data->course_time;
 			} else {

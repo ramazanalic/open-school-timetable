@@ -46,7 +46,6 @@ a[data-selected="0"] {
 
 #course_unit_list {
 	margin-top: 1em;
-	width: 35em;
 	font-size: 90%;
 }
 
@@ -56,4 +55,8 @@ a[data-selected="0"] {
 
 #course_unit_list .form_row {
 	display: none;
+}
+
+.edit_select td {
+	background-color: #888888;
 }

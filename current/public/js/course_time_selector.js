@@ -39,4 +39,4 @@ $(".course").click(function() {
 	$(this).css('cursor', 'pointer');
 }, function() {
 	$(this).css('cursor', 'auto');
-}); 
+});

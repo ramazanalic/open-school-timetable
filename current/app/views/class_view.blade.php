@@ -3,7 +3,6 @@
 @section('css')
 {{ HTML::style('css/table/table_style_1.css') }}
 {{ HTML::style('css/class_year.css') }}
-{{ HTML::style('css/js/course_time_selector.css') }}
 {{ HTML::style('css/form/class_year_form.css') }}
 {{ HTML::style('css/class_view.css') }}
 @stop
