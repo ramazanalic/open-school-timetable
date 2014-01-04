@@ -464,7 +464,7 @@ Route::group(array('prefix' => 'timetable'), function()
 
 	// 執行更新排課設定
 	Route::post('edit/{teacherId}/{courseUnitId}', function($teacherId, $courseUnitId)
-	{		
+	{
 		$validator = FormValidator::courseUnit(Input::all());
 
 		if ($validator->fails()) {

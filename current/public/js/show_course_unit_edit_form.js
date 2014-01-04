@@ -1,12 +1,15 @@
 /**
- * 新增排課設定，顯示限制課程時間選單
+ * 顯示排課設定
  */
 $("#course_time_selector").toggle($("#limit_course_time").prop("checked"));
 $("#limit_course_time").click(function() {
 	$("#course_time_selector").toggle($("#limit_course_time").prop("checked"));
 });
 
-$(".edit_link").click(function() {
+/**
+ * 顯示編輯排課設定選單
+ */
+$(".showCourseUnitEditForm ").click(function() {
 	$.ajax({
 		url : $(this).attr("href"),
 		cache : false,

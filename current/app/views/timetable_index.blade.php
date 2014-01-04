@@ -39,7 +39,7 @@
 		        <th class="teacher_name">姓名</th>		        		        		        
 		        <th class="teacher_course_count">應上節數</th>
 		        <th class="classes">導師班</th>	
-		        <th>&nbsp;</th>	        		        
+		        <th class="command">&nbsp;</th>	        		        
 		    </tr>
 		    @foreach ($teacherList as $teacher)
 			    <tr>
@@ -47,24 +47,30 @@
 			        <td class="teacher_course_count">
 			        	{{ $teacher->teacher_course_count }}
 			        	<?php
-			        		$teacher_has_course_count = $teacher->courseunit()->count();									        		
+			        		// 計算教師已經設定的節數
+			        		$teacher_has_course_count = 0;							
+							foreach ($teacher->courseunit()->get() as $courseunit) {								
+								$teacher_has_course_count += $courseunit->count;								
+							}
+			        		
+			        		// 如果為導師，加入導師節數									        		
 			        		if ($teacher->classes_id != 0) {
-			        			$class_has_course_count = $teacher->classes->courseunit->count();
-			        			$courseTimeDiff = substr_count($teacher->classes->year->course_time, '1') - $teacher->teacher_course_count + $teacher_has_course_count;											        		
-							} else {
-								$courseTimeDiff = $teacher_has_course_count - $teacher->teacher_course_count;
-							}							
+			        			$class_has_course_count = 0;
+			        			foreach ($teacher->classes->courseunit()->get() as $courseunit) {																																														
+									$class_has_course_count += $courseunit->count;									 
+								}			        			
+			        			$teacher_has_course_count += substr_count($teacher->classes->year->course_time, '1') - $class_has_course_count;											        		
+							} 						
 							
-							if ($courseTimeDiff > 0) {
+							if ($teacher_has_course_count > $teacher->teacher_course_count) {
+								$courseTimeDiffClass = 'plus';								
+							} elseif ($teacher_has_course_count < $teacher->teacher_course_count) {
 								$courseTimeDiffClass = 'minus';
-								$courseTimeDiff = '+' . $courseTimeDiff; 
-							} elseif ($courseTimeDiff < 0) {
-								$courseTimeDiffClass = 'plus';
 							} else {
 								$courseTimeDiffClass = 'zero';
 							}
 							
-							echo '(<span class="' . $courseTimeDiffClass . '">' . $courseTimeDiff . '</span>)'; 
+							echo '(<span class="' . $courseTimeDiffClass . '">' . $teacher_has_course_count . '</span>)'; 
 			        	?>
 			        </td>
 			        <td class="classes">
@@ -80,8 +86,8 @@
 			        		?>
 			        	@endif
 		            </td>
-		            <td>
-		            	{{ Html::link('#' . $teacher->teacher_id, '設定排課', array('class' => 'showCourseUnitForm edit_link', 'data-teacher_id' => $teacher->teacher_id, 'data-selected' => 0)) }}
+		            <td class="command">
+		            	{{ Html::link('#' . $teacher->teacher_id, '設定排課(' . $teacher->courseunit()->count() . ')', array('class' => 'showCourseUnitForm edit_link', 'data-teacher_id' => $teacher->teacher_id, 'data-selected' => 0)) }}
 		            </td>			        			       		        
 			    </tr>
 		    @endforeach

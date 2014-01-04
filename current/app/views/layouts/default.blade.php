@@ -41,7 +41,7 @@
 						個人排課設定
 					</li>
 					<li>
-						<a href="">個人排課需求設定</a>
+						<a href="">排課需求設定</a>
 					</li>
 				</ul>
 				<ul id="admin_nav">
@@ -50,10 +50,7 @@
 					</li>					
 					<li>						
 						{{ HTML::link(URL::to('timetable'), '排課設定') }}
-					</li>															
-					<li>
-						<a href="">教師排課需求設定</a>
-					</li>
+					</li>																				
 					<li>
 						{{ HTML::link(URL::to('account'), '帳號管理') }}
 					</li>

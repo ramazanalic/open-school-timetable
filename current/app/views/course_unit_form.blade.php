@@ -75,7 +75,7 @@
 		        <td class="repeat">{{ ($course_limit['repeat']) ? '是' : '否' }}</td>
 		        <td class="limit_course_time">{{ ($course_limit['limit_course_time']) ? '是' : '否' }}</td>		
 		        <td class="command">
-		        	{{ HtmlComposite::edit('timetable/edit/' . $teacher->teacher_id . '/' . $course_unit_item->course_unit_id) }}
+		        	{{ Html::link(URL::to('timetable/edit/' . $teacher->teacher_id . '/' . $course_unit_item->course_unit_id), '編輯', array('class' => 'showCourseUnitEditForm edit_link')) }}		        	
 		        	{{ HtmlComposite::delete('timetable/delete/' . $course_unit_item->course_unit_id) }}
 		        </td>		      		       
 		    </tr>		   
@@ -83,4 +83,5 @@
 	</table>
 	{{ Form::close() }}
 @endif
+
 {{ HTML::script('js/show_course_unit_edit_form.js') }}

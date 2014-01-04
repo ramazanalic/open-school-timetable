@@ -21,13 +21,13 @@
 #teacher_list {
 	float: left;
 	margin-top: 0.5em;
-	width: 20em;
+	width: 22em;
 }
 
 #course_unit_form {
 	margin-top: 0.5em;
 	margin-right: 0;
-	margin-left: 21em;
+	margin-left: 23em;
 }
 
 a[data-selected="1"] {

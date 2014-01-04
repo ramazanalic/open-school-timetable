@@ -16,10 +16,11 @@ class Classes extends Eloquent
 			self::$last_classes_id = $classes->classes_id;
 		});
 
-		// 將班級的導師資料設定為0
+		// 將導師的班級資料設定為0，刪除排課設定
 		static::deleting(function($classes)
 		{
 			$teacher = Teacher::where('classes_id', '=', $classes->classes_id)->update(array('classes_id' => 0));
+			$courseUnit = Courseunit::where('classes_id', '=', $classes->classes_id)->delete();
 		});
 	}
 

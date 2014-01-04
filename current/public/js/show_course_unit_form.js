@@ -22,6 +22,8 @@ $(".showCourseUnitForm").click(function() {
 
 // 預設出現排課設定
 $(document).ready(function() {
-	showCourseUnitForm($(location).attr('hash').substring(1));
+	if ($(location).attr('hash').substring(1) != 0) {
+		showCourseUnitForm($(location).attr('hash').substring(1));
+	}
 });
 
