@@ -468,6 +468,8 @@ Route::group(array('prefix' => 'timetable'), function()
 		$validator = FormValidator::courseUnit(Input::all());
 
 		if ($validator->fails()) {
+			print_r(Session::get('conflictError'));
+			exit;
 			return Redirect::to('/timetable/view_title/' . Teacher::find($teacherId)->title->title_id . '/#' . $teacherId)->withInput()->withErrors($validator)->with('message', '輸入錯誤，請檢查');
 		} else {
 			$data = Input::all();

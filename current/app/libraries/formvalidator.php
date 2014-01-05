@@ -87,12 +87,26 @@ class FormValidator
 	 */
 	public static function courseUnit($data)
 	{
+		// 衝突檢查
+		Validator::extend('conflict', function($attribute, $data, $parameters)
+		{
+			// 合併節數
+			print_r($data);
+
+			// 教室、同天不重複、排課時間
+			print_r($parameters);
+
+			//寫入錯誤訊息
+			Session::flash('conflictError', '測試');
+			return false;
+		});
+
 		$rules = array(
 			'teacher_id' => 'required|integer',
 			'course_id' => 'required|integer',
 			'classroom_id' => 'required|integer',
 			'count' => 'required|integer',
-			'combination' => 'required|integer',
+			'combination' => 'required|integer|conflict:' . $data['classroom_id'] . ',' . $data['repeat'] . ',' . $data['course_time'],
 			'repeat' => 'required|integer',
 			'course_time' => 'numeric'
 		);

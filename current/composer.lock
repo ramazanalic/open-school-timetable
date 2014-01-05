@@ -350,12 +350,12 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/doctrine/dbal.git",
-                "reference": "750c1804d01c048a9250c74858c7891baf23a88f"
+                "reference": "1b90a2eb0868292a1f56eb49f7f1b0421e925123"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/doctrine/dbal/zipball/750c1804d01c048a9250c74858c7891baf23a88f",
-                "reference": "750c1804d01c048a9250c74858c7891baf23a88f",
+                "url": "https://api.github.com/repos/doctrine/dbal/zipball/1b90a2eb0868292a1f56eb49f7f1b0421e925123",
+                "reference": "1b90a2eb0868292a1f56eb49f7f1b0421e925123",
                 "shasum": ""
             },
             "require": {
@@ -408,7 +408,7 @@
                 "persistence",
                 "queryobject"
             ],
-            "time": "2014-01-03 19:25:09"
+            "time": "2014-01-05 09:00:29"
         },
         {
             "name": "doctrine/inflector",
@@ -1608,12 +1608,12 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/symfony/HttpKernel.git",
-                "reference": "f004cbf250265d4d2c6a0d1e2534ab57fc2e850e"
+                "reference": "6b6be78660ec107f582d52f0400e35eba972b8a4"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/symfony/HttpKernel/zipball/f004cbf250265d4d2c6a0d1e2534ab57fc2e850e",
-                "reference": "f004cbf250265d4d2c6a0d1e2534ab57fc2e850e",
+                "url": "https://api.github.com/repos/symfony/HttpKernel/zipball/6b6be78660ec107f582d52f0400e35eba972b8a4",
+                "reference": "6b6be78660ec107f582d52f0400e35eba972b8a4",
                 "shasum": ""
             },
             "require": {
@@ -1670,7 +1670,7 @@
             ],
             "description": "Symfony HttpKernel Component",
             "homepage": "http://symfony.com",
-            "time": "2014-01-01 07:52:14"
+            "time": "2014-01-05 02:02:33"
         },
         {
             "name": "symfony/process",
@@ -1679,12 +1679,12 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/symfony/Process.git",
-                "reference": "4272db48491224d53bc060bca50f373ddbe710fe"
+                "reference": "7ec42afc4cd8a47d5694e3a0d4f619d941619947"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/symfony/Process/zipball/4272db48491224d53bc060bca50f373ddbe710fe",
-                "reference": "4272db48491224d53bc060bca50f373ddbe710fe",
+                "url": "https://api.github.com/repos/symfony/Process/zipball/7ec42afc4cd8a47d5694e3a0d4f619d941619947",
+                "reference": "7ec42afc4cd8a47d5694e3a0d4f619d941619947",
                 "shasum": ""
             },
             "require": {
@@ -1717,7 +1717,7 @@
             ],
             "description": "Symfony Process Component",
             "homepage": "http://symfony.com",
-            "time": "2013-12-29 08:14:19"
+            "time": "2014-01-05 01:14:11"
         },
         {
             "name": "symfony/routing",
