@@ -12,19 +12,35 @@
  */
 
 /**
- * 首頁
+ * 首頁，導向班級課表查詢
  */
 Route::get('/', function()
 {
-	return View::make('class_view');
+	return View::make('class_table');
 });
 
 /**
- *
+ * 班級課表查詢
  */
-Route::get('/class_view', function()
+Route::get('/class_table', function()
 {
-	return View::make('class_view');
+	return View::make('class_table');
+});
+
+/**
+ * 教室課表查詢
+ */
+Route::get('/classroom_table', function()
+{
+	return View::make('classroom_table');
+});
+
+/**
+ * 教師課表查詢
+ */
+Route::get('/teacher_table', function()
+{
+	return View::make('teacher_table');
 });
 
 /**
@@ -469,7 +485,7 @@ Route::group(array('prefix' => 'timetable'), function()
 
 		if ($validator->fails()) {
 			print_r(Session::get('conflictError'));
-			exit;
+			exit ;
 			return Redirect::to('/timetable/view_title/' . Teacher::find($teacherId)->title->title_id . '/#' . $teacherId)->withInput()->withErrors($validator)->with('message', '輸入錯誤，請檢查');
 		} else {
 			$data = Input::all();

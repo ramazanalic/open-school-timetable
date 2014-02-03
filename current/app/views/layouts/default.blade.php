@@ -27,13 +27,13 @@
 						課表查詢
 					</li>
 					<li>
-						{{ HTML::link(URL::to('class_view'), '班級課表') }}
+						{{ HTML::link(URL::to('class_table'), '班級課表') }}
 					</li>
 					<li>
-						{{ HTML::link(URL::to('teacher_view'), '教師課表') }}
+						{{ HTML::link(URL::to('teacher_table'), '教師課表') }}
 					</li>
 					<li>
-						{{ HTML::link(URL::to('classroom_view'), '教室課表') }}
+						{{ HTML::link(URL::to('classroom_table'), '教室課表') }}
 					</li>
 				</ul>
 				<ul id="teacher_nav">
