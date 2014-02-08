@@ -4,7 +4,7 @@
 
 #course_time_selector th#course_time_description {
 	width: 4em;
-	background-color: #F472D0;
+	background-color: #F44A3F;
 	text-align: center;
 }
 
@@ -14,21 +14,22 @@
 }
 
 #day_row th {
-	background-color: #00ABA9;
+	background-color: #4387FD;
 }
 
 .course_column {
-	background-color: #00ABA9;
+	background-color: #4387FD;
 	text-align: center;
 }
 
 #noon_break {
-	background-color: #AAAAAA;
+	padding: 5px 0 !important;
+	background-color: #4387FD;
 	text-align: center;
 }
 
 .course {
-	border: 1px solid #00ABA9;
+	border: 1px solid #4387FD;
 }
 
 .course[data-selected="0"] {
@@ -38,8 +39,7 @@
 
 .course[data-selected="1"] {
 	padding: 0px !important;
-	border: 1px solid white;
-	background-color: #1BA1E2;
+	background-color: #FFD14D;
 	text-align: center;
 }
 
