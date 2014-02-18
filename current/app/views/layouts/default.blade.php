@@ -38,10 +38,13 @@
 				</ul>
 				<ul id="teacher_nav">
 					<li class="nav_title">
-						個人排課設定
+						教師設定
 					</li>
 					<li>
 						<a href="">排課需求設定</a>
+					</li>
+					<li>
+						<a href="">變更密碼</a>
 					</li>
 				</ul>
 				<ul id="admin_nav">
@@ -63,6 +66,9 @@
 					<li>
 						{{ HTML::link(URL::to('classroom'), '教室管理') }}
 					</li>					
+					<li>
+						{{ HTML::link(URL::to('caculate'), '計算課表') }}
+					</li>
 				</ul>
 			</nav>
 
