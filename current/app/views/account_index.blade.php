@@ -7,12 +7,10 @@
 	{{ HTML::style('css/account_index.css') }}
 @stop
 
-@section('content')
-	<?php View::share('titlePrefix', '帳號管理') ?>
+<?php View::share('titlePrefix', '帳號管理') ?>
 
-	<h1>
-		帳號管理
-	</h1>
+@section('content')	
+	<h1>帳號管理</h1>
 
 	{{ HtmlComposite::messageBlock() }}
 

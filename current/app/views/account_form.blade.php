@@ -4,9 +4,9 @@
 	{{ HTML::style('css/form/account_form.css') }}
 @stop
 
-@section('content')
-	<?php View::share('titlePrefix', (isset($teacher)) ? '編輯帳號《' . $teacher->teacher_name . '》' : '新增帳號') ?>
-	
+<?php View::share('titlePrefix', (isset($teacher)) ? '編輯帳號《' . $teacher->teacher_name . '》' : '新增帳號') ?>
+
+@section('content')		
 	{{ HtmlComposite::back('account') }}
 
 	<h1>{{ (isset($teacher)) ? '編輯帳號《' . $teacher->teacher_name . '》' : '新增帳號'}}</h1>

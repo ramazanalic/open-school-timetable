@@ -615,6 +615,7 @@ return array(
     'Monolog\\Formatter\\HtmlFormatter' => $vendorDir . '/monolog/monolog/src/Monolog/Formatter/HtmlFormatter.php',
     'Monolog\\Formatter\\JsonFormatter' => $vendorDir . '/monolog/monolog/src/Monolog/Formatter/JsonFormatter.php',
     'Monolog\\Formatter\\LineFormatter' => $vendorDir . '/monolog/monolog/src/Monolog/Formatter/LineFormatter.php',
+    'Monolog\\Formatter\\LogglyFormatter' => $vendorDir . '/monolog/monolog/src/Monolog/Formatter/LogglyFormatter.php',
     'Monolog\\Formatter\\LogstashFormatter' => $vendorDir . '/monolog/monolog/src/Monolog/Formatter/LogstashFormatter.php',
     'Monolog\\Formatter\\NormalizerFormatter' => $vendorDir . '/monolog/monolog/src/Monolog/Formatter/NormalizerFormatter.php',
     'Monolog\\Formatter\\ScalarFormatter' => $vendorDir . '/monolog/monolog/src/Monolog/Formatter/ScalarFormatter.php',

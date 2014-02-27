@@ -6,11 +6,11 @@
 	{{ HTML::style('css/course_index.css') }}
 @stop
 
+<?php View::share('titlePrefix', '課程管理'); ?>
+
 @section('content')
 	<h1>課程管理</h1>
 	
-	<?php View::share('titlePrefix', '課程管理'); ?>
-
 	{{ HtmlComposite::messageBlock() }}
 
 	{{ FormList::open('' , URL::to('course/add')) }}

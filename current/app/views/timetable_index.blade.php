@@ -13,9 +13,9 @@
 	{{ HTML::script('js/show_course_unit_form.js') }}	
 @stop
 
-@section('content')
-	<?php View::share('titlePrefix', '排課設定') ?>
+<?php View::share('titlePrefix', '排課設定') ?>
 
+@section('content')	
 	<h1>排課設定</h1>
 
 	{{ HtmlComposite::messageBlock() }}

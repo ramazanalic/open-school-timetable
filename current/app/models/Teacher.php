@@ -1,5 +1,7 @@
 <?php
-class Teacher extends Eloquent
+use Illuminate\Auth\UserInterface;
+
+class Teacher extends Eloquent implements UserInterface
 {
 	protected $table = 'teacher';
 	protected $primaryKey = 'teacher_id';
@@ -78,6 +80,16 @@ class Teacher extends Eloquent
 		} catch (Exception $e) {
 			return 'all';
 		}
+	}
+
+	public function getAuthIdentifier()
+	{
+		return $this->teacher_id;
+	}
+
+	public function getAuthPassword()
+	{
+		return $this->teacher_password_hash;
 	}
 
 }

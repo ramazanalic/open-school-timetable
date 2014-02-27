@@ -12,9 +12,9 @@
 	{{ HTML::script('js/course_time_selector.js') }}
 @stop
 
+<?php View::share('titlePrefix', '班級、年級管理' . (isset($year->year_name) ? ' - ' .$year->year_name : '')); ?>
+
 @section('content')
-	<?php View::share('titlePrefix', '班級、年級管理' . (isset($year->year_name) ? ' - ' .$year->year_name : '')); ?>
-	
 	<h1>班級、年級管理</h1>
 
 	{{ HtmlComposite::messageBlock() }}

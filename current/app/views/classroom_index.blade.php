@@ -5,10 +5,10 @@
 	{{ HTML::style('css/form/classroom_form.css') }}
 @stop
 
-@section('content')
-	<h1>教室管理</h1>
+<?php View::share('titlePrefix', '教室管理'); ?>
 
-	<?php View::share('titlePrefix', '教室管理'); ?>
+@section('content')
+	<h1>教室管理</h1>	
 	
 	{{ HtmlComposite::messageBlock() }}
 

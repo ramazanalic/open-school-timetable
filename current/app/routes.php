@@ -44,6 +44,30 @@ Route::get('/teacher_table', function()
 });
 
 /**
+ * 登入畫面
+ */
+Route::group(array('prefix' => 'login'), function()
+{
+	Route::get('/', function()
+	{
+		return View::make('login');
+	});
+
+	Route::post('/', function()
+	{
+		// Code here
+		if (Auth::validate(array(
+			'teacher_account' => Input::get('teacher_account'),
+			'password' => Input::get('teacher_password')
+		))) {
+			echo 'OK';
+		} else {
+			echo 'no';
+		}
+
+	});
+});
+/**
  * 帳號管理
  */
 Route::group(array('prefix' => 'account'), function()

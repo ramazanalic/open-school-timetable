@@ -16,7 +16,7 @@
 				<a href="{{ URL::to('/') }}">{{ HTML::image('image/ost_icon.png', 'Icon'). 'OST排課系統' }}</a>
 			</div>
 			<div id="login">
-				<!-- {{ HTML::link(URL::to('login'), '登入') }} -->
+				{{ HTML::link(URL::to('login'), '登入') }}
 			</div>
 		</header>
 
