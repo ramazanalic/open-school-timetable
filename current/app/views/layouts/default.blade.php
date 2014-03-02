@@ -16,7 +16,15 @@
 				<a href="{{ URL::to('/') }}">{{ HTML::image('image/ost_icon.png', 'Icon'). 'OST排課系統' }}</a>
 			</div>
 			<div id="login">
-				{{ HTML::link(URL::to('login'), '登入') }}
+				@if (Auth::check())
+					<span class="info">
+						{{ Auth::user()->teacher_name }}（）					
+					</span>
+					｜
+					{{ HTML::link(URL::to('logout'), '登出') }}
+				@else
+					{{ HTML::link(URL::to('login'), '登入') }}
+				@endif
 			</div>
 		</header>
 

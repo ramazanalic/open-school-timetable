@@ -82,6 +82,7 @@ class Teacher extends Eloquent implements UserInterface
 		}
 	}
 
+	// 登入使用
 	public function getAuthIdentifier()
 	{
 		return $this->teacher_id;

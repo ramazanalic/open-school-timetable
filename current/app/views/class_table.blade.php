@@ -8,4 +8,6 @@
 
 @section('content')
 	<h1>班級課表查詢</h1>
+	
+	{{ HtmlComposite::messageBlock() }}
 @stop

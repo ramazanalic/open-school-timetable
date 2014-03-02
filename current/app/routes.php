@@ -55,18 +55,32 @@ Route::group(array('prefix' => 'login'), function()
 
 	Route::post('/', function()
 	{
-		// Code here
-		if (Auth::validate(array(
+		$credentials = array(
 			'teacher_account' => Input::get('teacher_account'),
 			'password' => Input::get('teacher_password')
-		))) {
-			echo 'OK';
-		} else {
-			echo 'no';
-		}
+		);
 
+		if (Auth::attempt($credentials, true)) {
+			return Redirect::to('/')->with('message', '登入完成');
+			;
+		} else {
+			return Redirect::to('login')->with('message', '帳號密碼錯誤');
+			;
+		}
+		return Redirect::to('/');
 	});
 });
+
+/**
+ * 登出
+ */
+Route::get('logout', function()
+{
+	$teahcerName = Auth::user()->teacher_name;
+	Auth::logout();
+	return Redirect::to('/')->with('message', '使用者《' . $teahcerName . '》登出');
+});
+
 /**
  * 帳號管理
  */
