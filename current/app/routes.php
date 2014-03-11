@@ -60,13 +60,12 @@ Route::group(array('prefix' => 'login'), function()
 			'password' => Input::get('teacher_password')
 		);
 
-		if (Auth::attempt($credentials, true)) {
+		if (Auth::attempt($credentials)) {
 			return Redirect::to('/')->with('message', '登入完成');
-			;
 		} else {
 			return Redirect::to('login')->with('message', '帳號密碼錯誤');
-			;
 		}
+
 		return Redirect::to('/');
 	});
 });
@@ -79,6 +78,42 @@ Route::get('logout', function()
 	$teahcerName = Auth::user()->teacher_name;
 	Auth::logout();
 	return Redirect::to('/')->with('message', '使用者《' . $teahcerName . '》登出');
+});
+
+/**
+ * 教師排課需求設定
+ */
+Route::group(array('prefix' => 'teacher_require'), function()
+{
+	// 顯示教師排課需求設定表單
+	Route::get('/{teacherId}', function($teacherId)
+	{
+
+	});
+
+	// 更新教師排課需求
+	Route::post('/{teacherId}', function($teacherId)
+	{
+
+	});
+});
+
+/**
+ * 變更密碼
+ */
+Route::group(array('prefix' => 'change_password'), function()
+{
+	// 顯示變更密碼表單
+	Route::get('/{teacherId}', function($teacherId)
+	{
+
+	});
+
+	// 執行變更密碼
+	Route::post('/{teacherId}', function($teacherId)
+	{
+
+	});
 });
 
 /**

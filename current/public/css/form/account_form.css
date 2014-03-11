@@ -3,3 +3,8 @@
 .form_list li {
 	display: inline-block;
 }
+
+#teacher_course_time {
+	position: absolute;
+	padding-left: 2em;
+}

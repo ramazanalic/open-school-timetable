@@ -18,7 +18,7 @@
 			<div id="login">
 				@if (Auth::check())
 					<span class="info">
-						{{ Auth::user()->teacher_name }}（）					
+						{{ Auth::user()->teacher_name }}（{{ (Auth::user()->teacher_privilege == 2) ? '管理者' : '一般使用者' }}）					
 					</span>
 					｜
 					{{ HTML::link(URL::to('logout'), '登出') }}
@@ -44,40 +44,46 @@
 						{{ HTML::link(URL::to('classroom_table'), '教室課表') }}
 					</li>
 				</ul>
-				<ul id="teacher_nav">
-					<li class="nav_title">
-						教師設定
-					</li>
-					<li>
-						<a href="">排課需求設定</a>
-					</li>
-					<li>
-						<a href="">變更密碼</a>
-					</li>
-				</ul>
-				<ul id="admin_nav">
-					<li class="nav_title">
-						系統管理
-					</li>					
-					<li>						
-						{{ HTML::link(URL::to('timetable'), '排課設定') }}
-					</li>																				
-					<li>
-						{{ HTML::link(URL::to('account'), '帳號管理') }}
-					</li>
-					<li>
-						{{ HTML::link(URL::to('class_year'), '班級、年級管理') }}
-					</li>
-					<li>
-						{{ HTML::link(URL::to('course'), '課程管理') }}
-					</li>
-					<li>
-						{{ HTML::link(URL::to('classroom'), '教室管理') }}
-					</li>					
-					<li>
-						{{ HTML::link(URL::to('caculate'), '計算課表') }}
-					</li>
-				</ul>
+				
+				@if (Auth::check())
+					<ul id="teacher_nav">
+						<li class="nav_title">
+							教師設定
+						</li>
+						<li>						
+							{{ HTML::link(URL::to('teacher_require/' . Auth::user()->teacher_id), '排課需求設定') }}						
+						</li>
+						<li>
+							{{ HTML::link(URL::to('change_password/' . Auth::user()->teacher_id), '變更密碼') }}							
+						</li>
+					</ul>
+				@endif
+				
+				@if (Auth::check() || 1)
+					<ul id="admin_nav">
+						<li class="nav_title">
+							系統管理
+						</li>					
+						<li>						
+							{{ HTML::link(URL::to('timetable'), '排課設定') }}
+						</li>																				
+						<li>
+							{{ HTML::link(URL::to('account'), '帳號管理') }}
+						</li>
+						<li>
+							{{ HTML::link(URL::to('class_year'), '班級、年級管理') }}
+						</li>
+						<li>
+							{{ HTML::link(URL::to('course'), '課程管理') }}
+						</li>
+						<li>
+							{{ HTML::link(URL::to('classroom'), '教室管理') }}
+						</li>					
+						<li>
+							{{ HTML::link(URL::to('caculate'), '計算課表') }}
+						</li>
+					</ul>
+				@endif
 			</nav>
 
 			<article>

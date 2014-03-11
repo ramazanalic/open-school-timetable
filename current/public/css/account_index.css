@@ -20,3 +20,27 @@
 #title_form_command * {
 	display: inline-block;
 }
+
+/**
+ * 	管理者樣式
+ */
+.is_admin {
+	padding-right: 5px !important;
+	width: 4em;
+	text-align: center;
+}
+
+.is_admin div {
+	padding: 5px;
+	border-radius: 7px;
+	background-color: #F0A30A;
+	color: #FFFFFF;
+	text-shadow: 1px 1px #111111;
+}
+
+/**
+ * 	應上節數padding調整
+ */
+.teacher_course_count {
+	padding-right: 5px !important;
+}

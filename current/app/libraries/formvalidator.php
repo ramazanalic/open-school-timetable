@@ -9,7 +9,9 @@ class FormValidator
 		$rules = array(
 			'teacher_name' => 'required',
 			'teacher_account' => 'required|alpha_num',
-			'classes_id' => 'required|integer'
+			'classes_id' => 'required|integer',
+			'teacher_privilege' => 'required|in:16,2',
+			'course_time' => 'numeric'
 		);
 		$messages = array(
 			'alpha_num' => '請使用英文+數字',
