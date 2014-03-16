@@ -81,38 +81,86 @@ Route::get('logout', function()
 });
 
 /**
- * 教師排課需求設定
+ * 教師排課需求設定（需要登入）
  */
 Route::group(array('prefix' => 'teacher_require'), function()
 {
 	// 顯示教師排課需求設定表單
 	Route::get('/{teacherId}', function($teacherId)
 	{
-
+		if (Auth::check() && Auth::user()->teacher_id == $teacherId) {
+			return View::make('teacher_require');
+		} else {
+			return Redirect::to('/')->with('message', '請先進行登入');
+		}
 	});
 
 	// 更新教師排課需求
 	Route::post('/{teacherId}', function($teacherId)
 	{
+		if (Auth::check() && Auth::user()->teacher_id == $teacherId) {
+			$validator = FormValidator::teacherRequire(Input::all());
 
+			if ($validator->fails()) {
+				return Redirect::to('teacher_require/' . $teacherId)->withErrors($validator)->with('message', '輸入錯誤，請檢查');
+			} else {
+				$data = Input::all();
+
+				$teacher = Teacher::find(Auth::user()->teacher_id);
+
+				if ($teacher->update($data)) {
+					$message = '設定《' . Auth::user()->teacher_name . '》的排課需求完成';
+				} else {
+					$message = '資料寫入錯誤';
+				}
+
+				return Redirect::to('teacher_require/' . $teacherId)->with('message', $message);
+			}
+		} else {
+			return Redirect::to('/')->with('message', '請先進行登入');
+		}
 	});
 });
 
 /**
- * 變更密碼
+ * 變更密碼（需要登入）
  */
 Route::group(array('prefix' => 'change_password'), function()
 {
 	// 顯示變更密碼表單
 	Route::get('/{teacherId}', function($teacherId)
 	{
-
+		if (Auth::check() && Auth::user()->teacher_id == $teacherId) {
+			return View::make('change_password');
+		} else {
+			return Redirect::to('/')->with('message', '請先進行登入');
+		}
 	});
 
 	// 執行變更密碼
 	Route::post('/{teacherId}', function($teacherId)
 	{
+		if (Auth::check() && Auth::user()->teacher_id == $teacherId) {
+			$validator = FormValidator::password(Input::all());
 
+			if ($validator->fails()) {
+				return Redirect::to('change_password/' . $teacherId)->withErrors($validator)->with('message', '輸入錯誤，請檢查');
+			} else {
+				$data['teacher_password_hash'] = Hash::make(Input::get('teacher_password'));
+
+				$teacher = Teacher::find(Auth::user()->teacher_id);
+
+				if ($teacher->update($data)) {
+					$message = '設定《' . Auth::user()->teacher_name . '》密碼完成';
+				} else {
+					$message = '資料寫入錯誤';
+				}
+
+				return Redirect::to('change_password/' . $teacherId)->with('message', $message);
+			}
+		} else {
+			return Redirect::to('/')->with('message', '請先進行登入');
+		}
 	});
 });
 

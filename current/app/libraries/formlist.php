@@ -45,7 +45,7 @@ class FormList
 	}
 
 	public static function hidden($name, $value = NULL)
-	{
+	{			
 		return '<li style="display:none">' . Form::hidden($name, $value) . '</li>';
 	}
 

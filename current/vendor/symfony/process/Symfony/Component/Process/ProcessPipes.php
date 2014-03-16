@@ -29,6 +29,8 @@ class ProcessPipes
     /** @var Boolean */
     private $ttyMode;
 
+    const CHUNK_SIZE = 16384;
+
     public function __construct($useFiles, $ttyMode)
     {
         $this->useFiles = (Boolean) $useFiles;
@@ -233,7 +235,7 @@ class ProcessPipes
             $data = '';
             $dataread = null;
             while (!feof($fileHandle)) {
-                if (false !== $dataread = fread($fileHandle, 16392)) {
+                if (false !== $dataread = fread($fileHandle, self::CHUNK_SIZE)) {
                     $data .= $dataread;
                 }
             }
@@ -289,9 +291,13 @@ class ProcessPipes
 
         foreach ($r as $pipe) {
             $type = array_search($pipe, $this->pipes);
-            $data = fread($pipe, 8192);
 
-            if (strlen($data) > 0) {
+            $data = '';
+            while ($dataread = fread($pipe, self::CHUNK_SIZE)) {
+                $data .= $dataread;
+            }
+
+            if ($data) {
                 $read[$type] = $data;
             }
 

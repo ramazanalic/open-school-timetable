@@ -248,8 +248,6 @@ class Process
         $this->processPipes->unblock();
 
         if ($this->tty) {
-            $this->status = self::STATUS_TERMINATED;
-
             return;
         }
 
@@ -358,17 +356,7 @@ class Process
      */
     public function signal($signal)
     {
-        if (!$this->isRunning()) {
-            throw new LogicException('Can not send signal on a non running process.');
-        }
-
-        if ($this->isSigchildEnabled()) {
-            throw new RuntimeException('This PHP has been compiled with --enable-sigchild. The process can not be signaled.');
-        }
-
-        if (true !== @proc_terminate($this->process, $signal)) {
-            throw new RuntimeException(sprintf('Error while sending signal `%d`.', $signal));
-        }
+        $this->doSignal($signal, true);
 
         return $this;
     }
@@ -450,7 +438,7 @@ class Process
     public function getExitCode()
     {
         if ($this->isSigchildEnabled() && !$this->enhanceSigchildCompatibility) {
-            throw new RuntimeException('This PHP has been compiled with --enable-sigchild. You must use setEnhanceSigchildCompatibility() to use this method');
+            throw new RuntimeException('This PHP has been compiled with --enable-sigchild. You must use setEnhanceSigchildCompatibility() to use this method.');
         }
 
         $this->updateStatus(false);
@@ -502,7 +490,7 @@ class Process
     public function hasBeenSignaled()
     {
         if ($this->isSigchildEnabled()) {
-            throw new RuntimeException('This PHP has been compiled with --enable-sigchild. Term signal can not be retrieved');
+            throw new RuntimeException('This PHP has been compiled with --enable-sigchild. Term signal can not be retrieved.');
         }
 
         $this->updateStatus(false);
@@ -524,7 +512,7 @@ class Process
     public function getTermSignal()
     {
         if ($this->isSigchildEnabled()) {
-            throw new RuntimeException('This PHP has been compiled with --enable-sigchild. Term signal can not be retrieved');
+            throw new RuntimeException('This PHP has been compiled with --enable-sigchild. Term signal can not be retrieved.');
         }
 
         $this->updateStatus(false);
@@ -637,7 +625,11 @@ class Process
 
             if ($this->isRunning() && !$this->isSigchildEnabled()) {
                 if (null !== $signal || defined('SIGKILL')) {
-                    $this->signal($signal ?: SIGKILL);
+                    // avoid exception here :
+                    // process is supposed to be running, but it might have stop
+                    // just after this line.
+                    // in any case, let's silently discard the error, we can not do anything
+                    $this->doSignal($signal ?: SIGKILL, false);
                 }
             }
         }
@@ -1112,5 +1104,45 @@ class Process
         $this->status = self::STATUS_READY;
         $this->incrementalOutputOffset = 0;
         $this->incrementalErrorOutputOffset = 0;
+    }
+
+    /**
+     * Sends a POSIX signal to the process.
+     *
+     * @param  integer $signal         A valid POSIX signal (see http://www.php.net/manual/en/pcntl.constants.php)
+     * @param  Boolean $throwException True to throw exception in case signal failed, false otherwise
+     * @return Boolean True if the signal was sent successfully, false otherwise
+     *
+     * @throws LogicException   In case the process is not running
+     * @throws RuntimeException In case --enable-sigchild is activated
+     * @throws RuntimeException In case of failure
+     */
+    private function doSignal($signal, $throwException)
+    {
+        if (!$this->isRunning()) {
+            if ($throwException) {
+                throw new LogicException('Can not send signal on a non running process.');
+            }
+
+            return false;
+        }
+
+        if ($this->isSigchildEnabled()) {
+            if ($throwException) {
+                throw new RuntimeException('This PHP has been compiled with --enable-sigchild. The process can not be signaled.');
+            }
+
+            return false;
+        }
+
+        if (true !== @proc_terminate($this->process, $signal)) {
+            if ($throwException) {
+                throw new RuntimeException(sprintf('Error while sending signal `%d`.', $signal));
+            }
+
+            return false;
+        }
+
+        return true;
     }
 }

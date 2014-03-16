@@ -27,12 +27,50 @@ class FormValidator
 	}
 
 	/**
+	 * 驗證教師需求
+	 */
+	public static function teacherRequire($data)
+	{
+		$rules = array('course_time' => 'required|required');
+		$messages = array('course_time_required' => '請設定排課需求');
+		return Validator::make($data, $rules, $messages);
+	}
+
+	/**
+	 * 驗證密碼
+	 */
+	public static function password($data)
+	{
+		// 檢查密碼
+		Validator::extend('check_password', function($attribute, $data, $parameters)
+		{
+			if (Hash::check($data, Auth::user()->teacher_password_hash)) {
+				return true;
+			} else {
+				return false;
+			}
+		});
+
+		$rules = array(
+			'old_teacher_password' => 'required|check_password',
+			'teacher_password' => 'required|confirmed'
+		);
+		$messages = array(
+			'required' => '此欄位必填',
+			'confirmed' => '「密碼」和「確認密碼」必須相同',
+			'check_password' => '舊密碼不正確'
+		);
+
+		return Validator::make($data, $rules, $messages);
+	}
+
+	/**
 	 * 驗證教師職稱
 	 */
 	public static function title($data)
 	{
 		$rules = array('title_name' => 'required');
-		$messages = array('year_name_required' => '請輸入職稱');
+		$messages = array('title_name_required' => '請輸入職稱');
 
 		return Validator::make($data, $rules, $messages);
 	}
