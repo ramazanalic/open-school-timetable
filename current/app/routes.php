@@ -660,3 +660,30 @@ Route::group(array('prefix' => 'timetable'), function()
 		return Redirect::to($url)->with('message', $message);
 	});
 });
+
+/**
+ * 計算課表
+ */
+Route::group(array('prefix' => 'caculate'), function()
+{
+	// 顯示計算課表表單
+	Route::get('/', function()
+	{
+		return View::make('caculate_index');
+	});
+
+	// 執行計算課表
+	Route::post('/', function()
+	{
+		$validator = FormValidator::caculate(Input::all());
+
+		if ($validator->fails()) {
+			return Redirect::to('caculate')->withInput()->withErrors($validator)->with('message', '輸入錯誤，請檢查');
+		} else {
+			$data = Input::all();
+
+			// code here
+			print_r($data);
+		}
+	});
+});

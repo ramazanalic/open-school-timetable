@@ -131,10 +131,12 @@ class FormValidator
 		Validator::extend('conflict', function($attribute, $data, $parameters)
 		{
 			// 合併節數
-			print_r($data);
+			//print_r($data);
 
 			// 教室、同天不重複、排課時間
 			print_r($parameters);
+
+			exit ;
 
 			//寫入錯誤訊息
 			Session::flash('conflictError', '測試');
@@ -153,6 +155,23 @@ class FormValidator
 		$messages = array(
 			'required' => '此欄位必填',
 			'integer' => '必需為數字'
+		);
+
+		return Validator::make($data, $rules, $messages);
+	}
+
+	/**
+	 * 驗證計算課表參數
+	 */
+	public static function caculate($data)
+	{
+		$rules = array(
+			'time' => 'required|integer',
+			'extinction_time' => 'integer'
+		);
+		$messages = array(
+			'time_required' => '請輸入計算複雜度',
+			'integer' => '參數錯誤'
 		);
 
 		return Validator::make($data, $rules, $messages);

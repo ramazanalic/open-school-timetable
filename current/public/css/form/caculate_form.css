@@ -1,0 +1,9 @@
+@import "default.css";
+
+.form_list li, .form_list div {
+	display: inline-block;
+}
+
+#extinction_time_label {
+	display: none;
+}
