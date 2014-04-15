@@ -17,8 +17,8 @@
 
 @section('content')	
 	<h1>排課設定</h1>
-
-	{{ HtmlComposite::messageBlock() }}
+	
+	{{ HtmlComposite::messageBlock(Session::get('conflictError'), true) }}
 
 	<div class="row_item row_item_style_1" id="title_list">
 		<ul>				

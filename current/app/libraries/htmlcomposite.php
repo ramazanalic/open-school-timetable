@@ -25,15 +25,23 @@ class HtmlComposite
 		return HTML::link(URL::to($url), ($itemName == NULL) ? '刪除' : $itemName, array('class' => 'delete_link'));
 	}
 
-	public static function messageBlock($message = NULL)
+	public static function messageBlock($message = NULL, $append = false)
 	{
-		if (!$message) {
+		if ($message && $append == true) {
+			$message = Session::get('message') . '。' . $message;
+		} elseif (!$message) {
 			$message = Session::get('message');
-			if (!$message) {
-				return '';
-			}
 		}
-		return '<div class="messageBlock">' . $message . '</div>';
+
+		if (!$message) {
+			return '';
+		}
+
+		if (mb_strlen($message) > 10) {
+			return '<div class="messageBlock" style="width:' . (mb_strlen($message) + 1) . 'em">' . $message . '</div>';
+		} else {
+			return '<div class="messageBlock">' . $message . '</div>';
+		}
 	}
 
 }

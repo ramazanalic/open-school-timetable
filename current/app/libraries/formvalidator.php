@@ -130,17 +130,50 @@ class FormValidator
 		// 衝突檢查
 		Validator::extend('conflict', function($attribute, $data, $parameters)
 		{
-			// 合併節數
-			//print_r($data);
+			// 處理變數
+			$classes_id = $parameters[1];
+			$course_id = $parameters[2];
+			$count = $parameters[3];
+			$classroom_id = $parameters[4];
+			$combination = $parameters[5];
+			$repeat = $parameters[6];
+			if ($parameters[7] == 0) {
+				$course_time = 0;
+			} else {
+				$course_time = $parameters[8];
+			}
+			$teacher_id = end($parameters);
+			/* Array參考
 
-			// 教室、同天不重複、排課時間
-			print_r($parameters);
+			 [0][_token] => Yvw1pYLjZIm1BaiPJ1yTYKbs3Nl8T9zfkLesI0Bh
+			 [1][classes_id] => 4
+			 [2][course_id] => 9
+			 [3][count] => 1
+			 [4][classroom_id] => 0
+			 [5][combination] => 1
+			 [6][repeat] => 0
+			 [7][limit_course_time] => 1
+			 [8][course_time] => 10000001000000110000011000001100000
+			 [9][teacher_id] => 19
 
-			exit ;
+			 */
+			// 限制排課時間少於設定節數
+			if (substr_count($course_time, '1') < $count && substr_count($course_time, '1') != 0) {
+				Session::flash('conflictError', '限制排課時間少於設定節數');
+				return false;
+			}
+
+			// 組合節數大於節數
+			if ($combination > $count) {
+				Session::flash('conflictError', '組合節數（' . $combination . '）大於節數（' . $count . '）');
+				return false;
+			}
+
+			// 班級可排節數已滿
+			/* 取得該班級已經排課的*/			
 
 			//寫入錯誤訊息
-			Session::flash('conflictError', '測試');
-			return false;
+			return true;
 		});
 
 		$rules = array(
@@ -148,7 +181,7 @@ class FormValidator
 			'course_id' => 'required|integer',
 			'classroom_id' => 'required|integer',
 			'count' => 'required|integer',
-			'combination' => 'required|integer|conflict:' . $data['classroom_id'] . ',' . $data['repeat'] . ',' . $data['course_time'],
+			'combination' => 'required|integer|conflict:' . implode(',', $data),
 			'repeat' => 'required|integer',
 			'course_time' => 'numeric'
 		);
@@ -156,7 +189,7 @@ class FormValidator
 			'required' => '此欄位必填',
 			'integer' => '必需為數字'
 		);
-
+		print_r($data);
 		return Validator::make($data, $rules, $messages);
 	}
 

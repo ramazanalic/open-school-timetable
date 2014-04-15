@@ -32,9 +32,9 @@
 		{{ FormList::text('title_name', '職稱', array('required' => 'required')) }}					
 		
 		@if (Title::find($titleId))
-			{{ FormList::submit('更新') . HtmlComposite::delete('account/delete_title/' . $titleId, '刪除《' . Title::find($titleId)->title_name . '》') }}
+			{{ FormList::submit('更新職稱') . HtmlComposite::delete('account/delete_title/' . $titleId, '刪除《' . Title::find($titleId)->title_name . '》職稱') }}
 		@else
-			{{ FormList::submit('新增') }}
+			{{ FormList::submit('新增職稱') }}
 		@endif
 				
 		{{ Form::close() }}									
