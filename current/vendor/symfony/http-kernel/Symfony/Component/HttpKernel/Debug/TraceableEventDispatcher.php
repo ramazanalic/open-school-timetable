@@ -68,7 +68,7 @@ class TraceableEventDispatcher implements EventDispatcherInterface, TraceableEve
     }
 
     /**
-     * {@inheritDoc}
+     * {@inheritdoc}
      */
     public function addListener($eventName, $listener, $priority = 0)
     {
@@ -148,7 +148,7 @@ class TraceableEventDispatcher implements EventDispatcherInterface, TraceableEve
     }
 
     /**
-     * {@inheritDoc}
+     * {@inheritdoc}
      */
     public function getCalledListeners()
     {
@@ -156,7 +156,7 @@ class TraceableEventDispatcher implements EventDispatcherInterface, TraceableEve
     }
 
     /**
-     * {@inheritDoc}
+     * {@inheritdoc}
      */
     public function getNotCalledListeners()
     {
@@ -324,7 +324,7 @@ class TraceableEventDispatcher implements EventDispatcherInterface, TraceableEve
      * Updates the stopwatch data in the profile hierarchy.
      *
      * @param string  $token          Profile token
-     * @param Boolean $updateChildren Whether to update the children altogether
+     * @param bool    $updateChildren Whether to update the children altogether
      */
     private function updateProfiles($token, $updateChildren)
     {
@@ -339,7 +339,7 @@ class TraceableEventDispatcher implements EventDispatcherInterface, TraceableEve
      * Update the profiles with the timing and events information and saves them.
      *
      * @param Profile $profile        The root profile
-     * @param Boolean $updateChildren Whether to update the children altogether
+     * @param bool    $updateChildren Whether to update the children altogether
      */
     private function saveInfoInProfile(Profile $profile, $updateChildren)
     {

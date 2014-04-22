@@ -47,21 +47,21 @@ class ProgressHelper extends Helper
     /**
      * Current step
      *
-     * @var integer
+     * @var int
      */
     private $current;
 
     /**
      * Maximum number of steps
      *
-     * @var integer
+     * @var int
      */
     private $max;
 
     /**
      * Start time of the progress bar
      *
-     * @var integer
+     * @var int
      */
     private $startTime;
 
@@ -178,7 +178,7 @@ class ProgressHelper extends Helper
      * Starts the progress output.
      *
      * @param OutputInterface $output An Output instance
-     * @param int    |null    $max    Maximum steps
+     * @param int|null        $max    Maximum steps
      */
     public function start(OutputInterface $output, $max = null)
     {
@@ -446,7 +446,7 @@ class ProgressHelper extends Helper
     }
 
     /**
-     * {@inheritDoc}
+     * {@inheritdoc}
      */
     public function getName()
     {

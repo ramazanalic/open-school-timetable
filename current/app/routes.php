@@ -681,9 +681,7 @@ Route::group(array('prefix' => 'caculate'), function()
 			return Redirect::to('caculate')->withInput()->withErrors($validator)->with('message', '輸入錯誤，請檢查');
 		} else {
 			$data = Input::all();
-
-			// code here
-			print_r($data);
+			Courseunit::caculate($data['time'], $data['extinction_time']);						
 		}
 	});
 });
