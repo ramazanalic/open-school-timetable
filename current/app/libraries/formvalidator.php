@@ -137,12 +137,13 @@ class FormValidator
 			$classroom_id = $parameters[4];
 			$combination = $parameters[5];
 			$repeat = $parameters[6];
-			if ($parameters[7] == 0) {
-				$course_time = 0;
-			} else {
+			if ($parameters[7] == 1) {
 				$course_time = $parameters[8];
+			} else {
+				$course_time = 0;
 			}
 			$teacher_id = end($parameters);
+
 			/* Array參考
 
 			 [0][_token] => Yvw1pYLjZIm1BaiPJ1yTYKbs3Nl8T9zfkLesI0Bh
@@ -170,7 +171,7 @@ class FormValidator
 			}
 
 			// 班級可排節數已滿
-			/* 取得該班級已經排課的*/			
+			/* 取得該班級已經排課的*/
 
 			//寫入錯誤訊息
 			return true;
@@ -189,7 +190,6 @@ class FormValidator
 			'required' => '此欄位必填',
 			'integer' => '必需為數字'
 		);
-		print_r($data);
 		return Validator::make($data, $rules, $messages);
 	}
 
