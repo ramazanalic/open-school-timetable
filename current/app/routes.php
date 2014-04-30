@@ -24,6 +24,8 @@ Route::get('/', function()
  */
 Route::get('/class_table', function()
 {
+	$result = json_decode(file_get_contents(__DIR__ . './storage/result.json'));
+	print_r($result);
 	return View::make('class_table');
 });
 
@@ -682,6 +684,7 @@ Route::group(array('prefix' => 'caculate'), function()
 		} else {
 			$data = Input::all();
 			Courseunit::caculate($data['time'], $data['extinction_time']);
+			return Redirect::to('/caculate')->with('message', '排課完成');
 		}
 	});
 });

@@ -26,6 +26,19 @@ class Courseunit extends Eloquent
 		return $this->belongsTo('Classroom', 'classroom_id');
 	}
 
+	/**
+	 * 排序排課優先順序
+	 */
+	public static function sortAvailableCourseTime($timetable)
+	{
+		usort($timetable, function($a, $b)
+		{
+			return substr_count($a['available_course_time'], '1') > substr_count($b['available_course_time'], '1');
+		});
+
+		return $timetable;
+	}
+
 	public static function boot()
 	{
 		parent::boot();
@@ -54,6 +67,9 @@ class Courseunit extends Eloquent
 		});
 	}
 
+	/**
+	 * 計算課表
+	 */
 	public static function caculate($time, $extinction_time = 0)
 	{
 		// 產生排課陣列
@@ -69,7 +85,7 @@ class Courseunit extends Eloquent
 			$temp['limit_course_time'] = ($limit['course_time']) ? $limit['course_time'] : str_repeat('1', 35);
 			unset($temp['course_unit_limit']);
 			unset($temp['course_unit_id']);
-			$temp['available_count'] = $temp['count'];
+			$temp['total_count'] = $temp['count'];
 			$temp['available_course_time'] = $courseunit->classes->year->course_time & $temp['limit_course_time'];
 
 			// 分解排課單元
@@ -96,13 +112,48 @@ class Courseunit extends Eloquent
 			}
 		}
 
-		print_r($timetable);
-
 		// 產生課表（種子）
-		foreach ($timetable as $course) {
+		$result = array();
+		while (count($timetable) > 0) {
+			// 排序優先排課順序
+			$timetable = Courseunit::sortAvailableCourseTime($timetable);
+
+			// 隨機選擇排課時間
+			for ($stringPostion = 0, $coursePosition = array(); $stringPostion < strlen($timetable[0]['available_course_time']); ) {
+				$position = strpos($timetable[0]['available_course_time'], '1', $stringPostion);
+				if ($position === false) {
+					break;
+				} else {
+					$coursePosition[] = $position;
+					$stringPostion = $position + 1;
+				}
+			}
+
+			// 檢查是否有衝突，可以排的時間被填滿（尚未實做）
+
+			// 隨機排課
+			$coursetime = $coursePosition[array_rand($coursePosition)];
+			$timetable[0]['course_time'] = $coursetime;
+
+			// 清除授課老師在同時段的排課時間
+			for ($i = 1; $i < count($timetable); $i++) {
+				if ($timetable[$i]['teacher_id'] == $timetable[0]['teacher_id']) {
+					$timetable[$i]['available_course_time'] = substr_replace($timetable[$i]['available_course_time'], str_repeat('0', $timetable[0]['combination']), $coursetime, $timetable[0]['combination']);
+
+				}
+			}
+
+			// 清除同天不排課（尚未實做）
+
+			// 清除同教室同時段課程（尚未實做）
+
+			// 移動結果
+			$result[] = $timetable[0];
+			unset($timetable[0]);
 
 		}
 
+		file_put_contents(__DIR__ . '/../storage/result.json', json_encode($result));
 	}
 
 }
