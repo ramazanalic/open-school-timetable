@@ -20,7 +20,7 @@
 	{{ HtmlComposite::messageBlock() }}
 
 	@if (isset($yearList))
-		<div class="row_item row_item_style_1" id="year_row">
+		<div class="row_item row_item_style_2" id="year_row">
 			<ul>		
 		    	@foreach ($yearList as $yearItem)
 		    		<li class = "{{ (isset($year) && $yearItem->year_id == $year->year_id) ? 'row_item_selected' : '' }}">

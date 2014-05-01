@@ -1,0 +1,15 @@
+.column_item {
+	margin: 0.5em 0 0.2em 0;
+	padding-bottom: 5px;
+}
+
+.column_item li {
+	width: 5em;	
+	border: 3px solid #FFFFFF;
+}
+
+.column_item li a {
+	display: block;
+	padding: 5px;
+	text-align: center;
+}

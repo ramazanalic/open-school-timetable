@@ -132,6 +132,10 @@ class Courseunit extends Eloquent
 			// 檢查是否有衝突，可以排的時間被填滿（尚未實做）
 
 			// 隨機排課
+			if (count($coursePosition) == 0) {
+				print_r($timetable);	
+				exit;
+			}
 			$coursetime = $coursePosition[array_rand($coursePosition)];
 			$timetable[0]['course_time'] = $coursetime;
 
@@ -143,16 +147,24 @@ class Courseunit extends Eloquent
 				}
 			}
 
-			// 清除同天不排課（尚未實做）
+			// 清除該班同天該老師的排課時間
+			if ($timetable[0]['repeat'] == 0) {
+				for ($i = 1; $i < count($timetable); $i++) {
+					if ($timetable[$i]['classes_id'] == $timetable[0]['classes_id'] && $timetable[$i]['teacher_id'] == $timetable[0]['teacher_id']) {
+						$left = floor($coursetime / 7);
+						$timetable[$i]['available_course_time'] = substr_replace($timetable[$i]['available_course_time'], str_repeat('0', 7), $left * 7, 7);
+					}
+				}
+			}
 
 			// 清除同教室同時段課程（尚未實做）
 
 			// 移動結果
 			$result[] = $timetable[0];
 			unset($timetable[0]);
-
 		}
 
+		//print_r($result);exit;
 		file_put_contents(__DIR__ . '/../storage/result.json', json_encode($result));
 	}
 

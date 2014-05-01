@@ -1,32 +1,53 @@
 <?php
-
-/*
- |--------------------------------------------------------------------------
- | Application Routes
- |--------------------------------------------------------------------------
- |
- | Here is where you can register all of the routes for an application.
- | It's a breeze. Simply tell Laravel the URIs it should respond to
- | and give it the Closure to execute when that URI is requested.
- |
- */
-
 /**
  * 首頁，導向班級課表查詢
  */
 Route::get('/', function()
 {
-	return View::make('class_table');
+	return Redirect::to('class_table');
 });
 
 /**
  * 班級課表查詢
  */
-Route::get('/class_table', function()
+Route::group(array('prefix' => 'class_table'), function()
 {
-	$result = json_decode(file_get_contents(__DIR__ . './storage/result.json'));
-	print_r($result);
-	return View::make('class_table');
+
+	Route::get('/', function()
+	{
+		$viewData['yearList'] = Year::orderBy('year_name')->get();
+		return View::make('class_table', $viewData);
+	});
+
+	Route::get('/{yearId}', function($yearId)
+	{
+		$viewData['yearList'] = Year::orderBy('year_name')->get();
+		$viewData['classes'] = Year::find($yearId)->classes()->orderBy('classes_name')->get();
+		$viewData['yearId'] = $yearId;
+		return View::make('class_table', $viewData);
+	});
+
+	Route::get('/{yearId}/{classesId}', function($yearId, $classesId)
+	{
+		$viewData['yearList'] = Year::orderBy('year_name')->get();
+		$viewData['classes'] = Year::find($yearId)->classes()->orderBy('classes_name')->get();
+		$viewData['yearId'] = $yearId;
+		$viewData['classesId'] = $classesId;
+
+		// 處理原始資料
+		$result = json_decode(file_get_contents(__DIR__ . './storage/result.json'), true);
+		$classTimeTable = array_fill(0, 35, null);
+		foreach ($result as $value) {
+			if ($value['classes_id'] == $classesId) {
+				for ($i = 0; $i < $value['combination']; $i++) {
+					$classTimeTable[$value['course_time']] = $value;
+				}
+			}
+		}
+
+		$viewData['classTimeTable'] = $classTimeTable;
+		return View::make('class_table', $viewData);
+	});
 });
 
 /**
