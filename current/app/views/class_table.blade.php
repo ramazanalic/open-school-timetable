@@ -4,15 +4,14 @@
 	{{ HTML::style('css/row_item/row_item_style_2.css') }}
 	{{ HTML::style('css/column_item/column_item_style_1.css') }}
 	{{ HTML::style('css/js/course_time_selector.css') }}
-	{{ HTML::style('css/class_table.css') }}		
+	{{ HTML::style('css/class_table.css') }}
+	{{ HTML::style('css/table_query.css') }}		
 @stop
 
 <?php View::share('titlePrefix', '班級課表查詢'); ?>
 
 @section('content')
-	<h1>班級課表查詢</h1>
-	
-	{{ HtmlComposite::messageBlock() }}
+	<h1>班級課表查詢</h1>	
 	
 	@if (isset($yearList))
 		<div class="row_item row_item_style_2" id="year_row">

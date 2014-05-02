@@ -51,19 +51,39 @@ Route::group(array('prefix' => 'class_table'), function()
 });
 
 /**
+ * 教師課表查詢
+ */
+Route::group(array('prefix' => 'teacher_table'), function()
+{
+	Route::get('/', function()
+	{		
+		$viewData['titleList'] = Title::orderBy('title_name')->get();		
+		return View::make('teacher_table', $viewData);		
+	});
+
+	Route::get('/{titleId}', function($titleId)
+	{
+		$viewData['titleList'] = Title::orderBy('title_name')->get();	
+		$viewData['teacherList'] = ($titleId == 'all') ? Teacher::orderBy('teacher_name')->get() : Teacher::where('title_id', '=', $titleId)->orderBy('teacher_name')->get();
+		$viewData['titleId'] = $titleId;
+		return View::make('teacher_table', $viewData);
+	});
+	
+	Route::get('/{titleId}/{teacherId}', function($titleId, $teacherId)
+	{
+		$viewData['titleList'] = Title::orderBy('title_name')->get();	
+		$viewData['teacherList'] = ($titleId == 'all') ? Teacher::orderBy('teacher_name')->get() : Teacher::where('title_id', '=', $titleId)->orderBy('teacher_name')->get();
+		$viewData['titleId'] = $titleId;
+		return View::make('teacher_table', $viewData);
+	});
+});
+
+/**
  * 教室課表查詢
  */
 Route::get('/classroom_table', function()
 {
 	return View::make('classroom_table');
-});
-
-/**
- * 教師課表查詢
- */
-Route::get('/teacher_table', function()
-{
-	return View::make('teacher_table');
 });
 
 /**
@@ -200,9 +220,8 @@ Route::group(array('prefix' => 'account'), function()
 
 	// 依職稱顯示教師列表
 	Route::get('view_title/{titleId}', function($titleId)
-	{
-		$teacher = ($titleId == 'all') ? Teacher::orderBy('teacher_name') : Teacher::where('title_id', '=', $titleId)->orderBy('teacher_name');
-		$viewData['teacherList'] = $teacher->get();
+	{		
+		$viewData['teacherList'] = ($titleId == 'all') ? Teacher::orderBy('teacher_name')->get() : Teacher::where('title_id', '=', $titleId)->orderBy('teacher_name')->get();
 		$viewData['titleList'] = Title::orderBy('title_name')->get();
 		$viewData['titleId'] = $titleId;
 		return View::make('account_index')->with($viewData);

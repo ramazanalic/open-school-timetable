@@ -1,0 +1,20 @@
+#course_time_selector {
+	float: left;
+	margin: 0.5em 0 0 1.5em;
+}
+
+#course_time_selector .course {
+	width: 5em;
+	height: 3em;
+	color: black !important;
+	text-align: center;
+}
+
+#course_time_selector td, #course_time_selector th {
+	padding: 5px;
+	color: #F3F3F3;
+}
+
+#day_row th {
+	text-align: center;
+}

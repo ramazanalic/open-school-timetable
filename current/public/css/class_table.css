@@ -2,22 +2,6 @@
 	float: left;
 }
 
-#course_time_selector {
-	float: left;
-	margin: 0.5em 0 0 1.5em;
-}
-
-#course_time_selector .course {
-	width: 5em;
-	height: 3em;
-	color: black !important;
-	text-align: center;
-}
-
-#day_row th {
-	text-align: center;
-}
-
 .column_item li {
 	width: 9em;
 }
