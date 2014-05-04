@@ -29,8 +29,8 @@
 		<div class="column_item column_item_style_1" id="class_column">
 			<ul>		
 		    	@foreach ($classes as $classItem)
-		    		<li class = "{{ (isset($classesId) && $classItem->classes_id == $classesId) ? 'column_item_selected' : '' }}">
-		    			{{ HTML::link(URL::to('class_table/' . $yearId . '/' . $classItem->classes_id), $classItem->classes_name . '（' . $classItem->teacher->teacher_name . '）') }}
+		    		<li class = "{{ (isset($classesId) && $classItem->classes_id == $classesId) ? 'column_item_selected' : '' }}">		    										    		
+		    			{{ HTML::link(URL::to('class_table/' . $yearId . '/' . $classItem->classes_id), (count($classItem->teacher) != 0) ? $classItem->classes_name . '（' . $classItem->teacher->teacher_name . '）' : $classItem->classes_name)}}		    			
 		    		</li>
 		    	@endforeach
 			</ul>

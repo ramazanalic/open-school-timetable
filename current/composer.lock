@@ -684,12 +684,12 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/laravel/framework.git",
-                "reference": "426c9e0e39915eedd2861b147ba6701443136e3d"
+                "reference": "5bad356befa54ebac0818ef19391c23d35b66862"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/laravel/framework/zipball/426c9e0e39915eedd2861b147ba6701443136e3d",
-                "reference": "426c9e0e39915eedd2861b147ba6701443136e3d",
+                "url": "https://api.github.com/repos/laravel/framework/zipball/5bad356befa54ebac0818ef19391c23d35b66862",
+                "reference": "5bad356befa54ebac0818ef19391c23d35b66862",
                 "shasum": ""
             },
             "require": {
@@ -781,7 +781,7 @@
                     "name": "Taylor Otwell",
                     "email": "taylorotwell@gmail.com",
                     "homepage": "https://github.com/taylorotwell",
-                    "role": "Developer"
+                    "role": "Creator of Laravel"
                 }
             ],
             "description": "The Laravel Framework.",
@@ -789,7 +789,7 @@
                 "framework",
                 "laravel"
             ],
-            "time": "2013-12-06 01:42:26"
+            "time": "2014-05-02 20:45:08"
         },
         {
             "name": "monolog/monolog",

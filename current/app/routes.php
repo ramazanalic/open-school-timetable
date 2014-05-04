@@ -56,22 +56,22 @@ Route::group(array('prefix' => 'class_table'), function()
 Route::group(array('prefix' => 'teacher_table'), function()
 {
 	Route::get('/', function()
-	{		
-		$viewData['titleList'] = Title::orderBy('title_name')->get();		
-		return View::make('teacher_table', $viewData);		
+	{
+		$viewData['titleList'] = Title::orderBy('title_name')->get();
+		return View::make('teacher_table', $viewData);
 	});
 
 	Route::get('/{titleId}', function($titleId)
 	{
-		$viewData['titleList'] = Title::orderBy('title_name')->get();	
+		$viewData['titleList'] = Title::orderBy('title_name')->get();
 		$viewData['teacherList'] = ($titleId == 'all') ? Teacher::orderBy('teacher_name')->get() : Teacher::where('title_id', '=', $titleId)->orderBy('teacher_name')->get();
 		$viewData['titleId'] = $titleId;
 		return View::make('teacher_table', $viewData);
 	});
-	
+
 	Route::get('/{titleId}/{teacherId}', function($titleId, $teacherId)
 	{
-		$viewData['titleList'] = Title::orderBy('title_name')->get();	
+		$viewData['titleList'] = Title::orderBy('title_name')->get();
 		$viewData['teacherList'] = ($titleId == 'all') ? Teacher::orderBy('teacher_name')->get() : Teacher::where('title_id', '=', $titleId)->orderBy('teacher_name')->get();
 		$viewData['titleId'] = $titleId;
 		return View::make('teacher_table', $viewData);
@@ -220,7 +220,7 @@ Route::group(array('prefix' => 'account'), function()
 
 	// 依職稱顯示教師列表
 	Route::get('view_title/{titleId}', function($titleId)
-	{		
+	{
 		$viewData['teacherList'] = ($titleId == 'all') ? Teacher::orderBy('teacher_name')->get() : Teacher::where('title_id', '=', $titleId)->orderBy('teacher_name')->get();
 		$viewData['titleList'] = Title::orderBy('title_name')->get();
 		$viewData['titleId'] = $titleId;
@@ -646,9 +646,7 @@ Route::group(array('prefix' => 'timetable'), function()
 	{
 		$validator = FormValidator::courseUnit(Input::all());
 
-		if ($validator->fails()) {
-			print_r(Session::get('conflictError'));
-			exit ;
+		if ($validator->fails()) {	
 			return Redirect::to('/timetable/view_title/' . Teacher::find($teacherId)->title->title_id . '/#' . $teacherId)->withInput()->withErrors($validator)->with('message', '輸入錯誤，請檢查');
 		} else {
 			$data = Input::all();

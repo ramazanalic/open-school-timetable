@@ -160,20 +160,18 @@ class FormValidator
 			 */
 			// 限制排課時間少於設定節數
 			if (substr_count($course_time, '1') < $count && substr_count($course_time, '1') != 0) {
-				Session::flash('conflictError', '限制排課時間少於設定節數');
+				Session::flash('conflictError', '限制排課時間（共' . substr_count($course_time, '1') . '節）少於設定節數（' . $count . '）');
 				return false;
 			}
 
-			// 組合節數大於節數
+			// 組合節數大於設定節數
 			if ($combination > $count) {
-				Session::flash('conflictError', '組合節數（' . $combination . '）大於節數（' . $count . '）');
+				Session::flash('conflictError', '組合節數（' . $combination . '）大於設定節數（' . $count . '）');
 				return false;
 			}
 
-			// 班級可排節數已滿
-			/* 取得該班級已經排課的*/
+			// 班級可排節數已滿（尚未實做）
 
-			//寫入錯誤訊息
 			return true;
 		});
 

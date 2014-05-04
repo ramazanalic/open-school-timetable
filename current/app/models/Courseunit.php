@@ -129,13 +129,13 @@ class Courseunit extends Eloquent
 				}
 			}
 
-			// 檢查是否有衝突，可以排的時間被填滿（尚未實做）
-
-			// 隨機排課
+			// 檢查是否有衝突，可以排的時間被填滿，產生和那一個排課設定衝突的訊息（尚未實做）			
 			if (count($coursePosition) == 0) {
-				print_r($timetable);	
-				exit;
+				print_r($timetable);
+				exit ;
 			}
+			
+			// 隨機選擇排課時間
 			$coursetime = $coursePosition[array_rand($coursePosition)];
 			$timetable[0]['course_time'] = $coursetime;
 
