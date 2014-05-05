@@ -117,6 +117,8 @@
 						<td class="course" id="course_{{$i}}">
 							@if ($classTimeTable[$i] != null)
 								{{ $classTimeTable[$i]['course_name'] }}
+								<br>
+								{{ $classTimeTable[$i]['teacher_name'] }}
 							@endif
 						</td>
 					@endfor

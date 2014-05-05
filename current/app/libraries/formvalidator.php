@@ -130,22 +130,7 @@ class FormValidator
 		// 衝突檢查
 		Validator::extend('conflict', function($attribute, $data, $parameters)
 		{
-			// 處理變數
-			$classes_id = $parameters[1];
-			$course_id = $parameters[2];
-			$count = $parameters[3];
-			$classroom_id = $parameters[4];
-			$combination = $parameters[5];
-			$repeat = $parameters[6];
-			if ($parameters[7] == 1) {
-				$course_time = $parameters[8];
-			} else {
-				$course_time = 0;
-			}
-			$teacher_id = end($parameters);
-
 			/* Array參考
-
 			 [0][_token] => Yvw1pYLjZIm1BaiPJ1yTYKbs3Nl8T9zfkLesI0Bh
 			 [1][classes_id] => 4
 			 [2][course_id] => 9
@@ -156,8 +141,18 @@ class FormValidator
 			 [7][limit_course_time] => 1
 			 [8][course_time] => 10000001000000110000011000001100000
 			 [9][teacher_id] => 19
-
 			 */
+
+			// 處理變數
+			list(, $classes_id, $course_id, $count, $classroom_id, $combination, $repeat) = $parameters;
+			$teacher_id = end($parameters);
+
+			if ($parameters[7] == 1) {
+				$course_time = $parameters[8];
+			} else {
+				$course_time = 0;
+			}
+
 			// 限制排課時間少於設定節數
 			if (substr_count($course_time, '1') < $count && substr_count($course_time, '1') != 0) {
 				Session::flash('conflictError', '限制排課時間（共' . substr_count($course_time, '1') . '節）少於設定節數（' . $count . '）');
@@ -167,6 +162,12 @@ class FormValidator
 			// 組合節數大於設定節數
 			if ($combination > $count) {
 				Session::flash('conflictError', '組合節數（' . $combination . '）大於設定節數（' . $count . '）');
+				return false;
+			}
+
+			// 同天不排課，但是（排課節數 / 組合節數）超過5
+			if ($repeat == 0 && ($count / $combination > 5)) {
+				Session::flash('conflictError', '同天同班不重複排課，但是（排課節數 / 組合節數）超過5');
 				return false;
 			}
 

@@ -36,16 +36,16 @@ Route::group(array('prefix' => 'class_table'), function()
 
 		// 處理原始資料
 		$result = json_decode(file_get_contents(__DIR__ . './storage/result.json'), true);
-		$classTimeTable = array_fill(0, 35, null);
-		foreach ($result as $value) {
-			if ($value['classes_id'] == $classesId) {
-				for ($i = 0; $i < $value['combination']; $i++) {
-					$classTimeTable[$value['course_time']] = $value;
+		$viewData['classTimeTable'] = array_fill(0, 35, null);
+		foreach ($result as $course) {
+			if ($course['classes_id'] == $classesId) {
+				for ($i = 0; $i < $course['combination']; $i++) {
+					$viewData['classTimeTable'][$course['course_time'] + $i] = $course;
 				}
 			}
 		}
 
-		$viewData['classTimeTable'] = $classTimeTable;
+		//print_r($viewData['classTimeTable']);exit;
 		return View::make('class_table', $viewData);
 	});
 });
@@ -74,6 +74,20 @@ Route::group(array('prefix' => 'teacher_table'), function()
 		$viewData['titleList'] = Title::orderBy('title_name')->get();
 		$viewData['teacherList'] = ($titleId == 'all') ? Teacher::orderBy('teacher_name')->get() : Teacher::where('title_id', '=', $titleId)->orderBy('teacher_name')->get();
 		$viewData['titleId'] = $titleId;
+		$viewData['teacherId'] = $teacherId;
+
+		// 處理原始資料
+		$result = json_decode(file_get_contents(__DIR__ . './storage/result.json'), true);
+		$viewData['teacherTimeTable'] = array_fill(0, 35, null);
+		foreach ($result as $course) {
+			if ($course['teacher_id'] == $teacherId) {
+				for ($i = 0; $i < $course['combination']; $i++) {
+					$viewData['teacherTimeTable'][$course['course_time'] + $i] = $course;
+				}
+			}
+		}
+
+		//print_r($viewData['teacherTimeTable']);exit;		
 		return View::make('teacher_table', $viewData);
 	});
 });
@@ -646,7 +660,7 @@ Route::group(array('prefix' => 'timetable'), function()
 	{
 		$validator = FormValidator::courseUnit(Input::all());
 
-		if ($validator->fails()) {	
+		if ($validator->fails()) {
 			return Redirect::to('/timetable/view_title/' . Teacher::find($teacherId)->title->title_id . '/#' . $teacherId)->withInput()->withErrors($validator)->with('message', '輸入錯誤，請檢查');
 		} else {
 			$data = Input::all();

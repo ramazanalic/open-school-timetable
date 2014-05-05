@@ -79,6 +79,10 @@ class Courseunit extends Eloquent
 			$temp = $courseunit->toArray();
 			$temp['course_name'] = $courseunit->course->course_name;
 			$temp['teacher_name'] = $courseunit->teacher->teacher_name;
+			$temp['classes_name'] = $courseunit->classes->classes_name;
+			if ($temp['classroom_id'] != 0) {
+				$temp['classroom_name'] = $courseunit->classroom->classroom_name;
+			}
 			$limit = unserialize($temp['course_unit_limit']);
 			$temp['combination'] = $limit['combination'];
 			$temp['repeat'] = $limit['repeat'];
@@ -88,24 +92,27 @@ class Courseunit extends Eloquent
 			$temp['total_count'] = $temp['count'];
 			$temp['available_course_time'] = $courseunit->classes->year->course_time & $temp['limit_course_time'];
 
-			// 分解排課單元
+			// 依照組合節數分解排課單元，產生速度
 			while ($temp['count'] > 0) {
 				$temp['count'] -= $temp['combination'];
 				$temp2 = $temp;
 				unset($temp2['count']);
+
+				// 處理組合節數可用的排課時間
 				if ($temp['combination'] == 2) {
 					$temp2['available_course_time'] &= '11101101110110111011011101101110110';
-					$temp2['timetable_id'] = ++$timetable_id;
-					$timetable[] = $temp2;
-				} else {
-					$temp2['timetable_id'] = ++$timetable_id;
-					$timetable[] = $temp2;
 				}
 
+				$temp2['timetable_id'] = ++$timetable_id;
+				$temp2['v'] = mt_rand(-1600, 1600) / 100;
+				$timetable[] = $temp2;
+
+				// 如果還有剩下的節數，但是又不夠組合節數來安排
 				if ($temp['count'] < $temp['combination'] && $temp['count'] > 0) {
 					$temp['count']--;
 					$temp['combination'] = 1;
 					$temp['timetable_id'] = ++$timetable_id;
+					$temp['v'] = mt_rand(-1600, 1600) / 100;
 					$timetable[] = $temp;
 				}
 
@@ -129,17 +136,17 @@ class Courseunit extends Eloquent
 				}
 			}
 
-			// 檢查是否有衝突，可以排的時間被填滿，產生和那一個排課設定衝突的訊息（尚未實做）			
+			// 檢查是否有衝突，可以排的時間被填滿，產生和那一個排課設定衝突的訊息（尚未實做）
 			if (count($coursePosition) == 0) {
 				print_r($timetable);
 				exit ;
 			}
-			
+
 			// 隨機選擇排課時間
 			$coursetime = $coursePosition[array_rand($coursePosition)];
 			$timetable[0]['course_time'] = $coursetime;
 
-			// 清除授課老師在同時段的排課時間
+			// 清除授課老師在同時段的可用的排課時間
 			for ($i = 1; $i < count($timetable); $i++) {
 				if ($timetable[$i]['teacher_id'] == $timetable[0]['teacher_id']) {
 					$timetable[$i]['available_course_time'] = substr_replace($timetable[$i]['available_course_time'], str_repeat('0', $timetable[0]['combination']), $coursetime, $timetable[0]['combination']);
@@ -147,7 +154,15 @@ class Courseunit extends Eloquent
 				}
 			}
 
-			// 清除該班同天該老師的排課時間
+			// 清除有上該班級老師可用的排課時間
+			for ($i = 1; $i < count($timetable); $i++) {
+				if ($timetable[$i]['classes_id'] == $timetable[0]['classes_id']) {
+					$timetable[$i]['available_course_time'] = substr_replace($timetable[$i]['available_course_time'], str_repeat('0', $timetable[0]['combination']), $coursetime, $timetable[0]['combination']);
+
+				}
+			}
+
+			// 清除該班同天該老師可用的排課時間（有設定同天同班不排課）
 			if ($timetable[0]['repeat'] == 0) {
 				for ($i = 1; $i < count($timetable); $i++) {
 					if ($timetable[$i]['classes_id'] == $timetable[0]['classes_id'] && $timetable[$i]['teacher_id'] == $timetable[0]['teacher_id']) {
