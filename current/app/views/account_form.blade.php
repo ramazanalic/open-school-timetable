@@ -18,13 +18,13 @@
 
 	{{ HtmlComposite::messageBlock() }}
 
-	{{ FormList::open($teacher, (isset($teacher)) ? 'account/edit/' . $teacher->teacher_id . '/titleId/' . $titleId: 'account/add') }}
+	{{ FormList::open($teacher, (isset($teacher)) ? 'account/edit/' . $teacher->teacher_id . '/titleId/' . $titleId : 'account/add') }}
 	{{ FormList::description('請輸入以下的資料') }}
 	{{ FormList::hidden('course_time') }}	
 	<br>	
-	{{ FormList::text('teacher_name', '教師姓名', array('autofocus' => 'autofocus', 'required' => 'required')) }}
-	{{ FormList::text('teacher_account', '帳號', array('placeholder' => '英文+數字', 'required' => 'required')) }}	
-	{{ FormList::select('teacher_privilege', '權限', array('valueArray' => array('16' => '一般使用者', '2' => '管理者'), 'required' => 'required')) }}
+	{{ FormList::text('teacher_name', '教師姓名', ['autofocus' => 'autofocus', 'required' => 'required']) }}
+	{{ FormList::text('teacher_account', '帳號', ['placeholder' => '英文+數字', 'required' => 'required']) }}	
+	{{ FormList::select('teacher_privilege', '權限', ['valueArray' => ['16' => '一般使用者', '2' => '管理者'], 'required' => 'required']) }}
 	<li id="teacher_course_time">	
 		教師排課需求設定
 		@include('course_time_selector', array('course_time' => (isset($teacher) ? $teacher->course_time : '')))
@@ -37,8 +37,7 @@
 	{{ FormList::password('teacher_password', '密碼') }}
 	{{ FormList::password('teacher_password_confirmation', '確認密碼') }}
 	<br>
-	
-	
+		
 	<br>
 	{{ (isset($teacher)) ? FormList::submit('更新') : FormList::submit('新增') }}
 	{{ FormList::close() }}

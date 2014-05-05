@@ -570,7 +570,7 @@ Route::group(array('prefix' => 'classroom'), function()
 	Route::get('/', function()
 	{
 		$classroomList = Classroom::orderBy('classroom_name')->get();
-		return View::make('classroom_index')->with(array('classroomList' => $classroomList));
+		return View::make('classroom_index')->with(array('classroomList' => $classroomList, 'classroom' => null));
 	});
 
 	// 執行新增教室

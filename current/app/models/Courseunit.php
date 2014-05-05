@@ -94,28 +94,22 @@ class Courseunit extends Eloquent
 
 			// 依照組合節數分解排課單元，產生速度
 			while ($temp['count'] > 0) {
-				$temp['count'] -= $temp['combination'];
 				$temp2 = $temp;
 				unset($temp2['count']);
 
-				// 處理組合節數可用的排課時間
-				if ($temp['combination'] == 2) {
-					$temp2['available_course_time'] &= '11101101110110111011011101101110110';
+				if ($temp['count'] >= $temp['combination']) {
+					$temp['count'] -= $temp['combination'];
+					if ($temp['combination'] == 2) {
+						$temp2['available_course_time'] &= '11101101110110111011011101101110110';
+					}
+				} else {
+					$temp['count']--;
+					$temp2['combination'] = 1;
 				}
 
 				$temp2['timetable_id'] = ++$timetable_id;
 				$temp2['v'] = mt_rand(-1600, 1600) / 100;
 				$timetable[] = $temp2;
-
-				// 如果還有剩下的節數，但是又不夠組合節數來安排
-				if ($temp['count'] < $temp['combination'] && $temp['count'] > 0) {
-					$temp['count']--;
-					$temp['combination'] = 1;
-					$temp['timetable_id'] = ++$timetable_id;
-					$temp['v'] = mt_rand(-1600, 1600) / 100;
-					$timetable[] = $temp;
-				}
-
 			}
 		}
 

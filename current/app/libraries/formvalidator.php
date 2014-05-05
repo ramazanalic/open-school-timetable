@@ -115,7 +115,7 @@ class FormValidator
 	{
 		$rules = array(
 			'classroom_name' => 'required',
-			'max_course' => 'required|min:1|max:7'
+			'count' => 'required|min:1|max:10'			
 		);
 		$messages = array('classroom_name_required' => '請輸入課程名稱');
 
