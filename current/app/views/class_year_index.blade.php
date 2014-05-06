@@ -21,13 +21,49 @@
 
 	@if (isset($yearList))
 		<div class="row_item row_item_style_2" id="year_row">
-			<ul>		
+			@if (isset($year))				
+				{{ HtmlComposite::back('class_year/') }}							
+			@endif
+			
+			<ul>				
 		    	@foreach ($yearList as $yearItem)
-		    		<li class = "{{ (isset($year) && $yearItem->year_id == $year->year_id) ? 'row_item_selected' : '' }}">
+		    		<li class="{{ (isset($year) && $yearItem->year_id == $year->year_id) ? 'row_item_selected' : '' }}">
 		    			{{ HTML::link(URL::to('class_year/view_year/' . $yearItem->year_id), $yearItem->year_name . '（' . $yearItem->classes()->count() . '）') }}
 		    		</li>
 		    	@endforeach
 			</ul>
+		</div>
+	@endif
+	
+	@if (isset($year))
+		<div id="class_area">
+			{{ Form::open(array('url' => URL::to('class_year/add_classes/' . $year->year_id))) }}
+				<table class="data_table table_style_1">
+			    	<tr>
+			    		<th class="classes_name">{{ Form::text('classes_name', '', array('required' => 'required', 'placeholder' => '新增班級…', 'autofocus' => 'autofocus')) }}</th>
+			    		<th class="teacher">
+			    			{{ FormList::select('teacher_id', '導師', array('valueArray' => array('0' => '無'), 'required' => 'required'), array('Teacher', 'teacher_id', 'teacher_name'), 0) }}	
+			    		</th>			    		
+			    		<th class="classes_command">{{ Form::submit('新增班級', array('id' => 'add_classes')) }}</th>			    		
+		    		</tr>
+		    	</table>
+	    	{{ Form::close() }}
+
+			@if (isset($classes))
+		    	@foreach ($classes as $classesItem)
+		    		{{ Form::open(array('url' => URL::to('class_year/update_classes/' . $classesItem->classes_id . '/' . $year->year_id))) }}
+	    				<table class="data_table table_style_1">
+		    				<tr>
+		    					<td class="classes_name">{{ Form::text('classes_name', $classesItem->classes_name, array('required' => 'required', 'size' => '5')) }}</td>
+		    					<td class="teacher">			    						
+			    					{{ FormList::select('teacher_id', '導師', array('valueArray' => Teacher::getTeacherSelectArray(), 'value' => $classesItem->teacher_id, 'required' => 'required'), null, 0) }}
+			    				</th>
+		    					<td class="classes_command">{{ Form::submit('更新') . '&nbsp;&nbsp;' . HtmlComposite::delete('class_year/delete_classes/' . $classesItem->classes_id . '/' . $year->year_id) }}</td>
+		    				</tr>
+		    			</table>
+		    		{{ Form::close() }}
+		    	@endforeach
+		    @endif
 		</div>
 	@endif	
 
@@ -49,35 +85,5 @@
 	   	</form>
 	</div>
 
-	@if (isset($year))
-		<div id="class_area">
-			{{ Form::open(array('url' => URL::to('class_year/add_classes/' . $year->year_id))) }}
-				<table class="data_table table_style_1">
-			    	<tr>
-			    		<th class="classes_name">{{ Form::text('classes_name', '', array('required' => 'required', 'placeholder' => '新增班級…', 'autofocus' => 'autofocus')) }}</th>
-			    		<th class="teacher">
-			    			{{ FormList::select('teacher_id', '導師', array('valueArray' => array('0' => '無'), 'required' => 'required'), array('Teacher', 'teacher_id', 'teacher_name'), 0) }}	
-			    		</th>			    		
-			    		<th class="classes_command">{{ Form::submit('新增', array('id' => 'add_classes')) }}</th>			    		
-		    		</tr>
-		    	</table>
-	    	{{ Form::close() }}
-
-			@if (isset($classes))
-		    	@foreach ($classes as $classesItem)
-		    		{{ Form::open(array('url' => URL::to('class_year/update_classes/' . $classesItem->classes_id . '/' . $year->year_id))) }}
-	    				<table class="data_table table_style_1">
-		    				<tr>
-		    					<td class="classes_name">{{ Form::text('classes_name', $classesItem->classes_name, array('required' => 'required', 'size' => '5')) }}</td>
-		    					<td class="teacher">			    						
-			    					{{ FormList::select('teacher_id', '導師', array('valueArray' => Teacher::getTeacherSelectArray(), 'value' => $classesItem->teacher_id, 'required' => 'required'), null, 0) }}
-			    				</th>
-		    					<td class="classes_command">{{ Form::submit('更新') . '&nbsp;&nbsp;' . HtmlComposite::delete('class_year/delete_classes/' . $classesItem->classes_id . '/' . $year->year_id) }}</td>
-		    				</tr>
-		    			</table>
-		    		{{ Form::close() }}
-		    	@endforeach
-		    @endif
-		</div>
-	@endif
+	
 @stop

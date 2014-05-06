@@ -17,6 +17,10 @@
 	<h1>教室管理</h1>	
 	
 	{{ HtmlComposite::messageBlock() }}
+	
+	@if (isset($classroom))
+		{{ HtmlComposite::back('classroom/') }}					
+	@endif
 
 	{{ FormList::open($classroom, URL::to(isset($classroom) ? 'classroom/edit/' . $classroom->classroom_id : 'classroom/add')) }}	
 		{{ FormList::text('classroom_name', '教室名稱', array('required' => 'required', 'autofocus' => 'autofocus')) }}

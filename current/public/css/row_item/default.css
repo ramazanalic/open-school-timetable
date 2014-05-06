@@ -15,3 +15,7 @@
 	min-width: 5em;
 	text-align: center;
 }
+
+.row_item li a:hover {
+	text-shadow: 2px 2px #333333;
+}

@@ -4,9 +4,8 @@
  * 年級表單樣式
  */
 #year_form {
-	display: inline-block;
 	float: left;
-	margin: 0.5em 1.5em 0 7px;
+	padding: 0 0 3em 2em;
 }
 
 #year_form .delete_link {
@@ -26,8 +25,10 @@
  * 班級表單樣式
  */
 #class_area {
-	display: inline-block;
+	float: left;
 	margin-top: 0.5em;
+	padding-right: 2em;
+	border-right: 2px solid #666666;
 }
 
 #class_area .classes_name {
@@ -42,4 +43,8 @@
 #class_area .classes_command {
 	padding: 0;
 	width: 12em;
+}
+
+#class_area .teacher {
+	width: 10em;
 }

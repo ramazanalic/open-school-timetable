@@ -4,6 +4,13 @@
 	background-color: #1BA1E2;
 }
 
-.column_item_style_1 .column_item_selected {
-	border: 3px solid #F0A30A;
+.column_item_style_1 li a:hover {
+	margin-right: -0.5em;
+	background-color: #825A2C;
+}
+
+.column_item_style_1 .column_item_selected a {
+	margin-right: -0.5em;
+	background-color: #825A2C;
+	text-shadow: 2px 2px #333333;
 }

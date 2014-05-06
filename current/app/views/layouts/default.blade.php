@@ -94,7 +94,7 @@
 		<footer>
 			{{ HTML::link('http://code.google.com/p/open-school-timetable/', '程式專案網站') }}
 		</footer>
-		{{ HTML::script('js/jquery-2.1.0.min.js') }}
+		{{ HTML::script('js/jquery-2.1.1.min.js') }}
 		@yield('js')
 	</body>
 </html>

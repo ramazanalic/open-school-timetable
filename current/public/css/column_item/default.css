@@ -4,7 +4,7 @@
 }
 
 .column_item li {
-	width: 5em;	
+	min-width: 5em;
 	border: 3px solid #FFFFFF;
 }
 
@@ -13,3 +13,7 @@
 	padding: 5px;
 	text-align: center;
 }
+
+.column_item li a:hover {
+	text-shadow: 2px 2px #333333;
+} 
