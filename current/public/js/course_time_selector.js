@@ -15,7 +15,7 @@ function updateCourseTime() {
 }
 
 /**
- * 先設定預設值
+ * 進入選單先設定預設值
  */
 $(document).ready(function() {
 	updateCourseTime();

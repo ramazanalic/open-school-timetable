@@ -1,7 +1,7 @@
 @extends('layouts.default')
 
 @section('css')	
-	{{ HTML::style('css/form/caculate_form.css') }}
+	{{ HTML::style('css/form/caculate.css') }}
 	{{ HTML::style('css/course_index.css') }}
 @stop
 

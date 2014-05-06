@@ -1,8 +1,8 @@
 @extends('layouts.default')
 
 @section('css')
-	{{ HTML::style('css/table/table_style_1.css') }}
-	{{ HTML::style('css/form/course_form.css') }}
+	{{ HTML::style('css/table/style_1.css') }}
+	{{ HTML::style('css/form/course.css') }}
 	{{ HTML::style('css/course_index.css') }}
 @stop
 

@@ -1,7 +1,7 @@
 @extends('layouts.default')
 
 @section('css')
-	{{ HTML::style('css/form/account_form.css') }}
+	{{ HTML::style('css/form/account.css') }}
 	{{ HTML::style('css/js/course_time_selector.css') }}
 @stop
 

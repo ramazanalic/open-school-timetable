@@ -593,6 +593,15 @@ Route::group(array('prefix' => 'classroom'), function()
 		}
 	});
 
+	// 顯示編輯教師
+	Route::get('/edit/{id}', function($id)
+	{
+		$viewData['classroomList'] = Classroom::orderBy('classroom_name')->get();
+		$viewData['classroom'] = Classroom::find($id);
+		return View::make('classroom_index')->with($viewData);
+	});
+	
+	
 	// 執行編輯教室
 	Route::post('/edit/{id}', function($id)
 	{

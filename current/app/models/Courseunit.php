@@ -26,19 +26,6 @@ class Courseunit extends Eloquent
 		return $this->belongsTo('Classroom', 'classroom_id');
 	}
 
-	/**
-	 * 排序排課優先順序
-	 */
-	public static function sortAvailableCourseTime($timetable)
-	{
-		usort($timetable, function($a, $b)
-		{
-			return substr_count($a['available_course_time'], '1') > substr_count($b['available_course_time'], '1');
-		});
-
-		return $timetable;
-	}
-
 	public static function boot()
 	{
 		parent::boot();
@@ -73,51 +60,13 @@ class Courseunit extends Eloquent
 	public static function caculate($time, $extinction_time = 0)
 	{
 		// 產生排課陣列
-		$courseunits = self::orderBy('course_unit_id')->get();
-		$timetable_id = 0;
-		foreach ($courseunits as $courseunit) {
-			$temp = $courseunit->toArray();
-			$temp['course_name'] = $courseunit->course->course_name;
-			$temp['teacher_name'] = $courseunit->teacher->teacher_name;
-			$temp['classes_name'] = $courseunit->classes->classes_name;
-			if ($temp['classroom_id'] != 0) {
-				$temp['classroom_name'] = $courseunit->classroom->classroom_name;
-			}
-			$limit = unserialize($temp['course_unit_limit']);
-			$temp['combination'] = $limit['combination'];
-			$temp['repeat'] = $limit['repeat'];
-			$temp['limit_course_time'] = ($limit['course_time']) ? $limit['course_time'] : str_repeat('1', 35);
-			unset($temp['course_unit_limit']);
-			unset($temp['course_unit_id']);
-			$temp['total_count'] = $temp['count'];
-			$temp['available_course_time'] = $courseunit->classes->year->course_time & $temp['limit_course_time'];
-
-			// 依照組合節數分解排課單元，產生速度
-			while ($temp['count'] > 0) {
-				$temp2 = $temp;
-				unset($temp2['count']);
-
-				if ($temp['count'] >= $temp['combination']) {
-					$temp['count'] -= $temp['combination'];
-					if ($temp['combination'] == 2) {
-						$temp2['available_course_time'] &= '11101101110110111011011101101110110';
-					}
-				} else {
-					$temp['count']--;
-					$temp2['combination'] = 1;
-				}
-
-				$temp2['timetable_id'] = ++$timetable_id;
-				$temp2['v'] = mt_rand(-1600, 1600) / 100;
-				$timetable[] = $temp2;
-			}
-		}
+		$timetable = self::_getTimetableArray();
 
 		// 產生課表（種子）
 		$result = array();
 		while (count($timetable) > 0) {
 			// 排序優先排課順序
-			$timetable = Courseunit::sortAvailableCourseTime($timetable);
+			$timetable = self::_sortAvailableCourseTime($timetable);
 
 			// 隨機選擇排課時間
 			for ($stringPostion = 0, $coursePosition = array(); $stringPostion < strlen($timetable[0]['available_course_time']); ) {
@@ -175,6 +124,71 @@ class Courseunit extends Eloquent
 
 		//print_r($result);exit;
 		file_put_contents(__DIR__ . '/../storage/result.json', json_encode($result));
+	}
+
+	/**
+	 * 排序排課優先順序
+	 */
+	private static function _sortAvailableCourseTime($timetable)
+	{
+		usort($timetable, function($a, $b)
+		{
+			return substr_count($a['available_course_time'], '1') > substr_count($b['available_course_time'], '1');
+		});
+
+		return $timetable;
+	}
+
+	/**
+	 * 產生排課陣列
+	 */
+	private static function _getTimetableArray()
+	{
+		$courseunits = self::orderBy('course_unit_id')->get();
+		$timetable_id = 0;
+		$timetable = array();
+		foreach ($courseunits as $courseunit) {
+			$temp = $courseunit->toArray();
+			$temp['course_name'] = $courseunit->course->course_name;
+			$temp['teacher_name'] = $courseunit->teacher->teacher_name;
+			$temp['classes_name'] = $courseunit->classes->classes_name;
+			if ($temp['classroom_id'] != 0) {
+				$temp['classroom_name'] = $courseunit->classroom->classroom_name;
+			}
+			$limit = unserialize($temp['course_unit_limit']);
+			$temp['combination'] = $limit['combination'];
+			$temp['repeat'] = $limit['repeat'];
+			$temp['limit_course_time'] = ($limit['course_time']) ? $limit['course_time'] : str_repeat('1', 35);
+			unset($temp['course_unit_limit']);
+			unset($temp['course_unit_id']);
+			$temp['total_count'] = $temp['count'];
+			$temp['available_course_time'] = $courseunit->classes->year->course_time & $temp['limit_course_time'];
+
+			// 依照組合節數分解排課單元，產生速度
+			while ($temp['count'] > 0) {
+				$temp2 = $temp;
+				unset($temp2['count']);
+
+				if ($temp['count'] >= $temp['combination']) {
+					$temp['count'] -= $temp['combination'];
+					// 設定組合節數可用時間
+					if ($temp['combination'] == 2) {
+						$temp2['available_course_time'] &= '11101101110110111011011101101110110';
+					} else if ($temp['combination'] == 3) {
+						$temp2['available_course_time'] &= '11001001100100110010011001001100100';
+					}
+				} else {
+					$temp['count']--;
+					$temp2['combination'] = 1;
+				}
+
+				$temp2['timetable_id'] = ++$timetable_id;
+				$temp2['v'] = mt_rand(-1600, 1600) / 100;
+				$timetable[] = $temp2;
+			}
+		}
+
+		return $timetable;
 	}
 
 }

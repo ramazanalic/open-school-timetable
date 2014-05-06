@@ -1,11 +1,11 @@
 @extends('layouts.default')
 
 @section('css')
-	{{ HTML::style('css/row_item/row_item_style_1.css') }}
-	{{ HTML::style('css/column_item/column_item_style_2.css') }}
+	{{ HTML::style('css/row_item/style_1.css') }}
+	{{ HTML::style('css/column_item/style_2.css') }}
 	{{ HTML::style('css/js/course_time_selector.css') }}
-	{{ HTML::style('css/teacher_table.css') }}
-	{{ HTML::style('css/table_query.css') }}			
+	{{ HTML::style('css/table/query.css') }}
+	{{ HTML::style('css/teacher_table.css') }}				
 @stop
 
 <?php View::share('titlePrefix', '教師課表查詢'); ?>

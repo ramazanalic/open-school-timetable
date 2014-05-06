@@ -1,9 +1,9 @@
 @extends('layouts.default')
 
 @section('css')
-	{{ HTML::style('css/table/table_style_1.css') }}
-	{{ HTML::style('css/row_item/row_item_style_1.css') }}	
-	{{ HTML::style('css/form/title_form.css') }}
+	{{ HTML::style('css/table/style_1.css') }}
+	{{ HTML::style('css/row_item/style_1.css') }}	
+	{{ HTML::style('css/form/title.css') }}
 	{{ HTML::style('css/account_index.css') }}
 @stop
 
@@ -49,7 +49,7 @@
 		        <th class="classes">導師班</th>
 		        <th class="teacher_course_count">應上節數</th>
 		        <th class="is_admin"></th>
-		        <th class="command">{{ HtmlComposite::add('account/add') }}</th>
+		        <th class="command">{{ HtmlComposite::add('account/add', '新增教師') }}</th>
 		    </tr>
 		    @foreach ($teacherList as $teacher)
 			    <tr>

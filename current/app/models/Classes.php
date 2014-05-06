@@ -39,7 +39,9 @@ class Classes extends Eloquent
 		return $this->hasMany('Courseunit', 'classes_id');
 	}
 
-	// 同步更新教師的班級資料
+	/**
+	 * 同步更新教師的班級資料
+	 */
 	public static function syncTeacher()
 	{
 		$classes = Classes::find(self::$last_classes_id);
@@ -53,6 +55,9 @@ class Classes extends Eloquent
 		}
 	}
 
+	/**
+	 * 取得班級資料（提供給select用）
+	 */
 	public static function getClassesSelectArray()
 	{
 		$classesSelectArray[0] = '無';
