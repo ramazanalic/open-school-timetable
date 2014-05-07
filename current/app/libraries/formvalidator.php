@@ -171,6 +171,24 @@ class FormValidator
 				return false;
 			}
 
+			// 教室可排課時間不足
+			if ($classroom_id != 0) {
+				$courseCount = 0;
+				$courseUnitUseClassroom = array();
+				foreach (Courseunit::where('classroom_id', '=', $classroom_id)->get() as $courseunit) {
+					$courseCount += $courseunit->count;
+					$courseUnitUseClassroom[] = $courseunit->teacher->teacher_name;
+				}
+
+				$classroom = Classroom::find($classroom_id);
+
+				if (substr_count($classroom->course_time, '1') * $classroom->count - $courseCount - $count < 0) {
+					$teacherList = implode($courseUnitUseClassroom, ',');
+					Session::flash('conflictError', '教室《' . $classroom->classroom_name . '》排課時間不足：' . $teacherList);
+					return false;
+				}
+			}
+
 			// 班級可排節數已滿（尚未實做）
 
 			return true;

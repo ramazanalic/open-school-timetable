@@ -73,7 +73,7 @@ class Courseunit extends Eloquent
 		while (count($timetable) > 0) {
 			// 排序優先排課順序
 			$timetable = self::_sortAvailableCourseTime($timetable);
-
+			
 			// 產生排課時間選擇陣列
 			for ($position = 0, $coursePosition = array(); $position !== false; ) {
 				$position = strpos($timetable[0]['available_course_time'], '1', $position);
@@ -85,7 +85,9 @@ class Courseunit extends Eloquent
 
 			// 檢查是否有衝突，可以排的時間被填滿，產生和那一個排課設定衝突的訊息（尚未實做）
 			if (count($coursePosition) == 0) {
-				print_r($timetable);
+				print_r($result);
+				echo '<hr>';	
+				print_r($timetable[0]);				
 				exit ;
 			}
 
@@ -123,10 +125,10 @@ class Courseunit extends Eloquent
 				// 扣掉該教室該時段可用排課時間
 				for ($combinationI = 0; $combinationI < $timetable[0]['combination']; $combinationI++) {
 					$classroomCoursetimeCount = substr($classroomCoursetime[$timetable[0]['classroom_id']], $coursetime, 1) - 1;
-					$classroomCoursetime[$timetable[0]['classroom_id']] = substr_replace($classroomCoursetime[$timetable[0]['classroom_id']], $classroomCoursetimeCount, $coursetime, 1);
+					$classroomCoursetime[$timetable[0]['classroom_id']] = substr_replace($classroomCoursetime[$timetable[0]['classroom_id']], $classroomCoursetimeCount, $coursetime, 1);					
 					if ($classroomCoursetimeCount == 0) {
 						for ($i = 1; $i < count($timetable); $i++) {
-							if ($timetable[$i]['classroom_id'] == $timetable[0]['classroom_id']) {
+							if ($timetable[$i]['classroom_id'] == $timetable[0]['classroom_id']) {								
 								$timetable[$i]['available_course_time'] = substr_replace($timetable[$i]['available_course_time'], '0', $coursetime, 1);
 							}
 						}
@@ -185,7 +187,7 @@ class Courseunit extends Eloquent
 
 			// 依照教室可用時間來限制可排課時間
 			if (is_object($courseunit->classroom)) {
-				$temp['available_course_time'] = $courseunit->classroom->course_time & $temp['limit_course_time'];
+				$temp['available_course_time'] &= $courseunit->classroom->course_time;
 			}
 
 			// 依照組合節數分解排課單元，產生速度

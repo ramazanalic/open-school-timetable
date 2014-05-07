@@ -93,9 +93,30 @@ Route::group(array('prefix' => 'teacher_table'), function()
 /**
  * 教室課表查詢
  */
-Route::get('/classroom_table', function()
+Route::group(array('prefix' => 'classroom_table'), function()
 {
-	return View::make('classroom_table');
+	Route::get('/', function()
+	{
+		$viewData['classsroomList'] = Classroom::orderBy('classroom_name')->get();
+		return View::make('classroom_table', $viewData);
+	});
+
+	Route::get('/{classroomId}', function($classroomId)
+	{
+		$viewData['classsroomList'] = Classroom::orderBy('classroom_name')->get();
+		$viewData['classroomId'] = $classroomId;
+
+		// 處理原始資料
+		$result = json_decode(file_get_contents(__DIR__ . './storage/result.json'), true);
+		$viewData['classsroomTimeTable'] = array_fill(0, 35, null);
+		foreach ($result as $course) {
+			if ($course['classroom_id'] == $classroomId) {
+				$viewData['classsroomTimeTable'][$course['course_time']][] = $course;
+			}
+		}
+
+		return View::make('classroom_table', $viewData);
+	});
 });
 
 /**
