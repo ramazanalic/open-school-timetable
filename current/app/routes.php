@@ -45,7 +45,6 @@ Route::group(array('prefix' => 'class_table'), function()
 			}
 		}
 
-		//print_r($viewData['classTimeTable']);exit;
 		return View::make('class_table', $viewData);
 	});
 });
@@ -87,7 +86,6 @@ Route::group(array('prefix' => 'teacher_table'), function()
 			}
 		}
 
-		//print_r($viewData['teacherTimeTable']);exit;		
 		return View::make('teacher_table', $viewData);
 	});
 });
@@ -570,7 +568,10 @@ Route::group(array('prefix' => 'classroom'), function()
 	Route::get('/', function()
 	{
 		$classroomList = Classroom::orderBy('classroom_name')->get();
-		return View::make('classroom_index')->with(array('classroomList' => $classroomList, 'classroom' => null));
+		return View::make('classroom_index')->with(array(
+			'classroomList' => $classroomList,
+			'classroom' => null
+		));
 	});
 
 	// 執行新增教室
@@ -600,8 +601,7 @@ Route::group(array('prefix' => 'classroom'), function()
 		$viewData['classroom'] = Classroom::find($id);
 		return View::make('classroom_index')->with($viewData);
 	});
-	
-	
+
 	// 執行編輯教室
 	Route::post('/edit/{id}', function($id)
 	{

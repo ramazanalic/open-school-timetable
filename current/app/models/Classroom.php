@@ -15,6 +15,14 @@ class Classroom extends Eloquent
 		{
 			$courseUnit = Courseunit::where('classroom_id', '=', $classroom->classroom_id)->delete();
 		});
+
+		// 如果沒設定可用時間，預設全部可以使用
+		static::saving(function($data)
+		{
+			if ($data->course_time == 0) {
+				$data->course_time = str_repeat('1', 35);
+			}
+		});
 	}
 
 }

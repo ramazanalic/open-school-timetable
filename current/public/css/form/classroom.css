@@ -9,6 +9,10 @@
 	border-bottom: 2px solid #666666;
 }
 
+.form_list option {
+	display: block;
+}
+
 #teacher_course_time {
 	float: left;
 	margin-left: 2em;
