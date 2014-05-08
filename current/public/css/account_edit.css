@@ -1,0 +1,8 @@
+.input_form {
+	float: left;
+}
+
+#teacher_courseunit {
+	float: right;
+	margin: 4em 3em 0 0;
+}

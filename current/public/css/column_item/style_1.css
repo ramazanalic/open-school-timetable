@@ -1,6 +1,6 @@
 @import url(default.css);
 
-.column_item_style_1 li {
+.column_item_style_1 li, .column_item_style_1 .title {
 	background-color: #1BA1E2;
 }
 

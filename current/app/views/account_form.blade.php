@@ -3,6 +3,8 @@
 @section('css')
 	{{ HTML::style('css/form/account.css') }}
 	{{ HTML::style('css/js/course_time_selector.css') }}
+	{{ HTML::style('css/column_item/style_1.css') }}
+	{{ HTML::style('css/account_edit.css') }}
 @stop
 
 @section('js')
@@ -41,4 +43,20 @@
 	<br>
 	{{ (isset($teacher)) ? FormList::submit('更新') : FormList::submit('新增') }}
 	{{ FormList::close() }}
+	
+	
+	@if (isset($teacherCourseunit) && count($teacherCourseunit) != 0)	
+		<div id="teacher_courseunit" class="column_item column_item_style_1">
+			<ul>
+				<li class="title">
+					已設定排課
+				</li>
+				@foreach ($teacherCourseunit as $courseunit)
+					<li>
+						{{ $courseunit->classes->classes_name.  '[' . $courseunit->course->course_name . '](' . $courseunit->count . '節)'}}
+					</li>			
+				@endforeach
+			</ul>
+		</div>	
+	@endif 
 @stop

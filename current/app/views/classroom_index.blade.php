@@ -4,6 +4,7 @@
 	{{ HTML::style('css/table/style_1.css') }}
 	{{ HTML::style('css/form/classroom.css') }}
 	{{ HTML::style('css/js/course_time_selector.css') }}
+	{{ HTML::style('css/column_item/style_1.css') }}
 	{{ HTML::style('css/classroom_index.css') }}
 @stop
 
@@ -57,4 +58,19 @@
 	<div id="teacher_course_time">			
 		@include('course_time_selector', array('course_time' => isset($classroom) ? $classroom->course_time : null))
 	</div>
+	
+	@if (isset($classroomCourseunit) && count($classroomCourseunit) != 0)	
+		<div id="classroom_courseunit" class="column_item column_item_style_1">
+			<ul>
+				<li class="title">
+					已設定排課
+				</li>
+				@foreach ($classroomCourseunit as $courseunit)
+					<li>
+						{{ $courseunit->classes->classes_name.  '[' . $courseunit->course->course_name . '](' . $courseunit->count . ')'}}
+					</li>			
+				@endforeach
+			</ul>
+		</div>	
+	@endif 
 @stop

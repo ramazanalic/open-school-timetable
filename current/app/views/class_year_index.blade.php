@@ -2,7 +2,8 @@
 
 @section('css')
 	{{ HTML::style('css/table/style_1.css') }}
-	{{ HTML::style('css/row_item/style_2.css') }}	
+	{{ HTML::style('css/row_item/style_2.css') }}
+	{{ HTML::style('css/column_item/style_1.css') }}	
 	{{ HTML::style('css/js/course_time_selector.css') }}
 	{{ HTML::style('css/form/class_year.css') }}
 	{{ HTML::style('css/class_year.css') }}
@@ -10,6 +11,7 @@
 
 @section('js')
 	{{ HTML::script('js/course_time_selector.js') }}
+	{{ HTML::script('js/show_classes_courseunit.js') }}
 @stop
 
 <?php View::share('titlePrefix', '班級、年級管理' . (isset($year->year_name) ? ' - ' .$year->year_name : '')); ?>
@@ -58,7 +60,13 @@
 		    					<td class="teacher">			    						
 			    					{{ FormList::select('teacher_id', '導師', array('valueArray' => Teacher::getTeacherSelectArray(), 'value' => $classesItem->teacher_id, 'required' => 'required'), null, 0) }}
 			    				</th>
-		    					<td class="classes_command">{{ Form::submit('更新') . '&nbsp;&nbsp;' . HtmlComposite::delete('class_year/delete_classes/' . $classesItem->classes_id . '/' . $year->year_id) }}</td>
+		    					<td class="classes_command">
+		    						{{ Form::submit('更新') }}
+		    						&nbsp;&nbsp;
+		    						{{ HtmlComposite::delete('class_year/delete_classes/' . $classesItem->classes_id . '/' . $year->year_id) }}
+		    						<br>
+		    						{{ Html::link('#' . $classesItem->classes_id, '顯示班級排課(' . $classesItem->courseunit()->count() . ')', array('class' => 'showClassesCourseunit edit_link')) }}
+		    					</td>
 		    				</tr>
 		    			</table>
 		    		{{ Form::close() }}
@@ -85,5 +93,24 @@
 	   	</form>
 	</div>
 
+	@if (isset($classes))	
+    	@foreach ($classes as $classesItem)     		
+    		<?php $classesCourseunit = $classesItem->courseunit; ?>     			
+    		@if (isset($classesCourseunit) && count($classesCourseunit) != 0)    			    		 		
+				<div id="classes_courseunit_{{ $classesItem->classes_id }}" class="column_item column_item_style_1 classes_courseunit">
+					<ul>
+						<li class="title">
+							{{ $classesItem->classes_name }}已設定排課
+						</li>
+						@foreach ($classesCourseunit as $courseunit)					
+							<li>
+								{{ $courseunit->teacher->teacher_name.  '[' . $courseunit->course->course_name . '](' . $courseunit->count . '節)'}}
+							</li>
+						@endforeach
+					</ul>
+				</div>						
+			@endif				
+		@endforeach			
+	@endif 
 	
 @stop

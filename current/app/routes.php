@@ -294,6 +294,7 @@ Route::group(array('prefix' => 'account'), function()
 	{
 		$viewData['teacher'] = Teacher::find($id);
 		$viewData['titleId'] = $titleId;
+		$viewData['teacherCourseunit'] = $viewData['teacher']->courseunit;
 		return View::make('account_form')->with($viewData);
 	});
 
@@ -620,6 +621,7 @@ Route::group(array('prefix' => 'classroom'), function()
 	{
 		$viewData['classroomList'] = Classroom::orderBy('classroom_name')->get();
 		$viewData['classroom'] = Classroom::find($id);
+		$viewData['classroomCourseunit'] = $viewData['classroom']->courseunit;
 		return View::make('classroom_index')->with($viewData);
 	});
 

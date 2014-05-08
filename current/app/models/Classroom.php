@@ -6,6 +6,11 @@ class Classroom extends Eloquent
 	public $timestamps = false;
 	protected $guarded = array('classroom_id');
 
+	public function courseunit()
+	{
+		return $this->hasMany('Courseunit', 'classroom_id');
+	}
+
 	public static function boot()
 	{
 		parent::boot();
