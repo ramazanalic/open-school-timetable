@@ -47,31 +47,28 @@
 			        <td class="teacher_course_count">
 			        	{{ $teacher->teacher_course_count }}
 			        	<?php
-			        		// 計算教師已經設定的節數
-			        		$teacher_has_course_count = 0;							
-							foreach ($teacher->courseunit()->get() as $courseunit) {								
-								$teacher_has_course_count += $courseunit->count;								
-							}
-			        		
-			        		// 如果為導師，加入導師節數									        		
-			        		if ($teacher->classes_id != 0) {
-			        			$class_has_course_count = 0;
-			        			foreach ($teacher->classes->courseunit()->get() as $courseunit) {																																														
-									$class_has_course_count += $courseunit->count;									 
-								}			        			
-			        			$teacher_has_course_count += substr_count($teacher->classes->year->course_time, '1') - $class_has_course_count;											        		
-							} 						
+							$teacher_has_course_count = 0;
 							
+							//導師：原班的課 - 科任 + 自己上別班的課
+							if ($teacher->classes_id != 0) {
+								$teacher_has_course_count += substr_count($teacher->classes->year->course_time, '1');
+								$teacher_has_course_count -= Courseunit::where('teacher_id', '<>', $teacher->teacher_id)->where('classes_id', '=', $teacher->classes_id)->sum('count');
+								$teacher_has_course_count += Courseunit::where('teacher_id', '=', $teacher->teacher_id)->where('classes_id', '<>', $teacher->classes_id)->sum('count');
+							} else {
+								// 科任：安排的課
+								$teacher_has_course_count += $teacher->courseunit()->sum('count');
+							}
+	
 							if ($teacher_has_course_count > $teacher->teacher_course_count) {
-								$courseTimeDiffClass = 'plus';								
+								$courseTimeDiffClass = 'plus';
 							} elseif ($teacher_has_course_count < $teacher->teacher_course_count) {
 								$courseTimeDiffClass = 'minus';
 							} else {
 								$courseTimeDiffClass = 'zero';
 							}
-							
-							echo '(<span class="' . $courseTimeDiffClass . '">' . $teacher_has_course_count . '</span>)'; 
-			        	?>
+	
+							echo '(<span class="' . $courseTimeDiffClass . '">' . $teacher_has_course_count . '</span>)';
+						?>
 			        </td>
 			        <td class="classes">
 			        	@if ($teacher->classes_id == 0)
