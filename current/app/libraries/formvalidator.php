@@ -117,6 +117,7 @@ class FormValidator
 			'classroom_name' => 'required',
 			'count' => 'required|min:1|max:10'
 		);
+
 		$messages = array('classroom_name_required' => '請輸入課程名稱');
 
 		return Validator::make($data, $rules, $messages);
@@ -145,7 +146,13 @@ class FormValidator
 
 			// 處理變數
 			list(, $classes_id, $course_id, $count, $classroom_id, $combination, $repeat) = $parameters;
-			$teacher_id = end($parameters);
+			$mode = end($parameters);
+			$teacher_id = prev($parameters);
+
+			if (substr($mode, 0, 4) == 'edit') {
+				$courseUnitId = intval(substr($mode, 4));
+				$mode = substr($mode, 0, 4);
+			}
 
 			if ($parameters[7] == 1) {
 				$course_time = $parameters[8];
@@ -182,14 +189,40 @@ class FormValidator
 
 				$classroom = Classroom::find($classroom_id);
 
+				// 檢查是否為編輯模式
+				if ($mode == 'edit') {
+					$courseUnit = Courseunit::find($courseUnitId);
+					if ($courseUnit->classroom_id == $classroom_id) {
+						$courseCount -= $courseUnit->count;
+					}
+				}
+
 				if (substr_count($classroom->course_time, '1') * $classroom->count - $courseCount - $count < 0) {
 					$teacherList = implode($courseUnitUseClassroom, ',');
-					Session::flash('conflictError', '教室《' . $classroom->classroom_name . '》排課時間不足：' . $teacherList);
+					Session::flash('conflictError', '教室《' . $classroom->classroom_name . '》可排課時間不足，目前有使用的老師：' . $teacherList);
 					return false;
 				}
 			}
 
-			// 班級可排節數已滿（尚未實做）
+			// 班級可排節數已滿
+			$classesCourseCount = 0;
+			foreach (Courseunit::where('classes_id', '=', $classes_id)->get() as $courseunit) {
+				$classesCourseCount += $courseunit->count;
+			}
+
+			// 編輯模式
+			if ($mode == 'edit') {
+				$courseUnit = Courseunit::find($courseUnitId);
+				if ($courseUnit->classes_id == $classes_id) {
+					$classesCourseCount -= $courseUnit->count;
+				}
+			}
+
+			$classes = Classes::find($classes_id);
+			if (substr_count($classes->year->course_time, '1') - $classesCourseCount - $count < 0) {
+				Session::flash('conflictError', '班級《' . $classes->classes_name . '》可排課時間不足');
+				return false;
+			};
 
 			return true;
 		});
@@ -203,10 +236,12 @@ class FormValidator
 			'repeat' => 'required|integer',
 			'course_time' => 'numeric'
 		);
+
 		$messages = array(
 			'required' => '此欄位必填',
 			'integer' => '必需為數字'
 		);
+
 		return Validator::make($data, $rules, $messages);
 	}
 
@@ -219,6 +254,7 @@ class FormValidator
 			'time' => 'required|integer',
 			'extinction_time' => 'integer'
 		);
+
 		$messages = array(
 			'time_required' => '請輸入計算複雜度',
 			'integer' => '參數錯誤'

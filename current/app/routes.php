@@ -690,7 +690,8 @@ Route::group(array('prefix' => 'timetable'), function()
 	// 執行更新排課設定
 	Route::post('edit/{teacherId}/{courseUnitId}', function($teacherId, $courseUnitId)
 	{
-		$validator = FormValidator::courseUnit(Input::all());
+		// 設定為編輯模式，方便驗證功能
+		$validator = FormValidator::courseUnit(array_merge(Input::all(), array('mode' => 'edit' . $courseUnitId)));
 
 		if ($validator->fails()) {
 			return Redirect::to('/timetable/view_title/' . Teacher::find($teacherId)->title->title_id . '/#' . $teacherId)->withInput()->withErrors($validator)->with('message', '輸入錯誤，請檢查');
@@ -719,7 +720,8 @@ Route::group(array('prefix' => 'timetable'), function()
 	// 執行新增排課設定
 	Route::post('/add/{titleId}/{teacherId}', function($titleId, $teacherId)
 	{
-		$validator = FormValidator::courseUnit(Input::all());
+		// 設定為新增模式，方便驗證功能
+		$validator = FormValidator::courseUnit(array_merge(Input::all(), array('mode' => 'add')));
 
 		if ($validator->fails()) {
 			return Redirect::to('/timetable/view_title/' . $titleId . '/#' . $teacherId)->withInput()->withErrors($validator)->with('message', '輸入錯誤，請檢查');

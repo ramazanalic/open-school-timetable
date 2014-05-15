@@ -39,18 +39,19 @@
 				
 		{{ Form::close() }}									
 	</div>
-
-	@if ($teacherList->count() != 0)
-		<table class="data_table table_style_1">
-		    <tr>
-		        <th class="teacher_name">姓名</th>
-		        <th class="teacher_account">帳號</th>		        
-		        <th class="title">職稱</th>
-		        <th class="classes">導師班</th>
-		        <th class="teacher_course_count">應上節數</th>
-		        <th class="is_admin"></th>
-		        <th class="command">{{ HtmlComposite::add('account/add', '新增教師') }}</th>
-		    </tr>
+	
+	<table class="data_table table_style_1">
+	    <tr>
+	        <th class="teacher_name">姓名</th>
+	        <th class="teacher_account">帳號</th>		        
+	        <th class="title">職稱</th>
+	        <th class="classes">導師班</th>
+	        <th class="teacher_course_count">應上節數</th>
+	        <th class="is_admin"></th>
+	        <th class="command">{{ HtmlComposite::add('account/add', '新增教師') }}</th>
+	    </tr>
+		    
+		@if ($teacherList->count() != 0)
 		    @foreach ($teacherList as $teacher)
 			    <tr>
 			        <td class="teacher_name">{{ $teacher->teacher_name }}</td>
@@ -89,6 +90,6 @@
 			        </td>			        
 			    </tr>
 		    @endforeach
-		</table>
-	@endif
+		@endif
+	</table>	
 @stop
