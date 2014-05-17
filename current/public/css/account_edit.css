@@ -1,8 +1,6 @@
-.input_form {
-	float: left;
-}
-
 #teacher_courseunit {
-	float: right;
-	margin: 4em 3em 0 0;
+	float: left;
+	margin: 4em 0 0 3em;
+	padding: 10px 5px;
+	border-left: 5px solid #85639C;
 }

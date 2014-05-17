@@ -1,5 +1,7 @@
 .classes_courseunit {
 	display: none;
 	float: left;
-	margin-left: 1em;
+	margin-left: 2em;
+	padding: 10px 5px;
+	border-left: 5px solid #85639C;
 }

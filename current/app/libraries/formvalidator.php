@@ -239,7 +239,8 @@ class FormValidator
 
 		$messages = array(
 			'required' => '此欄位必填',
-			'integer' => '必需為數字'
+			'integer' => '必需為數字',
+			'conflict' => '排課衝突'
 		);
 
 		return Validator::make($data, $rules, $messages);

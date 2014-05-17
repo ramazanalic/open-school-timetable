@@ -21,31 +21,34 @@
 #teacher_list {
 	float: left;
 	margin-top: 0.5em;
-	width: 22em;
 }
 
 #course_unit_form {
+	float: left;
 	margin-top: 0.5em;
-	margin-right: 0;
-	margin-left: 23em;
+	margin-left: 1em;
 }
 
-a[data-selected="1"] {
-	border: 2px solid #DD4B39;
+#course_unit_form form {
+	padding: 2px;
 }
 
-a[data-selected="0"] {
-	border: 2px solid #E8EDFF;
+.command .edit_link:hover, .edit_selected .edit_link {
+	background-color: #C4327B;
+	text-shadow: 1px 1px #333333;
 }
 
-#course_time_selector {
-	display: none;
-	float: right;
-	font-size: 70%;
+#course_unit_form  #course_time_selector {
+	display: inline-block;
+	margin: 8px 0 0 10px;
+	vertical-align: top;
+	font-size: 90%;
 }
 
-#course_unit_list {
-	margin-top: 1em;
+#course_unit_form  #course_unit_list {
+	display: inline-block;
+	margin-top: 8px;
+	vertical-align: top;
 	font-size: 90%;
 }
 
@@ -53,10 +56,7 @@ a[data-selected="0"] {
 	text-align: center;
 }
 
-#course_unit_list .form_row {
-	display: none;
-}
-
-.edit_select td {
-	background-color: #888888;
+.edit_selected td, .edit_selected {
+	background-color: #A5DAFF;
+	font-weight: bold;
 }

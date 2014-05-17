@@ -65,7 +65,7 @@
 		    						&nbsp;&nbsp;
 		    						{{ HtmlComposite::delete('class_year/delete_classes/' . $classesItem->classes_id . '/' . $year->year_id) }}
 		    						<br>
-		    						{{ Html::link('#' . $classesItem->classes_id, '顯示班級排課(' . $classesItem->courseunit()->count() . ')', array('class' => 'showClassesCourseunit edit_link')) }}
+		    						{{ Html::link('#' . $classesItem->classes_id, '顯示班級排課(' . $classesItem->courseunit()->count() . ')', array('class' => 'showClassesCourseunit edit_link', 'data-classes_id' => $classesItem->classes_id)) }}
 		    					</td>
 		    				</tr>
 		    			</table>
@@ -104,13 +104,12 @@
 						</li>
 						@foreach ($classesCourseunit as $courseunit)					
 							<li>
-								{{ $courseunit->teacher->teacher_name.  '[' . $courseunit->course->course_name . '](' . $courseunit->count . '節)'}}
+								{{ HtmlComposite::edit('timetable/view_title/' . $courseunit->teacher->title->title_id . '/' . $courseunit->teacher->teacher_id . '/' . $courseunit->course_unit_id, $courseunit->teacher->teacher_name. '[' . $courseunit->course->course_name . '](' . $courseunit->count . '節)') }}								
 							</li>
 						@endforeach
 					</ul>
 				</div>						
 			@endif				
 		@endforeach			
-	@endif 
-	
+	@endif	
 @stop

@@ -4,7 +4,17 @@
 	display: inline-block;
 }
 
-#teacher_course_time {
-	position: absolute;
-	padding-left: 2em;
+.input_form {
+	float: left;
+}
+
+#teacher_require {
+	float: left;
+	margin: 2em 0 0 1em;
+}
+
+#teacher_require strong {
+	display: block;
+	margin-bottom: 0.5em;
+	font-weight: bold;
 }

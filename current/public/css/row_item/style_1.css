@@ -10,4 +10,5 @@
 
 .row_item_style_1 .row_item_selected a {
 	background-color: #A0522D;
+	text-shadow: 2px 2px #333333;
 }

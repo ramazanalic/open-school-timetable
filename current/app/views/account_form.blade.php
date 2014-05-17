@@ -27,10 +27,7 @@
 	{{ FormList::text('teacher_name', '教師姓名', ['autofocus' => 'autofocus', 'required' => 'required']) }}
 	{{ FormList::text('teacher_account', '帳號', ['placeholder' => '英文+數字', 'required' => 'required']) }}	
 	{{ FormList::select('teacher_privilege', '權限', ['valueArray' => ['16' => '一般使用者', '2' => '管理者'], 'required' => 'required']) }}
-	<li id="teacher_course_time">	
-		教師排課需求設定
-		@include('course_time_selector', array('course_time' => (isset($teacher) ? $teacher->course_time : '')))
-	</li>
+	
 	<br>
 	{{ FormList::select('title_id', '職稱', array('valueArray' => array('0' => '無職稱'), 'required' => 'required'), array('Title', 'title_id', 'title_name')) }}
 	{{ FormList::select('classes_id', '導師班', array('valueArray' => Classes::getClassesSelectArray(), 'required' => 'required')) }}
@@ -44,16 +41,20 @@
 	{{ (isset($teacher)) ? FormList::submit('更新') : FormList::submit('新增') }}
 	{{ FormList::close() }}
 	
-	
+	<div id="teacher_require">
+		<strong>教師排課設定</strong>
+		@include('course_time_selector', array('course_time' => (isset($teacher) ? $teacher->course_time : '')))	
+	</div>
+		
 	@if (isset($teacherCourseunit) && count($teacherCourseunit) != 0)	
 		<div id="teacher_courseunit" class="column_item column_item_style_1">
 			<ul>
 				<li class="title">
-					已設定排課
+					{{ $teacher->teacher_name }}已設定排課
 				</li>
 				@foreach ($teacherCourseunit as $courseunit)
 					<li>
-						{{ $courseunit->classes->classes_name.  '[' . $courseunit->course->course_name . '](' . $courseunit->count . '節)'}}
+						{{ HtmlComposite::edit('timetable/view_title/' . $titleId . '/' . $teacher->teacher_id . '/' . $courseunit->course_unit_id, $courseunit->classes->classes_name. '[' . $courseunit->course->course_name . '](' . $courseunit->count . '節)') }}						
 					</li>			
 				@endforeach
 			</ul>

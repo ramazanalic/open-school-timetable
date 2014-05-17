@@ -63,11 +63,11 @@
 		<div id="classroom_courseunit" class="column_item column_item_style_1">
 			<ul>
 				<li class="title">
-					已設定排課
+					{{ $classroom->classroom_name }}已設定排課
 				</li>
 				@foreach ($classroomCourseunit as $courseunit)
 					<li>
-						{{ $courseunit->classes->classes_name.  '[' . $courseunit->course->course_name . '](' . $courseunit->count . ')'}}
+						{{ HtmlComposite::edit('timetable/view_title/' . $courseunit->teacher->title->title_id . '/' . $courseunit->teacher->teacher_id . '/' . $courseunit->course_unit_id, $courseunit->teacher->teacher_name. '[' . $courseunit->course->course_name . '](' . $courseunit->count . '節)') }}						
 					</li>			
 				@endforeach
 			</ul>

@@ -196,21 +196,3 @@ footer a {
 	color: red;
 	font-weight: bold;
 }
-
-/**
- main {
- display: flex;
- flex-direction: row;
- flex: auto;
- border: solid grey;
- border-width: 1px 0;
- overflow: hidden;
- }
- article {
- border: solid grey;
- border-width: 0 0 0 1px;
- flex: auto;
- overflow-x: hidden;
- overflow-y: auto;
- }
- */
