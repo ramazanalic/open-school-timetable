@@ -57,12 +57,45 @@ class Courseunit extends Eloquent
 	/**
 	 * 計算課表
 	 */
-	public static function caculate($time, $extinction_time = 0)
+	public static function caculate($seedCount, $extinction_time = 0)
 	{
+		// Data
+		// $seed[0]['timetable'] =
+		// $seed[0]['fitnesss'] =
+		// $seed[0]['bestFitnesss'] =
+		// $seed[0]['bestTimetable'] =
+		
+		$seedCount = $seedCount * 1;
+
+		// 產生課表，速度、計算適應值
+		$seed = self::_generateSeed($seedCount);			
+
+		// 進行粒子最佳化計算
+		$withoutProgressCount = 0;
+		$bestSeed = self::_getBestSeed($seed);
+		while ($withoutProgressCount < 20) {
+			// 計算新速度
+			self::_updateV($seed, $bestSeed);
+
+			// 依照速度更新課表排課
+			self::_updateTimetable($seed);
+
+			// 計算適應值
+			self::_cacualteFitness($seed);
+
+			// 判斷是否改進
+			if ($seed[$bestSeed]['bestFitnesss'] < $seed[self::_getBestSeed($seed)]['bestFitnesss']) {
+				$bestSeed = self::_getBestSeed($seed);
+				$withoutProgressCount = 0;
+			} else {
+				$withoutProgressCount++;
+			}
+		}
+
 		// 產生排課陣列
 		$timetable = self::_getTimetableArray();
 
-		// 產生教師使用時間陣列
+		// 產生教室使用時間陣列
 		$classroom = Classroom::all();
 		foreach ($classroom as $classroomItem) {
 			$classroomCoursetime[$classroomItem->classroom_id] = str_replace('1', $classroomItem->count, $classroomItem->course_time);
@@ -182,8 +215,9 @@ class Courseunit extends Eloquent
 			unset($temp['course_unit_id']);
 			$temp['total_count'] = $temp['count'];
 
-			// 依照排課限制來產生可排課時間
+			// 依照排課限制來產生可排課時間，並紀錄，提供之後課表移動使用
 			$temp['available_course_time'] = $courseunit->classes->year->course_time & $temp['limit_course_time'];
+			$temp['original_available_course_time'] = $temp['available_course_time'];
 
 			// 依照教室可用時間來限制可排課時間
 			if (is_object($courseunit->classroom)) {

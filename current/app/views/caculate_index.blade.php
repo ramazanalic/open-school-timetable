@@ -17,7 +17,7 @@
 	{{ HtmlComposite::messageBlock() }}
 
 	{{ FormList::open('' , URL::to('caculate')) }}		
-		{{ FormList::select('time', '計算複雜度：', array('range' => array(1, 5))) }}
+		{{ FormList::select('seedCount', '計算複雜度：', array('range' => array(1, 5))) }}
 		<br>
 		{{ FormList::checkbox('extinction', '使用粒子活化機制', 1) }}		
 		{{ FormList::select('extinction_time', '活化程度：', array('range' => array(1, 5))) }}
