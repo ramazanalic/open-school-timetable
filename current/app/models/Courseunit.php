@@ -64,11 +64,18 @@ class Courseunit extends Eloquent
 		// $seed[0]['fitnesss'] =
 		// $seed[0]['bestFitnesss'] =
 		// $seed[0]['bestTimetable'] =
-		
+
 		$seedCount = $seedCount * 1;
 
+		// 產生教室使用時間，提供排課使用
+		$classroom = Classroom::all();
+		foreach ($classroom as $classroomItem) {
+			$GLOBALS['classroomCourseTime'][$classroomItem->classroom_id] = str_replace('1', $classroomItem->count, $classroomItem->course_time);
+		}
+
 		// 產生課表，速度、計算適應值
-		$seed = self::_generateSeed($seedCount);			
+		$seed = self::_generateSeed($seedCount);
+		dd($seed);
 
 		// 進行粒子最佳化計算
 		$withoutProgressCount = 0;
@@ -78,7 +85,7 @@ class Courseunit extends Eloquent
 			self::_updateV($seed, $bestSeed);
 
 			// 依照速度更新課表排課
-			self::_updateTimetable($seed);
+			self::_updateSeed($seed);
 
 			// 計算適應值
 			self::_cacualteFitness($seed);
@@ -92,16 +99,45 @@ class Courseunit extends Eloquent
 			}
 		}
 
-		// 產生排課陣列
-		$timetable = self::_getTimetableArray();
+		file_put_contents(__DIR__ . '/../storage/result.json', json_encode($result));
+	}
 
-		// 產生教室使用時間陣列
-		$classroom = Classroom::all();
-		foreach ($classroom as $classroomItem) {
-			$classroomCoursetime[$classroomItem->classroom_id] = str_replace('1', $classroomItem->count, $classroomItem->course_time);
+	/**
+	 * 產生種子
+	 */
+	private static function _generateSeed($seedCount)
+	{
+		$seed = array();
+
+		for ($seedCountI = 0; $seedCountI < $seedCount; $seedCountI++) {
+			// 產生排課陣列
+			$timetable = self::_getTimetableArray();
+
+			// 更新課表排課
+			$seed[$seedCountI]['timetable'] = self::_updateTimetable($timetable, true);
+						
 		}
+		// 計算適應值
+		
+		
+		return $seed;
+	}
 
-		// 產生課表（種子）
+	/**
+	 * 更新課表排課（需要重構排序過程）
+	 */
+	private static function _updateTimetable($timetable, $isNew = false)
+	{
+		// 取得教室使用時間
+		$classroomCourseTime = $GLOBALS['classroomCourseTime'];
+
+		// 重設可排課時間
+		array_walk($timetable, function(&$item)
+		{
+			$item['available_course_time'] = $item['original_available_course_time'];
+		});
+
+		// 更新課表排課
 		$result = array();
 		while (count($timetable) > 0) {
 			// 排序優先排課順序
@@ -124,9 +160,13 @@ class Courseunit extends Eloquent
 				exit ;
 			}
 
-			// 隨機選擇排課時間
-			$coursetime = $coursePosition[array_rand($coursePosition)];
-			$timetable[0]['course_time'] = $coursetime;
+			if ($isNew == true) {
+				// 隨機選擇排課時間
+				$coursetime = $coursePosition[array_rand($coursePosition)];
+				$timetable[0]['course_time'] = $coursetime;
+			} else {
+				// 依照速度變化排課時間
+			}
 
 			// 清除授課老師在同時段的可用的排課時間
 			for ($i = 1; $i < count($timetable); $i++) {
@@ -157,9 +197,9 @@ class Courseunit extends Eloquent
 			if ($timetable[0]['classroom_id'] != 0) {
 				// 扣掉該教室該時段可用排課時間
 				for ($combinationI = 0; $combinationI < $timetable[0]['combination']; $combinationI++) {
-					$classroomCoursetimeCount = substr($classroomCoursetime[$timetable[0]['classroom_id']], $coursetime, 1) - 1;
-					$classroomCoursetime[$timetable[0]['classroom_id']] = substr_replace($classroomCoursetime[$timetable[0]['classroom_id']], $classroomCoursetimeCount, $coursetime, 1);
-					if ($classroomCoursetimeCount == 0) {
+					$classroomCourseTimeCount = substr($classroomCourseTime[$timetable[0]['classroom_id']], $coursetime, 1) - 1;
+					$classroomCourseTime[$timetable[0]['classroom_id']] = substr_replace($classroomCourseTime[$timetable[0]['classroom_id']], $classroomCourseTimeCount, $coursetime, 1);
+					if ($classroomCourseTimeCount == 0) {
 						for ($i = 1; $i < count($timetable); $i++) {
 							if ($timetable[$i]['classroom_id'] == $timetable[0]['classroom_id']) {
 								$timetable[$i]['available_course_time'] = substr_replace($timetable[$i]['available_course_time'], '0', $coursetime, 1);
@@ -175,7 +215,7 @@ class Courseunit extends Eloquent
 			unset($timetable[0]);
 		}
 
-		file_put_contents(__DIR__ . '/../storage/result.json', json_encode($result));
+		return $result;
 	}
 
 	/**

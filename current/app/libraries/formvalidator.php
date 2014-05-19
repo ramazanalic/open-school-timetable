@@ -252,12 +252,12 @@ class FormValidator
 	public static function caculate($data)
 	{
 		$rules = array(
-			'time' => 'required|integer',
+			'seedCount' => 'required|integer',
 			'extinction_time' => 'integer'
 		);
 
 		$messages = array(
-			'time_required' => '請輸入計算複雜度',
+			'required' => '此欄位必填',
 			'integer' => '參數錯誤'
 		);
 
