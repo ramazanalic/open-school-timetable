@@ -109,12 +109,12 @@
 	
 			@if (isset($courseUnit))
 				<?php $course_limit = unserialize($courseUnit->course_unit_limit) ?>
-				{{ FormList::select('combination', '組合節數', array('range' => array(1, 5), 'value' => $course_limit['combination'])) }}
+				{{ FormList::select('combination', '組合節數', array('range' => array(1, 3), 'value' => $course_limit['combination'])) }}
 				{{ FormList::select('repeat', '同天同班可重複排課', array('valueArray' => array('0' => '否', '1' => '是'), 'value' => $course_limit['repeat'])) }}
 				{{ FormList::checkbox('limit_course_time', '限制排課時間', 1, $course_limit['limit_course_time']) }}
 				{{ FormList::hidden('course_time', $course_limit['course_time']) }}
 			@else
-				{{ FormList::select('combination', '組合節數', array('range' => array(1, 5))) }}
+				{{ FormList::select('combination', '組合節數', array('range' => array(1, 3))) }}
 				{{ FormList::select('repeat', '同天同班可重複排課', array('valueArray' => array('0' => '否', '1' => '是'))) }}
 				{{ FormList::checkbox('limit_course_time', '限制排課時間', 1) }}
 				{{ FormList::hidden('course_time') }}

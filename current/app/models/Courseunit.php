@@ -60,10 +60,12 @@ class Courseunit extends Eloquent
 	public static function caculate($seedCount, $extinction_time = 0)
 	{
 		// Data
-		// $seed[0]['timetable'] =
-		// $seed[0]['fitnesss'] =
-		// $seed[0]['bestFitnesss'] =
-		// $seed[0]['bestTimetable'] =
+		// $seed[0]['timetable']
+		// $seed[0]['fitness']
+		// $seed[0]['bestFitnesss']
+		// $seed[0]['bestTimetable']
+		// $bestSeed['timetable']
+		// $bestSeed['fitness']
 
 		$seedCount = $seedCount * 1;
 
@@ -78,20 +80,20 @@ class Courseunit extends Eloquent
 
 		// 進行粒子最佳化計算
 		$withoutProgressCount = 0;
-		dd($seed);
-		//$bestSeed = self::_getBestSeed($seed);
+		$bestSeed = self::_getBestSeed($seed);
+
 		while ($withoutProgressCount < 20) {
 			// 更新種子速度
 			// self::_updateV($seed, $bestSeed);
 
 			// 依照速度更新課表排課、計算適應值
-			self::_updateSeed($seed);
+			$seed = self::_updateSeed($seed);
 
-			// 取得新的最佳值
+			// 取得新的全域最佳值
 			$newBestSeed = self::_getBestSeed($seed);
 
 			// 判斷是否改進
-			if ($bestSeed['fitnesss'] < $newBestSeed['fitnesss']) {
+			if ($bestSeed['fitness'] < $newBestSeed['fitness']) {
 				$bestSeed = $newBestSeed;
 				$withoutProgressCount = 0;
 			} else {
@@ -108,18 +110,22 @@ class Courseunit extends Eloquent
 	private static function _generateSeed($seedCount)
 	{
 		$seed = array();
+		// 產生排課陣列
+		$timetable = self::_getTimetableArray();
+		for ($seedCountI = 0; $seedCountI < $seedCount + 20; $seedCountI++) {
+			// 建立速度
+			array_walk($timetable, function(&$item)
+			{
+				$item['v'] = mt_rand(-1600, 1600) / 100;
+			});
 
-		for ($seedCountI = 0; $seedCountI < $seedCount; $seedCountI++) {
-			// 產生排課陣列
-			$timetable = self::_getTimetableArray();
-
-			// 更新課表排課
+			// 更新課表排課，產生排課結果
 			$seed[$seedCountI]['timetable'] = self::_updateTimetable($timetable, true);
 
 			// 計算適應值
 			$seed[$seedCountI]['fitness'] = self::_cacualteFitness($seed[$seedCountI]['timetable']);
 
-			// 建立自身最佳值
+			// 建立種子最佳適應值
 			$seed[$seedCountI]['bestTimetable'] = $seed[$seedCountI]['timetable'];
 			$seed[$seedCountI]['bestFitness'] = $seed[$seedCountI]['fitness'];
 		}
@@ -132,11 +138,38 @@ class Courseunit extends Eloquent
 	 */
 	private static function _updateSeed($seed)
 	{
-		var_dump($seed[0]['timetable'][0]);
 		for ($i = 0; $i < count($seed); $i++) {
 			$seed[$i]['timetable'] = self::_updateTimetable($seed[$i]['timetable']);
-			$seed[$i]['timetable'] = self::_cacualteFitness($seed[$i]['timetable']);
+			$seed[$i]['fitness'] = self::_cacualteFitness($seed[$i]['timetable']);
+
+			// 更新種子最佳適應值
+			if ($seed[$i]['fitness'] > $seed[$i]['bestFitness']) {
+				$seed[$i]['bestTimetable'] = $seed[$i]['timetable'];
+				$seed[$i]['bestFitness'] = $seed[$i]['fitness'];
+			}
 		}
+
+		return $seed;
+	}
+
+	/**
+	 * 取得最佳種子
+	 */
+	private static function _getBestSeed($seed)
+	{
+		$bestFitness = 0;
+		$bestKey = 0;
+		for ($i = 0; $i < count($seed); $i++) {
+			if ($seed[$i]['fitness'] > $bestFitness) {
+				$bestFitness = $seed[$i]['fitness'];
+				$bestKey = $i;
+			}
+		}
+
+		return array(
+			'timetable' => $seed[$bestKey],
+			'fitness' => $bestFitness
+		);
 	}
 
 	/**
@@ -308,9 +341,6 @@ class Courseunit extends Eloquent
 			unset($timetable[0]);
 		}
 
-		if ($isNew == false) {
-			dd($result[0]);
-		}
 		return $result;
 	}
 
@@ -365,8 +395,8 @@ class Courseunit extends Eloquent
 					$temp2['combination'] = 1;
 				}
 
+				// 建立排課ID，提供速度計算使用
 				$temp2['timetable_id'] = ++$timetable_id;
-				$temp2['v'] = mt_rand(-1600, 1600) / 100;
 				$timetable[] = $temp2;
 			}
 		}
