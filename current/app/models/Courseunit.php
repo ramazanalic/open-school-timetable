@@ -78,17 +78,14 @@ class Courseunit extends Eloquent
 
 		// 進行粒子最佳化計算
 		$withoutProgressCount = 0;
+		dd($seed);
 		//$bestSeed = self::_getBestSeed($seed);
 		while ($withoutProgressCount < 20) {
 			// 更新種子速度
 			// self::_updateV($seed, $bestSeed);
 
 			// 依照速度更新課表排課、計算適應值
-			//var_dump($seed[0]['timetable'][0]);
-
 			self::_updateSeed($seed);
-
-			//dd($seed[0]['timetable'][0]);
 
 			// 取得新的最佳值
 			$newBestSeed = self::_getBestSeed($seed);
@@ -119,13 +116,12 @@ class Courseunit extends Eloquent
 			// 更新課表排課
 			$seed[$seedCountI]['timetable'] = self::_updateTimetable($timetable, true);
 
-			// 計算適應值（尚未實做）
-			// $seed[$seedCountI]['fitness'] =
-			// self::_cacualteFitness($seed[$seedCountI]['timetable']);
+			// 計算適應值
+			$seed[$seedCountI]['fitness'] = self::_cacualteFitness($seed[$seedCountI]['timetable']);
 
 			// 建立自身最佳值
-			//$seed[$seedCountI]['bestTimetable'] = $seed[$seedCountI]['timetable'];
-			//$seed[$seedCountI]['bestFitness'] = $seed[$seedCountI]['fitness'];
+			$seed[$seedCountI]['bestTimetable'] = $seed[$seedCountI]['timetable'];
+			$seed[$seedCountI]['bestFitness'] = $seed[$seedCountI]['fitness'];
 		}
 
 		return $seed;
@@ -139,17 +135,56 @@ class Courseunit extends Eloquent
 		var_dump($seed[0]['timetable'][0]);
 		for ($i = 0; $i < count($seed); $i++) {
 			$seed[$i]['timetable'] = self::_updateTimetable($seed[$i]['timetable']);
+			$seed[$i]['timetable'] = self::_cacualteFitness($seed[$i]['timetable']);
 		}
-
-		dd($seed[0]['timetable'][0]);
 	}
 
 	/**
 	 * 計算課表適應值
 	 */
-	private static function _cacualteFitness()
+	private static function _cacualteFitness($timetable)
 	{
+		// 取得教師排課時間、排課需求時間
+		$fitness = array();
+		while (count($timetable) > 0) {
+			$first = array_values($timetable);
+			$teacherId = $first[0]['teacher_id'];
+			foreach ($timetable as $key => $course) {
+				if ($course['teacher_id'] == $teacherId) {
+					$fitness[$teacherId]['courseTime'][] = $course['course_time'];
+					unset($timetable[$key]);
+				}
+			}
+			$fitness[$teacherId]['require'] = Teacher::find($teacherId)->course_time;
 
+			// 計算個別教師分數
+			if (intval($fitness[$teacherId]['require']) > 0) {
+				$totalCourseTime = count($fitness[$teacherId]['courseTime']);
+				$matchCourseTime = 0;
+				foreach ($fitness[$teacherId]['courseTime'] as $postion) {
+					if (substr($fitness[$teacherId]['require'], $postion, 1) == '1') {
+						$matchCourseTime++;
+					}
+				}
+				$fitness[$teacherId]['score'] = $matchCourseTime / $totalCourseTime * 100;
+			} else {
+				$fitness[$teacherId]['score'] = null;
+			}
+		}
+
+		// 計算適應值
+		$result = 0;
+		$resultCount = 1;
+		foreach ($fitness as $teacher) {
+			if ($teacher['score'] != null) {
+				$result += $teacher['score'];
+				$resultCount++;
+			}
+		}
+
+		$result /= $resultCount;
+		// 有成員太低分進行懲罰（尚未實做）
+		return $result;
 	}
 
 	/**
@@ -169,7 +204,7 @@ class Courseunit extends Eloquent
 		// 更新課表排課
 		$result = array();
 		while (count($timetable) > 0) {
-			// 排序優先排課順序			
+			// 排序優先排課順序
 			usort($timetable, function($a, $b)
 			{
 				$aCourseTimeCount = substr_count($a['available_course_time'], '1');
@@ -181,8 +216,8 @@ class Courseunit extends Eloquent
 					return -1;
 				} else {
 					return 0;
-				}												
-			});			
+				}
+			});
 
 			// 產生排課時間選擇陣列
 			for ($position = 0, $coursePosition = array(); $position !== false; ) {

@@ -1631,12 +1631,12 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/symfony/HttpKernel.git",
-                "reference": "111db2f07257cb34e001324d541ba6c6749a0ca5"
+                "reference": "0bfb14ea838308fe1619aef10188819a9f5b1297"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/symfony/HttpKernel/zipball/111db2f07257cb34e001324d541ba6c6749a0ca5",
-                "reference": "111db2f07257cb34e001324d541ba6c6749a0ca5",
+                "url": "https://api.github.com/repos/symfony/HttpKernel/zipball/0bfb14ea838308fe1619aef10188819a9f5b1297",
+                "reference": "0bfb14ea838308fe1619aef10188819a9f5b1297",
                 "shasum": ""
             },
             "require": {
@@ -1697,7 +1697,7 @@
             ],
             "description": "Symfony HttpKernel Component",
             "homepage": "http://symfony.com",
-            "time": "2014-05-18 15:36:43"
+            "time": "2014-05-21 12:41:36"
         },
         {
             "name": "symfony/process",
@@ -1815,12 +1815,12 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/symfony/Translation.git",
-                "reference": "c7d9d5caaf615c82d57930f98dc6713c25c0cdb1"
+                "reference": "ea88c51f0ea5953c5a5dcee6b2913c1219a44892"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/symfony/Translation/zipball/c7d9d5caaf615c82d57930f98dc6713c25c0cdb1",
-                "reference": "c7d9d5caaf615c82d57930f98dc6713c25c0cdb1",
+                "url": "https://api.github.com/repos/symfony/Translation/zipball/ea88c51f0ea5953c5a5dcee6b2913c1219a44892",
+                "reference": "ea88c51f0ea5953c5a5dcee6b2913c1219a44892",
                 "shasum": ""
             },
             "require": {
@@ -1863,7 +1863,7 @@
             ],
             "description": "Symfony Translation Component",
             "homepage": "http://symfony.com",
-            "time": "2014-05-12 09:13:35"
+            "time": "2014-05-21 11:33:13"
         }
     ],
     "packages-dev": [
