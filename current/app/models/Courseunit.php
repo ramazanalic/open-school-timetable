@@ -57,7 +57,7 @@ class Courseunit extends Eloquent
 	/**
 	 * 計算課表
 	 */
-	public static function caculate($seedCount, $extinction_time = 0)
+	public static function caculate($seedCount, $extinctionTime = 0)
 	{
 		// Data
 		// $seed[0]['timetable']
@@ -68,7 +68,9 @@ class Courseunit extends Eloquent
 		// $bestSeed['fitness']
 
 		$seedCount = $seedCount * 1;
-
+		$seedCount = 2;
+		$extinctionTime = 3;
+		set_time_limit(60);
 		// 產生教室使用時間，提供排課使用
 		$classroom = Classroom::all();
 		foreach ($classroom as $classroomItem) {
@@ -79,29 +81,44 @@ class Courseunit extends Eloquent
 		$seed = self::_generateSeed($seedCount);
 
 		// 進行粒子最佳化計算
-		$withoutProgressCount = 0;
-		$bestSeed = self::_getBestSeed($seed);
+		$seedProgressHistory = array();
+		while ($extinctionTime > 0) {
+			$withoutProgressCount = 0;
+			$extinctionCount = 1;
+			$bestSeed = self::_getBestSeed($seed);
 
-		while ($withoutProgressCount < 20) {
-			// 更新種子速度
-			// self::_updateV($seed, $bestSeed);
+			while ($withoutProgressCount < 20) {
+				// 更新種子速度
+				self::_updateSeedV($seed, $bestSeed);
 
-			// 依照速度更新課表排課、計算適應值
-			$seed = self::_updateSeed($seed);
+				// 依照速度更新課表排課、計算適應值
+				$seed = self::_updateSeed($seed);
 
-			// 取得新的全域最佳值
-			$newBestSeed = self::_getBestSeed($seed);
+				// 取得新的全域最佳值
+				$newBestSeed = self::_getBestSeed($seed);
 
-			// 判斷是否改進
-			if ($bestSeed['fitness'] < $newBestSeed['fitness']) {
-				$bestSeed = $newBestSeed;
-				$withoutProgressCount = 0;
-			} else {
-				$withoutProgressCount++;
+				// 判斷是否改進
+				if ($bestSeed['fitness'] < $newBestSeed['fitness']) {
+					$bestSeed = $newBestSeed;
+					$withoutProgressCount = 0;
+					$seedProgressHistory[] = '＊' . $bestSeed['fitness'] . '＊';
+				} else {
+					$withoutProgressCount++;
+					$seedProgressHistory[] = $bestSeed['fitness'];
+				}
 			}
+
+			// 進行判斷是否改進毀滅結果
+			if (!isset($historyBestSeed) || $historyBestSeed['fitness'] < $bestSeed['fitness']) {
+				$historyBestSeed = $bestSeed;
+			}
+			$seedProgressHistory[] = 'extinction' . $extinctionCount;
+			$extinctionTime--;
+			$extinctionCount++;
 		}
 
-		file_put_contents(__DIR__ . '/../storage/result.json', json_encode($result));
+		file_put_contents(__DIR__ . '/../storage/result.json', json_encode($historyBestSeed['timetable']));
+		return $seedProgressHistory;
 	}
 
 	/**
@@ -112,7 +129,7 @@ class Courseunit extends Eloquent
 		$seed = array();
 		// 產生排課陣列
 		$timetable = self::_getTimetableArray();
-		for ($seedCountI = 0; $seedCountI < $seedCount + 20; $seedCountI++) {
+		for ($seedCountI = 0; $seedCountI < $seedCount; $seedCountI++) {
 			// 建立速度
 			array_walk($timetable, function(&$item)
 			{
@@ -152,6 +169,38 @@ class Courseunit extends Eloquent
 		return $seed;
 	}
 
+	private static function _getTimetableV($timetable, $timetableId)
+	{
+		foreach ($timetable as $value) {
+			if ($value['timetable_id'] == $timetableId) {
+				return $value['v'];
+			}
+		}
+	}
+
+	/**
+	 * 更新粒子速度
+	 */
+	private static function _updateSeedV(&$seed, $bestSeed)
+	{
+		// 參數設定
+		$w = 0.5;
+		$c1 = 2;
+		$c2 = 2;
+		$r1 = mt_rand(0, 100) / 100;
+		$r2 = mt_rand(0, 100) / 100;
+
+		foreach ($seed as &$seedItem) {
+			$timetableId = 0;
+			foreach ($seedItem['timetable'] as &$timetable) {
+				$localBest = self::_getTimetableV($seedItem['timetable'], $timetableId);
+				$globalBest = self::_getTimetableV($bestSeed['timetable'], $timetableId);
+				$timetable['v'] = $w * $timetable['v'] + $c1 * $r1 * $localBest + $c2 * $r2 * $globalBest;
+				$timetableId++;
+			}
+		}
+	}
+
 	/**
 	 * 取得最佳種子
 	 */
@@ -167,13 +216,13 @@ class Courseunit extends Eloquent
 		}
 
 		return array(
-			'timetable' => $seed[$bestKey],
+			'timetable' => $seed[$bestKey]['timetable'],
 			'fitness' => $bestFitness
 		);
 	}
 
 	/**
-	 * 計算課表適應值
+	 * 計算課表適應值（需要修改）
 	 */
 	private static function _cacualteFitness($timetable)
 	{
@@ -216,7 +265,7 @@ class Courseunit extends Eloquent
 		}
 
 		$result /= $resultCount;
-		// 有成員太低分進行懲罰（尚未實做）
+		// 有成員太低分進行懲罰（尚未實做）根據Z分數
 		return $result;
 	}
 
@@ -350,7 +399,7 @@ class Courseunit extends Eloquent
 	private static function _getTimetableArray()
 	{
 		$courseunits = self::orderBy('course_unit_id')->get();
-		$timetable_id = 0;
+		$timetable_id = -1;
 		$timetable = array();
 		foreach ($courseunits as $courseunit) {
 			$temp = $courseunit->toArray();

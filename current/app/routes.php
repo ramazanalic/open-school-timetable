@@ -777,8 +777,14 @@ Route::group(array('prefix' => 'caculate'), function()
 			return Redirect::to('caculate')->withInput()->withErrors($validator)->with('message', '輸入錯誤，請檢查');
 		} else {
 			$data = Input::all();
-			Courseunit::caculate($data['seedCount'], $data['extinction_time']);
-			return Redirect::to('/caculate')->with('message', '排課完成');
+			//$seedProgressHistory = Courseunit::caculate($data['seedCount'], $data['extinction_time']);
+			
+			// 測試資料
+			$seedProgressHistory = range(1, 20);
+			$seedProgressHistory[] = 'extinction';
+			$seedProgressHistory = array_merge($seedProgressHistory, range(1, 20));
+			$seedProgressHistory[] = 'extinction';
+			return Redirect::to('/caculate')->with('message', '排課完成')->with('seedProgressHistory', $seedProgressHistory);
 		}
 	});
 });
