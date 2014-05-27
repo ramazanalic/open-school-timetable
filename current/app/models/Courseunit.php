@@ -57,20 +57,11 @@ class Courseunit extends Eloquent
 	/**
 	 * 計算課表
 	 */
-	public static function caculate($seedCount, $extinctionTime = 0)
+	public static function caculate($param)
 	{
-		// Data
-		// $seed[0]['timetable']
-		// $seed[0]['fitness']
-		// $seed[0]['bestFitnesss']
-		// $seed[0]['bestTimetable']
-		// $bestSeed['timetable']
-		// $bestSeed['fitness']
-
-		$seedCount = $seedCount * 1;
-		$seedCount = 2;
-		$extinctionTime = 3;
+		// 設定執行時間
 		set_time_limit(60);
+
 		// 產生教室使用時間，提供排課使用
 		$classroom = Classroom::all();
 		foreach ($classroom as $classroomItem) {
@@ -78,16 +69,17 @@ class Courseunit extends Eloquent
 		}
 
 		// 產生課表，速度、計算適應值
-		$seed = self::_generateSeed($seedCount);
+		$seed = self::_generateSeed($param['seedCount']);
 
 		// 進行粒子最佳化計算
 		$seedProgressHistory = array();
-		while ($extinctionTime > 0) {
+		$extinctionTimes = 1;
+		while ($param['extinctionCount'] > 0) {
 			$withoutProgressCount = 0;
-			$extinctionCount = 1;
 			$bestSeed = self::_getBestSeed($seed);
+			$seedProgressHistory[] = number_format($bestSeed['fitness'], 2, '.', '');
 
-			while ($withoutProgressCount < 20) {
+			while ($withoutProgressCount < $param['executeCount']) {
 				// 更新種子速度
 				self::_updateSeedV($seed, $bestSeed);
 
@@ -101,10 +93,10 @@ class Courseunit extends Eloquent
 				if ($bestSeed['fitness'] < $newBestSeed['fitness']) {
 					$bestSeed = $newBestSeed;
 					$withoutProgressCount = 0;
-					$seedProgressHistory[] = '＊' . $bestSeed['fitness'] . '＊';
+					$seedProgressHistory[] = number_format($bestSeed['fitness'], 2, '.', '') . '＊';
 				} else {
 					$withoutProgressCount++;
-					$seedProgressHistory[] = $bestSeed['fitness'];
+					$seedProgressHistory[] = number_format($bestSeed['fitness'], 2, '.', '');
 				}
 			}
 
@@ -112,9 +104,10 @@ class Courseunit extends Eloquent
 			if (!isset($historyBestSeed) || $historyBestSeed['fitness'] < $bestSeed['fitness']) {
 				$historyBestSeed = $bestSeed;
 			}
-			$seedProgressHistory[] = 'extinction' . $extinctionCount;
-			$extinctionTime--;
-			$extinctionCount++;
+			$seedProgressHistory[] = '<strong>（' . number_format($historyBestSeed['fitness'], 2, '.', '') . '）</strong>';
+			$seedProgressHistory[] = 'Extinction ' . $extinctionTimes;
+			$param['extinctionCount']--;
+			$extinctionTimes++;
 		}
 
 		file_put_contents(__DIR__ . '/../storage/result.json', json_encode($historyBestSeed['timetable']));
@@ -155,7 +148,8 @@ class Courseunit extends Eloquent
 	 */
 	private static function _updateSeed($seed)
 	{
-		for ($i = 0; $i < count($seed); $i++) {
+		$seedCount = count($seed);
+		for ($i = 0; $i < $seedCount; $i++) {
 			$seed[$i]['timetable'] = self::_updateTimetable($seed[$i]['timetable']);
 			$seed[$i]['fitness'] = self::_cacualteFitness($seed[$i]['timetable']);
 
@@ -169,6 +163,9 @@ class Courseunit extends Eloquent
 		return $seed;
 	}
 
+	/**
+	 * 取得該課程的速度
+	 */
 	private static function _getTimetableV($timetable, $timetableId)
 	{
 		foreach ($timetable as $value) {
@@ -208,7 +205,8 @@ class Courseunit extends Eloquent
 	{
 		$bestFitness = 0;
 		$bestKey = 0;
-		for ($i = 0; $i < count($seed); $i++) {
+		$seedCount = count($seed);
+		for ($i = 0; $i < $seedCount; $i++) {
 			if ($seed[$i]['fitness'] > $bestFitness) {
 				$bestFitness = $seed[$i]['fitness'];
 				$bestKey = $i;
@@ -265,7 +263,7 @@ class Courseunit extends Eloquent
 		}
 
 		$result /= $resultCount;
-		// 有成員太低分進行懲罰（尚未實做）根據Z分數
+		// 有成員太低分，根據Z分數進行懲罰（尚未實做）
 		return $result;
 	}
 
@@ -277,10 +275,11 @@ class Courseunit extends Eloquent
 		// 取得教室使用時間
 		$classroomCourseTime = $GLOBALS['classroomCourseTime'];
 
-		// 重設可排課時間
+		// 重設可排課時間、數量
 		array_walk($timetable, function(&$item)
 		{
 			$item['available_course_time'] = $item['original_available_course_time'];
+			$item['available_course_time_count'] = substr_count($item['available_course_time'], '1');
 		});
 
 		// 更新課表排課
@@ -289,16 +288,7 @@ class Courseunit extends Eloquent
 			// 排序優先排課順序
 			usort($timetable, function($a, $b)
 			{
-				$aCourseTimeCount = substr_count($a['available_course_time'], '1');
-				$bCourseTimeCount = substr_count($b['available_course_time'], '1');
-
-				if ($aCourseTimeCount > $bCourseTimeCount) {
-					return 1;
-				} elseif ($aCourseTimeCount < $bCourseTimeCount) {
-					return -1;
-				} else {
-					return 0;
-				}
+				return $a['available_course_time_count'] - $b['available_course_time_count'];
 			});
 
 			// 產生排課時間選擇陣列
@@ -312,15 +302,14 @@ class Courseunit extends Eloquent
 
 			// 檢查是否有衝突，可以排的時間被填滿，產生和那一個排課設定衝突的訊息（尚未實做）
 			if (count($coursePosition) == 0) {
-				print_r($result);
-				echo '<hr>';
-				print_r($timetable[0]);
-				exit ;
+				echo 'ERROR！';
+				var_dump($result);
+				dd($timetable[0]);
 			}
 
 			// 隨機選擇排課時間
 			if ($isNew == true) {
-				$coursetime = $coursePosition[array_rand($coursePosition)];
+				$timetable[0]['course_time'] = $coursePosition[array_rand($coursePosition)];
 			} else {
 				// 速度變化排課時間，判斷尋找方向
 				if ($timetable[0]['v'] > 0) {
@@ -334,50 +323,45 @@ class Courseunit extends Eloquent
 				// 尋找最近方向的可排課時間
 				$key = array_search($timetable[0]['course_time'], $coursePosition);
 				if (isset($coursePosition[$key + $direction])) {
-					$coursetime = $coursePosition[$key + $direction];
-				} else {
-					$coursetime = $timetable[0]['course_time'];
+					$timetable[0]['course_time'] = $coursePosition[$key + $direction];
 				}
-
 			}
 
-			$timetable[0]['course_time'] = $coursetime;
-
-			// 清除授課老師在同時段的可用的排課時間
-			for ($i = 1; $i < count($timetable); $i++) {
+			$timetableCount = count($timetable);
+			for ($i = 1; $i < $timetableCount; $i++) {
+				// 清除授課老師在同時段的可用的排課時間
 				if ($timetable[$i]['teacher_id'] == $timetable[0]['teacher_id']) {
-					$timetable[$i]['available_course_time'] = substr_replace($timetable[$i]['available_course_time'], str_repeat('0', $timetable[0]['combination']), $coursetime, $timetable[0]['combination']);
-
+					$timetable[$i]['available_course_time'] = substr_replace($timetable[$i]['available_course_time'], str_repeat('0', $timetable[0]['combination']), $timetable[0]['course_time'], $timetable[0]['combination']);
 				}
-			}
 
-			// 清除有上該班級老師可用的排課時間
-			for ($i = 1; $i < count($timetable); $i++) {
+				// 清除有上該班級老師可用的排課時間
 				if ($timetable[$i]['classes_id'] == $timetable[0]['classes_id']) {
-					$timetable[$i]['available_course_time'] = substr_replace($timetable[$i]['available_course_time'], str_repeat('0', $timetable[0]['combination']), $coursetime, $timetable[0]['combination']);
+					$timetable[$i]['available_course_time'] = substr_replace($timetable[$i]['available_course_time'], str_repeat('0', $timetable[0]['combination']), $timetable[0]['course_time'], $timetable[0]['combination']);
 				}
-			}
 
-			// 清除該班同天該老師可用的排課時間（有設定同天同班不排課）
-			if ($timetable[0]['repeat'] == 0) {
-				for ($i = 1; $i < count($timetable); $i++) {
+				// 清除該班同天該老師可用的排課時間（有設定同天同班不排課）
+				if ($timetable[0]['repeat'] == 0) {
 					if ($timetable[$i]['classes_id'] == $timetable[0]['classes_id'] && $timetable[$i]['teacher_id'] == $timetable[0]['teacher_id']) {
-						$left = floor($coursetime / 7);
+						$left = floor($timetable[0]['course_time'] / 7);
 						$timetable[$i]['available_course_time'] = substr_replace($timetable[$i]['available_course_time'], str_repeat('0', 7), $left * 7, 7);
 					}
 				}
+
+				// 更新排課時間
+				$timetable[$i]['available_course_time_count'] = substr_count($timetable[$i]['available_course_time'], '1');
 			}
 
 			// 清除同教室同時段課程
 			if ($timetable[0]['classroom_id'] != 0) {
 				// 扣掉該教室該時段可用排課時間
 				for ($combinationI = 0; $combinationI < $timetable[0]['combination']; $combinationI++) {
-					$classroomCourseTimeCount = substr($classroomCourseTime[$timetable[0]['classroom_id']], $coursetime, 1) - 1;
-					$classroomCourseTime[$timetable[0]['classroom_id']] = substr_replace($classroomCourseTime[$timetable[0]['classroom_id']], $classroomCourseTimeCount, $coursetime, 1);
+					$classroomCourseTimeCount = substr($classroomCourseTime[$timetable[0]['classroom_id']], $timetable[0]['course_time'], 1) - 1;
+					$classroomCourseTime[$timetable[0]['classroom_id']] = substr_replace($classroomCourseTime[$timetable[0]['classroom_id']], $classroomCourseTimeCount, $timetable[0]['course_time'], 1);
 					if ($classroomCourseTimeCount == 0) {
-						for ($i = 1; $i < count($timetable); $i++) {
+						for ($i = 1; $i < $timetableCount; $i++) {
 							if ($timetable[$i]['classroom_id'] == $timetable[0]['classroom_id']) {
-								$timetable[$i]['available_course_time'] = substr_replace($timetable[$i]['available_course_time'], '0', $coursetime, 1);
+								$timetable[$i]['available_course_time'] = substr_replace($timetable[$i]['available_course_time'], '0', $timetable[0]['course_time'], 1);
+								$timetable[$i]['available_course_time_count'] = substr_count($timetable[$i]['available_course_time'], '1');
 							}
 						}
 					}
@@ -386,8 +370,7 @@ class Courseunit extends Eloquent
 			}
 
 			// 移動結果
-			$result[] = $timetable[0];
-			unset($timetable[0]);
+			$result[] = array_shift($timetable);
 		}
 
 		return $result;

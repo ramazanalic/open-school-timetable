@@ -1,7 +1,8 @@
 {
     "_readme": [
         "This file locks the dependencies of your project to a known state",
-        "Read more about it at http://getcomposer.org/doc/01-basic-usage.md#composer-lock-the-lock-file"
+        "Read more about it at http://getcomposer.org/doc/01-basic-usage.md#composer-lock-the-lock-file",
+        "This file is @generated automatically"
     ],
     "hash": "14256f4b7b12bf0b28f35c6a99f61268",
     "packages": [
@@ -797,12 +798,12 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/Seldaek/monolog.git",
-                "reference": "3030d3da4d3abb18d3c1e3479259af0d88a92488"
+                "reference": "93f8f3271fc20f2e09e79c80ffdc371114ad4f29"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/Seldaek/monolog/zipball/3030d3da4d3abb18d3c1e3479259af0d88a92488",
-                "reference": "3030d3da4d3abb18d3c1e3479259af0d88a92488",
+                "url": "https://api.github.com/repos/Seldaek/monolog/zipball/93f8f3271fc20f2e09e79c80ffdc371114ad4f29",
+                "reference": "93f8f3271fc20f2e09e79c80ffdc371114ad4f29",
                 "shasum": ""
             },
             "require": {
@@ -857,7 +858,7 @@
                 "logging",
                 "psr-3"
             ],
-            "time": "2014-05-19 16:18:53"
+            "time": "2014-05-24 17:56:29"
         },
         {
             "name": "nesbot/carbon",
@@ -1370,12 +1371,12 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/symfony/DomCrawler.git",
-                "reference": "662a2d9ac057a44c84b49bb388a47aaa4060c1d3"
+                "reference": "5dd259d7842480fa7c5d4a45c4f911bd6fb60bc8"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/symfony/DomCrawler/zipball/662a2d9ac057a44c84b49bb388a47aaa4060c1d3",
-                "reference": "662a2d9ac057a44c84b49bb388a47aaa4060c1d3",
+                "url": "https://api.github.com/repos/symfony/DomCrawler/zipball/5dd259d7842480fa7c5d4a45c4f911bd6fb60bc8",
+                "reference": "5dd259d7842480fa7c5d4a45c4f911bd6fb60bc8",
                 "shasum": ""
             },
             "require": {
@@ -1416,7 +1417,7 @@
             ],
             "description": "Symfony DomCrawler Component",
             "homepage": "http://symfony.com",
-            "time": "2014-05-21 13:39:40"
+            "time": "2014-05-26 22:15:18"
         },
         {
             "name": "symfony/event-dispatcher",
@@ -1481,12 +1482,12 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/symfony/Filesystem.git",
-                "reference": "98e831eac836a0a5911626ce82684155f21d0e4d"
+                "reference": "8ec53ca0a09cf07b58a62590b67166f4a39af81b"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/symfony/Filesystem/zipball/98e831eac836a0a5911626ce82684155f21d0e4d",
-                "reference": "98e831eac836a0a5911626ce82684155f21d0e4d",
+                "url": "https://api.github.com/repos/symfony/Filesystem/zipball/8ec53ca0a09cf07b58a62590b67166f4a39af81b",
+                "reference": "8ec53ca0a09cf07b58a62590b67166f4a39af81b",
                 "shasum": ""
             },
             "require": {
@@ -1495,7 +1496,7 @@
             "type": "library",
             "extra": {
                 "branch-alias": {
-                    "dev-master": "2.5-dev"
+                    "dev-master": "2.6-dev"
                 }
             },
             "autoload": {
@@ -1521,7 +1522,7 @@
             ],
             "description": "Symfony Filesystem Component",
             "homepage": "http://symfony.com",
-            "time": "2014-04-16 10:36:21"
+            "time": "2014-05-23 14:36:49"
         },
         {
             "name": "symfony/finder",
@@ -1631,12 +1632,12 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/symfony/HttpKernel.git",
-                "reference": "7fa99a6355d62ad3abb107f430bf7fe4f1abcc2a"
+                "reference": "e8b31eaced978a5f8d881ebb96c349fa6babd1d8"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/symfony/HttpKernel/zipball/7fa99a6355d62ad3abb107f430bf7fe4f1abcc2a",
-                "reference": "7fa99a6355d62ad3abb107f430bf7fe4f1abcc2a",
+                "url": "https://api.github.com/repos/symfony/HttpKernel/zipball/e8b31eaced978a5f8d881ebb96c349fa6babd1d8",
+                "reference": "e8b31eaced978a5f8d881ebb96c349fa6babd1d8",
                 "shasum": ""
             },
             "require": {
@@ -1652,7 +1653,6 @@
                 "symfony/config": "~2.0",
                 "symfony/console": "~2.2",
                 "symfony/dependency-injection": "~2.0",
-                "symfony/filesystem": "~2.4",
                 "symfony/finder": "~2.0",
                 "symfony/process": "~2.0",
                 "symfony/routing": "~2.2",
@@ -1665,7 +1665,6 @@
                 "symfony/config": "",
                 "symfony/console": "",
                 "symfony/dependency-injection": "",
-                "symfony/filesystem": "",
                 "symfony/finder": ""
             },
             "type": "library",
@@ -1697,7 +1696,7 @@
             ],
             "description": "Symfony HttpKernel Component",
             "homepage": "http://symfony.com",
-            "time": "2014-05-22 16:18:05"
+            "time": "2014-05-26 16:42:04"
         },
         {
             "name": "symfony/process",

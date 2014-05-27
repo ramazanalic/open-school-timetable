@@ -252,13 +252,15 @@ class FormValidator
 	public static function caculate($data)
 	{
 		$rules = array(
-			'seedCount' => 'required|integer',
-			'extinction_time' => 'integer'
+			'seedCount' => 'required|integer|between:1,20',
+			'executeCount' => 'required|integer|between:1,20',
+			'extinctionCount' => 'required|integer|between:1,5'
 		);
 
 		$messages = array(
 			'required' => '此欄位必填',
-			'integer' => '參數錯誤'
+			'integer' => '參數錯誤',
+			'between' => '參數錯誤'
 		);
 
 		return Validator::make($data, $rules, $messages);

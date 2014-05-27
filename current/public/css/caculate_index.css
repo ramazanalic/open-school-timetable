@@ -1,6 +1,7 @@
 .progress_history {
 	display: inline-block;
 	padding: 5px;
+	vertical-align: top;
 	font-size: 110%;
 }
 
@@ -16,4 +17,9 @@
 
 .progress_history .item {
 	padding-left: 10px;
+}
+
+.progress_history strong {
+	color: red;
+	font-style: italic;
 }

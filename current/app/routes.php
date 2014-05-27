@@ -776,15 +776,10 @@ Route::group(array('prefix' => 'caculate'), function()
 		if ($validator->fails()) {
 			return Redirect::to('caculate')->withInput()->withErrors($validator)->with('message', '輸入錯誤，請檢查');
 		} else {
-			$data = Input::all();
-			//$seedProgressHistory = Courseunit::caculate($data['seedCount'], $data['extinction_time']);
-			
-			// 測試資料
-			$seedProgressHistory = range(1, 20);
-			$seedProgressHistory[] = 'extinction';
-			$seedProgressHistory = array_merge($seedProgressHistory, range(1, 20));
-			$seedProgressHistory[] = 'extinction';
-			return Redirect::to('/caculate')->with('message', '排課完成')->with('seedProgressHistory', $seedProgressHistory);
+			$viewData['oldData'] = Input::all();
+			$viewData['seedProgressHistory'] = Courseunit::caculate(Input::all());
+			$viewData['message'] = '排課完成';
+			return View::make('caculate_index')->with($viewData);
 		}
 	});
 });
