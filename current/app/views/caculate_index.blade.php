@@ -6,13 +6,14 @@
 @stop
 
 <?php View::share('titlePrefix', '計算課表'); ?>
+<?php View::share('selectUrl', 'caculate'); ?>
 
 @section('content')
 	<h1>計算課表</h1>
 	
-	{{ HtmlComposite::messageBlock(isset($message) ? $message : '') }}
+	{{ Helper::message(isset($message) ? $message : '') }}
 
-	{{ FormList::open('' , URL::to('caculate')) }}		
+	{{ FormList::open('' , 'caculate') }}		
 		{{ FormList::select('seedCount', '粒子數：', array('range' => array(1, 20), 'value' => isset($oldData) ? $oldData['seedCount'] : '')) }}
 		<br>
 		{{ FormList::select('executeCount', '計算程度：', array('range' => array(1, 20), 'value' => isset($oldData) ? $oldData['executeCount'] : '')) }}

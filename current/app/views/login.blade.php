@@ -5,11 +5,12 @@
 @stop
 
 <?php View::share('titlePrefix', '登入'); ?>
+<?php View::share('selectUrl', 'login'); ?>
 
 @section('content')	
 	<h1>登入</h1>
 	
-	{{ HtmlComposite::messageBlock() }}
+	{{ Helper::message() }}
 	
 	{{ FormList::open('', 'login') }}
 	{{ FormList::text('teacher_account', '帳號', array('required' => 'required', 'autofocus' => 'autofocus')) }}

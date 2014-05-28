@@ -10,11 +10,12 @@
 @stop
 
 <?php View::share('titlePrefix', '設定《' . Auth::user()->teacher_name . '》的排課需求') ?>
+<?php View::share('selectUrl', 'teacher_require'); ?>
 
 @section('content')			
 	<h1>{{ '設定《' . Auth::user()->teacher_name . '》的排課需求' }}</h1>
 
-	{{ HtmlComposite::messageBlock() }}
+	{{ Helper::message() }}
 
 	{{ FormList::open(Auth::user(), 'teacher_require/' . Auth::user()->teacher_id) }}	
 	{{ FormList::hidden('course_time') }}	

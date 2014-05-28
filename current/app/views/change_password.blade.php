@@ -5,11 +5,12 @@
 @stop
 
 <?php View::share('titlePrefix', '變更《' . Auth::user()->teacher_name . '》的密碼') ?>
+<?php View::share('selectUrl', 'change_password'); ?>
 
 @section('content')			
 	<h1>{{ '變更《' . Auth::user()->teacher_name . '》的密碼' }}</h1>
 
-	{{ HtmlComposite::messageBlock() }}
+	{{ Helper::message() }}
 
 	{{ FormList::open(Auth::user(), 'change_password/' . Auth::user()->teacher_id) }}		
 	{{ FormList::description('請輸入舊密碼、新密碼') }}

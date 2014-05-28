@@ -9,17 +9,17 @@
 @stop
 
 <?php View::share('titlePrefix', '教室課表查詢'); ?>
+<?php View::share('selectUrl', 'classroom_table'); ?>
 
 @section('content')
 	<h1>教室課表查詢</h1>
-	
-	
+		
 	@if (isset($classsroomList))
 		<div class="column_item column_item_style_2" id="classroom_column">
 			<ul>
 				@foreach ($classsroomList as $classroom)
 					<li class = "{{ (isset($classroomId) && $classroom->classroom_id == $classroomId) ? 'column_item_selected' : '' }}">
-				    	{{ HTML::link(URL::to('classroom_table/' . $classroom->classroom_id), $classroom->classroom_name) }}
+				    	{{ link_to('classroom_table/' . $classroom->classroom_id, $classroom->classroom_name) }}
 				    </li>
 				@endforeach
 			</ul>

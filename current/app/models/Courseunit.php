@@ -110,7 +110,7 @@ class Courseunit extends Eloquent
 			$extinctionTimes++;
 		}
 
-		file_put_contents(__DIR__ . '/../storage/result.json', json_encode($historyBestSeed['timetable']));
+		file_put_contents(storage_path() . '\result.json', json_encode($historyBestSeed['timetable']));
 		return $seedProgressHistory;
 	}
 
@@ -224,6 +224,12 @@ class Courseunit extends Eloquent
 	 */
 	private static function _cacualteFitness($timetable)
 	{
+		// 取得有設定需求的教師
+		
+		// 取得他們的排課時間
+		
+		// 計算分數
+		
 		// 取得教師排課時間、排課需求時間
 		$fitness = array();
 		while (count($timetable) > 0) {
@@ -389,9 +395,7 @@ class Courseunit extends Eloquent
 			$temp['course_name'] = $courseunit->course->course_name;
 			$temp['teacher_name'] = $courseunit->teacher->teacher_name;
 			$temp['classes_name'] = $courseunit->classes->classes_name;
-			if ($temp['classroom_id'] != 0) {
-				$temp['classroom_name'] = $courseunit->classroom->classroom_name;
-			}
+
 			$limit = unserialize($temp['course_unit_limit']);
 			$temp['combination'] = $limit['combination'];
 			$temp['repeat'] = $limit['repeat'];
@@ -400,12 +404,12 @@ class Courseunit extends Eloquent
 			unset($temp['course_unit_id']);
 			$temp['total_count'] = $temp['count'];
 
-			// 依照排課限制來產生可排課時間，並紀錄，提供之後課表移動使用
+			// 依照排課限制來產生可排課時間
 			$temp['available_course_time'] = $courseunit->classes->year->course_time & $temp['limit_course_time'];
-			$temp['original_available_course_time'] = $temp['available_course_time'];
 
 			// 依照教室可用時間來限制可排課時間
-			if (is_object($courseunit->classroom)) {
+			if ($temp['classroom_id'] != 0) {
+				$temp['classroom_name'] = $courseunit->classroom->classroom_name;
 				$temp['available_course_time'] &= $courseunit->classroom->course_time;
 			}
 
@@ -429,6 +433,10 @@ class Courseunit extends Eloquent
 
 				// 建立排課ID，提供速度計算使用
 				$temp2['timetable_id'] = ++$timetable_id;
+
+				// 紀錄目前的可排課時間，提供排課計算使用
+				$temp2['original_available_course_time'] = $temp2['available_course_time'];
+
 				$timetable[] = $temp2;
 			}
 		}

@@ -15,20 +15,21 @@
 @stop
 
 <?php View::share('titlePrefix', '排課設定') ?>
+<?php View::share('selectUrl', 'timetable'); ?>
 
 @section('content')	
 	<h1>排課設定</h1>
 	
-	{{ HtmlComposite::messageBlock(Session::get('conflictError'), true) }}
+	{{ Helper::message(Session::get('conflictError'), true) }}
 
 	<div class="row_item row_item_style_1" id="title_list">
 		<ul>				
-			<li {{ ($titleId == 'all') ? 'class="row_item_selected"' : '' }}>{{ HTML::link(URL::to('timetable'), '全部（' . count(Teacher::All()) . '）') }}</li>
-			<li {{ ($titleId == '0') ? 'class="row_item_selected"' : '' }}>{{ HTML::link(URL::to('timetable/view_title/0'), '無職稱（' . Teacher::where('title_id', '=', 0)->count() . '）') }}</li>
+			<li {{ ($titleId == 'all') ? 'class="row_item_selected"' : '' }}>{{ link_to('timetable', '全部（' . count(Teacher::All()) . '）') }}</li>
+			<li {{ ($titleId == '0') ? 'class="row_item_selected"' : '' }}>{{ link_to('timetable/view_title/0', '無職稱（' . Teacher::where('title_id', '=', 0)->count() . '）') }}</li>
 	
 			@if (isset($titleList))
 				@foreach ($titleList as $title)
-					<li {{ ($titleId == $title->title_id) ? 'class="row_item_selected"' : '' }}>{{ HTML::link(URL::to('timetable/view_title/' . $title->title_id), $title->title_name . '（'. $title->teacher()->count() . '）') }}</li>
+					<li {{ ($titleId == $title->title_id) ? 'class="row_item_selected"' : '' }}>{{ link_to('timetable/view_title/' . $title->title_id, $title->title_name . '（'. $title->teacher()->count() . '）') }}</li>
 				@endforeach
 			@endif
 		</ul>
@@ -85,7 +86,7 @@
 			        	@endif
 		            </td>
 		            <td class="command{{ (isset($teacherId) && $teacherItem->teacher_id == $teacherId) ? ' edit_selected' : '' }}">
-		            	{{ HtmlComposite::edit('timetable/view_title/' . $titleId . '/' . $teacherItem->teacher_id, '設定排課(' . $teacherItem->courseunit()->count() . ')') }}		            	
+		            	{{ Helper::edit('timetable/view_title/' . $titleId . '/' . $teacherItem->teacher_id, '設定排課(' . $teacherItem->courseunit()->count() . ')') }}		            	
 		            </td>			        			       		        
 			    </tr>
 		    @endforeach
@@ -166,8 +167,8 @@
 					        <td class="repeat">{{ ($courseLimit['repeat']) ? '是' : '否' }}</td>
 					        <td class="limit_course_time">{{ ($courseLimit['limit_course_time']) ? '是' : '否' }}</td>		
 					        <td class="command">
-					        	{{ HtmlComposite::edit('timetable/view_title/' . $titleId . '/' . $teacherId . '/' . $courseUnitItem->course_unit_id) }}					        		        	
-					        	{{ HtmlComposite::delete('timetable/delete/' . $titleId . '/' . $courseUnitItem->course_unit_id) }}
+					        	{{ Helper::edit('timetable/view_title/' . $titleId . '/' . $teacherId . '/' . $courseUnitItem->course_unit_id) }}					        		        	
+					        	{{ Helper::delete('timetable/delete/' . $titleId . '/' . $courseUnitItem->course_unit_id) }}
 					        </td>		      		       
 					    </tr>		   
 				    @endforeach

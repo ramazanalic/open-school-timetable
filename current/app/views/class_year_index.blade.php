@@ -15,22 +15,23 @@
 @stop
 
 <?php View::share('titlePrefix', '班級、年級管理' . (isset($year->year_name) ? ' - ' .$year->year_name : '')); ?>
+<?php View::share('selectUrl', 'class_year'); ?>
 
 @section('content')
 	<h1>班級、年級管理</h1>
 
-	{{ HtmlComposite::messageBlock() }}
+	{{ Helper::message() }}
 
 	@if (isset($yearList))
 		<div class="row_item row_item_style_2" id="year_row">
 			@if (isset($year))				
-				{{ HtmlComposite::back('class_year/') }}							
+				{{ Helper::back('class_year/') }}							
 			@endif
 			
 			<ul>				
 		    	@foreach ($yearList as $yearItem)
 		    		<li class="{{ (isset($year) && $yearItem->year_id == $year->year_id) ? 'row_item_selected' : '' }}">
-		    			{{ HTML::link(URL::to('class_year/view_year/' . $yearItem->year_id), $yearItem->year_name . '（' . $yearItem->classes()->count() . '）') }}
+		    			{{ link_to('class_year/view_year/' . $yearItem->year_id, $yearItem->year_name . '（' . $yearItem->classes()->count() . '）') }}
 		    		</li>
 		    	@endforeach
 			</ul>
@@ -39,7 +40,7 @@
 	
 	@if (isset($year))
 		<div id="class_area">
-			{{ Form::open(array('url' => URL::to('class_year/add_classes/' . $year->year_id))) }}
+			{{ Form::open(array('url' => 'class_year/add_classes/' . $year->year_id)) }}
 				<table class="data_table table_style_1">
 			    	<tr>
 			    		<th class="classes_name">{{ Form::text('classes_name', '', array('required' => 'required', 'placeholder' => '新增班級…', 'autofocus' => 'autofocus')) }}</th>
@@ -53,7 +54,7 @@
 
 			@if (isset($classes))
 		    	@foreach ($classes as $classesItem)
-		    		{{ Form::open(array('url' => URL::to('class_year/update_classes/' . $classesItem->classes_id . '/' . $year->year_id))) }}
+		    		{{ Form::open(array('url' => 'class_year/update_classes/' . $classesItem->classes_id . '/' . $year->year_id)) }}
 	    				<table class="data_table table_style_1">
 		    				<tr>
 		    					<td class="classes_name">{{ Form::text('classes_name', $classesItem->classes_name, array('required' => 'required', 'size' => '5')) }}</td>
@@ -63,7 +64,7 @@
 		    					<td class="classes_command">
 		    						{{ Form::submit('更新') }}
 		    						&nbsp;&nbsp;
-		    						{{ HtmlComposite::delete('class_year/delete_classes/' . $classesItem->classes_id . '/' . $year->year_id) }}
+		    						{{ Helper::delete('class_year/delete_classes/' . $classesItem->classes_id . '/' . $year->year_id) }}
 		    						<br>
 		    						{{ Html::link('#' . $classesItem->classes_id, '顯示班級排課(' . $classesItem->courseunit()->count() . ')', array('class' => 'showClassesCourseunit edit_link', 'data-classes_id' => $classesItem->classes_id)) }}
 		    					</td>
@@ -76,7 +77,7 @@
 	@endif	
 
 	<div id="year_form">
-        {{ FormList::open($year, URL::to((isset($year)) ? 'class_year/update_year/' . $year->year_id : 'class_year/add_year')) }}
+        {{ FormList::open($year, isset($year) ? 'class_year/update_year/' . $year->year_id : 'class_year/add_year') }}
         	{{ FormList::text('year_name', (isset($year)) ? '更改年級名稱' : '新增年級', array('required' => 'required')) }}
         	{{ FormList::hidden('course_time') }}
         	</ul>
@@ -85,7 +86,7 @@
 		   
 			<div id="year_form_command">
 			    @if (isset($year))
-			    	{{ HtmlComposite::delete('class_year/delete_year/' . $year->year_id, '刪除《' . $year->year_name . '》') }}
+			    	{{ Helper::delete('class_year/delete_year/' . $year->year_id, '刪除《' . $year->year_name . '》') }}
 			    @endif
 	
 			    <?= Form::submit((isset($year)) ? '更新' : '新增'); ?>
@@ -104,7 +105,7 @@
 						</li>
 						@foreach ($classesCourseunit as $courseunit)					
 							<li>
-								{{ HtmlComposite::edit('timetable/view_title/' . $courseunit->teacher->title->title_id . '/' . $courseunit->teacher->teacher_id . '/' . $courseunit->course_unit_id, $courseunit->teacher->teacher_name. '[' . $courseunit->course->course_name . '](' . $courseunit->count . '節)') }}								
+								{{ Helper::edit('timetable/view_title/' . $courseunit->teacher->title->title_id . '/' . $courseunit->teacher->teacher_id . '/' . $courseunit->course_unit_id, $courseunit->teacher->teacher_name. '[' . $courseunit->course->course_name . '](' . $courseunit->count . '節)') }}								
 							</li>
 						@endforeach
 					</ul>

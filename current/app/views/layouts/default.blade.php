@@ -12,7 +12,7 @@
 	</head>
 	<body>
 		<header>
-			<div id="banner">
+			<div id="banner">				
 				<a href="{{ URL::to('/') }}">{{ HTML::image(URL::to('image/ost_icon.png'), 'Icon'). 'OST排課系統' }}</a>
 			</div>
 			<div id="login">
@@ -21,9 +21,9 @@
 						{{ Auth::user()->teacher_name }}（{{ (Auth::user()->teacher_privilege == 2) ? '管理者' : '一般使用者' }}）					
 					</span>
 					｜
-					{{ HTML::link(URL::to('logout'), '登出') }}
+					{{ link_to('logout', '登出') }}
 				@else
-					{{ HTML::link(URL::to('login'), '登入') }}
+					{{ link_to('login', '登入') }}
 				@endif
 			</div>
 		</header>
@@ -34,14 +34,14 @@
 					<li class="nav_title">
 						課表查詢
 					</li>
-					<li>
-						{{ HTML::link(URL::to('class_table'), '班級課表') }}
+					<li>						
+						{{ link_to('class_table', '班級課表', array('class' => ($selectUrl == 'class_table') ? 'selected' : '')) }}
 					</li>
 					<li>
-						{{ HTML::link(URL::to('teacher_table'), '教師課表') }}
+						{{ link_to('teacher_table', '教師課表', array('class' => ($selectUrl == 'teacher_table') ? 'selected' : '')) }}
 					</li>
 					<li>
-						{{ HTML::link(URL::to('classroom_table'), '教室課表') }}
+						{{ link_to('classroom_table', '教室課表', array('class' => ($selectUrl == 'classroom_table') ? 'selected' : '')) }}
 					</li>
 				</ul>
 				
@@ -51,10 +51,10 @@
 							教師設定
 						</li>
 						<li>						
-							{{ HTML::link(URL::to('teacher_require/' . Auth::user()->teacher_id), '排課需求設定') }}						
+							{{ link_to('teacher_require' . Auth::user()->teacher_id, '排課需求設定', array('class' => ($selectUrl == 'teacher_require') ? 'selected' : '')) }}						
 						</li>
 						<li>
-							{{ HTML::link(URL::to('change_password/' . Auth::user()->teacher_id), '變更密碼') }}							
+							{{ link_to('change_password' . Auth::user()->teacher_id, '變更密碼',  array('class' => ($selectUrl == 'change_password') ? 'selected' : '')) }}							
 						</li>
 					</ul>
 				@endif
@@ -65,22 +65,22 @@
 							系統管理
 						</li>					
 						<li>						
-							{{ HTML::link(URL::to('timetable'), '排課設定') }}
+							{{ link_to('timetable', '排課設定', array('class' => ($selectUrl == 'timetable') ? 'selected' : '')) }}
 						</li>																				
 						<li>
-							{{ HTML::link(URL::to('account'), '帳號管理') }}
+							{{ link_to('account', '帳號管理', array('class' => ($selectUrl == 'account') ? 'selected' : '')) }}
 						</li>
 						<li>
-							{{ HTML::link(URL::to('class_year'), '班級、年級管理') }}
+							{{ link_to('class_year', '班級、年級管理', array('class' => ($selectUrl == 'class_year') ? 'selected' : '')) }}
 						</li>
 						<li>
-							{{ HTML::link(URL::to('course'), '課程管理') }}
+							{{ link_to('course', '課程管理', array('class' => ($selectUrl == 'course') ? 'selected' : '')) }}
 						</li>
 						<li>
-							{{ HTML::link(URL::to('classroom'), '教室管理') }}
+							{{ link_to('classroom', '教室管理', array('class' => ($selectUrl == 'classroom') ? 'selected' : '')) }}
 						</li>					
 						<li>
-							{{ HTML::link(URL::to('caculate'), '計算課表') }}
+							{{ link_to('caculate', '計算課表', array('class' => ($selectUrl == 'caculate') ? 'selected' : '')) }}
 						</li>
 					</ul>
 				@endif
@@ -92,7 +92,7 @@
 		</main>
 
 		<footer>
-			{{ HTML::link('http://code.google.com/p/open-school-timetable/', '程式專案網站') }}
+			{{ link_to('http://code.google.com/p/open-school-timetable/', '程式專案網站') }}
 		</footer>
 		{{ HTML::script('js/jquery-2.1.1.min.js') }}
 		@yield('js')

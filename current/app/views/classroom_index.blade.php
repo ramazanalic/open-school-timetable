@@ -13,17 +13,18 @@
 @stop
 
 <?php View::share('titlePrefix', '教室管理'); ?>
+<?php View::share('selectUrl', 'classroom'); ?>
 
 @section('content')
 	<h1>教室管理</h1>	
 	
-	{{ HtmlComposite::messageBlock() }}
+	{{ Helper::message() }}
 	
 	@if (isset($classroom))
-		{{ HtmlComposite::back('classroom/') }}					
+		{{ Helper::back('classroom/') }}					
 	@endif
 
-	{{ FormList::open($classroom, URL::to(isset($classroom) ? 'classroom/edit/' . $classroom->classroom_id : 'classroom/add')) }}	
+	{{ FormList::open($classroom, isset($classroom) ? 'classroom/edit/' . $classroom->classroom_id : 'classroom/add') }}	
 		{{ FormList::text('classroom_name', '教室名稱', array('required' => 'required', 'autofocus' => 'autofocus')) }}
 		&nbsp;&nbsp;		
 		{{ FormList::select('count', '同時使用班級數', array('range' => array(1, 10))) }}
@@ -46,8 +47,8 @@
 						
 					</td>
 					<td class="classroom_command">
-						{{ HtmlComposite::edit('classroom/edit/' . $classroomItem->classroom_id) }}
-						{{ HtmlComposite::delete('classroom/delete/' . $classroomItem->classroom_id) }}
+						{{ Helper::edit('classroom/edit/' . $classroomItem->classroom_id) }}
+						{{ Helper::delete('classroom/delete/' . $classroomItem->classroom_id) }}
 					</td>
 				</tr>
 				@endforeach
@@ -67,7 +68,7 @@
 				</li>
 				@foreach ($classroomCourseunit as $courseunit)
 					<li>
-						{{ HtmlComposite::edit('timetable/view_title/' . $courseunit->teacher->title->title_id . '/' . $courseunit->teacher->teacher_id . '/' . $courseunit->course_unit_id, $courseunit->teacher->teacher_name. '[' . $courseunit->course->course_name . '](' . $courseunit->count . '節)') }}						
+						{{ Helper::edit('timetable/view_title/' . $courseunit->teacher->title->title_id . '/' . $courseunit->teacher->teacher_id . '/' . $courseunit->course_unit_id, $courseunit->teacher->teacher_name. '[' . $courseunit->course->course_name . '](' . $courseunit->count . '節)') }}						
 					</li>			
 				@endforeach
 			</ul>

@@ -9,6 +9,7 @@
 @stop
 
 <?php View::share('titlePrefix', '班級課表查詢'); ?>
+<?php View::share('selectUrl', 'class_table'); ?>
 
 @section('content')
 	<h1>班級課表查詢</h1>	
@@ -18,7 +19,7 @@
 			<ul>		
 		    	@foreach ($yearList as $yearItem)
 		    		<li class = "{{ (isset($yearId) && $yearItem->year_id == $yearId) ? 'row_item_selected' : '' }}">
-		    			{{ HTML::link(URL::to('class_table/' . $yearItem->year_id), $yearItem->year_name . '（' . $yearItem->classes()->count() . '）') }}
+		    			{{ link_to('class_table/' . $yearItem->year_id, $yearItem->year_name . '（' . $yearItem->classes()->count() . '）') }}
 		    		</li>
 		    	@endforeach
 			</ul>
@@ -30,7 +31,7 @@
 			<ul>		
 		    	@foreach ($classes as $classItem)
 		    		<li class = "{{ (isset($classesId) && $classItem->classes_id == $classesId) ? 'column_item_selected' : '' }}">		    										    		
-		    			{{ HTML::link(URL::to('class_table/' . $yearId . '/' . $classItem->classes_id), (count($classItem->teacher) != 0) ? $classItem->classes_name . '（' . $classItem->teacher->teacher_name . '）' : $classItem->classes_name)}}		    			
+		    			{{ link_to('class_table/' . $yearId . '/' . $classItem->classes_id, (count($classItem->teacher) != 0) ? $classItem->classes_name . '（' . $classItem->teacher->teacher_name . '）' : $classItem->classes_name)}}		    			
 		    		</li>
 		    	@endforeach
 			</ul>

@@ -8,20 +8,21 @@
 @stop
 
 <?php View::share('titlePrefix', '帳號管理') ?>
+<?php View::share('selectUrl', 'account'); ?>
 
 @section('content')	
 	<h1>帳號管理</h1>
 
-	{{ HtmlComposite::messageBlock() }}
+	{{ Helper::message() }}
 
 	<div class="row_item row_item_style_1" id="title_list">
 		<ul>				
-			<li {{ ($titleId == 'all') ? 'class="row_item_selected"' : '' }}>{{ HTML::link(URL::to('account'), '全部（' . count(Teacher::All()) . '）') }}</li>
-			<li {{ ($titleId == '0') ? 'class="row_item_selected"' : '' }}>{{ HTML::link(URL::to('account/view_title/0'), '無職稱（' . Teacher::where('title_id', '=', 0)->count() . '）') }}</li>
+			<li {{ ($titleId == 'all') ? 'class="row_item_selected"' : '' }}>{{ link_to('account', '全部（' . count(Teacher::All()) . '）') }}</li>
+			<li {{ ($titleId == '0') ? 'class="row_item_selected"' : '' }}>{{ link_to('account/view_title/0', '無職稱（' . Teacher::where('title_id', '=', 0)->count() . '）') }}</li>
 	
 			@if (isset($titleList))
 				@foreach ($titleList as $title)
-					<li {{ ($titleId == $title->title_id) ? 'class="row_item_selected"' : '' }}>{{ HTML::link(URL::to('account/view_title/' . $title->title_id), $title->title_name . '（'. $title->teacher()->count() . '）') }}</li>
+					<li {{ ($titleId == $title->title_id) ? 'class="row_item_selected"' : '' }}>{{ link_to('account/view_title/' . $title->title_id, $title->title_name . '（'. $title->teacher()->count() . '）') }}</li>
 				@endforeach
 			@endif
 		</ul>
@@ -32,7 +33,7 @@
 		{{ FormList::text('title_name', '職稱', array('required' => 'required')) }}					
 		
 		@if (Title::find($titleId))
-			{{ FormList::submit('更新職稱') . HtmlComposite::delete('account/delete_title/' . $titleId, '刪除《' . Title::find($titleId)->title_name . '》職稱') }}
+			{{ FormList::submit('更新職稱') . Helper::delete('account/delete_title/' . $titleId, '刪除《' . Title::find($titleId)->title_name . '》職稱') }}
 		@else
 			{{ FormList::submit('新增職稱') }}
 		@endif
@@ -48,7 +49,7 @@
 	        <th class="classes">導師班</th>
 	        <th class="teacher_course_count">應上節數</th>
 	        <th class="is_admin"></th>
-	        <th class="command">{{ HtmlComposite::add('account/add', '新增教師') }}</th>
+	        <th class="command">{{ Helper::add('account/add', '新增教師') }}</th>
 	    </tr>
 		    
 		@if ($teacherList->count() != 0)
@@ -85,8 +86,8 @@
 			        <td class="teacher_course_count">{{ $teacher->teacher_course_count }}</td>
 			        <td class="is_admin">{{ ($teacher->teacher_privilege == 2) ? '<div>管理者</div>' : '' }}</td>
 			        <td class="command">
-			        	{{ HtmlComposite::edit('account/edit/' . $teacher->teacher_id . '/titleId/' . $titleId) }}
-			        	{{ HtmlComposite::delete('account/delete/' . $teacher->teacher_id) }}
+			        	{{ Helper::edit('account/edit/' . $teacher->teacher_id . '/titleId/' . $titleId) }}
+			        	{{ Helper::delete('account/delete/' . $teacher->teacher_id) }}
 			        </td>			        
 			    </tr>
 		    @endforeach

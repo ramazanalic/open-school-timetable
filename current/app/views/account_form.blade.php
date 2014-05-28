@@ -12,13 +12,14 @@
 @stop
 
 <?php View::share('titlePrefix', (isset($teacher)) ? '編輯帳號《' . $teacher->teacher_name . '》' : '新增帳號') ?>
+<?php View::share('selectUrl', 'account'); ?>
 
 @section('content')		
-	{{ HtmlComposite::back('account') }}
+	{{ Helper::back('account') }}
 
 	<h1>{{ (isset($teacher)) ? '編輯帳號《' . $teacher->teacher_name . '》' : '新增帳號'}}</h1>
 
-	{{ HtmlComposite::messageBlock() }}
+	{{ Helper::message() }}
 
 	{{ FormList::open($teacher, (isset($teacher)) ? 'account/edit/' . $teacher->teacher_id . '/titleId/' . $titleId : 'account/add') }}
 	{{ FormList::description('請輸入以下的資料') }}
@@ -54,7 +55,7 @@
 				</li>
 				@foreach ($teacherCourseunit as $courseunit)
 					<li>
-						{{ HtmlComposite::edit('timetable/view_title/' . $titleId . '/' . $teacher->teacher_id . '/' . $courseunit->course_unit_id, $courseunit->classes->classes_name. '[' . $courseunit->course->course_name . '](' . $courseunit->count . '節)') }}						
+						{{ Helper::edit('timetable/view_title/' . $titleId . '/' . $teacher->teacher_id . '/' . $courseunit->course_unit_id, $courseunit->classes->classes_name. '[' . $courseunit->course->course_name . '](' . $courseunit->count . '節)') }}						
 					</li>			
 				@endforeach
 			</ul>
