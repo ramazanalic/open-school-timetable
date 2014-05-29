@@ -68,6 +68,12 @@ class Courseunit extends Eloquent
 			$GLOBALS['classroomCourseTime'][$classroomItem->classroom_id] = str_replace('1', $classroomItem->count, $classroomItem->course_time);
 		}
 
+		// 取得教師排課需求，計算適應值用
+		$teacher = Teacher::where('course_time', '<>', str_repeat(0, 35))->get();
+		foreach ($teacher as $teacherItem) {
+			$GLOBALS['teacherRequire'][$teacherItem->teacher_id]['require'] = $teacherItem->course_time;
+		}
+
 		// 產生課表，速度、計算適應值
 		$seed = self::_generateSeed($param['seedCount']);
 
@@ -224,53 +230,72 @@ class Courseunit extends Eloquent
 	 */
 	private static function _cacualteFitness($timetable)
 	{
-		// 取得有設定需求的教師
-		
-		// 取得他們的排課時間
-		
-		// 計算分數
-		
-		// 取得教師排課時間、排課需求時間
-		$fitness = array();
-		while (count($timetable) > 0) {
-			$first = array_values($timetable);
-			$teacherId = $first[0]['teacher_id'];
-			foreach ($timetable as $key => $course) {
-				if ($course['teacher_id'] == $teacherId) {
-					$fitness[$teacherId]['courseTime'][] = $course['course_time'];
-					unset($timetable[$key]);
-				}
-			}
-			$fitness[$teacherId]['require'] = Teacher::find($teacherId)->course_time;
+		// 取得教師設定需求
+		$fitness = $GLOBALS['teacherRequire'];
 
-			// 計算個別教師分數
-			if (intval($fitness[$teacherId]['require']) > 0) {
-				$totalCourseTime = count($fitness[$teacherId]['courseTime']);
-				$matchCourseTime = 0;
-				foreach ($fitness[$teacherId]['courseTime'] as $postion) {
-					if (substr($fitness[$teacherId]['require'], $postion, 1) == '1') {
-						$matchCourseTime++;
+		// 避免除以0
+		if (count($fitness) == 0) {
+			return 0;
+		}
+
+		// 取得排課時間、計算個別分數
+		foreach ($fitness as $teacherId => &$fitnessItem) {
+			$teacher = Teacher::find($teacherId);
+			if ($teacher->classes_id != 0) {
+				// 計算導師排課
+				$fitnessItem['courseTime'] = $teacher->classes->year->course_time;
+
+				// 扣掉科任課（不包含導師）
+				foreach ($timetable as $course) {
+					if ($course['classes_id'] == $teacher->classes_id && $course['teacher_id'] != $teacherId) {
+						$fitnessItem['courseTime'] = substr_replace($fitnessItem['courseTime'], str_repeat('0', $course['combination']), $course['course_time'], $course['combination']);
 					}
 				}
-				$fitness[$teacherId]['score'] = $matchCourseTime / $totalCourseTime * 100;
+
+				//計算分數
+				$totalCourseTime = substr_count($fitnessItem['courseTime'], '1') + 1;
+				$fitnessItem['score'] = substr_count($fitnessItem['courseTime'] & $fitnessItem['require'], '1') / $totalCourseTime;
 			} else {
-				$fitness[$teacherId]['score'] = null;
+				// 計算科任排課
+				$fitnessItem['courseTime'] = array();
+				foreach ($timetable as $course) {
+					if ($course['teacher_id'] == $teacherId) {
+						for ($combination = 0; $combination < $course['combination']; $combination++) {
+							$fitnessItem['courseTime'][] = $course['course_time'] + $combination;
+						}
+
+					}
+				}
+
+				$matchRequireTime = 0;
+				foreach ($fitnessItem['courseTime'] as $courseTime) {
+					if ($courseTime == strpos($fitnessItem['require'], '1', $courseTime)) {
+						$matchRequireTime++;
+					}
+				}
+
+				$totalCourseTime = count($fitnessItem['courseTime']) + 1;
+				$fitnessItem['score'] = $matchRequireTime / $totalCourseTime;
 			}
-		}
+		}		
 
 		// 計算適應值
-		$result = 0;
-		$resultCount = 1;
-		foreach ($fitness as $teacher) {
-			if ($teacher['score'] != null) {
-				$result += $teacher['score'];
-				$resultCount++;
+		$score = array();
+		foreach ($fitness as $fitnessItem) {
+			$score[] = $fitnessItem['score'];
+		}		
+				
+		// 有成員太低分，根據Z分數進行懲罰
+		$mean = array_sum($score) / count($score);
+		$stdev = Statistics::sd($score);	
+		$finalScore = $mean;
+		foreach ($score as $value) {
+			if ($value < $mean) {							
+				$finalScore -= pow(($mean - $value) / $stdev, 2) * ($mean - $value);
 			}
 		}
-
-		$result /= $resultCount;
-		// 有成員太低分，根據Z分數進行懲罰（尚未實做）
-		return $result;
+						
+		return $finalScore * 100;
 	}
 
 	/**

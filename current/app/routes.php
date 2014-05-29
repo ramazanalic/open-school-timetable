@@ -261,9 +261,11 @@ Route::group(array('prefix' => 'account'), function()
 	});
 
 	// 顯示新增教師表單
-	Route::get('/add', function()
+	Route::get('/add/{titleId}', function($titleId)
 	{
-		return View::make('account_form')->with('teacher', NULL);
+		$viewData['titleId'] = $titleId;
+		$viewData['teacher'] = null;
+		return View::make('account_form')->with($viewData);
 	});
 
 	// 執行新增教師

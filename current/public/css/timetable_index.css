@@ -60,3 +60,7 @@
 	background-color: #A5DAFF;
 	font-weight: bold;
 }
+
+.row_item li a {
+	min-width: 10em;
+}

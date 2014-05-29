@@ -44,3 +44,10 @@
 .teacher_course_count {
 	padding-right: 5px !important;
 }
+
+/**
+ * 	職稱樣式
+ */
+.row_item li a {
+	min-width: 10em;
+}

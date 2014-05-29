@@ -49,7 +49,7 @@
 	        <th class="classes">導師班</th>
 	        <th class="teacher_course_count">應上節數</th>
 	        <th class="is_admin"></th>
-	        <th class="command">{{ Helper::add('account/add', '新增教師') }}</th>
+	        <th class="command">{{ Helper::add('account/add/' . $titleId, '新增教師') }}</th>
 	    </tr>
 		    
 		@if ($teacherList->count() != 0)

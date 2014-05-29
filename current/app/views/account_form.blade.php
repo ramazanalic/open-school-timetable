@@ -15,7 +15,7 @@
 <?php View::share('selectUrl', 'account'); ?>
 
 @section('content')		
-	{{ Helper::back('account') }}
+	{{ Helper::back('account/view_title/' . $titleId) }}
 
 	<h1>{{ (isset($teacher)) ? '編輯帳號《' . $teacher->teacher_name . '》' : '新增帳號'}}</h1>
 

@@ -4,7 +4,7 @@
 		<meta charset="utf-8" />
 		<meta name="keywords" content="排課, 國小, 課表">
 		<meta name="description" content="國小排課系統">
-		<link rel="icon" href="favicon.png" type="image/png">
+		<link rel="icon" href="{{ asset('favicon.png') }}" type="image/png">
 		{{ HTML::style('css/global/yui_cssreset-min.css') }}
 		{{ HTML::style('css/global/default.css') }}
 		@yield('css')
@@ -13,7 +13,7 @@
 	<body>
 		<header>
 			<div id="banner">				
-				<a href="{{ URL::to('/') }}">{{ HTML::image(URL::to('image/ost_icon.png'), 'Icon'). 'OST排課系統' }}</a>
+				<a href="{{ URL::to('/') }}">{{ HTML::image(asset('image/ost_icon.png'), 'Icon'). 'OST排課系統' }}</a>
 			</div>
 			<div id="login">
 				@if (Auth::check())
