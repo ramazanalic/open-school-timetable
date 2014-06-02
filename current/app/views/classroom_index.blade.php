@@ -1,7 +1,7 @@
 @extends('layouts.default')
 
 @section('css')
-	{{ HTML::style('css/table/style_1.css') }}
+	{{ HTML::style('css/table/style_3.css') }}
 	{{ HTML::style('css/form/classroom.css') }}
 	{{ HTML::style('css/js/course_time_selector.css') }}
 	{{ HTML::style('css/column_item/style_1.css') }}
@@ -34,7 +34,7 @@
 	
 	@if (isset($classroomList))
 		<div id="classroom_list">	    		    		
-			<table class="data_table table_style_1">
+			<table class="data_table table_style_3">
 				<tr>
 					<th>教室名稱（同時使用班級數）</th>
 					<th>&nbsp;</th>

@@ -1,0 +1,11 @@
+.course_name {
+	width: 7em;
+}
+
+.course_name input {
+	width: 5em;
+}
+
+.course_command {
+	width: 10em;
+}

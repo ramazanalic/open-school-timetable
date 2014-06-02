@@ -277,24 +277,23 @@ class Courseunit extends Eloquent
 				$totalCourseTime = count($fitnessItem['courseTime']) + 1;
 				$fitnessItem['score'] = $matchRequireTime / $totalCourseTime;
 			}
-		}		
+		}
 
 		// 計算適應值
 		$score = array();
 		foreach ($fitness as $fitnessItem) {
 			$score[] = $fitnessItem['score'];
-		}		
-				
-		// 有成員太低分，根據Z分數進行懲罰
+		}
+
+		// 低於平均的成員進行懲罰
 		$mean = array_sum($score) / count($score);
-		$stdev = Statistics::sd($score);	
 		$finalScore = $mean;
 		foreach ($score as $value) {
-			if ($value < $mean) {							
-				$finalScore -= pow(($mean - $value) / $stdev, 2) * ($mean - $value);
+			if ($value < $mean) {
+				$finalScore -= ($mean - $value) / 2;
 			}
 		}
-						
+
 		return $finalScore * 100;
 	}
 

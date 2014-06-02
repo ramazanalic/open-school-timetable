@@ -798,12 +798,12 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/Seldaek/monolog.git",
-                "reference": "fd991850387b36a3c3f2c4860f0a3f86f4e33b52"
+                "reference": "016423a804140a33814b8fad4240dbfa49a884da"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/Seldaek/monolog/zipball/fd991850387b36a3c3f2c4860f0a3f86f4e33b52",
-                "reference": "fd991850387b36a3c3f2c4860f0a3f86f4e33b52",
+                "url": "https://api.github.com/repos/Seldaek/monolog/zipball/016423a804140a33814b8fad4240dbfa49a884da",
+                "reference": "016423a804140a33814b8fad4240dbfa49a884da",
                 "shasum": ""
             },
             "require": {
@@ -858,7 +858,7 @@
                 "logging",
                 "psr-3"
             ],
-            "time": "2014-05-28 08:49:30"
+            "time": "2014-05-29 15:04:35"
         },
         {
             "name": "nesbot/carbon",
@@ -1008,12 +1008,12 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/nrk/predis.git",
-                "reference": "c2ae1c612ecbfcba5900234b083b2bc8d66ebf9f"
+                "reference": "c4b592298c8b83e05da3c791a2e0ab26e49708aa"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/nrk/predis/zipball/c2ae1c612ecbfcba5900234b083b2bc8d66ebf9f",
-                "reference": "c2ae1c612ecbfcba5900234b083b2bc8d66ebf9f",
+                "url": "https://api.github.com/repos/nrk/predis/zipball/c4b592298c8b83e05da3c791a2e0ab26e49708aa",
+                "reference": "c4b592298c8b83e05da3c791a2e0ab26e49708aa",
                 "shasum": ""
             },
             "require": {
@@ -1050,7 +1050,7 @@
                 "predis",
                 "redis"
             ],
-            "time": "2014-05-28 10:58:03"
+            "time": "2014-05-30 10:22:12"
         },
         {
             "name": "psr/log",
@@ -1635,12 +1635,12 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/symfony/HttpKernel.git",
-                "reference": "e8b31eaced978a5f8d881ebb96c349fa6babd1d8"
+                "reference": "a3f794f25f56d07caa76d7ff293c39a42b8bde29"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/symfony/HttpKernel/zipball/e8b31eaced978a5f8d881ebb96c349fa6babd1d8",
-                "reference": "e8b31eaced978a5f8d881ebb96c349fa6babd1d8",
+                "url": "https://api.github.com/repos/symfony/HttpKernel/zipball/a3f794f25f56d07caa76d7ff293c39a42b8bde29",
+                "reference": "a3f794f25f56d07caa76d7ff293c39a42b8bde29",
                 "shasum": ""
             },
             "require": {
@@ -1699,7 +1699,7 @@
             ],
             "description": "Symfony HttpKernel Component",
             "homepage": "http://symfony.com",
-            "time": "2014-05-26 16:42:04"
+            "time": "2014-06-01 15:15:00"
         },
         {
             "name": "symfony/process",
@@ -1868,20 +1868,10 @@
             "time": "2014-05-21 16:08:05"
         }
     ],
-    "packages-dev": [
-
-    ],
-    "aliases": [
-
-    ],
+    "packages-dev": [],
+    "aliases": [],
     "minimum-stability": "dev",
-    "stability-flags": [
-
-    ],
-    "platform": [
-
-    ],
-    "platform-dev": [
-
-    ]
+    "stability-flags": [],
+    "platform": [],
+    "platform-dev": []
 }

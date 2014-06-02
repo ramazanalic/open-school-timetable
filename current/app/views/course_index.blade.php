@@ -1,7 +1,7 @@
 @extends('layouts.default')
 
 @section('css')
-	{{ HTML::style('css/table/style_1.css') }}
+	{{ HTML::style('css/table/style_2.css') }}
 	{{ HTML::style('css/form/course.css') }}
 	{{ HTML::style('css/course_index.css') }}
 @stop
@@ -21,9 +21,15 @@
 
 	@if (isset($courseList))
 		<div id="course_form">
+			<table class="data_table table_style_2">
+				<tr>
+    				<th class="course_name">課程名稱</td>
+    				<th class="course_command"></th>
+    			</tr>    			
+    		</table>
 	    	@foreach ($courseList as $course)
 	    		{{ Form::open(array('url' => 'course/edit/' . $course->course_id)) }}
-    				<table class="data_table table_style_1">
+    				<table class="data_table table_style_2">    					
 	    				<tr>
 	    					<td class="course_name">{{ Form::text('course_name', $course->course_name, array('required' => 'required')) }}</td>
 	    					<td class="course_command">{{ Form::submit('更新') . '&nbsp;&nbsp;' . Helper::delete('course/delete/' . $course->course_id) }}</td>

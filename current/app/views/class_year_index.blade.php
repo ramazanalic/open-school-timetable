@@ -62,11 +62,9 @@
 			    					{{ FormList::select('teacher_id', '導師', array('valueArray' => Teacher::getTeacherSelectArray(), 'value' => $classesItem->teacher_id, 'required' => 'required'), null, 0) }}
 			    				</th>
 		    					<td class="classes_command">
-		    						{{ Form::submit('更新') }}
-		    						&nbsp;&nbsp;
-		    						{{ Helper::delete('class_year/delete_classes/' . $classesItem->classes_id . '/' . $year->year_id) }}
-		    						<br>
-		    						{{ Html::link('#' . $classesItem->classes_id, '顯示班級排課(' . $classesItem->courseunit()->count() . ')', array('class' => 'showClassesCourseunit edit_link', 'data-classes_id' => $classesItem->classes_id)) }}
+		    						{{ Form::submit('更新') }}		    						
+		    						{{ Helper::delete('class_year/delete_classes/' . $classesItem->classes_id . '/' . $year->year_id) }}		    						
+		    						{{ link_to('#' . $classesItem->classes_id, '顯示班級排課(' . $classesItem->courseunit()->count() . ')', array('class' => 'showClassesCourseunit edit_link', 'data-classes_id' => $classesItem->classes_id)) }}
 		    					</td>
 		    				</tr>
 		    			</table>
