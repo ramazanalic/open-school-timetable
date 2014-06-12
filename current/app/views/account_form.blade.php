@@ -21,7 +21,7 @@
 
 	{{ Helper::message() }}
 
-	{{ FormList::open($teacher, (isset($teacher)) ? 'account/edit/' . $teacher->teacher_id . '/titleId/' . $titleId : 'account/add') }}
+	{{ FormList::open($teacher, (isset($teacher)) ? 'account/edit/' . $teacher->teacher_id . '/titleId/' . $titleId : 'account/add/' . $titleId) }}
 	{{ FormList::description('請輸入以下的資料') }}
 	{{ FormList::hidden('course_time') }}	
 	<br>	
@@ -43,7 +43,7 @@
 	{{ FormList::close() }}
 	
 	<div id="teacher_require">
-		<strong>教師排課設定</strong>
+		<strong>教師排課需求設定</strong>
 		@include('course_time_selector', array('course_time' => (isset($teacher) ? $teacher->course_time : '')))	
 	</div>
 		

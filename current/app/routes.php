@@ -269,16 +269,16 @@ Route::group(array('prefix' => 'account'), function()
 	});
 
 	// 執行新增教師
-	Route::post('/add', function()
+	Route::post('/add/{titleId}', function($titleId)
 	{
 		$validator = FormValidator::teacher(Input::all(), true);
 
-		if ($validator->fails()) {
-			return Redirect::to('/account/add')->withInput()->withErrors($validator)->with('message', '輸入錯誤，請檢查');
-		} else {
-			$data = Input::except('teacher_password', 'teacher_password_confirmation');
+		if ($validator->fails()) {							
+			return Redirect::to('/account/add/' . $titleId)->withInput()->withErrors($validator)->with('message', '輸入錯誤，請檢查');
+		} else {			
+			$data = Input::except('teacher_password', 'teacher_password_confirmation');			
 			$data['teacher_password_hash'] = Hash::make(Input::get('teacher_password'));
-
+			
 			if (Teacher::create($data)) {
 				$message = '新增教師《' . $data['teacher_name'] . '》完成';
 			} else {
