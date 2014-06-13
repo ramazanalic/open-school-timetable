@@ -109,11 +109,11 @@
 			{{ FormList::select('classroom_id', '使用教室', array('valueArray' => array('0' => '無'), 'required' => 'required'), array('Classroom', 'classroom_id', 'classroom_name')) }}
 	
 			@if (isset($courseUnit))
-				<?php $course_limit = unserialize($courseUnit->course_unit_limit) ?>
-				{{ FormList::select('combination', '組合節數', array('range' => array(1, 3), 'value' => $course_limit['combination'])) }}
-				{{ FormList::select('repeat', '同天同班可重複排課', array('valueArray' => array('0' => '否', '1' => '是'), 'value' => $course_limit['repeat'])) }}
-				{{ FormList::checkbox('limit_course_time', '限制排課時間', 1, $course_limit['limit_course_time']) }}
-				{{ FormList::hidden('course_time', $course_limit['course_time']) }}
+				<?php $courseUnitLimit = unserialize($courseUnit->course_unit_limit) ?>				
+				{{ FormList::select('combination', '組合節數', array('range' => array(1, 3), 'value' => $courseUnitLimit['combination'])) }}
+				{{ FormList::select('repeat', '同天同班可重複排課', array('valueArray' => array('0' => '否', '1' => '是'), 'value' => $courseUnitLimit['repeat'])) }}
+				{{ FormList::checkbox('limit_course_time', '限制排課時間', 1, $courseUnitLimit['limit_course_time']) }}
+				{{ FormList::hidden('course_time', $courseUnitLimit['course_time']) }}
 			@else
 				{{ FormList::select('combination', '組合節數', array('range' => array(1, 3))) }}
 				{{ FormList::select('repeat', '同天同班可重複排課', array('valueArray' => array('0' => '否', '1' => '是'))) }}
@@ -161,11 +161,11 @@
 					        	@endif 		        			        	
 					        </td>
 					        
-					        <?php $courseLimit = unserialize($courseUnitItem->course_unit_limit) ?>
+					        <?php $courseLimitTemp = unserialize($courseUnitItem->course_unit_limit) ?>
 					        
-					        <td class="combination">{{ $courseLimit['combination'] }}</td>
-					        <td class="repeat">{{ ($courseLimit['repeat']) ? '是' : '否' }}</td>
-					        <td class="limit_course_time">{{ ($courseLimit['limit_course_time']) ? '是' : '否' }}</td>		
+					        <td class="combination">{{ $courseLimitTemp['combination'] }}</td>
+					        <td class="repeat">{{ ($courseLimitTemp['repeat']) ? '是' : '否' }}</td>
+					        <td class="limit_course_time">{{ ($courseLimitTemp['limit_course_time']) ? '是' : '否' }}</td>		
 					        <td class="command">
 					        	{{ Helper::edit('timetable/view_title/' . $titleId . '/' . $teacherId . '/' . $courseUnitItem->course_unit_id) }}					        		        	
 					        	{{ Helper::delete('timetable/delete/' . $titleId . '/' . $courseUnitItem->course_unit_id) }}
@@ -175,7 +175,7 @@
 				</table>				
 			@endif
 			
-			@include('course_time_selector', array('course_time' => (isset($courseLimit) ? $courseLimit['course_time'] : '')))	
+			@include('course_time_selector', array('course_time' => isset($courseUnitLimit) ? $courseUnitLimit['course_time'] : ''))	
 		</div>				
 	@endif
 @stop

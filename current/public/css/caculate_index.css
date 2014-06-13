@@ -23,3 +23,14 @@
 	color: red;
 	font-style: italic;
 }
+
+#error_courseunit {
+	float: left;
+	margin: 1em 0 0 1em;
+	padding: 10px 5px;
+	border-top: 5px solid #85639c;
+}
+
+#first_error a {
+	background-color: red;
+}

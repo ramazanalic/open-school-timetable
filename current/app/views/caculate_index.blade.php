@@ -2,7 +2,8 @@
 
 @section('css')	
 	{{ HTML::style('css/form/caculate.css') }}
-	{{ HTML::style('css/caculate_index.css') }}
+	{{ HTML::style('css/column_item/style_1.css') }}
+	{{ HTML::style('css/caculate_index.css') }}	
 @stop
 
 <?php View::share('titlePrefix', '計算課表'); ?>
@@ -35,5 +36,21 @@
 				</ul>
 			@endif
 		@endfor				
+	@endif
+	
+	@if (isset($errorTimetable))
+		<div id="error_courseunit" class="column_item column_item_style_1">
+			<ul>
+				<li class="title">
+					發生錯誤的排課
+				</li>
+				@foreach ($errorTimetable as $key => $courseUnit)										
+					<li{{ ($key == 0) ? ' id="first_error"' : ''}}>
+						{{ Helper::edit('timetable/view_title/' . Teacher::find($courseUnit['teacher_id'])->title_id . '/' . $courseUnit['teacher_id'] . '/' . $courseUnit['course_unit_id'], $courseUnit['teacher_name']. '[' . $courseUnit['course_name'] . '](' . $courseUnit['classes_name'] .')') }}						
+					</li>
+				@endforeach				
+			</ul>
+		</div>			
+		
 	@endif
 @stop

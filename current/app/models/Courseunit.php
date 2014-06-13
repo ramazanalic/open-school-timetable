@@ -77,6 +77,11 @@ class Courseunit extends Eloquent
 		// 產生課表，速度、計算適應值
 		$seed = self::_generateSeed($param['seedCount']);
 
+		// 發生錯誤，回傳錯誤結果
+		if ($seed[0] == 'error') {
+			return $seed;
+		}
+
 		// 進行粒子最佳化計算
 		$seedProgressHistory = array();
 		$extinctionTimes = 1;
@@ -137,6 +142,11 @@ class Courseunit extends Eloquent
 
 			// 更新課表排課，產生排課結果
 			$seed[$seedCountI]['timetable'] = self::_updateTimetable($timetable, true);
+
+			// 發生錯誤，回傳結果
+			if ($seed[$seedCountI]['timetable'][0] == 'error') {
+				return $seed[$seedCountI]['timetable'];
+			}
 
 			// 計算適應值
 			$seed[$seedCountI]['fitness'] = self::_cacualteFitness($seed[$seedCountI]['timetable']);
@@ -332,9 +342,9 @@ class Courseunit extends Eloquent
 
 			// 檢查是否有衝突，可以排的時間被填滿，產生和那一個排課設定衝突的訊息（尚未實做）
 			if (count($coursePosition) == 0) {
-				echo 'ERROR！';
-				var_dump($result);
-				dd($timetable[0]);
+				$error[0] = 'error';
+				$error[1] = array_slice($timetable, 0, 5);
+				return $error;
 			}
 
 			// 隨機選擇排課時間
@@ -425,7 +435,6 @@ class Courseunit extends Eloquent
 			$temp['repeat'] = $limit['repeat'];
 			$temp['limit_course_time'] = ($limit['course_time']) ? $limit['course_time'] : str_repeat('1', 35);
 			unset($temp['course_unit_limit']);
-			unset($temp['course_unit_id']);
 			$temp['total_count'] = $temp['count'];
 
 			// 依照排課限制來產生可排課時間

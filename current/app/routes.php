@@ -273,12 +273,12 @@ Route::group(array('prefix' => 'account'), function()
 	{
 		$validator = FormValidator::teacher(Input::all(), true);
 
-		if ($validator->fails()) {							
+		if ($validator->fails()) {
 			return Redirect::to('/account/add/' . $titleId)->withInput()->withErrors($validator)->with('message', '輸入錯誤，請檢查');
-		} else {			
-			$data = Input::except('teacher_password', 'teacher_password_confirmation');			
+		} else {
+			$data = Input::except('teacher_password', 'teacher_password_confirmation');
 			$data['teacher_password_hash'] = Hash::make(Input::get('teacher_password'));
-			
+
 			if (Teacher::create($data)) {
 				$message = '新增教師《' . $data['teacher_name'] . '》完成';
 			} else {
@@ -779,8 +779,15 @@ Route::group(array('prefix' => 'caculate'), function()
 			return Redirect::to('caculate')->withInput()->withErrors($validator)->with('message', '輸入錯誤，請檢查');
 		} else {
 			$viewData['oldData'] = Input::all();
-			$viewData['seedProgressHistory'] = Courseunit::caculate(Input::all());
-			$viewData['message'] = '排課完成';
+			$seedProgressHistory = Courseunit::caculate(Input::all());
+			if ($seedProgressHistory[0] == 'error') {
+				$viewData['message'] = '排課發生衝突，請檢查以下的排課內容';
+				$viewData['errorTimetable'] = $seedProgressHistory[1];
+			} else {
+				$viewData['message'] = '排課完成';
+				$viewData['seedProgressHistory'] = $seedProgressHistory;
+			}
+
 			return View::make('caculate_index')->with($viewData);
 		}
 	});
