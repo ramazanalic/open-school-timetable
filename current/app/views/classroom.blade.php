@@ -5,7 +5,7 @@
 	{{ HTML::style('css/form/classroom.css') }}
 	{{ HTML::style('css/js/course_time_selector.css') }}
 	{{ HTML::style('css/column_item/style_1.css') }}
-	{{ HTML::style('css/classroom_index.css') }}
+	{{ HTML::style('css/classroom.css') }}
 @stop
 
 @section('js')
@@ -68,7 +68,7 @@
 				</li>
 				@foreach ($classroomCourseunit as $courseunit)
 					<li>
-						{{ Helper::edit('timetable/view_title/' . $courseunit->teacher->title->title_id . '/' . $courseunit->teacher->teacher_id . '/' . $courseunit->course_unit_id, $courseunit->teacher->teacher_name. '[' . $courseunit->course->course_name . '](' . $courseunit->count . '節)') }}						
+						{{ Helper::edit('timetable/view_title/' . $courseunit->teacher->title->title_id . '/' . $courseunit->teacher->teacher_id . '/' . $courseunit->course_unit_id, $courseunit->classes->classes_name . '《' . $courseunit->teacher->teacher_name . '》〔' . $courseunit->course->course_name . '〕（' . $courseunit->count . '節）') }}						
 					</li>			
 				@endforeach
 			</ul>

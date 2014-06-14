@@ -103,7 +103,7 @@
 						</li>
 						@foreach ($classesCourseunit as $courseunit)					
 							<li>
-								{{ Helper::edit('timetable/view_title/' . $courseunit->teacher->title->title_id . '/' . $courseunit->teacher->teacher_id . '/' . $courseunit->course_unit_id, $courseunit->teacher->teacher_name. '[' . $courseunit->course->course_name . '](' . $courseunit->count . '節)') }}								
+								{{ Helper::edit('timetable/view_title/' . $courseunit->teacher->title->title_id . '/' . $courseunit->teacher->teacher_id . '/' . $courseunit->course_unit_id, $courseunit->teacher->teacher_name. '〔' . $courseunit->course->course_name . '〕（' . $courseunit->count . '節）') }}								
 							</li>
 						@endforeach
 					</ul>

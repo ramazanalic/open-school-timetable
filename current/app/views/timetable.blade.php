@@ -6,7 +6,7 @@
 	{{ HTML::style('css/row_item/style_1.css') }}
 	{{ HTML::style('css/form/course_unit.css') }}
 	{{ HTML::style('css/js/course_time_selector.css') }}
-	{{ HTML::style('css/timetable_index.css') }}		
+	{{ HTML::style('css/timetable.css') }}		
 @stop
 
 @section('js')

@@ -257,7 +257,7 @@ Route::group(array('prefix' => 'account'), function()
 		$viewData['teacherList'] = ($titleId == 'all') ? Teacher::orderBy('teacher_name')->get() : Teacher::where('title_id', '=', $titleId)->orderBy('teacher_name')->get();
 		$viewData['titleList'] = Title::orderBy('title_name')->get();
 		$viewData['titleId'] = $titleId;
-		return View::make('account_index')->with($viewData);
+		return View::make('account')->with($viewData);
 	});
 
 	// 顯示新增教師表單
@@ -398,7 +398,7 @@ Route::group(array('prefix' => 'class_year'), function()
 	// 顯示年級列表、年級新增表單
 	Route::get('/', function()
 	{
-		return View::make('class_year_index')->with(array(
+		return View::make('class_year')->with(array(
 			'yearList' => $GLOBALS['yearList'],
 			'year' => NULL
 		));
@@ -430,7 +430,7 @@ Route::group(array('prefix' => 'class_year'), function()
 		$viewData['year'] = Year::find($yearId);
 		$viewData['classes'] = Year::find($yearId)->classes()->orderBy('classes_name')->get();
 		$viewData['yearList'] = $GLOBALS['yearList'];
-		return View::make('class_year_index')->with($viewData);
+		return View::make('class_year')->with($viewData);
 	});
 
 	// 執行編輯年級
@@ -529,7 +529,7 @@ Route::group(array('prefix' => 'course'), function()
 	Route::get('/', function()
 	{
 		$courseList = Course::orderBy('course_name')->get();
-		return View::make('course_index')->with(array('courseList' => $courseList));
+		return View::make('course')->with(array('courseList' => $courseList));
 	});
 
 	// 執行新增課程
@@ -592,7 +592,7 @@ Route::group(array('prefix' => 'classroom'), function()
 	Route::get('/', function()
 	{
 		$classroomList = Classroom::orderBy('classroom_name')->get();
-		return View::make('classroom_index')->with(array(
+		return View::make('classroom')->with(array(
 			'classroomList' => $classroomList,
 			'classroom' => null
 		));
@@ -624,7 +624,7 @@ Route::group(array('prefix' => 'classroom'), function()
 		$viewData['classroomList'] = Classroom::orderBy('classroom_name')->get();
 		$viewData['classroom'] = Classroom::find($id);
 		$viewData['classroomCourseunit'] = $viewData['classroom']->courseunit;
-		return View::make('classroom_index')->with($viewData);
+		return View::make('classroom')->with($viewData);
 	});
 
 	// 執行編輯教室
@@ -676,7 +676,7 @@ Route::group(array('prefix' => 'timetable'), function()
 		$viewData['teacherList'] = $teacherList->get();
 		$viewData['titleList'] = Title::orderBy('title_name')->get();
 		$viewData['titleId'] = $titleId;
-		return View::make('timetable_index')->with($viewData);
+		return View::make('timetable')->with($viewData);
 	});
 
 	// 顯示教師排課清單
@@ -689,7 +689,7 @@ Route::group(array('prefix' => 'timetable'), function()
 		$viewData['teacher'] = Teacher::find($teacherId);
 		$viewData['teacherId'] = $teacherId;
 		$viewData['courseUnits'] = $viewData['teacher']->courseunit;
-		return View::make('timetable_index')->with($viewData);
+		return View::make('timetable')->with($viewData);
 	});
 
 	// 顯示教師排課編輯畫面
@@ -703,7 +703,7 @@ Route::group(array('prefix' => 'timetable'), function()
 		$viewData['teacherId'] = $teacherId;
 		$viewData['courseUnits'] = $viewData['teacher']->courseunit;
 		$viewData['courseUnit'] = Courseunit::find($courseUnitId);
-		return View::make('timetable_index')->with($viewData);
+		return View::make('timetable')->with($viewData);
 	});
 
 	// 執行更新排課設定
@@ -767,7 +767,7 @@ Route::group(array('prefix' => 'caculate'), function()
 	// 顯示計算課表表單
 	Route::get('/', function()
 	{
-		return View::make('caculate_index');
+		return View::make('caculate');
 	});
 
 	// 執行計算課表
@@ -788,7 +788,7 @@ Route::group(array('prefix' => 'caculate'), function()
 				$viewData['seedProgressHistory'] = $seedProgressHistory;
 			}
 
-			return View::make('caculate_index')->with($viewData);
+			return View::make('caculate')->with($viewData);
 		}
 	});
 });

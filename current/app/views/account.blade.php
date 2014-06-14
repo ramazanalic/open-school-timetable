@@ -4,7 +4,7 @@
 	{{ HTML::style('css/table/style_1.css') }}
 	{{ HTML::style('css/row_item/style_1.css') }}	
 	{{ HTML::style('css/form/title.css') }}
-	{{ HTML::style('css/account_index.css') }}
+	{{ HTML::style('css/account.css') }}
 @stop
 
 <?php View::share('titlePrefix', '帳號管理') ?>

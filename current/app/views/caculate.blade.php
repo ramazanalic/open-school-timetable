@@ -3,7 +3,7 @@
 @section('css')	
 	{{ HTML::style('css/form/caculate.css') }}
 	{{ HTML::style('css/column_item/style_1.css') }}
-	{{ HTML::style('css/caculate_index.css') }}	
+	{{ HTML::style('css/caculate.css') }}	
 @stop
 
 <?php View::share('titlePrefix', '計算課表'); ?>
@@ -16,9 +16,9 @@
 
 	{{ FormList::open('' , 'caculate') }}		
 		{{ FormList::select('seedCount', '粒子數：', array('range' => array(1, 20), 'value' => isset($oldData) ? $oldData['seedCount'] : '')) }}
-		<br>
+		&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
 		{{ FormList::select('executeCount', '計算程度：', array('range' => array(1, 20), 'value' => isset($oldData) ? $oldData['executeCount'] : '')) }}
-		<br>
+		&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
 		{{ FormList::select('extinctionCount', '毀滅次數：', array('range' => array(1, 5), 'value' => isset($oldData) ? $oldData['extinctionCount'] : '')) }}
 		<br>		
 		{{ FormList::submit('計算') }}
@@ -50,7 +50,6 @@
 					</li>
 				@endforeach				
 			</ul>
-		</div>			
-		
+		</div>		
 	@endif
 @stop

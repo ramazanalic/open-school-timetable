@@ -3,8 +3,7 @@
 @section('css')
 	{{ HTML::style('css/form/account.css') }}
 	{{ HTML::style('css/js/course_time_selector.css') }}
-	{{ HTML::style('css/column_item/style_1.css') }}
-	{{ HTML::style('css/account_edit.css') }}
+	{{ HTML::style('css/column_item/style_1.css') }}	
 @stop
 
 @section('js')
@@ -55,7 +54,7 @@
 				</li>
 				@foreach ($teacherCourseunit as $courseunit)
 					<li>
-						{{ Helper::edit('timetable/view_title/' . $titleId . '/' . $teacher->teacher_id . '/' . $courseunit->course_unit_id, $courseunit->classes->classes_name. '[' . $courseunit->course->course_name . '](' . $courseunit->count . '節)') }}						
+						{{ Helper::edit('timetable/view_title/' . $titleId . '/' . $teacher->teacher_id . '/' . $courseunit->course_unit_id, $courseunit->classes->classes_name. '〔' . $courseunit->course->course_name . '〕（' . $courseunit->count . '節）') }}						
 					</li>			
 				@endforeach
 			</ul>

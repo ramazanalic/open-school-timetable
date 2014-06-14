@@ -3,7 +3,7 @@
 @section('css')
 	{{ HTML::style('css/table/style_2.css') }}
 	{{ HTML::style('css/form/course.css') }}
-	{{ HTML::style('css/course_index.css') }}
+	{{ HTML::style('css/course.css') }}
 @stop
 
 <?php View::share('titlePrefix', '課程管理'); ?>

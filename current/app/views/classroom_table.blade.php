@@ -45,7 +45,7 @@
 								@foreach ($classsroomTimeTable[$i] as $course)
 									{{ $course['classes_name'] . '&nbsp;' . $course['course_name'] }}
 									<br>
-									{{ '[' . $course['teacher_name'] . ']'}}									
+									{{ '《' . $course['teacher_name'] . '》' }}									
 									{{ (next($classsroomTimeTable[$i])) ? '<hr>' : '' }}																	
 								@endforeach																
 							@endif
@@ -60,7 +60,7 @@
 								@foreach ($classsroomTimeTable[$i] as $course)
 									{{ $course['classes_name'] . '&nbsp;' . $course['course_name'] }}
 									<br>
-									{{ '[' . $course['teacher_name'] . ']'}}									
+									{{ '《' . $course['teacher_name'] . '》' }}									
 									{{ (next($classsroomTimeTable[$i])) ? '<hr>' : '' }}																	
 								@endforeach																
 							@endif
@@ -75,7 +75,7 @@
 								@foreach ($classsroomTimeTable[$i] as $course)
 									{{ $course['classes_name'] . '&nbsp;' . $course['course_name'] }}
 									<br>
-									{{ '[' . $course['teacher_name'] . ']'}}									
+									{{ '《' . $course['teacher_name'] . '》' }}									
 									{{ (next($classsroomTimeTable[$i])) ? '<hr>' : '' }}																	
 								@endforeach																
 							@endif
@@ -90,7 +90,7 @@
 								@foreach ($classsroomTimeTable[$i] as $course)
 									{{ $course['classes_name'] . '&nbsp;' . $course['course_name'] }}
 									<br>
-									{{ '[' . $course['teacher_name'] . ']'}}									
+									{{ '《' . $course['teacher_name'] . '》' }}									
 									{{ (next($classsroomTimeTable[$i])) ? '<hr>' : '' }}																	
 								@endforeach																
 							@endif
@@ -108,7 +108,7 @@
 								@foreach ($classsroomTimeTable[$i] as $course)
 									{{ $course['classes_name'] . '&nbsp;' . $course['course_name'] }}
 									<br>
-									{{ '[' . $course['teacher_name'] . ']'}}									
+									{{ '《' . $course['teacher_name'] . '》' }}									
 									{{ (next($classsroomTimeTable[$i])) ? '<hr>' : '' }}																	
 								@endforeach																
 							@endif
@@ -123,7 +123,7 @@
 								@foreach ($classsroomTimeTable[$i] as $course)
 									{{ $course['classes_name'] . '&nbsp;' . $course['course_name'] }}
 									<br>
-									{{ '[' . $course['teacher_name'] . ']'}}									
+									{{ '《' . $course['teacher_name'] . '》' }}									
 									{{ (next($classsroomTimeTable[$i])) ? '<hr>' : '' }}																	
 								@endforeach																
 							@endif
@@ -138,7 +138,7 @@
 								@foreach ($classsroomTimeTable[$i] as $course)
 									{{ $course['classes_name'] . '&nbsp;' . $course['course_name'] }}
 									<br>
-									{{ '[' . $course['teacher_name'] . ']'}}									
+									{{ '《' . $course['teacher_name'] . '》' }}									
 									{{ (next($classsroomTimeTable[$i])) ? '<hr>' : '' }}																	
 								@endforeach																
 							@endif
