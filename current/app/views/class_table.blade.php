@@ -14,6 +14,8 @@
 @section('content')
 	<h1>班級課表查詢</h1>	
 	
+	{{ Helper::message() }}
+	
 	@if (isset($yearList))
 		<div class="row_item row_item_style_2" id="year_row">
 			<ul>		

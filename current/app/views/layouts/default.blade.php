@@ -51,15 +51,15 @@
 							教師設定
 						</li>
 						<li>						
-							{{ link_to('teacher_require' . Auth::user()->teacher_id, '排課需求設定', array('class' => ($selectUrl == 'teacher_require') ? 'selected' : '')) }}						
+							{{ link_to('teacher_require/' . Auth::user()->teacher_id, '排課需求設定', array('class' => ($selectUrl == 'teacher_require') ? 'selected' : '')) }}						
 						</li>
 						<li>
-							{{ link_to('change_password' . Auth::user()->teacher_id, '變更密碼',  array('class' => ($selectUrl == 'change_password') ? 'selected' : '')) }}							
+							{{ link_to('change_password/' . Auth::user()->teacher_id, '變更密碼',  array('class' => ($selectUrl == 'change_password') ? 'selected' : '')) }}							
 						</li>
 					</ul>
 				@endif
 				
-				@if (Auth::check() || 1)
+				@if (Auth::check() && Auth::user()->teacher_privilege < 16)
 					<ul id="admin_nav">
 						<li class="nav_title">
 							系統管理

@@ -229,10 +229,7 @@ class Courseunit extends Eloquent
 			}
 		}
 
-		return array(
-			'timetable' => $seed[$bestKey]['timetable'],
-			'fitness' => $bestFitness
-		);
+		return array('timetable' => $seed[$bestKey]['timetable'], 'fitness' => $bestFitness);
 	}
 
 	/**
@@ -343,7 +340,7 @@ class Courseunit extends Eloquent
 			// 檢查是否有衝突，可以排的時間被填滿，產生和那一個排課設定衝突的訊息（尚未實做）
 			if (count($coursePosition) == 0) {
 				$error[0] = 'error';
-				$error[1] = array_slice($timetable, 0, 5);
+				$error[1] = array_merge($result, array_slice($timetable, 0, 5));
 				return $error;
 			}
 
@@ -351,20 +348,33 @@ class Courseunit extends Eloquent
 			if ($isNew == true) {
 				$timetable[0]['course_time'] = $coursePosition[array_rand($coursePosition)];
 			} else {
-				// 速度變化排課時間，判斷尋找方向
-				if ($timetable[0]['v'] > 0) {
-					$direction = 1;
-				} elseif ($timetable[0]['v'] < 0) {
-					$direction = -1;
+				// 依照速度，選擇新的排課時間
+				if ($timetable[0]['v'] >= 0) {
+					foreach ($coursePosition as $value) {
+						if ($value >= $timetable[0]['course_time']) {
+							$tempCourseTime = $value;
+							break;
+						}
+					}
+
+					if (!isset($tempCourseTime)) {
+						$tempCourseTime = end($coursePosition);
+					}
 				} else {
-					$direction = 0;
+					rsort($coursePosition);
+					foreach ($coursePosition as $value) {
+						if ($value <= $timetable[0]['course_time']) {
+							$tempCourseTime = $value;
+							break;
+						}
+					}
+
+					if (!isset($tempCourseTime)) {
+						$tempCourseTime = end($coursePosition);
+					}
 				}
 
-				// 尋找最近方向的可排課時間
-				$key = array_search($timetable[0]['course_time'], $coursePosition);
-				if (isset($coursePosition[$key + $direction])) {
-					$timetable[0]['course_time'] = $coursePosition[$key + $direction];
-				}
+				$timetable[0]['course_time'] = $tempCourseTime;
 			}
 
 			$timetableCount = count($timetable);
