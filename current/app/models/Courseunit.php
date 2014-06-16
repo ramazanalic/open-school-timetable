@@ -72,6 +72,10 @@ class Courseunit extends Eloquent
 		$teacher = Teacher::where('course_time', '<>', str_repeat(0, 35))->get();
 		foreach ($teacher as $teacherItem) {
 			$GLOBALS['teacherRequire'][$teacherItem->teacher_id]['require'] = $teacherItem->course_time;
+			$GLOBALS['teacherRequire'][$teacherItem->teacher_id]['classes_id'] = $teacherItem->classes_id;
+			if ($teacherItem->classes_id != 0) {
+				$GLOBALS['teacherRequire'][$teacherItem->teacher_id]['courseTime'] = $teacherItem->classes->year->course_time;
+			}
 		}
 
 		// 產生課表，速度、計算適應值
@@ -104,7 +108,7 @@ class Courseunit extends Eloquent
 				if ($bestSeed['fitness'] < $newBestSeed['fitness']) {
 					$bestSeed = $newBestSeed;
 					$withoutProgressCount = 0;
-					$seedProgressHistory[] = number_format($bestSeed['fitness'], 2, '.', '') . '＊';
+					$seedProgressHistory[] = number_format($bestSeed['fitness'], 2, '.', '') . '<sup class="progross">&nbsp;&nbsp;改進</sup>';
 				} else {
 					$withoutProgressCount++;
 					$seedProgressHistory[] = number_format($bestSeed['fitness'], 2, '.', '');
@@ -115,7 +119,7 @@ class Courseunit extends Eloquent
 			if (!isset($historyBestSeed) || $historyBestSeed['fitness'] < $bestSeed['fitness']) {
 				$historyBestSeed = $bestSeed;
 			}
-			$seedProgressHistory[] = '<strong>（' . number_format($historyBestSeed['fitness'], 2, '.', '') . '）</strong>';
+			$seedProgressHistory[] = '<strong>' . number_format($historyBestSeed['fitness'], 2, '.', '') . '<sup>&nbsp;&nbsp;全域最佳</sup></strong>';
 			$seedProgressHistory[] = 'Extinction ' . $extinctionTimes;
 			$param['extinctionCount']--;
 			$extinctionTimes++;
@@ -247,21 +251,17 @@ class Courseunit extends Eloquent
 
 		// 取得排課時間、計算個別分數
 		foreach ($fitness as $teacherId => &$fitnessItem) {
-			$teacher = Teacher::find($teacherId);
-			if ($teacher->classes_id != 0) {
-				// 計算導師排課
-				$fitnessItem['courseTime'] = $teacher->classes->year->course_time;
-
-				// 扣掉科任課（不包含導師）
+			if ($fitnessItem['classes_id'] != 0) {
+				// 扣掉科任課（不包含導師），產生導師上課時間
 				foreach ($timetable as $course) {
-					if ($course['classes_id'] == $teacher->classes_id && $course['teacher_id'] != $teacherId) {
+					if ($course['classes_id'] == $fitnessItem['classes_id'] && $course['teacher_id'] != $teacherId) {
 						$fitnessItem['courseTime'] = substr_replace($fitnessItem['courseTime'], str_repeat('0', $course['combination']), $course['course_time'], $course['combination']);
 					}
 				}
 
 				//計算分數
-				$totalCourseTime = substr_count($fitnessItem['courseTime'], '1') + 1;
-				$fitnessItem['score'] = substr_count($fitnessItem['courseTime'] & $fitnessItem['require'], '1') / $totalCourseTime;
+				$totalRequireTime = substr_count($fitnessItem['require'], '1') + 1;
+				$fitnessItem['score'] = substr_count($fitnessItem['courseTime'] & $fitnessItem['require'], '1') / $totalRequireTime;
 			} else {
 				// 計算科任排課
 				$fitnessItem['courseTime'] = array();
@@ -270,26 +270,31 @@ class Courseunit extends Eloquent
 						for ($combination = 0; $combination < $course['combination']; $combination++) {
 							$fitnessItem['courseTime'][] = $course['course_time'] + $combination;
 						}
-
 					}
 				}
 
-				$matchRequireTime = 0;
-				foreach ($fitnessItem['courseTime'] as $courseTime) {
-					if ($courseTime == strpos($fitnessItem['require'], '1', $courseTime)) {
-						$matchRequireTime++;
+				if (count($fitnessItem['courseTime']) == 0) {
+					$fitnessItem['score'] = -1;
+				} else {
+					$matchRequireTime = 0;
+					foreach ($fitnessItem['courseTime'] as $courseTime) {
+						if ($courseTime == strpos($fitnessItem['require'], '1', $courseTime)) {
+							$matchRequireTime++;
+						}
 					}
-				}
 
-				$totalCourseTime = count($fitnessItem['courseTime']) + 1;
-				$fitnessItem['score'] = $matchRequireTime / $totalCourseTime;
+					$totalRequireTime = substr_count($fitnessItem['require'], '1') + 1;
+					$fitnessItem['score'] = $matchRequireTime / $totalRequireTime;
+				}
 			}
 		}
 
 		// 計算適應值
 		$score = array();
-		foreach ($fitness as $fitnessItem) {
-			$score[] = $fitnessItem['score'];
+		foreach ($fitness as $scoreItem) {
+			if ($scoreItem['score'] > -1) {
+				$score[] = $scoreItem['score'];
+			}
 		}
 
 		// 低於平均的成員進行懲罰
@@ -323,10 +328,19 @@ class Courseunit extends Eloquent
 		$result = array();
 		while (count($timetable) > 0) {
 			// 排序優先排課順序
-			usort($timetable, function($a, $b)
-			{
-				return $a['available_course_time_count'] - $b['available_course_time_count'];
-			});
+			$courseCountArray = array();
+			foreach ($timetable as $key => $row) {
+				$courseCountArray[$key] = $row['available_course_time_count'];
+			}
+
+			array_multisort($courseCountArray, $timetable);
+
+			/* 改用更快的排序，需要測試是否會有錯誤
+			 usort($timetable, function($a, $b)
+			 {
+			 return $a['available_course_time_count'] - $b['available_course_time_count'];
+			 });
+			 */
 
 			// 產生排課時間選擇陣列
 			for ($position = 0, $coursePosition = array(); $position !== false; ) {
@@ -348,10 +362,25 @@ class Courseunit extends Eloquent
 			if ($isNew == true) {
 				$timetable[0]['course_time'] = $coursePosition[array_rand($coursePosition)];
 			} else {
+				// 重新設定暫存排課時間
+				$tempCourseTime = null;
+
 				// 依照速度，選擇新的排課時間
-				if ($timetable[0]['v'] >= 0) {
+				if ($timetable[0]['v'] > 0) {
 					foreach ($coursePosition as $value) {
-						if ($value >= $timetable[0]['course_time']) {
+						if ($value > $timetable[0]['course_time']) {
+							$tempCourseTime = $value;
+							break;
+						}
+					}
+
+					if (!isset($tempCourseTime)) {
+						$tempCourseTime = end($coursePosition);
+					}
+				} elseif ($timetable[0]['v'] < 0) {
+					rsort($coursePosition);
+					foreach ($coursePosition as $value) {
+						if ($value < $timetable[0]['course_time']) {
 							$tempCourseTime = $value;
 							break;
 						}
@@ -361,16 +390,14 @@ class Courseunit extends Eloquent
 						$tempCourseTime = end($coursePosition);
 					}
 				} else {
-					rsort($coursePosition);
-					foreach ($coursePosition as $value) {
-						if ($value <= $timetable[0]['course_time']) {
-							$tempCourseTime = $value;
-							break;
-						}
-					}
+					$diff = abs($timetable[0]['course_time'] - $coursePosition[0]);
+					$tempCourseTime = $timetable[0]['course_time'];
 
-					if (!isset($tempCourseTime)) {
-						$tempCourseTime = end($coursePosition);
+					foreach ($coursePosition as $value) {
+						if ($diff > abs($timetable[0]['course_time'] - $value)) {
+							$diff = abs($timetable[0]['course_time'] - $coursePosition[0]);
+							$tempCourseTime = $timetable[0]['course_time'];
+						}
 					}
 				}
 
@@ -397,7 +424,7 @@ class Courseunit extends Eloquent
 					}
 				}
 
-				// 更新排課時間
+				// 更新可排課時間
 				$timetable[$i]['available_course_time_count'] = substr_count($timetable[$i]['available_course_time'], '1');
 			}
 

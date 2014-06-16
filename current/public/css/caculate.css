@@ -24,6 +24,14 @@
 	font-style: italic;
 }
 
+.progress_history sup {
+	font-size: xx-small;
+}
+
+.progress_history .progross {
+	color: green;
+}
+
 #error_courseunit {
 	float: left;
 	margin: 1em 0 0 1em;
