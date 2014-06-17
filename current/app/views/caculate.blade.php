@@ -46,7 +46,10 @@
 				</li>
 				@foreach ($errorTimetable as $key => $courseUnit)										
 					<li{{ ($key == 0) ? ' id="first_error"' : ''}}>
-						{{ Helper::edit('timetable/view_title/' . Teacher::find($courseUnit['teacher_id'])->title_id . '/' . $courseUnit['teacher_id'] . '/' . $courseUnit['course_unit_id'], $courseUnit['teacher_name']. '[' . $courseUnit['course_name'] . '](' . $courseUnit['classes_name'] .')') }}						
+						{{ Helper::edit('timetable/view_title/' . Teacher::find($courseUnit['teacher_id'])->title_id . '/' . $courseUnit['teacher_id'] . '/' . $courseUnit['course_unit_id'], $courseUnit['classes_name'] . '&nbsp;' . $courseUnit['teacher_name']. '〔' . $courseUnit['course_name'] . '〕') }}
+						@if ($courseUnit['classroom_id'] != 0)						
+							{{ '使用' . Helper::add('classroom/edit/' . $courseUnit['classroom_id'], Classroom::find($courseUnit['classroom_id'])->classroom_name, array('class' => 'error_classroom')) }}
+						@endif												
 					</li>
 				@endforeach				
 			</ul>

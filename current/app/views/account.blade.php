@@ -48,6 +48,7 @@
 	        <th class="title">職稱</th>
 	        <th class="classes">導師班</th>
 	        <th class="teacher_course_count">應上節數</th>
+	        <th class="is_require"></th>
 	        <th class="is_admin"></th>
 	        <th class="command">{{ Helper::add('account/add/' . $titleId, '新增教師') }}</th>
 	    </tr>
@@ -84,6 +85,7 @@
 			        	@endif
 		            </td>
 			        <td class="teacher_course_count">{{ $teacher->teacher_course_count }}</td>
+			        <td class="is_require">{{ ($teacher->course_time != 0) ? '<div>設定需求</div>' : '' }}</td>
 			        <td class="is_admin">{{ ($teacher->teacher_privilege == 2) ? '<div>管理者</div>' : '' }}</td>
 			        <td class="command">
 			        	{{ Helper::edit('account/edit/' . $teacher->teacher_id . '/titleId/' . $titleId) }}

@@ -39,6 +39,10 @@
 	border-top: 5px solid #85639c;
 }
 
-#first_error a {
-	background-color: red;
+#error_courseunit a {
+	display: inline-block;
+}
+
+#first_error {
+	border: 5px solid red;
 }
