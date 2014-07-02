@@ -45,7 +45,7 @@
 			    	<tr>
 			    		<th class="classes_name">{{ Form::text('classes_name', '', array('required' => 'required', 'placeholder' => '新增班級…', 'autofocus' => 'autofocus')) }}</th>
 			    		<th class="teacher">
-			    			{{ FormList::select('teacher_id', '導師', array('valueArray' => array('0' => '無'), 'required' => 'required'), array('Teacher', 'teacher_id', 'teacher_name'), 0) }}	
+			    			{{ FormList::select('teacher_id', '導師', array('valueArray' => Teacher::getTeacherSelectArray(), 'required' => 'required'), null, 0) }}	
 			    		</th>			    		
 			    		<th class="classes_command">{{ Form::submit('新增班級', array('id' => 'add_classes')) }}</th>			    		
 		    		</tr>

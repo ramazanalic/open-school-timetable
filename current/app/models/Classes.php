@@ -5,7 +5,7 @@ class Classes extends Eloquent
 	protected $primaryKey = 'classes_id';
 	public $timestamps = false;
 	protected $guarded = array('classes_id');
-	public static $last_classes_id;
+	public static $lastClassesId;
 
 	public static function boot()
 	{
@@ -13,7 +13,7 @@ class Classes extends Eloquent
 
 		static::saved(function($classes)
 		{
-			self::$last_classes_id = $classes->classes_id;
+			self::$lastClassesId = $classes->classes_id;
 		});
 
 		// 將導師的班級資料設定為0，刪除排課設定
@@ -44,7 +44,7 @@ class Classes extends Eloquent
 	 */
 	public static function syncTeacher()
 	{
-		$classes = Classes::find(self::$last_classes_id);
+		$classes = Classes::find(self::$lastClassesId);
 		try {
 			$teacher = Teacher::where('classes_id', '=', $classes->classes_id)->update(array('classes_id' => 0));
 			if ($classes->teacher_id > 0) {

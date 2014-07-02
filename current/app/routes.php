@@ -255,10 +255,16 @@ if (Auth::check() && Auth::user()->teacher_privilege < 16) {
 		// 依職稱顯示教師列表
 		Route::get('view_title/{titleId}', function($titleId)
 		{
+			if ($titleId == 'all') {
+				$viewData['teacherList'] = Teacher::orderBy('teacher_name')->with('title', 'classes')->get();
+			} else {
+				$viewData['teacherList'] = Teacher::where('title_id', '=', $titleId)->orderBy('teacher_name')->with('title', 'classes')->get();
+			}
 			$viewData['teacherList'] = ($titleId == 'all') ? Teacher::orderBy('teacher_name')->get() : Teacher::where('title_id', '=', $titleId)->orderBy('teacher_name')->get();
 			$viewData['titleList'] = Title::orderBy('title_name')->get();
 			$viewData['titleId'] = $titleId;
 			return View::make('account')->with($viewData);
+
 		});
 
 		// 顯示新增教師表單

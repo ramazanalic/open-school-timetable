@@ -7,7 +7,8 @@ class Teacher extends Eloquent implements UserInterface
 	protected $primaryKey = 'teacher_id';
 	public $timestamps = false;
 	protected $guarded = array('teacher_id');
-	public static $last_teacher_id;
+	public static $lastTeacherId;
+	public static $teacherSelectArrayCache = null;
 
 	public static function boot()
 	{
@@ -15,7 +16,7 @@ class Teacher extends Eloquent implements UserInterface
 
 		static::saved(function($teacher)
 		{
-			self::$last_teacher_id = $teacher->teacher_id;
+			self::$lastTeacherId = $teacher->teacher_id;
 		});
 
 		// 將班級的導師資料設定為0，刪除排課設定
@@ -44,7 +45,7 @@ class Teacher extends Eloquent implements UserInterface
 	// 同步更新班級的導師資料
 	public static function syncClasses()
 	{
-		$teacher = Teacher::find(self::$last_teacher_id);
+		$teacher = Teacher::find(self::$lastTeacherId);
 		try {
 			$classes = Classes::where('teacher_id', '=', $teacher->teacher_id)->update(array('teacher_id' => 0));
 			if ($teacher->classes_id > 0) {
@@ -58,25 +59,30 @@ class Teacher extends Eloquent implements UserInterface
 	// 取得教師選單陣列（包含班級）
 	public static function getTeacherSelectArray()
 	{
-		$teacherSelectArray[0] = '無';
-		$teacher = Teacher::orderBy('teacher_name')->get();
+		if (self::$teacherSelectArrayCache == null) {
+			$teacherSelectArray[0] = '無';
+			$teacher = Teacher::orderBy('teacher_name')->with('classes')->get();
 
-		foreach ($teacher as $teacherItem) {
-			$string = $teacherItem->teacher_name;
-			if ($classes = $teacherItem->classes) {
-				$string .= '（' . $classes->classes_name . '）';
+			foreach ($teacher as $teacherItem) {
+				$string = $teacherItem->teacher_name;
+				if ($teacherItem->classes != null) {
+					$string .= '（' . $teacherItem->classes->classes_name . '）';
+				}
+				$teacherSelectArray[$teacherItem->teacher_id] = $string;
 			}
-			$teacherSelectArray[$teacherItem->teacher_id] = $string;
-		}
 
-		return $teacherSelectArray;
+			self::$teacherSelectArrayCache = $teacherSelectArray;
+			return $teacherSelectArray;
+		} else {
+			return self::$teacherSelectArrayCache;
+		}
 	}
 
 	//傳回最後存入的職稱
 	public static function getLastTitleId()
 	{
 		try {
-			return Teacher::find(self::$last_teacher_id)->title->title_id;
+			return Teacher::find(self::$lastTeacherId)->title->title_id;
 		} catch (Exception $e) {
 			return 'all';
 		}

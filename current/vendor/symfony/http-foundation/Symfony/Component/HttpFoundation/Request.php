@@ -350,6 +350,7 @@ class Request
                 if (!isset($server['CONTENT_TYPE'])) {
                     $server['CONTENT_TYPE'] = 'application/x-www-form-urlencoded';
                 }
+                // no break
             case 'PATCH':
                 $request = $parameters;
                 $query = array();
@@ -932,7 +933,13 @@ class Request
         }
 
         if ($host = $this->headers->get('HOST')) {
-            if (false !== $pos = strrpos($host, ':')) {
+            if ($host[0] === '[') {
+                $pos = strpos($host, ':', strrpos($host, ']'));
+            } else {
+                $pos = strrpos($host, ':');
+            }
+
+            if (false !== $pos) {
                 return intval(substr($host, $pos + 1));
             }
 
