@@ -132,12 +132,12 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/doctrine/cache.git",
-                "reference": "bb9b55b17bed5923c9446c8158a92623d39480c6"
+                "reference": "021c52e5854c7793e26cdc615568a3d9e5f157fb"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/doctrine/cache/zipball/bb9b55b17bed5923c9446c8158a92623d39480c6",
-                "reference": "bb9b55b17bed5923c9446c8158a92623d39480c6",
+                "url": "https://api.github.com/repos/doctrine/cache/zipball/021c52e5854c7793e26cdc615568a3d9e5f157fb",
+                "reference": "021c52e5854c7793e26cdc615568a3d9e5f157fb",
                 "shasum": ""
             },
             "require": {
@@ -167,7 +167,7 @@
             ],
             "authors": [
                 {
-                    "name": "Jonathan H. Wage",
+                    "name": "Jonathan Wage",
                     "email": "jonwage@gmail.com",
                     "homepage": "http://www.jwage.com/",
                     "role": "Creator"
@@ -188,7 +188,7 @@
                 {
                     "name": "Johannes Schmitt",
                     "email": "schmittjoh@gmail.com",
-                    "homepage": "http://jmsyst.com",
+                    "homepage": "https://github.com/schmittjoh",
                     "role": "Developer of wrapped JMSSerializerBundle"
                 }
             ],
@@ -198,7 +198,7 @@
                 "cache",
                 "caching"
             ],
-            "time": "2014-03-27 11:06:41"
+            "time": "2014-07-03 11:55:01"
         },
         {
             "name": "doctrine/collections",
@@ -1380,12 +1380,12 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/symfony/DomCrawler.git",
-                "reference": "d48bcd81b8a562ef4352c8698f3bf47e04afc1f9"
+                "reference": "b802150e842cac04ae90ceb1056013df3668be36"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/symfony/DomCrawler/zipball/d48bcd81b8a562ef4352c8698f3bf47e04afc1f9",
-                "reference": "d48bcd81b8a562ef4352c8698f3bf47e04afc1f9",
+                "url": "https://api.github.com/repos/symfony/DomCrawler/zipball/b802150e842cac04ae90ceb1056013df3668be36",
+                "reference": "b802150e842cac04ae90ceb1056013df3668be36",
                 "shasum": ""
             },
             "require": {
@@ -1426,7 +1426,7 @@
             ],
             "description": "Symfony DomCrawler Component",
             "homepage": "http://symfony.com",
-            "time": "2014-06-24 21:09:12"
+            "time": "2014-07-03 22:18:40"
         },
         {
             "name": "symfony/event-dispatcher",
@@ -1823,12 +1823,12 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/symfony/Translation.git",
-                "reference": "62aeb752569787bce4ad10faa96f5f91a9c431aa"
+                "reference": "e185d35ce0ed0b00dd58298be2e9c70a5c3131dd"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/symfony/Translation/zipball/62aeb752569787bce4ad10faa96f5f91a9c431aa",
-                "reference": "62aeb752569787bce4ad10faa96f5f91a9c431aa",
+                "url": "https://api.github.com/repos/symfony/Translation/zipball/e185d35ce0ed0b00dd58298be2e9c70a5c3131dd",
+                "reference": "e185d35ce0ed0b00dd58298be2e9c70a5c3131dd",
                 "shasum": ""
             },
             "require": {
@@ -1871,7 +1871,7 @@
             ],
             "description": "Symfony Translation Component",
             "homepage": "http://symfony.com",
-            "time": "2014-05-21 16:08:05"
+            "time": "2014-07-04 06:08:13"
         }
     ],
     "packages-dev": [],

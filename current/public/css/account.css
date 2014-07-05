@@ -68,3 +68,14 @@
 .row_item li a {
 	min-width: 10em;
 }
+
+/**
+ * 	排序表格樣式
+ */
+.sortable th:not(.sorttable_nosort) {
+	cursor: pointer;
+}
+
+.sortable tr th.sorttable_sorted {
+	background-color: #647687;
+}

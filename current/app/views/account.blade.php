@@ -7,6 +7,10 @@
 	{{ HTML::style('css/account.css') }}
 @stop
 
+@section('js')
+	{{ HTML::script('js/sorttable.js') }}	
+@stop
+
 <?php View::share('titlePrefix', '帳號管理') ?>
 <?php View::share('selectUrl', 'account'); ?>
 
@@ -41,16 +45,16 @@
 		{{ Form::close() }}									
 	</div>
 	
-	<table class="data_table table_style_1">
+	<table class="data_table table_style_1 sortable">
 	    <tr>
 	        <th class="teacher_name">姓名</th>
 	        <th class="teacher_account">帳號</th>		        
 	        <th class="title">職稱</th>
 	        <th class="classes">導師班</th>
 	        <th class="teacher_course_count">應上節數</th>
-	        <th class="is_require"></th>
-	        <th class="is_admin"></th>
-	        <th class="command">{{ Helper::add('account/add/' . $titleId, '新增教師') }}</th>
+	        <th class="is_require sorttable_nosort"></th>
+	        <th class="is_admin sorttable_nosort"></th>
+	        <th class="command sorttable_nosort">{{ Helper::add('account/add/' . $titleId, '新增教師') }}</th>
 	    </tr>
 		    
 		@if ($teacherList->count() != 0)
