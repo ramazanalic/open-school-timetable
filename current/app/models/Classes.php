@@ -58,9 +58,11 @@ class Classes extends Eloquent
 	/**
 	 * 取得班級資料（提供給select用）
 	 */
-	public static function getClassesSelectArray()
+	public static function getClassesSelectArray($hasNone = true)
 	{
-		$classesSelectArray[0] = '無';
+		if ($hasNone == true) {
+			$classesSelectArray[0] = '無';
+		}
 		$classes = Classes::orderBy('classes_name')->get();
 
 		foreach ($classes as $classItem) {

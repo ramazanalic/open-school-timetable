@@ -76,6 +76,10 @@
 	cursor: pointer;
 }
 
+.sortable th:not(.sorttable_nosort):hover {
+	background-color: #7b7b7b;
+}
+
 .sortable tr th.sorttable_sorted {
-	background-color: #647687;
+	background-color: #7b7b7b;
 }

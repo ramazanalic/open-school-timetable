@@ -64,3 +64,30 @@
 .row_item li a {
 	min-width: 10em;
 }
+
+#teacher_list .teacher_course_count {
+	width: 6em;
+}
+
+#teacher_list .teacher_name {
+	width: 5em;
+}
+
+#teacher_list .classes {
+	width: 5em;
+}
+
+/**
+ * 	排序表格樣式
+ */
+.sortable th:not(.sorttable_nosort) {
+	cursor: pointer;
+}
+
+.sortable th:not(.sorttable_nosort):hover {
+	background-color: #7b7b7b;
+}
+
+.sortable tr th.sorttable_sorted {
+	background-color: #7b7b7b;
+}

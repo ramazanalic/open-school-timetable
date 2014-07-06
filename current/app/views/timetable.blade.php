@@ -12,6 +12,7 @@
 @section('js')
 	{{ HTML::script('js/course_time_selector.js') }}
 	{{ HTML::script('js/show_course_limit.js') }}
+	{{ HTML::script('js/sorttable.js') }}	
 @stop
 
 <?php View::share('titlePrefix', '排課設定') ?>
@@ -36,12 +37,12 @@
 	</div>
 	
 	@if ($teacherList->count() != 0)
-		<table id="teacher_list" class="data_table table_style_1">
+		<table id="teacher_list" class="data_table table_style_1 sortable">
 		    <tr>
 		        <th class="teacher_name">姓名</th>		        		        		        
 		        <th class="teacher_course_count">應上節數</th>
 		        <th class="classes">導師班</th>	
-		        <th class="command">&nbsp;</th>	        		        
+		        <th class="command sorttable_nosort">&nbsp;</th>	        		        
 		    </tr>
 		    @foreach ($teacherList as $teacherItem)
 			    <tr>
@@ -69,7 +70,7 @@
 								$courseTimeDiffClass = 'zero';
 							}
 	
-							echo '(<span class="' . $courseTimeDiffClass . '">' . $teacher_has_course_count . '</span>)';
+							echo '（<span class="' . $courseTimeDiffClass . '">' . $teacher_has_course_count . '</span>）';
 						?>
 			        </td>
 			        <td class="classes">
@@ -86,7 +87,7 @@
 			        	@endif
 		            </td>
 		            <td class="command{{ (isset($teacherId) && $teacherItem->teacher_id == $teacherId) ? ' edit_selected' : '' }}">
-		            	{{ Helper::edit('timetable/view_title/' . $titleId . '/' . $teacherItem->teacher_id, '設定排課(' . $teacherItem->courseunit()->count() . ')') }}		            	
+		            	{{ Helper::edit('timetable/view_title/' . $titleId . '/' . $teacherItem->teacher_id, '設定排課') }}		            	
 		            </td>			        			       		        
 			    </tr>
 		    @endforeach
@@ -103,7 +104,7 @@
 	
 			{{ FormList::description('設定〔' . $teacher->teacher_name . '〕排課資料') }}
 			<br>
-			{{ FormList::select('classes_id', '班級', array('required' => 'required'), array('Classes', 'classes_id', 'classes_name')) }}
+			{{ FormList::select('classes_id', '班級', array('valueArray' => Classes::getClassesSelectArray(false), 'required' => 'required')) }}
 			{{ FormList::select('course_id', '課程', array('required' => 'required'), array('Course', 'course_id', 'course_name')) }}	
 			{{ FormList::select('count', '節數', array('range' => array(1, 15))) }}
 			{{ FormList::select('classroom_id', '使用教室', array('valueArray' => array('0' => '無'), 'required' => 'required'), array('Classroom', 'classroom_id', 'classroom_name')) }}
