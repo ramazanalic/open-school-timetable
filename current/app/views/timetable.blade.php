@@ -46,7 +46,9 @@
 		    </tr>
 		    @foreach ($teacherList as $teacherItem)
 			    <tr>
-			        <td class="teacher_name">{{ $teacherItem->teacher_name }}</td>			       			       
+			        <td class="teacher_name">
+			        	{{ link_to('account/edit/' . $teacherItem->teacher_id . '/titleId/' . $teacherItem->title_id, $teacherItem->teacher_name, array('target' => '_blank')) }}
+		        	</td>			       			       
 			        <td class="teacher_course_count">
 			        	{{ $teacherItem->teacher_course_count }}
 			        	<?php

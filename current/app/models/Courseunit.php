@@ -326,9 +326,6 @@ class Courseunit extends Eloquent
 
 		// 更新課表排課
 		$result = array();
-		$totalClassesTimetable = array();
-		$totalTeacherTimetable = array();
-
 		while (count($timetable) > 0) {
 			// 排序優先排課順序
 			$courseCountArray = array();
@@ -338,7 +335,6 @@ class Courseunit extends Eloquent
 
 			array_multisort($courseCountArray, $timetable);
 
-			ReSelect:
 			// 產生排課時間選擇陣列
 			for ($position = 0, $coursePosition = array(); $position !== false; ) {
 				$position = strpos($timetable[0]['available_course_time'], '1', $position);
@@ -401,35 +397,6 @@ class Courseunit extends Eloquent
 				$timetable[0]['course_time'] = $tempCourseTime;
 			}
 
-			// 檢查班級課表衝突
-			/*
-			 for ($i = 0; $i < $timetable[0]['combination']; $i++) {
-			 if (isset($totalTimetable[$timetable[0]['classes_name']]) &&
-			in_array($timetable[0]['course_time'] + $i,
-			$totalTimetable[$timetable[0]['classes_name']])) {
-
-			 //var_dump($timetable[0]['combination']);
-			 //var_dump($timetable[0]['course_time']);
-			 //dd($totalTimetable);
-			 //dd($coursePosition);
-			 substr_replace($timetable[0]['available_course_time'], str_repeat('0',
-			$timetable[0]['combination']), $timetable[0]['course_time'],
-			$timetable[0]['combination']);
-			 goto ReSelect;
-			 }
-
-			 }
-
-			 // 檢查教師課表衝突
-
-			 // 寫入班級課表
-			 for ($i = 0; $i < $timetable[0]['combination']; $i++) {
-			 $totalTimetable[$timetable[0]['classes_name']][] = $timetable[0]['course_time']
-			+ $i;
-			 }
-
-			 // 寫入教師課表
-			 */
 			$timetableCount = count($timetable);
 			for ($i = 1; $i < $timetableCount; $i++) {
 				// 清除授課老師在同時段的可用的排課時間
@@ -437,8 +404,8 @@ class Courseunit extends Eloquent
 					$timetable[$i]['available_course_time'] = substr_replace($timetable[$i]['available_course_time'], str_repeat('0', $timetable[0]['combination']), $timetable[0]['course_time'], $timetable[0]['combination']);
 
 					// 清除組合節數可用時間（未完成3節的清除）
-					if ($timetable[$i]['combination'] > 1 && in_array($timetable[0]['course_time'], array(1, 2, 5, 8, 9, 12, 15, 16, 19, 22, 23, 26, 29, 30, 33))) {												
-						$timetable[$i]['available_course_time'] = substr_replace($timetable[$i]['available_course_time'], 0, $timetable[0]['course_time'] - 1, 1);						
+					if ($timetable[$i]['combination'] > 1 && in_array($timetable[0]['course_time'], array(1, 2, 5, 8, 9, 12, 15, 16, 19, 22, 23, 26, 29, 30, 33))) {
+						$timetable[$i]['available_course_time'] = substr_replace($timetable[$i]['available_course_time'], 0, $timetable[0]['course_time'] - 1, 1);
 					}
 				}
 
@@ -481,7 +448,7 @@ class Courseunit extends Eloquent
 			// 移動結果
 			$result[] = array_shift($timetable);
 		}
-		//dd($totalTimetable);
+		
 		return $result;
 	}
 
@@ -524,7 +491,8 @@ class Courseunit extends Eloquent
 					$temp['count'] -= $temp['combination'];
 					// 依照組合節數限制可排課時間
 					if ($temp['combination'] == 2) {
-						$temp2['available_course_time'] &= '11101101110110111011011101101110110';
+						//$temp2['available_course_time'] &= '11101101110110111011011101101110110';
+						$temp2['available_course_time'] &= '10101101010110101011010101101010110';
 					} else if ($temp['combination'] == 3) {
 						$temp2['available_course_time'] &= '11001001100100110010011001001100100';
 					}

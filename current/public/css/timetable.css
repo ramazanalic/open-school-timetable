@@ -73,6 +73,10 @@
 	width: 5em;
 }
 
+#teacher_list .teacher_name a {
+	color: blue;
+}
+
 #teacher_list .classes {
 	width: 5em;
 }
